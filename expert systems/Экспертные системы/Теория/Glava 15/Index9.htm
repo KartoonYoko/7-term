@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+  
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Поясните 
+  смысл стратегии наименьшего принуждения. В чем отличие этой стратегии и стратегии 
+  <i>предложение и пересмотр!</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>2. </i>Постарайтесь 
+  перечислить как можно больше задач, к которым, по вашему мнению, можно применить 
+  стратегию наименьшего принуждения; нельзя применить стратегию наименьшего принуждения, 
+  не подкрепив ее какой-нибудь другой.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Подумайте 
+  о тех задачах, с которыми вы достаточно часто сталкиваетесь в повседневной жизни, 
+  например планирование похода по магазинам. Чем отличаются эти два класса задач?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Объясните 
+  смысл терминов <i>метауровневая архитектура </i>и <i>метапланирование.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Проанализируйте 
+  программу, представленную во врезке 15.1. Подумайте над тем, каким образом нужно 
+  модифицировать данные, приведенные в операторе deffacts, -чтобы программа прервала 
+  работу, поскольку не смогла сформировать расписание, хотя, в принципе, его можно 
+  составить. <i>(Указание: </i>попробуйте манипулировать только приоритетами задач.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Программа 
+  планирования мероприятий, представленная во врезке 15,1, не сможет составить 
+  расписание для следующего набора исходных данных, несмотря на то, что такое 
+  расписание существует.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  the-facts<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (subgoal start))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name hospital) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(earliest 
+  1030) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(latest 
+  1030) (duration 200) (priority 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name doctor) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(earliest 
+  1430) (latest 1530)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  200) (priority 1)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name lunch) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(earliest 
+  1130) (latest 1430)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  100) (priority 2)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name guitar-shop)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (earliest 
+  1000) (latest 1700)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  100) (priority 2)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name haircut) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(earliest 
+  900) (latest 1700)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  30) (priority 2)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name groceries)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (earliest 
+  900) (latest 1800)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  130) (priority 2)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name bank)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (earliest 
+  930) (latest 1530)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  30) (priority 2)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name dentist) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(earliest 
+  900) (latest 1600)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  100) (priority 1)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Почему?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">6. Ниже представлено 
+  дополнительное правило для программы составления расписания, которое позволит 
+  разрешить проблему, на которой программа споткнулась в предыдущем упражнении. 
+  Это правило разрешает конфликт между задачами, одна из которых должна начаться 
+  в точно зафиксированное время, а другая уже вставлена в расписание. Для этого 
+  вторая задача сдвигается в расписании. Если же в конфликте участвует задача, 
+  для которой не оговорено точное время начала, сдвигается та задача, которая 
+  имеет более низкий приоритет.<br>
+  </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  clash<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 100))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (subgoal fix))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?S 
+  &lt;- (schedule (task ?M) (start ?M1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(earliest 
+  ?E1) (latest ?L1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (duration 
+  ?C)) (schedule<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  ?N&amp;&quot;?M)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(start 
+  ?Nl&amp;:(and (&lt;= ?M1 ?Nl)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(&lt; 
+  ?N1 (+ ?M1 ?C)))))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name ?N) (duration ?D)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (earliest 
+  ?E2) (latest ?L2i:</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(&lt; 
+  (- ?L2 ?E2) (- ?L1 ?E1)))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf ?M &quot; clashes with &quot; ?N t crlf) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ( ?M &quot; конфликтует с &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  7S (start (+t ?N1 ?D))) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это правило 
+  гласит: &quot;В случае конфликта передвинуть в расписании ту задачу, которая 
+  имеет меньшее ограничение&quot;. Оно активизируется только в том случае, если 
+  текущей является подцель fix. Правила start и finish, которые контролируются 
+  подцелями start и finish, остаются без изменений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ваша задача 
+  — разработать три новых управляющих правила, которые организуют работу правил 
+  clash, start и finish.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Правило 
+  fixstart будет активизироваться в случае, если предложения, сформированные всеми 
+  прочими правилами для подцели start, будут нарушать ограничения. Это новое правило 
+  выделяет вектор schedule для задачи и присваивает его полю start значение, которое 
+  хранится в слоте latest элемента errand.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Измените 
+  существующее правило unstart таким образом, чтобы оно заменяло подцель в выражении 
+  goal с start на fix вместо прежней замены start на finish.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) Разработайте 
+  правило unfix, которое будет заменять подцель в выражении goal с fix на finish.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Затем выполните 
+  следующее.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">IV) Протестируйте 
+  программу и убедитесь, что она справляется с проблемой на наборе исходных данных, 
+  установленном в упр. 5.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">V) Эвристика, 
+  использованная в правиле clash, не может справиться со всеми возможными случаями. 
+  Постарайтесь найти такой вариант исходных данных, который поставит программу 
+  &quot;в тупик&quot;, несмотря на то, что построить расписание возможно.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">7. В программе 
+  составления расписания используется единственный вид ограничений — ограничения 
+  по времени, запрещающие наложение мероприятий. Давайте добавим в нее пару ограничений, 
+  специфических для мероприятий определенного вида, — это будут своего рода специфические 
+  знания о предметной области. Например, логично ввести ограничение, отражающее 
+  тот факт, что для выполнения покупки или посещения какого-либо заведения сети 
+  обслуживания нужно располагать некоторой суммой денег. Следовательно, перед 
+  тем как отправляться за покупками, нужно зайти в банк.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) В шаблон 
+  мероприятия errand добавьте поле kind (вид). Допустимые значения этого поля 
+  — одна из трех символических констант: goods (вещи), service (обслуживание), 
+  visit (визит). Такие мероприятия, как посещение банка или врача, относятся к 
+  группе visit, посещение парикмахерской (haircut) или ресторана (lunch) — к группе 
+  service, а поход в овощную лавку (groceries) или музыкальный салон (guitar-shopping) 
+  — к группе goods.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Включите 
+  в число возможных предложений в процессе решения проблемы новую фазу (подцель) 
+  tune, которая должна следовать за подцелью start перед fix. Таким образом, можно 
+  будет проанализировать введенные специфические ограничения перед тем, как браться 
+  за корректировку расписания (подцель fix). При изменении программы вам придется 
+  модифицировать правила, манипулирующие лексемами подцели.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) Добавьте 
+  правило money, которое будет активизироваться только в том случае, когда -текущей 
+  подцелью в рабочей памяти является tune. Правило должно распознавать ситуацию, 
+  в которой мероприятие, требующее присутствия определенной наличности в бумажнике, 
+  оказывается в расписании раньше, чем посещение банка. Правило должно корректировать 
+  расписание, сдвигая в нем такое мероприятие на позднее время, т.е. на время 
+  после посещения банка. Если такая коррекция приведет к возникновению конфликтной 
+  ситуации в расписании, она будет устранена правилом fix.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">IV) Протестируйте 
+  скорректированную программу на следующем наборе входных данных (фактов):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  the-facts<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (subgoal start))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(errand 
+  (name hospital) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(kind 
+  visit) (earliest 930)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(latest 
+  930) (duration 200)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (priority 
+  1)) (errand (name lunch) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(kind 
+  service) (earliest 1130)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(latest 
+  1430) (duration 100) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(priority 
+  2)) (errand </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(name 
+  guitar-shop) (kind goods)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(earliest 
+  1000) (latest 1700) (duration 100)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(priority 
+  3)) (errand (name haircut) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(kind 
+  service) (earliest 900)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(latest 
+  1700) (duration 30)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (priority 
+  4)) (errand (name groceries)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (kind 
+  goods) (earliest 900)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(latest 
+  1800) (duration 130) (priority 5))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (errand 
+  (name bank) (kind visit)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (earliest 
+  930) (latest 1530)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(duration 
+  30) (priority 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">8. Как вы 
+  оцениваете методику последовательного уточнения программы, которая была использована 
+  при выполнении упр. 4-7? Какие, по-вашему, существуют доводы за и против использования 
+  такой методики разработки?</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+   
+  </tr>
+</table>
+</body>
+</html>

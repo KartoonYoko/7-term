@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+ 
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Почему 
+  пакет программ статистического анализа нельзя считать программой искусственного 
+  интеллекта?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. Могут ли 
+  психологи подсказать нам, как сконструировать думающую машину?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Как вы 
+  понимаете термин &quot;пространство поиска&quot;? Что представляет собой пространство 
+  поиска в игре в шахматы?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Как вы 
+  понимаете термин &quot;пространство решений&quot;? Что представляет собой пространство 
+  решений в игре в шахматы?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Ниже приведен 
+  алгоритм поиска в глубину. Он записан с помощью функциональной нотации, которая 
+  подчеркивает его рекурсивную структуру. Таким образом, dfs представляет собой 
+  функцию трех аргументов: goal, current и pending:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> goal — это объект поиска,<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> current — текущий узел 
+    на графе состояний (в самом начале — узел исходного состояния),<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> pending — список узлов, 
+    претендующих на обработку (в самом начале — пустой).<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">В дальнейшем используются 
+    следующие обозначения:<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> символ := означает 
+    присваивание;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> функция expand формирует 
+    узлы, следующие за аргументом этой функции; знак + означает слияние двух списков, 
+    т.е.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(а 
+  b с) + (d e f ) = (а b с d e f);</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> () означает пустой 
+    список;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> first и rest — функции, 
+    которые возвращают начало и конец списка:<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">first(a 
+  b с) = a<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">rest(a 
+  b c) = (b c).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Выразите 
+  следующий алгоритм на каком-либо из известных вам языков программирования.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">dfsfgoal, 
+  current, pending)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">if 
+  current = goal, then success;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> else<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">pending 
+  := expand (current}+ pending;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> if 
+  pending = () then fail;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> else 
+  dfs(goal, first(pending), .rest( pending));<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">} 
+  }</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Разработайте 
+  аналогичный алгоритм для поиска в ширину и реализуйте его на том же языке. Необходимо 
+  будет изменить только одно выражение в функции dfs.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">6. Рассмотрите 
+  головоломку &quot;миссионеры и каннибалы&quot;, схематически представленную 
+  на рис. 2.6.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="6.gif" width="500" height="356"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 2.6. 
+  Головоломка &quot;миссионеры и каннибалы &quot;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Условия головоломки 
+  следующие.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На левом берегу 
+  реки находятся три миссионера и три каннибала. К этому же берегу причалена единственная 
+  лодка. На этой лодке нужно переправить всех миссионеров и всех каннибалов на 
+  правый берег при условии, что лодка одновременно может перевозить не более двоих, 
+  в обратный путь на лодке должен отправиться хотя бы один человек. Таким образом, 
+  дозволены следующие варианты шагов (переправ):<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">К-&gt; одного 
+  каннибала с левого берега на правый<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">КК-&gt; двух 
+  каннибалов с левого берега на правый<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">МК-&gt; одного 
+  миссионера и одного каннибала с левого берега на правый<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ММ-&gt; двух 
+  миссионеров с левого берега на правый<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">М-&gt; одного 
+  миссионера с левого берега на правый<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">К этому нужно 
+  добавить такие же варианты переправы с правого берега на левый. Но есть еще 
+  одно обстоятельство, существенно влияющее на весь процесс: если окажется, что 
+  каннибалов на любом из берегов больше, чем миссионеров, то несчастных просто 
+  съедят. Решение головоломки — это последовательность шагов с учетом описанных 
+  ограничений, переводящая систему в заданное конечное состояние.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Конечно, эту 
+  головоломку можно решить и простым перебором и испытанием всех возможных состояний, 
+  поскольку пространство поиска не так уж велико. На рис. 2.7 показано, как образуется 
+  пространство поиска рекурсивным применением дозволенных операторов, причем на 
+  графе состояний особо выделены узлы, приводящие к образованию петель, и узлы, 
+  соответствующие недозволенным состояниям (когда кто-либо из миссионеров обречен).<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="7.gif" width="500" height="373"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 2.7. 
+  Построение пространства поиска в головоломке &quot;миссионеры и каннибалы&quot;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На рис. 2.8 
+  показано законченное пространство поиска, сформированное алгоритмом поиска в 
+  глубину, причем перебор возможных шагов ведется в том порядке, в котором они 
+  перечислены в представленном в условии, списке.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="8.gif" width="500" height="637"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 2.8. 
+  Законченное пространство поиска в головоломке &quot;миссионеры и каннибалы &quot;, 
+  сформированное алгоритмом поиска в глубину<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В процессе 
+  поиска было развернуто 22 узла, а путь, приводящий к успеху, содержит 11 узлов. 
+  Таким образом, оценка <i>проницательности </i>поиска равна 11/22=0.5. Грубо 
+  говоря, <i>проницательность </i>поиска говорит нам о том, насколько данный алгоритм 
+  позволил избежать выполнения ненужной работы в процессе Поиска решения. Чем 
+  выше значение проницательности поиска для того или иного алгоритма, тем лучше.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Выберите 
+  представление состояний на берегах реки и разработайте программу, которая решает 
+  эту задачу, используя оба варианта алгоритмов поиска— в глубину и в ширину. 
+  С разными способами формализации этой<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">задачи можно 
+  познакомиться в работе Амарела <i>[Amarel, 1968]. </i>Обратите внимание на то, 
+  что существуют способы представления состояний, которые позволяют более экономно 
+  использовать вычислительные ресурсы при решении задачи.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Попытайтесь 
+  улучшить оценку проницательности поиска, полученную для алгоритма поиска в глубину 
+  (рис. 2.8), изменив порядок, в котором анализируются в каждом очередном состоянии 
+  дозволенные операторы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) Обобщите 
+  программу как в части количества пассажиров в лодке, так и в части количества 
+  миссионеров/каннибалов. Сделайте их параметрами программы, задаваемыми извне. 
+  Если вы начнете проводить эксперименты с такой программой, то убедитесь, что, 
+  во-первых, эти параметры нельзя варьировать независимо, поскольку при некоторых 
+  комбинациях задача не имеет решения, а во-вторых, увеличение значений любого 
+  из параметров существенно расширяет пространство поиска.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">7. Другая 
+  классическая головоломка, знакомая в несколько ином виде многим еще со школьной 
+  скамьи, — &quot;Восьмерка&quot;. В головоломке принимает участие восемь пронумерованных 
+  фишек, которые могут перемещаться по игровому полю 3x3. Цель состоит в том, 
+  чтобы из некоторого случайного расположения фишек перейти к упорядоченному (рис. 
+  2.9).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мы несколько 
+  модифицируем ограничения, сформулировав их в терминах перемещения единственного 
+  &quot;пустого поля&quot;.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="9.gif" width="400" height="498"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 2.9. 
+  Головоломка &quot;Восьмерка&quot;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В отличие 
+  от задачи о миссионерах и каннибалах, эту головоломку можно решить за приемлемое 
+  время методом &quot;слепого&quot; поиска. Дело в том, что головоломка имеет 
+  только 9! состояний и, следовательно, можно использовать для поиска очередного 
+  хода оценочную функцию по методике &quot;восхождения на гору&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Придумайте 
+  оценочную функцию для этой задачи и разработайте программу, которая реализует 
+  поиск по методике &quot;восхождения на гору&quot;. Возможные варианты оценочной 
+  функции некоторого состояния должны включать, во-первых, количество фишек, которые 
+  стоят не на своих местах, а во-вторых, сумму расстояний от текущего положения 
+  каждой фишки до предназначенного ей целевого (имеются в виду расстояния по Евклиду).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Какая 
+  из предложенных выше оценочных функций является более чувствительной? Можете 
+  ли вы предложить лучший способ управления поиском?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) Как будет 
+  работать ваша программа, если увеличить количество фишек до 15, а размер игрового 
+  поля до 4x4? В этом случае придется исследовать 16! состояний.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эту головоломку 
+  с точки зрения методов искусственного интеллекта рассматривал Нильсон (см. <i>[Nilsson, 
+  1980, Chapter 1].</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">8. Просмотрите 
+  описание алгоритма А во врезке 2.2 и выполните следующее.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Реализуйте 
+  алгоритм А на любом известном вам языке программирования.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) С помощью 
+  созданной программы попробуйте решить головоломки &quot;о миссионерах и каннибалах&quot; 
+  и &quot;Восьмерку&quot;. (Придется придумать оценочную функцию для головоломки 
+  &quot;о миссионерах и каннибалах&quot;. Воспользуйтесь оценочной функцией из 
+  упр. 7.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) Попробуйте 
+  с помощью этого алгоритма решить криптоарифметическую головоломку, описанную 
+  ниже:<br>
+  </font></p>
+<div align="left"> 
+  <table frame="BOX" rules="ALL" border="0" cellspacing="0" cellpadding="0" width="480" height="62">
+    <tr> 
+      <td align="LEFT" valign="TOP" width="1" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="98" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="147" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="104" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="2" height="0"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="1" height="19"> </td>
+      <td align="LEFT" valign="TOP" width="98" height="19"> 
+        <div width="100" height="19"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">BEST<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="140" height="19"> 
+        <div width="143" height="19"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">SEND<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="147" height="19"> 
+        <div width="150" height="19"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">DONALD<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="104" height="19"> 
+        <div width="98" height="19"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">CROSS<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="2" height="19"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="1" height="23"> </td>
+      <td align="LEFT" valign="TOP" width="98" height="23"> 
+        <div width="100" height="23"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">+MADE<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="140" height="23"> 
+        <div width="143" height="23"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">+MORE<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="147" height="23"> 
+        <div width="150" height="23"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">+GERALD<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="104" height="23"> 
+        <div width="98" height="23"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">+ROADS<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="2" height="23"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="1" height="20"> </td>
+      <td align="LEFT" valign="TOP" width="98" height="20"> 
+        <div width="100" height="20"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">MASTER<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="140" height="20"> 
+        <div width="143" height="20"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">MONEY<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="147" height="20"> 
+        <div width="150" height="20"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">ROBERT<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="104" height="20"> 
+        <div width="98" height="20"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">DANGER<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="2" height="20"> </td>
+    </tr>
+    <tr> 
+      <td align="LEFT" valign="TOP" width="1" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="98" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="147" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="104" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="2" height="0"> </td>
+    </tr>
+  </table>
+</div>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Термин &quot;криптоарифметическая&quot; 
+  означает использование цифр, зашифрованных буквами, и соответственно чисел, 
+  зашифрованных словами. Задача состоит в том, чтобы найти, какие цифры нужно 
+  подставить вместо букв, чтобы представленные арифметические операции над расшифрованными 
+  числами давали верный результат. Такая задача рассматривается во многих классических 
+  работах по искусственному интеллекту (см., например, <i>[Raphael, 1976, Chapter 
+  3].</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Вам придется 
+  подумать над тем, как представить слагаемые и сумму, какие возможны в решении 
+  этой задачи &quot;ходы&quot; (т.е. какой набор операций можно предложить для 
+  перехода из одного состояния в другое) и какую эвристику можно применить для 
+  управления поиском.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+
+  </tr>
+</table>
+</body>
+</html>

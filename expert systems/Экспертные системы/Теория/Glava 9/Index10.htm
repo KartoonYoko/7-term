@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">9.3.3. 
+  Теория возможности</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Нечеткая логика 
+  имеет дело с ситуациями, когда и сформулированный-вопрос, и знания, которыми 
+  мы располагаем, содержат нечетко очерченные понятия. Однако нечеткость формулировки 
+  понятий является не единственным источником неопределенности. Иногда мы просто 
+  не уверены в самих фактах. Если утверждается: &quot;Возможно, что Джон сейчас 
+  в Париже&quot;, то говорить о нечеткости понятий Джон и Париж не приходится. 
+  Неопределенность заложена в самом факте, действительно ли Джон находится в Париже.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теория возможностей 
+  является одним из направлений в нечеткой логике, в котором рассматриваются точно 
+  сформулированные вопросы, базирующиеся на неточных знаниях. В этом разделе вы 
+  познакомитесь только с основными идеями этой теории. Лучше всего это сделать 
+  на примере.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что в ящике находится 1 0 шаров, но известно, что только <i>несколько </i>из 
+  них красных. Какова вероятность того, что на удачу из ящика будет вынут красный 
+  шар?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Просто вычислить 
+  искомое значение, основываясь на знаниях, что только несколько шаров <i>красные 
+  </i>(red), нельзя. Тем не менее для каждого значения <i>X </i>из <i>P(RED) </i>в 
+  диапазоне [0,1] можно следующим образом вычислить возможность, что <i>P(RED) 
+  = Х.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Во-первых, 
+  определим &quot;несколько&quot; (several) как нечеткое множество, например, 
+  так:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">f<i><sub>SEVERAL</sub> 
+  </i>= {(3, 0.2), (4, 0.6), (5, 1.0), (6, 1.0), (7, 0.6), (8, 0.3)} .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом определении 
+  выражение (3, 0.2) <i>е </i>f<i><sub>SEVERAL</sub> </i>означает, что 3 из 10 
+  вряд ли можно признать как &quot;несколько&quot;, а выражения (5, 1 .0) е f<i><sub>SEVERAL</sub> 
+  </i>и (6, 1 .0) е f<i><sub>SEVERAL</sub> </i>означают, что значения 5 и 6 из 
+  10 идеально согласуются с понятием &quot;несколько&quot;. Обратите внимание 
+  на то, что в определение нечеткого множества не входят значения 1 и 10, поскольку 
+  интуитивно ясно, что &quot;несколько&quot; означает &quot;больше одного&quot; 
+  и &quot;не все&quot;. Нечеткое множество, определенное на множестве чисел, называется 
+  <i>нечеткими числами (fuzzy numbers). </i>По тому же принципу, что и множество 
+  f<i><sub>SEVERAL</sub></i>, можно определить нечеткие множествами/для понятия 
+  &quot;мало&quot; f<sub>MOST </sub>для понятия &quot;почти&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь распределение 
+  возможностей для <i>P(RED) </i>представляется формулой<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">f<sub>P(RED)</sub> 
+  = SEVERAL / 10, </font></i></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">которая после 
+  подстановки дает<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{(0.3, 
+  0.2), (0.4, 0.6), (0.5, 1.0), (0.6, 1.0), (0.7, 0.6), (0.8, 0.3)}.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выражение 
+  (0.3, 0.2) ~ <i>f<sub>P(RED)</sub></i> означает, что шанс на то, что <i>P(RED) 
+  </i>= 0.3, равен 20%. Можно рассматривать <i>f<sub>P(RED) </sub> </i>как <i>нечеткую 
+  вероятность (fuzzy probability).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Полагая, что 
+  почти любое понятие может быть областью определения такой функции, естественно 
+  ввести в обиход и понятие &quot;нечеткое значение правдоподобия&quot;. Мы часто 
+  оцениваем некоторое утверждение как &quot;очень правдоподобное&quot; или &quot;частично 
+  правдоподобное&quot;. Таким образом, можно представить себе нечеткое множество<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">f<sub>true</sub>-: 
+  [0 , 1]-&gt; [0, 1],</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">где и область 
+  определения, и область значений функции f<sub>true </sub> являются возможными 
+  значениями правдоподобия в нечеткой логике. Следовательно, можно получить<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">TRUE(FASR-CAR(Porsche-944)) 
+  = </font></i><font face="Verdana, Arial, Helvetica, sans-serif">1</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">даже при <i>FASR-CAR(Porsche-944) 
+  = 0.9, </i>поскольку (0.9, 1.0)~f<sub>true </sub>Это означает, что любое предположение 
+  относительно значения 0.9 рассматривается как &quot;достаточно правдоподобное&quot;. 
+  Таким образом, можно с уверенностью сказать, что Porsche-944 является быстрым 
+  автомобилем, несмотря на то, что на рынке есть и более скоростные.<br>
+  </font></p>
+<br>
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

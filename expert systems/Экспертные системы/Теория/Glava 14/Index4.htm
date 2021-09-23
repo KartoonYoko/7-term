@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">14.2.1. 
+  Компоненты и ограничения</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Хотя и R1, 
+  и MYCIN являются программами, использующими в своей работе порождающие правила, 
+  между ними имеется ряд серьезных отличий. Одно из них состоит в том, что в MYCIN 
+  процесс решения проблемы <i>направляется гипотезами (hypothesis-driven), </i>т.е. 
+  процесс начинается с формулировки определенной цели, а затем она преобразуется 
+  в набор подцелей, совместное достижение которых позволяет достичь главной цели 
+  (см. об этом в главе 3). В системе R1 главным является подход, предполагающий, 
+  что процесс решения <i>направляется данными (data-driven). </i>Сначала программа 
+  определяет множество компонентов и далее пытается сконструировать такую конфигурацию 
+  этих компонентов, которая удовлетворяла бы ограничениям, вытекающим как из характеристик 
+  отдельных компонентов, так и из отношений и связей между ними. Для реализации 
+  программы был использован язык OPS5, один из первых языков представления правил, 
+  прямой предшественник языка CLIPS.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для успешной 
+  работы программа R1 нуждается в знаниях двух видов:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> о <i>характеристиках 
+    </i>компонентов — электрических (напряжение питания, потребляемая мощность, 
+    параметры выходных сигналов и т.п.), механических (габариты, тип и количество 
+    разъемов), структурных (количество портов) и т.п.;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> об <i>ограничениях, 
+    </i>накладываемых на &quot;совместимость&quot; компонентов, — правилах формирования 
+    частичных конфигураций и их расширения.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Знания о компонентах 
+  хранятся в базе данных отдельно как от памяти системы порождающих правил, так 
+  и от рабочей памяти транзитных элементов данных. Таким образом, база данных 
+  имеет статическую структуру, в то время как рабочая память является динамической, 
+  В отличие от памяти порождающей системы, которая организована в виде набора 
+  модулей, управляемых по определенной схеме, база данных состоит из записей обычной 
+  структуры, которые для каждого компонента хранят информацию о его классе, типе 
+  и множестве характеристик. Например, ниже представлен фрагмент записи о контроллере 
+  накопителя на магнитных дисках типа<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RK611<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLASS: 
+  UNIBUS MODULE<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">TYPE: 
+  DISK DRIVE<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">SUPPORTED: 
+  YES<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">PRIORITY 
+  LEVEL: BUFFERED NPR<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">TRANFER 
+  RATE: 212</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Знания об 
+  ограничениях сохраняются в виде правил в памяти продукционной системы программы 
+  R1. Левая часть правил описывает условия (ситуацию), при соблюдении которых 
+  возможно расширение частичной конфигурации, а правая часть описывает, как выполняется 
+  расширение. В начале сеанса работы с системой рабочая память пуста, а в конце 
+  сеанса в ней содержится описание сформированной конфигурации. Компоненты в этом 
+  описании представлены в виде лексем, имеющих вид векторов, состоящих из элементов 
+  &quot;атрибут-значение&quot;. С информацией, хранящейся в базе данных компонентов, 
+  система R1 может выполнять пять видов операций: генерировать новую лексему, 
+  отыскивать лексему, отыскивать подстановку для заданной лексемы, извлекать атрибуты, 
+  связанные с заданной лексемой, и извлекать шаблон, который в дальнейшем должен 
+  быть заполнен.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Помимо лексем 
+  компонентов, рабочая память содержит элементы, которые представляют частичные 
+  конфигурации оборудования, результаты вычислений и символьное описание текущей 
+  задачи.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система R1 
+  хранит порядка 10 000 правил, значительная часть которых определяет, какое следующее 
+  действие должна выполнить программа. Пример одного из таких правил приведен 
+  ниже.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">DISTRIBUTE-MB-DEVICES-3</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ: предыдущим 
+  активным контекстом является расширение количества<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">устройств, 
+  подключаемых к шине .MASSBUS<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&amp; имеется 
+  однопортовый НМД, не подключенный к MASSBUS<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&amp; отсутствуют 
+  двухпортовые НМД, еще не подключенные к MASSBUS<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&amp; количество 
+  устройств, которое можно подключить к расширителю MASSBUS,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">известно<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&amp; существует 
+  расширитель MASSBUS, к которому подключен по крайней мере<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">один НМД и 
+  который может<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">поддерживать 
+  дополнительные НМД<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&amp; известен 
+  тип кабеля, которым должен быть связан НМД с ранее установленным устройством<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО: подключить 
+  НМД к MASSBUS<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>Такие управляющие 
+  знания о предметной области (domain-specific control knowledge) </i>позволяют 
+  программе R1 принимать решение о том, с чего начинать и как расширять структуру 
+  комплекса, не используя при этом сложной процедуры поиска. Как мы увидим далее, 
+  программа R1, как правило, не нуждается в обратном прослеживании неудовлетворительных 
+  решений, которое можно было бы использовать для отмены сформированной частичной 
+  конфигурации и замены ее новой.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Использованные 
+  в R1 управляющие знания малочувствительны к очередности применения отдельных 
+  правил. Этим она отличается от систем, в которых общая задача конфигурирования 
+  решается разделением на подзадачи и выбором групп правил, соответствующих определенной 
+  подзадаче. В результате процесс решения проблемы в R1 направляется последовательностью 
+  правил, активизированных последними. Как будет показано в следующем разделе, 
+  для упрощения реализации такой стратегии используются некоторые из средств разрешения 
+  конфликтов, которые имеются в языке OPS5.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

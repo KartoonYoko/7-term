@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">17.3.5. 
+  Дополнительные модули</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Под дополнительными 
+  модулями понимаются те полезные программы, которые можно выполнять вместе с 
+  приложением. Как правило, такие программы реализуют некоторые специальные функции, 
+  как бы &quot;снимая их с полки&quot;, причем для обращения к таким функциям 
+  не требуется что-либо программировать в основном приложении или заниматься его 
+  индивидуальной настройкой. Одним из примеров такого рода дополнительного модуля 
+  может служить программный пакет <b><i>Simkit </i></b>из комплекта среды КЕЕ. 
+  Этот пакет позволяет оснастить экспертную систему методами моделирования.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Другой функцией, 
+  которая поддерживается дополнительными модулями сред КЕЕ и ART, является механизм 
+  обработки множества различных <i>контекстов </i>логических рассуждений. В первом 
+  приближении можно считать, что контексты формируются теми ветвями в пространстве 
+  поиска, которые допускают использование более чем одного оператора. Рассмотрим 
+  представленный ниже сценарий, в котором имеются два правила, в каждом из которых 
+  условная часть удовлетворяется в текущем контексте рассуждений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">[Правило 1]<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ: сегодня 
+  рабочий день И<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">нет признаков 
+  недомогания, ТО: посетить занятия по информатике.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">[Правило 2]<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ: сегодня 
+  рабочий день И<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">погода прекрасна, 
+  ТО: покататься на яхте.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В большинстве 
+  систем, основанных на порождающих правилах, выбор того единственного правила, 
+  которое будет активизировано, зависит от реализуемой стратегии разрешения конфликтов. 
+  Но в некоторых приложениях предпочтительным вариантом будет разделить текущий 
+  контекст на два разных, в одном из которых будет активизировано правило 1, а 
+  в другом — правило 2 (рис. 17.1). В каждом из этих контекстов будет сделано 
+  разное заключение, однако можно так организовать процесс, чтобы в каждый контекст 
+  была включена и информация из родительского контекста. Тогда в обоих контекстах 
+  будет учитываться, что сегодня понедельник и за окном прекрасная погода.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь можно 
+  раздельно обрабатывать каждый контекст, причем в процессе дальнейшей обработки 
+  не исключено и аналогичное повторное разделение контекстов. В результате будет 
+  сформировано несколько вариантов решения проблемы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но можно в 
+  процессе обработки попасть в такую ситуацию, которая расценивается как неудача 
+  процесса вывода, например нарушение исходных ограничений. В нашем примере такой 
+  неудачей может быть заключение о том, что экзамен по информатике будет провален 
+  вследствие выполнения правила<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">[Правило 3]<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ: не посещать 
+  занятия по информатике, </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">ТО: экзамен 
+  по информатике будет провален<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Получение 
+  такого заключения должно было бы привести к тому, что линию рассуждений, порожденную, 
+  правилом 2, следует исключить из рассмотрения. Говорят, что соответствующий 
+  контекст <i>отравлен. </i>Как правило, удаляется вся цепочка рассуждений, вплоть 
+  до последнего &quot;размножения&quot; контекстов. Таким образом, контексты, 
+  выделенные утолщенными прямоугольниками на рис. 17.1, должны быть исключены 
+  из рассмотрения, и останется только одна цепочка, в соответствии с которой будет 
+  сделан вывод о необходимости посетить занятия по информатике, несмотря на все 
+  соблазны.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  множество контекстов соответствует альтернативным вариантам решений или альтернативным 
+  предположениям на разных стадиях процесса логического вывода. Проблема обработки 
+  множества предположений и зависимостей между ними достаточна сложна и выделена 
+  в отдельное направление исследований, получившее наименование <i>обработки правдоподобия 
+  (truth maintenance) </i>или <i>обработки причинности (reason maintenance). </i>Детальнее 
+  мы остановимся на этом вопросе в главе 19, где будут рассмотрены альтернативные 
+  варианты организации вычислений.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="1.gif" width="500" height="296"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 17.1. 
+  Пример множества контекстов<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Тенденция 
+  использования дополнительных модулей будет скорее всего развиваться, поскольку 
+  пользователи экспертных систем часто нуждаются в разного рода дополнительных 
+  функциональных возможностях, специфичных для конкретного приложения, а также 
+  в возможности интегрировать экспертную систему с программными продуктами других 
+  классов. На практике экспертная система часто используется вместе в базой данных 
+  или системой управления движением робота, получает информацию от систем обработки 
+  сигналов или пакетов статистической обработки.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мы постарались 
+  дать вам общее представление о возможностях инструментальных средств, применяемых 
+  при разработке и эксплуатации экспертных систем, не вдаваясь в подробности реализации 
+  разных моделей таких средств. В следующем разделе основное внимание будет уделено 
+  выбору подходящих средств, обучению методике работы с ними и внедрению этих 
+  средств в практику проектирования систем. Вы увидите, что каждая из этих фаз 
+  сопряжена со множеством проблем, но некоторых из них при рациональном подходе 
+  можно избежать.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">17.2. 
+  Логический вывод в разных контекстах</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Ниже 
+  приведен программный код на языке CLIPS, в котором реализована описанная выше 
+  стратегия работы со множеством контекстов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ШАБЛОНЫ<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Fact представляет собой субъект с определенными </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  свойствами.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Поле &quot;world&quot; несет информацию о контексте, </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftemplate 
+  fact<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  subj (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  attr (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  world (type INTEGER))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Act представляет действие с объектом.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Поле &quot;world&quot; несет информацию о контексте.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftemplate 
+  act<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  action (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  object (type SYMBOL)) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  world (type INTEGER))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Context имеет статус либо OK ,<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  либо NG (no good - плохой).<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(def 
+  template context<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  id (type INTEGER)) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  status (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Модель мира в исходном состоянии. </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(def 
+  facts model<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(context 
+  (id 1) (status OK))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(fact 
+  (subj weather) (attr sunny) (world 1))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">; 
+  ; ПРАВИЛА<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">; 
+  ; Если дождя нет,<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  создать новый контекст, в котором можно<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  пропустить занятия.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(def 
+  rule skip<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(fact 
+  (subj weather) (attr ?W&amp;~rainy) (world ?C)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (act (action skip) (object class)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(world 
+  (+ ?C 1)))) (assert (context</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ((id (+ ?C 1)) (status OK)))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Если пропустить занятия,<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  то на экзамене вас ждет провал.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  fail<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(act 
+  (action skip) (object class) (world ?W)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (act (action fail) (object exam) (world (?W)))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Если контекст содержит действие fail,</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; пометить его маркером NG. (defrule poison<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(act 
+  (action fail) (world ?W)) .<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">?C 
+  &lt;- (context (id ?W) (status OK)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?C (status NG))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Как 
+  только контекст будет помечен маркером NG, с ним можно будет выполнять операции, 
+  предусмотренные для отравленного контекста, например удалить все связанные с 
+  ним факты и действия (см. упр. 8 в конце главы).</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

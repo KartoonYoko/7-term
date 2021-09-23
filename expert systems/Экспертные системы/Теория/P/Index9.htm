@@ -1,0 +1,470 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.3. 
+  Объектно-ориентированные средства в CLIPS</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Использование 
+  объектно-ориентированных средств в CLIPS позволяет значительно упростить программирование 
+  правил, поскольку для обновления данных можно применять механизм передачи и 
+  обработки сообщений методами классов. В этом разделе мы продемонстрируем, как 
+  это делается на примере, который моделирует правила обращения с полуавтоматическим 
+  пистолетом.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Первым делом 
+  определим класс pistol, в котором будут перечислены свойства, необходимые для 
+  моделирования.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  pistol<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is-a 
+  USER)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(role 
+  concrete)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(pattern-match 
+  reactive)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  safety (type SYMBOL) (create-accessor read-write))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  slide (type SYMBOL) (create-accessor read-write))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  hammer (type SYMBOL) (create-accessor read-write))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  chamber (type INTEGER) (create-accessor read-write))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  magazine (type SYMBOL) (create-accessor read-write))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  rounds (type INTEGER) (create-accessor read-write)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Первые три 
+  слота — системные. Они нужны объектно-ориентированной надстройке CLIPS (COOL 
+  — CLIPS object-oriented language). Эти слоты COOL извещают о том, что<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> pistol — это пользовательский 
+    класс;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> pistol является конкретным 
+    классом, т.е. возможно создание экземпляров этого класса (альтернативный тип 
+    — абстрактный класс, который играет ту же роль, что и виртуальный класс в 
+    C++);<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> экземпляры класса pistol 
+    могут быть использованы в качестве объектов данных, которые можно сопоставлять 
+    с условиями в правилах и использовать в действиях, определенных правилами.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Следующие 
+  пять слотов представляют свойства и члены данных класса:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> слот safety (предохранитель) 
+    может содержать символ on или off;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> слот slide (затвор) 
+    может содержать значение forward или back, т.е. хранит информацию о положении 
+    затвора;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> слот hammer (курок) 
+    содержит информацию о состоянии курка, back или down;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> слот chamber (патронник) 
+    содержит значение 1 или 0, в зависимости от того, есть ли патрон в патроннике;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> слот magazine (обойма) 
+    может содержать значение in или out, в зависимости от того, вставлена ли обойма;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> слот rounds (патроны) 
+    содержит текущее количество патронов в обойме.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для того чтобы 
+  иметь возможность записывать в слот новое значение или считывать текущее, нужно 
+  разрешить формирование соответствующих функций доступа через фацет create-accessor. 
+  Теперь сформируем экземпляр класса pistol с помощью следующего выражения:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(definstances 
+  pistols (РРК of pistol (safety on)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (slide 
+  forward) (hammer down) (chamber 0) (magazine out) (rounds 6)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Этот экземпляр, 
+  РРК, правильно уложен — обойма вынута из рукоятки, пистолет установлен на предохранитель, 
+  затвор в переднем положении, курок опущен, а патронник пуст. В обойме имеется 
+  6 патронов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь, имея 
+  в программе определение класса и сформировав экземпляр класса, разработаем правила 
+  и обработчики сообщений, с помощью которых можно описать отдельные операции 
+  обращения с пистолетом и стрельбы из него. Для этого сначала разработаем шаблон 
+  задачи. Желательно отслеживать две вещи:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> есть ли патрон в патроннике;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> произведен ли выстрел.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для этого 
+  можно использовать следующий шаблон:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  range-test<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  check (type SYMBOL) (default no))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  fired (type SYMBOL) (default no)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Первое правило 
+  будет устанавливать в рабочую память программы задачу range-test.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  start<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(initial-fact) 
+  =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (range-test)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При активизации 
+  этого правила в рабочую память будет добавлено (range-test (check no) (fired 
+  no))<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Следующие 
+  три правила будут проверять, правильно ли снаряжен пистолет.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  check<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety on) (magazine out)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?T 
+  &lt;- (range-test (check no)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] clear)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?T (check yes) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило check 
+  заключается в том, что если пистолет стоит на предохранителе (safety on), обойма 
+  вынута (magazine out) и пистолет не был проверен, то нужно очистить патронник 
+  и проверить, нет ли в нем патрона. Обработчик сообщения clear для класса pistol 
+  будет выглядеть следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  pistol clear ( )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(dynamic-put 
+  chamber 0)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(ppinstance) 
+  )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В первой строке 
+  объявляется, что clear является обработчиком сообщения для класса pistol, причем 
+  этот обработчик не требует передачи аргументов. Оператор во второй строке &quot;очищает&quot; 
+  патронник. Присвоение выполняется независимо от того, какое текущее значение 
+  имеет слот chamber, — 0 или 1 . Оператор в третьей строке требует, чтобы экземпляр 
+  распечатал информацию о текущем состоянии своих слотов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В следующих 
+  двух правилах обрабатываются ситуации, когда пистолет снаряжен неправильно, 
+  — не установлен на предохранитель или в него вставлена обойма. Правило correctl 
+  устанавливает пистолет на предохранитель, а правило correct2 извлекает из него 
+  обойму.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  correctl<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety off) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(range-test 
+  (check no)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] safety on)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  correct2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety on) (magazine in))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(range-test 
+  (check no)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] drop) )<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Как и при 
+  разработке предыдущего правила, нам понадобятся обработчики сообщений safety 
+  и drop.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  pistol safety (?on-off)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(dynamic-put 
+  safety ?on-off)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(if 
+  (eq ?on-off on)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">then 
+  (dynamic-put hammer down)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">) 
+  )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обработчик 
+  сообщения safety принимает единственный аргумент, который может иметь только 
+  два символических значения on или off. В противном случае нам пришлось бы разработать 
+  два обработчика: один для сообщения saf ety-on, а другой — для сообщения safety-of 
+  f . Учтите, что в некоторых моделях, например в Walther PPK, при установке пистолета 
+  на предохранитель патронник очищается автоматически.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обработчик 
+  сообщения drop просто извлекает обойму из пистолета.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  pistol drop ()<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(dynamic-put 
+  magazine out) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь, когда 
+  обеспечено правильное исходное снаряжение пистолета, можно приступить к стрельбе. 
+  Следующее правило обеспечивает вставку обоймы в пистолет перед стрельбой:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  mag-in<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety on) (magazine out))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(range-test 
+  (fired no) (check yes)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] seat) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обработчик 
+  сообщения seat выполняет действия, противоположные тем, которые выполняет обработчик 
+  drop.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  pistol seat ()<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(dynamic-put 
+  magazine in) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Можно было 
+  бы, конечно, включить в программу и следующее правило mag-in:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  mag-in<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?gun 
+  &lt;- (object (name [PPK]) (safety on) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(magazine 
+  out)) (range-test (fired no) (check yes)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?gun (magazine in) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">но это противоречит 
+  одному из принципов объектно-ориентированного программирования, который гласит, 
+  что объект должен самостоятельно обрабатывать содержащиеся в нем данные. Следующее 
+  правило обеспечивает снаряжение обоймы патронами:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  load<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (magazine in) (chamber 0)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] rack) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На примере 
+  обработчика сообщения rack вы можете убедиться в справедливости нашего замечания 
+  о том, что обработку данных внутри объекта нужно поручать методам этого объекта, 
+  а не включать прямо в правило.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  pistol rack ()</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (if 
+  (&gt; (dynamic-get rounds) 0) then (dynamic-put chamber 1)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(dynamic-put 
+  rounds (- (dynamic-get rounds) 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(dynamic-put 
+  slide forward) else (dynamic-put chamber 0)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(dynamic-put 
+  slide back)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом обработчике 
+  обеспечивается досылка патрона в патронник в том случае, если в обойме имеются 
+  патроны. Следующее правило подготавливает пистолет к стрельбе, снимая его с 
+  предохранителя. Обратите внимание на то, что в нем повторно используется сообщение 
+  safety, но на этот раз с аргументом off.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  ready<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (chamber 1)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] safety off) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Правило 
+  fire выполняет стрельбу.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  fire<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety off);<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?T 
+  &lt;- (range-test (fired no)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(if 
+  (eq (send [PPK] fire) TRUE)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">then 
+  (modify ?T (fired yes))) )<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание, 
+  что в данном правиле используется обработчик сообщения, которое возвращает значение. 
+  Анализируя его, можно выяснить, произведен ли выстрел, т.е. выполнена ли в действительности 
+  та операция, которая &quot;закреплена&quot; за этим сообщением. Если в патроннике 
+  был патрон и пистолет был снят с предохранителя, то обработчик сообщения вернет 
+  значение TRUE (после того, как выведет на экран BANG ! ). В противном случае 
+  он вернет FALSE (после того, как выведет на экран click).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(def 
+  message-handler pistol fire () (if (and<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(eq 
+  (dynamic-get chamber) 1) (eq (dynamic-get safety) off)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">then 
+  (printout t crlf &quot;BANG!&quot; t crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">TRUE<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">else 
+  (printout t crlf &quot;click&quot; t crlf) FALSE<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Пусть вас 
+  не смущает, что в обработчике сообщения анализируется условие, которое уже было 
+  проанализировано правилом, отославшим сообщение (в данном случае речь идет об 
+  условии safety off). Дело в том, что одно и то же сообщение может отсылаться 
+  разными правилами и нет никакой гарантии, что в каждом из них будет проверяться 
+  это условие.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">После завершения 
+  стрельбы пистолет нужно вновь вернуть в положение &quot;по-походному&quot;. 
+  Начинается это с того, что пистолет устанавливается на предохранитель, для чего 
+  используется ранее разработанный обработчик сообщения safety.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  unready<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety off))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(range-test 
+  (fired yes)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] safety on) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Следующая 
+  операция — вынуть обойму. Обратите внимание, что в нем мы вновь обращается к 
+  обработчику сообщения drop.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  drop<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety on))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(range-test 
+  (fired yes)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] drop) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Последнее 
+  правило выбрасывает патрон из патронника, вызывая обработчик сообщения clear.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  unload<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(object 
+  (name [PPK]) (safety on) (magazine out))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(range-test 
+  (fired yes)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [PPK] clear) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом примере 
+  было продемонстрировано, как в рамках единой CLIPS программы &quot;уживаются&quot; 
+  правила и объекты. Правила управляют ходом вычислений, но некоторые операции 
+  объекты выполняют и самостоятельно, получив &quot;указание&quot; (сообщение) 
+  от правил. Объекты не являются резидентами рабочей памяти, но члены левой части 
+  правил (условий) могут быть сопоставлены с содержимым их слотов. Состояние объектов 
+  может измениться и вследствие побочных эффектов активизации правил, но я считаю, 
+  что лучше предоставить объектам возможность самостоятельно выполнять манипуляции 
+  с хранящимися в них данными в ответ на поступающие от правил сообщения. Объекты 
+  не могут самостоятельно активизировать правила, но их обработчики сообщения 
+  могут возвращать определенную информацию о результатах, которая используется 
+  для управления логикой выполнения действий в правой части правил.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

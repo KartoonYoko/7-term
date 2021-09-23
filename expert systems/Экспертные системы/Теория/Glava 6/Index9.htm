@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">6.3.3. 
+  Значения по умолчанию и демоны</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Представьте 
+  себя на некоторое время в роли агента по оценке недвижимости. Вы должны оценить 
+  примерную стоимость на рынке земельных участков, полной информацией о которых 
+  не располагаете. Большинство участков имеет, как правило, форму выпуклых прямоугольников, 
+  поэтому можно оценить стоимость участков, предполагая, что те, о которых идет 
+  речь, также имеют подобную форму, если только у вас нет конкретной информации 
+  об обратном.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что граф на рис. 6.6 представляет знания о плоских геометрических фигурах, которые 
+  можно использовать для логических рассуждений о форме участков. Каждый узел 
+  на этом графе имеет связанную с ним структуру записей (фрейм), формат которой 
+  приведен ниже.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">NAME 
+  (ИМЯ):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Number 
+  of sides (Количество сторон):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Length 
+  of sides (Длины сторон):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Size 
+  of Angles (Углы):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Area 
+  (Площадь):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Price 
+  (Цена):</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Практически 
+  все слоты фрейма Многоугольник придется оставить незаполненными, поскольку ничего 
+  нельзя сказать о сторонах и углах типичного многоугольника. Однако для слота 
+  Количество сторон в качестве значения по умолчанию можно установить 4, поскольку 
+  подавляющее большинство земельных участков имеет форму четырехугольника. Таким 
+  образом, все земельные участки, информация о форме контура которых отсутствует, 
+  будут полагаться четырехугольными. Слот Площадь также нельзя заполнить, но известно, 
+  как вычислить площадь многоугольника, располагая другой информацией о нем. Любой 
+  n-сторонний многоугольник можно разбить на <i>п-2 </i>треугольника, вычислить 
+  их площади и затем просуммировать результаты. Программу, реализующую эту процедуру, 
+  можно подключить к слоту Площадь. Процедуры, подключенные к структуре данных 
+  и запускаемые на выполнение при появлении запроса или обновлении информации 
+  в структуре, иногда называют <i>демонами. </i>Те демоны, которые по запросу 
+  вычисляют некоторые значения, называются <i>демонами по требованию </i>(IF-NEEDED).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Полезно также 
+  иметь демон, который при заполнении слота Площадь сразу вычислял бы цену участка. 
+  Эта процедура относится к другому типу демонов — <i>демонам добавления </i>(IP-ADDED) 
+  — и подключается также к слоту Площадь. Теперь при обновлении или установке 
+  значения слота Площадь автоматически будет вычислена цена участка, а результат 
+  будет помещен в слот Цена.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Перейдем к 
+  следующему уровню в иерархии фреймов. Для фрейма Четырехугольник совершенно 
+  очевидно нужно установить значение 4 в слот Количество сторон. Это значение 
+  будет наследоваться фреймами на каждом из последующих уровней иерархии. Вычислять 
+  площадь и цену всех фигур, представленных фреймами последующих уровней, можно 
+  тем же способом, что и для многоугольника. Поэтому описанные выше демоны также 
+  могут быть унаследованы всеми последующими фреймами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но для четырехугольника 
+  можно примерно оценить площадь, даже не располагая информацией о значениях внутренних 
+  углов контура, а зная только длины сторон. Вполне приемлемые результаты можно 
+  получить с помощью следующего эвристического способа: среднюю длину стороны 
+  для одной пары противолежащих сторон умножить на среднюю длину стороны для другой 
+  пары. Этот метод даст существенную ошибку только для четырехугольников, не являющихся 
+  выпуклыми, а такое встречается очень редко.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эта эвристика 
+  может быть реализована в виде демона по требованию, подсоединенного к слоту 
+  Площадь фрейма Четырехугольник. Такой демон должен выполнять следующее:<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="7.gif" width="200" height="597"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 6.6. 
+  Иерархия плоских геометрических фигур<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> если имеется информация 
+    о величинах углов четырехугольника и длинах сторон, то вызывать демон фрейма 
+    Многоугольник и выполнять точное вычисление площади;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> если имеется только 
+    информация о длинах сторон четырехугольника, то выполнять вычисление по приближенному 
+    эвристическому методу;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> если отсутствует любая 
+    информация о параметрах четырехугольника, не выполнять никаких вычислений.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Фреймы, представляющие 
+  все последующие разновидности четырехугольников, наследуют значение из слота 
+  Количество сторон фрейма Четырехугольник. Но в каждом из этих фреймов можно 
+  реализовать свою процедуру вычисления площади, лучше учитывающую особенности 
+  именно данного вида фигур. Например, площадь трапеции можно вычислить как произведение 
+  высоты на среднюю длину оснований, а фреймы прямоугольника и квадрата могут 
+  унаследовать эту процедуру у параллелограмма, площадь которого равна произведению 
+  основания на высоту.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Этот простой 
+  пример демонстрирует, как, используя значения по умолчанию и демоны, можно заполнить 
+  слоты иерархической системы фреймов, причем этот механизм оказывается более 
+  удобным, чем тот, который используется в структурах записей языка PASCAL. Данные, 
+  процедуры и определения оформляются в виде единого пакета и образуют отдельный 
+  модуль для каждого фрейма, причем разные модули могут совместно использовать 
+  данные и процедуры, пользуясь механизмом наследования.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">6.1. 
+  Реализация фреймов и наследования в языке CLIPS</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Хотя 
+  язык CLIPS и не поддерживает в явном виде формализм семантических сетей и фреймов, 
+  их можно неявно определить, используя имеющуюся в CLIPS конструкцию def class. 
+  Мы более подробно поговорим об этой конструкции в следующей главе, поскольку 
+  ее основное назначение — реализация объектно-ориентированного подхода. Для представления 
+  иерархии геометрических объектов, показанной на рис. 6.6, нам понадобятся следующие 
+  определения:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">(defclass 
+  polygon (is-a USER))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (defclass quadrilateral (is-a polygon))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (defclass trapezium (is-a quadrilateral)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defclass 
+  parallelogram (is-a trapezium))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (defclass rectangle (is-a parallelogram))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (defclass square (is-a rectangle))</font></font><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Обратите 
+  внимание на то, что класс polygon (многоугольник) объявлен как подкласс класса 
+  USER, который является базовым для всех классов, объявленных пользователем. 
+  Отношение is-a (является), которое фигурирует во всех языках представления фреймов, 
+  обычно обладает свойством транзитивности: квадрат является прямоугольником, 
+  но квадрат также является и трапецией и т.д. Это отношение является антисимметричным, 
+  т.е. если квадрат является прямоугольником, то прямоугольник в общем случае 
+  не является квадратом.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Для 
+  того чтобы представить на языке CLIPS тот факт, что большинство многоугольников 
+  предположительно должно иметь четыре стороны, потребуются кое-какие дополнительные 
+  языковые конструкции. Нужно будет несколько изменить определение классов polygon 
+  и quadrilateral:<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">(defclass 
+  polygon (is-a USER)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(role 
+  abstract)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(slot 
+  no-of-sides (default 4))) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defclass 
+  quadrilateral (is-a polygon)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(role 
+  concrete))</font></font><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Теперь 
+  polygon объявлен как абстрактный класс, т.е. класс, не способный самостоятельно 
+  порождать определенные объекты. Его подкласс quadrilateral и все последующие 
+  подклассы класса quadrilateral являются конкретными классами, т.е. эти классы 
+  могут порождать конкретные экземпляры (объекты классов). При определении класса 
+  polygon его слоту no-of-sides (количество сторон) назначено по умолчанию значение 
+  4. Это отражает наше интуитивное предположение, что большинство многоугольников 
+  будет четырехугольниками. В терминологии систем фреймов такое значение по умолчанию 
+  называется фацетом слота no-of-sides.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">После 
+  этого можно приступить к описанию демонов. Для этого нужно воспользоваться конструкцией 
+  defmessage-handler, которая имеется в CLIPS. (Подробно конструкция defmessage-handler 
+  также будет описана в следующей главе.)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">(defmessage-handler 
+  polygon sides () ?self:no-of-sides)</font><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Демон 
+  sides связан с классом polygon и попросту получает доступ к слоту no-of-sides 
+  того объекта, который его вызвал. Предположим, например, что определен конкретный 
+  участок, имеющий форму квадрата, причем ему присвоено наименование square-one.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">(definstances 
+  geometry (square-one of square))</font><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Система 
+  инициализируется командой (reset). Теперь можно активизировать демон, послав 
+  ему сообщение<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">(send 
+  [square-one] sides)</font><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">В 
+  ответ интерпретатор CLIPS выведет результат<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Обратите 
+  внимание на то, что выражение ?self :no-of-sides вычисляется в контексте объекта 
+  square-one, которому было направлено сообщение и который в ответ на него активизировал 
+  демона. В этом выражении ?self является переменной и определяет объект, к слоту 
+  которого производится обращение, а двоеточие — это инфиксный оператор доступа 
+  к конкретному слоту.<br>
+  </font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">8.5. 
+  PROLOG и MBASE</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ранее мы уже 
+  видели, что фразу, содержащую предположение, можно представить с помощью исчисления 
+  предикатов первого порядка. Фраза<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&quot;Если 
+  философ выиграет у кого-нибудь в забеге, то этот человек будет им восхищен&quot; 
+  в формализме предикатов приобретет вид формулы<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(<i>любой 
+  </i>A) <i>(любой Y)(PHILOSOPHER(X)^BEATS(X, Y)<img src="prinadl.gif" width="9" height="10">ADMJRE(Y, 
+  X)).</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эту формулу 
+  можно представить в конъюнктивной нормальной форме следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">{ADMIRE(Y, 
+  X), -ВЕАТS(Х, Y), -&gt;PHILOSOPHER(X)}.</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Также было 
+  показано, что если записать это выражение таким образом, чтобы слева от оператора 
+  &quot;:-&quot; стоял единственный позитивный литерал, а справа — негативные 
+  литералы, то получится выражение, представляющее фразу Хорна в синтаксисе языка 
+  логического программирования PROLOG:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">admire 
+  (Y, X) :- philosopher ( X) , beats (X,Y). </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">Ниже мы рассмотрим, 
+  как организовать управление применением таких правил.</font></p>
+<p>&nbsp;</p><table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

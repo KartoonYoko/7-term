@@ -1,0 +1,761 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">20.3.1. 
+  Структура дерева решений</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Дерево решений 
+  представляет один из способов разбиения множества данных на классы или категории. 
+  Корень дерева неявно содержит все классифицируемые данные, а листья — определенные 
+  классы после выполнения классификации. Промежуточные узлы дерева представляют 
+  пункты принятия решения о выборе или выполнения тестирующих процедур с атрибутами 
+  элементов данных, которые служат для дальнейшего разделения данных в этом узле.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В работе <i>[Quinlan, 
+  1993] </i>дерево решений определено как структура, которая состоит из<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> узлов-листьев, каждый 
+    из которых представляет определенный класс;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> узлов принятия решений, 
+    специфицирующих определенные тестовые процедуры, которые должны быть выполнены 
+    по отношению к одному из значений атрибутов; из узла принятия решений выходят 
+    ветви, количество которых соответствует количеству возможных исходов тестирующей 
+    процедуры.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Можно рассматривать 
+  дерево решений и с другой точки зрения: промежуточные узлы дерева соответствуют 
+  атрибутам классифицируемых объектов, а дуги — возможным альтернативным значениям 
+  этих атрибутов. Пример дерева представлен на рис. 20.2.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На этом дереве 
+  промежуточные узлы представляют атрибуты наблюдение, влажность, ветрено. Листья 
+  дерева промаркированы одним из двух классов П или Н. Можно считать, что П соответствует 
+  классу позитивных экземпляров концепта, а Н — классу негативных. Например, П 
+  может представлять класс &quot;выйти на прогулку&quot;, а Н — класс &quot;сидеть 
+  дома&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Хотя очевидно, 
+  что дерево решений является способом представления, отличным от порождающих 
+  правил, дереву можно сопоставить определенное правило классификации, которое 
+  дает для каждого объекта, обладающего соответствующим набором атрибутов (он 
+  представлен множеством промежуточных узлов дерева), решение, к какому из классов 
+  отнести этот объект (набор классов представлен множеством значений листьев дерева). 
+  В приведенном примере правило будет относить объекты к классу П или Н. Можно 
+  прямо транслировать дерево в правило, показанное ниже:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">если наблюдение 
+  = облачно<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">v<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">наблюдение 
+  = солнечно &amp;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">влажность 
+  = нормально<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">v<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">наблюдение 
+  = дождливо &amp;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ветрено = 
+  нет то П</font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><img src="2.gif" width="500" height="265"><br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3">Рис. 20.2. 
+  Дерево решений (заимствовано из [Quinlan, 1986, a])</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Единственное 
+  приведенное правило, созданное непосредственно после преобразования дерева, 
+  можно разделить на три отдельных правила, которые не требуют использования логической 
+  дизъюнкции, а затем представить каждое из них на языке описания порождающих 
+  правил, например CLIPS:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">if 
+  наблюдение = облачно<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">then 
+  П<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">if 
+  наблюдение = солнечно &amp;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">влажность 
+  = нормально then П<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">if 
+  наблюдение = дождливо &amp;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">ветрено 
+  = нет then П</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Причина, по 
+  которой предпочтение иногда отдается деревьям решений, а не порождающим правилам, 
+  состоит в том, что существуют сравнительно простые алгоритмы построения дерева 
+  решений в процессе обработки обучающей выборки, причем построенные деревья могут 
+  быть использованы в дальнейшем для корректной классификации объектов, не представленных 
+  в обучающей выборке. Алгоритм системы ID3, который используется для построения 
+  дерева по обучающей выборке, мы рассмотрим в следующем разделе. Этот алгоритм 
+  достаточно эффективен с точки зрения количества вычислительных операций, поскольку 
+  объем вычислений растет линейно по отношению к размерности проблемы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В табл. 20.2 
+  показана обучающая выборка, которая использовалась для формирования дерева на 
+  рис. 20.2.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Таблица 
+  20.2. Обучающая иыборка (заимствовано us [Quinlan, 1986,a])</b><br>
+  </font></p>
+<div align="left"> 
+  <table frame="BOX" rules="ALL" border="0" cellspacing="0" cellpadding="0" width="550" height="378">
+    <tr> 
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="118" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="118" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="130" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="94" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="106" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="26"> 
+        <div width="71" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Номер</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Наблюдение</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Температура</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="26"> 
+        <div width="130" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Влажность</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="26"> 
+        <div width="94" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Ветрено</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="26"> 
+        <div width="106" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Класс</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="26"> 
+        <div width="71" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">1<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Солнечно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Жарко<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="26"> 
+        <div width="130" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Высокая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="26"> 
+        <div width="94" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="26"> 
+        <div width="106" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Н<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">2<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Солнечно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Жарко<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Высокая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Н<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="26"> 
+        <div width="71" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">3<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Облачно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Жарко<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="26"> 
+        <div width="130" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Высокая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="26"> 
+        <div width="94" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="26"> 
+        <div width="106" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">4<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Дождливо<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Умеренно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Высокая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">5<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Дождливо<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Холодно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нормальная<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">6<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Дождливо<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Холодно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нормальная<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Н<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">7<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Облачно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Холодно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нормальная<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">8<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Солнечно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Умеренно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Высокая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Н<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">9<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Солнечно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Холодно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нормальная<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="26"> 
+        <div width="71" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">10<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Дождливо<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="26"> 
+        <div width="118" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Умеренно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="26"> 
+        <div width="130" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нормальная<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="26"> 
+        <div width="94" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="26"> 
+        <div width="106" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">11<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Солнечно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Умеренно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нормальная<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">12<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Облачно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Умеренно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Высокая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="25"> 
+        <div width="71" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">13<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Облачно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="25"> 
+        <div width="118" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Жарко<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="25"> 
+        <div width="130" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нормальная<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="25"> 
+        <div width="94" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="25"> 
+        <div width="106" height="25"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">п<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="25"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="28"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="28"> 
+        <div width="71" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">14<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="28"> 
+        <div width="118" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Дождливо<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="118" height="28"> 
+        <div width="118" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Умеренно<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="130" height="28"> 
+        <div width="130" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Высокая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="94" height="28"> 
+        <div width="94" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="106" height="28"> 
+        <div width="106" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Н<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="28"> </td>
+    </tr>
+    <tr> 
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="71" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="118" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="118" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="130" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="94" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="106" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+    </tr>
+  </table>
+</div>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Читатель может 
+  самостоятельно проверить, насколько корректно классифицируется каждый из 14 
+  экземпляров, представленных в этой выборке. Обратите внимание на то, что атрибут 
+  температура в дереве отсутствует, поскольку он оказался излишним при выполнении 
+  классификации.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

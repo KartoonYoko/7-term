@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">19.3. 
+  Немонотонное обоснование</font></b></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Подход, предложенный 
+  Дойлом <i>[Doyle, 1979], </i>отличается от того, который применил Мак-Аллестер. 
+  Он основан на философии &quot;здравого смысла&quot;, в частности на презумпции 
+  значения по умолчанию. В первом приближении, помимо хранения допущений, подтвержденных 
+  какими-либо свидетельствами, хранятся также допущения, основанные на <i>резонном 
+  предположении, </i>т.е. допущения, свидетельства <i>против которых </i>отсутствуют.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обоснования 
+  (или, пользуясь терминологией Доила, резоны) в пользу допущения <i>Р </i>представляют 
+  собой упорядоченную пару списков (<i>IN</i><sub>P</sub><i>,</i> <i>OUT</i><sub>p 
+  </sub><i>). </i>Список <i>IN</i><sub>p</sub><i>— </i>обычные обоснования в форме, 
+  которая аналогична использованной Мак-Аллестером. Он содержит высказывания, 
+  истинность которых является необходимым условием истинности <i>Р. </i>Список 
+  <i>OUT</i><sub>p</sub><i> </i>содержит высказывания, присутствие которых во 
+  множестве допущений указывает на <i>ложность Р. </i>Это множество получило название 
+  множества <i>немонотонных обоснований (nonmonotonic justification), </i>поскольку 
+  добавление высказывания в него потребует <i>отказаться </i>от сделанного ранее 
+  допущения. В подходе, который рассматривался Мак-Аллестером, этот вариант не 
+  анализировался.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Пусть, например, 
+  обоснование для значения <i>р </i>имеет вид<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">({}, 
+  {-p}).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это означает, 
+  что можно предполагать наличие <i>р </i>до тех пор, пока это обоснование не 
+  станет ложным. Обоснование для <i>q </i>пусть имеет вид<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">({p}, 
+  {r}).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Такое обоснование 
+  означает, что можно предполагать наличие <i>q </i>до тех пор, пока высказывание 
+  <i>р </i>присутствует в множестве текущих допущений (в терминологии Доила — 
+  получает <i>статус поддержки (support status) </i>&quot;включено&quot; — <i>in), 
+  </i>а высказывание r<i> </i>отсутствует в множестве допущений (в терминологии 
+  Доила — получает статус поддержки &quot;исключено&quot; — <i>out). </i>Обратите 
+  внимание на то, что обоснования могут быть связанными, как в приведенном выше 
+  примере. Если <i>-р </i>имеет статус <i>исключено, </i>то, следовательно, <i>р 
+  </i>имеет статус <i>включено, </i>а тогда и <i>q </i>имеет статус <i>включено 
+  </i>до тех пор, пока r<i> </i>имеет статус <i>исключено.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Такая цепочка 
+  причинно-следственных связей называется SL-обоснованием (SL — сокращение от 
+  support list). Общее правило для SL-обоснований гласит, что допущение <i>Р </i>присутствует 
+  в текущем множестве допущений только в том случае, если каждое из допущений, 
+  перечисленных в списке <i>IN, </i>имеет статус <i>включено, </i>а каждое из 
+  допущений, перечисленных в списке <i>OUT, </i>имеет статус <i>исключено.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Дуальная структура 
+  обоснований, предложенная Дойлом, может быть использована для разделения допущений 
+  на три группы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) Посылки 
+  (premises), т.е. высказывания, которые полагаются истинными без всякого обоснования 
+  (по определению). Пользуясь обозначениями из теории множеств, можно следующим 
+  образом представить определение посылки:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">{Р 
+  <img src="prinadl.gif" width="9" height="10"></font></i> <font face="Verdana, Arial, Helvetica, sans-serif"><i>В 
+  </i>| <i>IN</i><sub>p</sub><i>= OUT</i><sub>p</sub><i> = не существует } .</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Дедукции 
+  (deductions), т.е. высказывания, которые являются заключениями нормальной монотонной 
+  дедукции. В обозначениях теории множеств дедукции представляются выражением<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Проверить 
+  консеквенсы данного узла. Если таковых не существует, то изменить статус узла 
+  с <i>исключено </i>на <i>включено, </i>сформировать связанные с ним списки <i>IN 
+  </i>и <i>OUT </i>и на этом закончить. В противном случае сформировать список 
+  <i>L, </i>в который включить узел и его множество последствий, зафиксировать 
+  статус <i>включено-исключено </i>каждого из этих узлов, временно присвоить им 
+  статус <i>nil </i>и перейти к шагу (3).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3) Для каждого 
+  узла <i>N </i>из списка <i>L </i>попытаться отыскать <i>действительное </i>и 
+  <i>убедительное </i>обоснование, которое позволяет изменить статус этого узла 
+  на <i>включено. </i>Если таковое найдено не будет, присвоить узлу статус <i>исключено. 
+  </i>В любом варианте изменения статуса узла распространить это изменение на 
+  его консеквенсы. <i>(Примечание. </i>Обоснование является <i>действительным, 
+  </i>если каждый узел, перечисленный в его списке <i>IN, </i>имеет статус <i>включено, 
+  </i>а каждый узел, перечисленный в списке <i>OUT, </i>— статус <i>исключено. 
+  </i>Обоснование является <i>убедительным </i>в том случае, когда в его логической 
+  цепочке отсутствует зацикливание. Например, обоснования <i>({-Р},{}) </i>и <i>({},{Р}) 
+  </i>являются зацикленными по отношению к <i>Р. </i>Из первого следует, что <i>Р 
+  </i>имеет статус <i>включено </i>только в случае, если <i>—P </i>также имеет 
+  статус <i>включено, </i>а из второго следует, что <i>Р </i>имеет статус <i>включено 
+  </i>только в случае, если <i>Р </i>имеет статус <i>исключено. </i>Таким образом, 
+  каждое обоснование, если применить его в отношении высказывания <i>Р, </i>приводит 
+  к противоречию.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(4) Если некоторый 
+  узел в списке L имеет состояние включено и отмечен как противоречивый, то запустить 
+  процедуру <i>обратного прослеживания, ведомого зависимостями (dependency-directed 
+  backtracking). </i>Если в процессе выполнения этой процедуры вновь возникнут 
+  условия для запуска процесса отслеживания истинности предположений (шаги (1)-(3)), 
+  повторять эти шаги до тех пор, пока не будут разрешены все противоречия.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(5) Сравнить 
+  текущий статус поддержки каждого узла из списка <i>L </i>с его прежним статусом, 
+  зафиксированным ранее, и известить пользователя обо всех произведенных изменениях 
+  статуса.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обе системы 
+  — и Мак-Аллестера, и Доила — демонстрируют более &quot;интеллектуальный&quot; 
+  подход к решению проблемы адекватного и непротиворечивого описания мира, чем 
+  тот, который был использован в рассмотренной ранее системе STRIPS (см. главу 
+  7). В обоих случаях системы отслеживания истинности предположений берут на себя 
+  заботы об обновлении модели мира посредством распространения аналогов операций 
+  ADD и DELETE по сети зависимостей. Если при этом обнаруживается, что в модели 
+  возникли противоречия, пользователю предлагается отказаться от какой-либо из 
+  посылок, которые послужили причиной такого противоречия, и восстановить тем 
+  самым целостность модели.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">19.2. 
+  Пара конфликтующих выражений</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Приведенная 
+  ниже программа на языке CLIPS реализует простой алгоритм отслеживания истинности 
+  предположений по отношению к простым атомарным выражениям. Литералы являются 
+  атомарными высказываниями, имеющими статус либо включено, либо исключено. Список 
+  inlist некоторого выражения включает те </font><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">выражения, 
+  которые должны иметь статус включено для того, чтобы и данное выражение имело 
+  статус включено. Список outlist некоторого выражения включает те выражения, 
+  которые должны иметь статус исключено, для того, чтобы данное выражение имело 
+  статус включено. Как и ранее, пустые списки поддержки по умолчанию имеют значение 
+  -1.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ШАБЛОНЫ<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Литерал - атомарное высказывание.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftemplate 
+  literal (field id (type INTEGER})</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (field atom (type SYMBOL))</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (field status (type SYMBOL) (default unk)) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(multifield 
+  inlist (type INTEGER) (default -1))</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (multifield outlist (type INTEGER) (default -1))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Исходная модель мира.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deffacts 
+  model<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(literal 
+  (id 0) (atom P) (status in) (outlist 1) )</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (literal (id 1) (atom Q) (status in) (outlist 0) )<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ПРАВИЛА<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Если выражение в списке outlist<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  выражения S имеет статус out<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  и выражение S имеет пустой список inlist,<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  то присвоить выражению S статус in.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  in<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(literal 
+  (id ?A) (status out)) ?F &lt;- </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(literal 
+  (status out) (inlist -1) (outlist ?A))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt; 
+  (modify ?F (status in))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Если 
+  выражение в списке outlist выражения S имеет статус in, то присвоить выражению 
+  S статус out. Обратите внимание на то, что в этом правиле наличие списка inlist 
+  для выражения S не имеет значения,</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  out<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(literal 
+  (id ?A) (status in)) ?F &lt;- </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(literal 
+  (status in) (outlist ?A)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?F (status out)) )<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Это правило предлагает пользователю удалить</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; выражение и таким образом уладить конфликт, </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  deny<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience -10))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">?L 
+  &lt;- (literal (atom ?X) (status in) (inlist -1)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf &quot;Deny &quot; ?X &quot;? &quot;)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(bind 
+  ?ans (read)) (if (eq Pans yes)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  then (modify PL (status out)))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Что произойдет после того, как вы </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;запустите 
+  эту программу на выполнение? </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;Как 
+  ! будет вести себя программа, если </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;в 
+  ответ на запрос, сформированный правилом</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  deny, ввести yes? Как будет </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;вести 
+  себя программа, получив ответ по?</font></font><font face="Arial, Helvetica, sans-serif" size="3" color="#666666"></font><font face="Arial, Helvetica, sans-serif" size="3"></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

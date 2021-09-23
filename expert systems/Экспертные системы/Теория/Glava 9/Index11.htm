@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">9.4. 
+  Неопределенное состояние проблемы неопределенности</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Одно из главных 
+  достоинств формализма нечеткой логики в применении к экспертным системам состоит 
+  в возможности комбинирования его логических операторов. Ранее мы уже отмечали, 
+  что для правила MYCIN<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">пациент имеет 
+  показания и симптомы s<sub>1</sub> ^ ... ^ s<sub>k</sub> и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">имеют место 
+  определенные фоновые условия t<sub>1</sub> ^ ... ^ t<sub>m</sub> ,</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> ТО можно с 
+  уверенностью т заключить, что пациент страдает заболеванием <i>d<sub>i</sub></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">оценка набора 
+  симптомов <i>s<sub>1</sub> ^</i> ... ^ s<sub>k</sub>, в соответствии с аксиомами 
+  теории вероятностей, включает вычисление произведений вида<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">P(s<sub>1</sub> 
+  | s</font></i><font face="Verdana, Arial, Helvetica, sans-serif"><sub>2</sub> 
+  ^.. <i>,^ s<sub>k</sub> )P(s<sub>2</sub> </i>| s<sub>3</sub> ^.. <i>.^ s<sub>k</sub> 
+  </i>)... P(s<sub>k</sub>)</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Такая операция 
+  в худшем случае требует вычисления <i>k-1 </i>оценки вероятностей свыше тех, 
+  что необходимы для <i>s<sub>i</sub>.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Было также 
+  показано, что в MYCIN конъюнкция интерпретируется как оператор нечеткой логики, 
+  — при этом вычисляется <i>min (s<sub>1</sub>^</i> ...^ s<sub>k</sub>). Это может 
+  иногда привести к результатам, полностью противоположным тем, которые следуют 
+  из теории вероятностей. Прк сравнении результатов, полученных с помощью различных 
+  методов обработки неопределенности в практических системах, были найдены и другие 
+  примеры ошибочных выводов, Это сравнение показало, что методы, основанные на 
+  нечеткой логике, менее надежны, чем те, которые используют Байесовский подход 
+  (см., например, <i>[Wise and Henrion, 1986]).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">С другой стороны, 
+  нелишне отметить, что человеку также не свойственно строить суждения на основе 
+  Байесовского подхода. Исследования Канемана и Тверского показали, что люди склонны 
+  не принимать во внимание прежний опыт и отдавать предпочтение более свежей информации 
+  <i>[Kahneman and Tversky, 1972]. </i>Некоторые исследователи полагают, что людям 
+  свойственно переоценивать свою компетентность (см., например, статьи в сборнике 
+  <i>[Kahneman et al, 1982]), </i>причем большинство имеют слабое представление 
+  о теории оценок <i>[Tversky and Kahneman, 1974].</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Частично привлекательность 
+  нечеткой логики для проектировщиков экспертных систем состоит в ее близости 
+  к естественному языку. Таким терминам, как &quot;быстрый&quot;, &quot;немного&quot;, 
+  &quot;правдоподобно&quot;, чаще всего дается интерпретация на основе повседневного 
+  опыта и интуиции. Это упрощает процесс инженерии знаний, поскольку подобные 
+  суждения человека-эксперта можно непосредственно преобразовать в выражения нечеткой 
+  логики.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мы еще вернемся 
+  к нечеткой логике в главе 21. Здесь же были изложены только основные идеи, чтобы 
+  читатель мог получить первое представление о концепции неопределенности знаний 
+  и данных и связанных с этим проблемах. Но даже из этого краткого изложения ясно, 
+  что предстоит еще очень много сделать для того, чтобы иметь полное понятие об 
+  адекватном представлении неопределенности в технических системах.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

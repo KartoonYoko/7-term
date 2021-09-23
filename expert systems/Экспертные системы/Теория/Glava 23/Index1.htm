@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+ 
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4"><font size="3"><b>ГЛАВА 
+  23. </b></font></font></font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4"><font size="5">Гибридные 
+  системы</font></font></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> 23.1. Методы обучения 
+    в системе ODYSSEUS<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> 23.2. Системы ODYSSEUS 
+    и MINERVA<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> 23.3. Использование 
+    прецедентов для обработки исключений<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> 23.4. Гибридный символический 
+    подход и нейронные сети<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> 23.5. Будущее гибридных 
+    систем<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Рекомендуемая литература<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Упражнения<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Раньше уже 
+  неоднократно высказывалась идея, что экспертная система может содержать не одну 
+  форму представления знаний. Даже в таких ранних системах, как MYCIN (см. главу 
+  3), информация, специфическая для предметной области, хранилась в разных формах 
+  — например, в виде порождающих правил и в виде таблиц медицинских параметров. 
+  Программы, аналогичные CENTAUR (см. главу 13), уже можно было считать гибридными 
+  в том смысле, что в них объединялись разные способы представления знаний, а 
+  затем эти знания использовались с разной целью — для решения проблемы и формирования 
+  пояснений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Поздние исследовательские 
+  системы, такие как XPLAN (см. главу 16), имели более сложную архитектуру, в 
+  которой для разработки и обслуживания экспертных систем объединялись разнообразные 
+  программные инструменты и модели. Такие системы можно рассматривать как очередной 
+  шаг вперед по сравнению с простейшей оболочкой, поддерживающей единственную 
+  парадигму программирования. В системах на базе доски объявлений (см. главу 18), 
+  подобных HEARSAY и ВВ, объединялись разнообразные источники знаний, которые 
+  могли иметь совершенно отличную внутреннюю структуру.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Системы, которые 
+  мы рассмотрим в этой главе, ознаменовали дальнейшее продвижение по этому пути 
+  — в них объединяются традиционные программы решения проблем и компоненты самообучения 
+  и критического анализа. Система ODYSSEUS <i>[Wilkins, 1990] </i>способна обучаться 
+  тому, как уточнять базу знаний. Для этого используются две разные методики: 
+  одна основана на анализе прецедентов, а вторая — на анализе пояснений. Обе методики 
+  являются сравнительно новыми, и читатель сможет вкратце ознакомиться с ними 
+  в данной главе. Далее будет описана программа, в которой логический вывод на 
+  основе прецедентов используется для обработки исключений из правил, а основным 
+  инструментом решения проблем являются порождающие правила. Программа обладает 
+  потенциальными возможностями обучения новым правилам <i>[Golding and Rosenbloom, 
+  1991]. </i>В конце главы будет рассмотрена система извлечения информации SCALIR 
+  <i>[Rose, 1994], </i>в которой множество обычных символических методов комбинируется 
+  с подходом, основанным на сетях подключений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Хотя все перечисленные 
+  системы нельзя считать полноценными коммерческими продуктами — это скорее инструменты 
+  исследования новых методик и алгоритмов, — мы уделяем им внимание в данной книге, 
+  поскольку, по нашему мнению, за ними будущее.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+   
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

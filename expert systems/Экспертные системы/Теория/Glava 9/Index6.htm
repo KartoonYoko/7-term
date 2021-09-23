@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="4">9.2.3. Коэффициенты 
+  уверенности и условные вероятности</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Адаме показал, 
+  что если используется простая вероятностная модель на основе правила Байеса, 
+  то в системе MYCIN коэффициенты уверенности гипотез не соответствуют вероятностям 
+  гипотез при заданных признаках <i>[Adams, 1976]. </i>На первый взгляд, если 
+  коэффициенты уверенности используются только для упорядочения альтернативных 
+  гипотез, это не очень страшно. Но Адаме также показал, что возможна ситуация, 
+  когда при использовании коэффициентов уверенности две гипотезы будут ранжированы 
+  в обратном порядке по отношению к соответствующим вероятностям. Рассмотрим этот 
+  вопрос подробнее.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обозначим 
+  через <i>Р(h) субъективное, </i>т.е. составленное на основе заключения эксперта, 
+  значение вероятности того, что гипотеза <i>h </i>справедлива, т.е. значение 
+  <i>Р(Н) </i>отражает степень уверенности эксперта в справедливости гипотезы 
+  h<i>. </i>Усложним положение дел и добавим новый признак <i>е </i>в пользу этой 
+  гипотезы, такой что <i>P(h | е) &gt; Р(h). </i>Степень доверия эксперта к справедливости 
+  гипотезы увеличится, и это увеличение выразится отношением<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">MB(h,e)= 
+  [P(h|e)-P(h)]/[1-P(h)]</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">где MB означает 
+  относительную <i>меру доверия.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если же признак 
+  <i>е </i>свидетельствует против гипотезы h<i>, </i>т.е. <i>P(h | е) &lt; P(h), 
+  </i>то увеличится <i>мера недоверия </i>эксперта к справедливости этой гипотезы. 
+  Меру недоверия MD можно выразить следующим отношением:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">MD(h, 
+  e) =[P(h)-P(h|e) ] / P(h)]</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Адаме обратил 
+  внимание на то, что уровни доверия к одной и той же гипотезе с учетом разных 
+  дополнительных признаков не могут быть определены независимо. Если некоторый 
+  признак является абсолютным диагностическим индикатором конкретного заболевания, 
+  т.е. если все пациенты с симптомом s<sub>1</sub> страдают заболеванием <i>dj, 
+  </i>то никакие другие признаки уже не могут изменить диагноз, т.е. уровень доверия 
+  к выдвинутой гипотезе. Другими словами, если существует пара признаков <i>s<sub>1</sub> 
+  </i>и s<i><sub>2</sub> </i>и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">P(d<sub>i</sub>|s<sub>1</sub>)=P(d<sub>i</sub>|S<sub>1</sub>^S<sub>2</sub>)=1,</font></i></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"><font face="Verdana, Arial, Helvetica, sans-serif">то<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>P(d<sub>i</sub>|s<sub>2</sub>)= 
+  P(d<sub>l</sub>).</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Адаме также 
+  критически отнесся к объединению (конъюнкции) гипотез. Модель, положенная в 
+  основу MYCIN, предполагает, что уровень доверия к сочетанию гипотез <i>d<sub>1</sub> 
+  ^</i> <i>d<sub>2</sub> </i>должен соответствовать <i>наименьшему </i>из уровней 
+  доверия отдельных гипотез, а уровень недоверия — <i>наибольшему </i>из уровней 
+  <i>недоверия </i>отдельных гипотез. Предположим, что гипотезы <i>d<sub>1</sub> 
+  </i>и <i>d</i><sub>2</sub> не только не независимы, но и взаимно исключают друг 
+  друга. Тогда <i>P(d<sub>1</sub> ^</i> <i>d<sub>2</sub> | е) = </i>0 при наличии 
+  любого признака <i>е </i>и независимо от степени доверия или недоверия к <i>d<sub>1</sub> 
+  </i>или d<sub>2</sub><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Бучанан и 
+  Шортлифф определили коэффициент уверенности как некий артефакт, который позволяет 
+  численно оценить комбинацию уровней доверия или недоверия к гипотезам <i>[Buchanan 
+  and Shortliffe, 1984, p. 249]. </i>Он представляет собой разницу между мерой 
+  доверия и недоверия:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CF(h, 
+  <i>е<sub>а</sub> ^ e<sub>f </sub>) = MB(h, e<sub>f</sub>) - MD(h, e<sub>a</sub></i>),</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">где <i>e<sub>f</sub></i>— 
+  признак, свидетельствующий в пользу гипотезы <i>h, a e<sub>a</sub> </i>— признак, 
+  свидетельствующий против гипотезы <i>h. </i>Однако полученное таким образом 
+  значение отнюдь не эквивалентно условной вероятности существования гипотезы 
+  <i>h </i>при условии <i>е<sub>а</sub> ^ </i> <i>e<sub>f</sub>, </i>которое следует 
+  из правила Байеса:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">P(h|e<sub>a</sub>^e<sub>f</sub>)=[<i>P(e<sub>a</sub>^e<sub>f 
+  </sub>| h)P(h)</i>]/[P<i>(e<sub>a</sub>^e<sub>f </sub>)</i>]</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  хотя степень доверия, связанная с определенным правилом, и может быть соотнесена 
+  с субъективной оценкой вероятности, коэффициент уверенности является комбинированной 
+  оценкой. Его основное назначение состоит в следующем:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> управлять ходом выполнения 
+    программы при формировании суждений;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> управлять процессом 
+    поиска цели в пространстве состояний: если коэффициент уверенности гипотезы 
+    оказывается в диапазоне [+0.2, -0.2], то поиск блокируется;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> ранжировать набор гипотез 
+    после обработки всех признаков.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Адаме, однако, 
+  показал, что ранжирование гипотез на основе коэффициентов уверенности может 
+  дать результат, противоположный тому, который будет получен при использовании 
+  вероятностных методов. Он продемонстрировал это на следующем примере.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Положим, что 
+  <i>d<sub>1</sub>u d<sub>2</sub> </i>— это две гипотезы, а <i>е </i>— признак, 
+  свидетельствующий как в пользу одной гипотезы, так и в пользу другой. Пусть 
+  между априорными вероятностями существует отношение <i>P(d<sub>1</sub>) &gt; 
+  P(d<sub>2</sub>) </i>и <i>P(d\ \ е) &gt; P(d<sub>2</sub> | е). </i>Другими словами, 
+  субъективная вероятность справедливости гипотезы <i>d\ </i>больше, чем гипотезы 
+  <i>d<sub>2</sub>, </i>причем это соотношение сохраняется и после того, как во 
+  внимание принимается дополнительный признак. Адаме показал, что при этих условиях 
+  возможно обратное соотношение <i>CF(d<sub>1</sub>, е) &lt; CF(d<sub>2</sub>, 
+  е) </i>между коэффициентами уверенности гипотез.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что вероятности имеют следующие значения:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">P(d<sub>1</sub>) 
+  = 0.8,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> <i>P(d<sub>2</sub>) 
+  </i>= 0.2, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>P(d<sub>1</sub>|e) 
+  = </i>0.9, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>P(d<sub>2</sub>|</i> 
+  <i>e) </i>= 0.8.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Тогда повышение 
+  доверия к <i>d<sub>1</sub> </i>будет равно (0.9 - 0.8) / 0.2 = 0.5, а повышение 
+  доверия к </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">d<sub>2</sub> 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">— (0.8 - 0.2) 
+  / 0.8 = 0.75.</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> Отсюда следует, 
+  что <i>CF(d<sub>1</sub>| e) &lt; CF(d<sub>2</sub>, е), </i>несмотря на то, что 
+  и <i>P(d<sub>1 </sub></i>| <i>e) &gt; P(d<sub>2</sub>|<sub> </sub> е).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Адаме назвал 
+  это явление &quot;нежелательным свойством&quot; коэффициентов доверия. Избежать 
+  такой ситуации можно, если все априорные вероятности будут равны. Несложно показать, 
+  что эффект в приведенном выше примере явился следствием того, что признак <i>е 
+  </i>больше свидетельствовал в пользу гипотезы <i>d<sub>2</sub>, </i>чем в пользу 
+  <i>d1, </i>именно из-за более высокой априорной вероятности последней. Однако 
+  приравнивание априорных вероятностей явно не согласуется со стилем мышления 
+  тех, кто ставит диагноз, поскольку существует достаточно большое отличие в частоте 
+  сочетаний разных болезней с одинаковыми симптомами, следовательно, эксперты 
+  будут присваивать им совершенно разные значения субъективных вероятностей.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Последовательное 
+  применение правил в системе MYCIN также связано с существованием определенных 
+  теоретических проблем. Используемая при этом функция комбинирования основана 
+  на предположении, что если признак <i>е </i>влияет на некоторую промежуточную 
+  гипотезу <i>h </i>с вероятностью <i>P(h | е), </i>а гипотеза <i>h </i>входит 
+  в окончательный диагноз <i>d </i>с вероятностью <i>P(d | h), </i>то<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">P(d|e) 
+  = P(d|h)P(h|e).</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  создается впечатление, что транзитивное отношение в последовательности правил 
+  вывода суждений справедливо на первом шаге, но не справедливо в общем случае. 
+  Для того чтобы существовала связь между правилами, популяции, связанные с этими 
+  категориями, должны быть вложены примерно так, как на рис. 9.1.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="1.gif" width="250" height="236"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 9.1. 
+  Популяции, позволяющие использовать P(d | е; = P(d| h)P(h| z)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Адаме пришел 
+  к выводу, что успех практического применения системы MYCIN и других подобных 
+  систем объясняется тем, что в них используются довольно короткие последовательности 
+  комбинирования правил, а рассматриваемые гипотезы довольно просты.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Другое критическое 
+  замечание относительно MYCIN было высказано Горвицем и Гекерманом и касается 
+  использования коэффициентов уверенности в качестве меры <i>изменения </i>доверия, 
+  в то время как в действительности они устанавливаются экспертами в качестве 
+  степени <i>абсолютного </i>доверия <i>[Horvitz and Heckerman, 1986]. </i>Связывая 
+  коэффициенты доверия с правилами, эксперт отвечает на вопрос: &quot;Насколько 
+  вы уверены в правдоподобности того или иного заключения?&quot; При применении 
+  в MYCIN функций комбинирования дополнительных признаков эти коэффициенты становятся 
+  мерой <i>обновления </i>степени доверия, что приводит к несовместимости этих 
+  значений с теоремой Байеса.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

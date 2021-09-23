@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">15.3.2. 
+  Приобретение знаний с помощью системы SALT</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система автоматизированного 
+  приобретения знаний SALT разрабатывалась с ориентацией на использование в тех 
+  экспертных системах, в которых доминирующей при решении проблем является стратегия 
+  <i>предложение и пересмотр. </i>Это предположение было положено в основу организации 
+  процесса приобретения знаний. Один из используемых методов состоит в том, .что 
+  выявляются знания, позволяющие наполнить содержанием определенные роли в выбранной 
+  стратегии решения проблемы. При таком подходе решающее значение для успешной 
+  реализации задач системы имеет правильный выбор ролей и отношений между ними.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Полагается, 
+  что знания о предметной области должны распределяться между тремя ролями. Они 
+  перечислены ниже, причем в скобках приведено наименование каждой роли, присвоенное 
+  ей в документации системы SALT.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) Знания, 
+  которые касаются развития текущей промежуточной стадии проекта (PROPOSE-A-DESIGN-EXTENTION).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Знания, 
+  относящиеся к определению ограничений, накладываемых на текущую промежуточную 
+  стадию проекта (IDENTIFY-A-CONSTRAINT).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3) Знания, 
+  касающиеся устранения обнаруженных нарушений ограничений (PROPOSE-A-FIX).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система SALT 
+  автоматически организует извлечение знаний каждой из указанных категорий в процессе 
+  интерактивного сеанса опроса эксперта, а затем преобразует полученные сведения 
+  в порождающие правила и формирует базу знаний о предметной области. После этого 
+  созданная база знаний объединяется с интерпретатором <i>оболочки </i>экспертной 
+  системы (см. главу 10). Система SALT сохраняет первичные сведения, полученные 
+  от эксперта, в декларативной форме и таким образом при необходимости позволяет 
+  их скорректировать и обновить ранее созданную базу знаний.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В качестве 
+  промежуточной формы представления знаний в SALT используется <i>сеть зависимостей. 
+  </i>Каждый узел этой сети представляет наименование какого-либо контрольного 
+  параметра (например, TYPE-OF-LOADING), параметра, характеризующего конструкцию 
+  (например, PLATFORM-WIDTH), или ограничения (например, MAXIMUM-MACHINE-GROOVE-PRESSURE). 
+  Связи в сети разделены на три группы:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>содействующая </i>— 
+    связывает узлы <i>А </i>и <i>В </i>в том случае, если значение параметра узла 
+    <i>А </i>используется для вычисления значения параметра узла <i>В',</i><br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>ограничивающая </i>— 
+    связывает узлы <i>А </i>и <i>В </i>в том случае, если значение параметра узла 
+    <i>А </i>является ограничением, которое должно учитываться при выборе значения 
+    конструктивного параметра, ассоциированного с узлом <i>В;</i><br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>корректирующая </i>— 
+    связывает узлы <i>А </i>и <i>В </i>в том случае, если с узлом <i>А </i>ассоциировано 
+    значение ограничения и нарушение этого ограничения может быть скорректировано 
+    изменением текущего значения параметра, ассоциированного с узлом <i>В.</i><br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Работая с 
+  системой SALT, пользователь может вводить знания в любом порядке, но каждое 
+  элементарное знание должно иметь один из трех квалификаторов в соответствии 
+  с перечисленными выше ролями:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> PROCEDURE — знания 
+    о развитии текущей промежуточной стадии проекта;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> CONSTRAINT — знания 
+    об определении ограничений, накладываемых на текущую промежуточную стадию 
+    проекта;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> FIX — знания об устранении 
+    обнаруженных нарушений ограничений.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Получив значение 
+  квалификатора, система SALT организует диалог с пользователем и предлагает ему 
+  ввести знания, соответствующие заданной роли.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для каждого 
+  конструктивного параметра, который фигурирует в завершенном проекте, в базе 
+  знаний должен присутствовать свой элемент знаний типа PROCEDURE (правило). В 
+  таком элементе должны быть отображены все соображения, относящиеся к выбору 
+  значения этого параметра. Если правило недоопределено, т.е. не позволяет однозначно 
+  определить значение параметра, то в таком правиле должны присутствовать соображения 
+  о предпочтительных значениях параметра в пределах допустимого диапазона. Полный 
+  формуляр правила вычисления параметра CAR-JAMB-RETURN (этот параметр присутствовал 
+  в правиле, цитированном в предыдущем разделе) выглядит так, как показано ниже.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Name: CAR-JAMB-RETURN<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. Precondition: 
+  DOOR-OPENING=CENTER<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Procedure: 
+  CALCULATION<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Formula: 
+  (PLATFORM-WIDTH - OPENING-WIDTH)/2<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Justification: 
+  CENTER-OPENING DOOR LOOK BEST WHEN<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">CENTERED ON 
+  THE PLATFORM<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1.Имя: CAR-JAMB-RETURN<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. Предусловия: 
+  DOOR-OPENING=CENTER<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Процедура: 
+  Вычисление<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Формула: 
+  (PLATFORM-WIDTH - OPENING-WIDTH)/2<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Уточнение: 
+  Двери, открывающиеся от середины, выглядят лучше,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">если на платформе 
+  их разместить по центру<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В правилах 
+  типа CONSTRAINT собирается информация о взаимных связях между значениями параметров, 
+  которая не вошла в правила типа PROCEDURE, но необходима для проверки качества 
+  созданного проекта. Правила типа FIX предлагают варианты корректирующих действий, 
+  которые можно предпринять при нарушении заданных ограничений. Ниже приведен 
+  заполненный формуляр для правила этого типа, которое относится к ликвидации 
+  нарушения ограничения MAXIMUM-MACHINE-GROOVE-PRESSURE.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Constraint 
+  name: MAXIMUM-MACHINE-GROOVE-PRESSURE<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Value 
+  to Change HOIST_CABLE-QUANTITY<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Change 
+  Type: INCREASE<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Step 
+  Type: BY-STEP<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Step 
+  Size: 1<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Preference 
+  Rating: 4<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Preference 
+  Reason: CHANGES MINOR EQUIPMENT SIZING<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Имя ограничения: 
+  MAXIMUM-MACHINE-GROOVE-PRESSURE Изменить: HOIST_CABLE-QUANTITY<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Тип изменения: 
+  INCREASE<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Режим изменения: 
+  BY-STEP<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Величина шага: 
+  1<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Приоритет: 
+  4<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Критерий выбора: 
+  Минимальные изменения размеров другого оборудования<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Информация 
+  из таких стилизованных формуляров довольно просто преобразуется в порождающие 
+  правила. Но система SALT не только переводит полученную информацию в формат 
+  правил, но и анализирует соответствие между новым правилом и ранее введенными. 
+  Поэтому желательно сначала ввести информацию для всех правил типов PROCEDURE 
+  и CONSTRAINT, а уже затем вводить информацию для правил типа FIX. В этом случае 
+  правила последнего типа будут анализироваться с учетом всех знаний, касающихся 
+  проектирования и ограничений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Информацию 
+  о связях в сети зависимостей программа SALT извлекает из тех элементов знаний, 
+  которые вводятся пользователем. Так, после ввода приведенного выше правила типа 
+  PROCEDURE программа сформирует <i>содействующую </i>связь между узлом, ассоциированным 
+  с параметром PLATFORM-WIDTH, и узлом, ассоциированным с параметром CAR-JAMB-RETURN. 
+  Точно так же после ввода правил типов CONSTRAINT и FIX будут сформированы <i>ограничивающие 
+  </i>и <i>корректирующие </i>связи.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Формируемая 
+  экспертная система должна присвоить значения каждому узлу сети и найти на графе 
+  сети такой путь, который обеспечивал бы проверку и удовлетворял всем заданным 
+  ограничениям. На компилятор возлагается задача сформировать процедуры в соответствии 
+  с найденным путем на графе и проверить, является ли он единственным и полным 
+  для набора входных данных.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

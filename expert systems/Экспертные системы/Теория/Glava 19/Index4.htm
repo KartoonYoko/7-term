@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">19.1.2. 
+  Пересмотр допущений</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Практически 
+  во всех программах экспертных систем в процессе решения проблемы обязательно 
+  тем или иным образом обновляются представления реального мира вещей, с которыми 
+  эта программа имеет дело (например, так происходит в программе планирования 
+  поведения роботов STRIPS, которую мы рассматривали в главе 3). В программах 
+  с разным уровнем &quot;интеллектуальности&quot; для пересмотра допущений в этом 
+  представлении применяются более или менее сложные методы. В литературе можно 
+  найти такую классификацию этих методов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><b>(1) Монотонный 
+  пересмотр (monotonic revision). </b>Это самый простой метод, при котором программа 
+  принимает информацию о новых фактах и вычисляет, как эти факты могут повлиять 
+  на имеющееся представление, чтобы оно перешло в результате в состояние релаксации. 
+  При этом предполагается учитывать &quot;важные&quot; последствия, хотя определить, 
+  какие последствия важные, а какие не очень, зависит от уровня интеллектуальности 
+  программы. Например, к важным скорее будет отнесен вывод <i>q </i>из <i>р </i>и 
+  (р<img src="prinadl.gif" width="9" height="10">q), чем вывод <i>(p</i>v<i>q) 
+  </i>из <i>q. </i>&quot;Монотонным&quot; этот способ пересмотра называется по 
+  той причине, что правдоподобность допущений в результате его применения по крайней 
+  мере не уменьшается.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><b>(2) Немонотонный 
+  пересмотр (nonmonotonic revision).</b> Иногда бывает желательно &quot;взять 
+  назад&quot; принятые ранее допущения и урезать сделанные на их основе заключения. 
+  Если я вижу вас за рулем &quot;Мерседеса&quot;, то первое предположение — что 
+  он ваш собственный, а следовательно, вы, мягко говоря, человек не бедный. Но 
+  если через некоторое время я узнаю, что вы его, пользуясь терминологией Гека 
+  Финна, &quot;позаимствовали&quot;, то я должен буду отбросить не только предположение, 
+  что он ваш собственный, но и предположение о вашем богатстве.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><b>(3) Немонотонное 
+  обоснование (nonmonotonic justification).</b> Дальнейшее усложнение метода происходит 
+  в тех программах, в которых определенные предположения полагаются истинными 
+  в том случае, когда нет никаких явных свидетельств против такого предположения. 
+  Например, программа может предполагать, что все студенты малообеспечены. Отказ 
+  от такого предположения в отношении определенного студента выполняется в программе 
+  только в том случае, если на лицо явные признаки более чем среднего материального 
+  благополучия. Здесь именно <i>отсутствие </i>информации, <i>противоречащей </i>первоначальному 
+  допущению, а не <i>наличие подтверждающей </i>информации является обоснованием 
+  его правдоподобия.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><b>(4) Гипотетическое 
+  суждение (hypothetical reasoning).</b> В программе можно сначала принять во 
+  внимание определенные предположения, а затем посмотреть, что из них следует. 
+  Далее из этих предположений можно отобрать правдоподобные допущения. Таким образом, 
+  в этом способе предполагается формировать рассуждения в <i>разных мирах, </i>т.е. 
+  в таких состояниях представления о реальной области знаний, которые могут соответствовать 
+  или не соответствовать реальности. Отслеживание множества теорий такого вида 
+  требует определенных дополнительных ресурсов по сравнению с методами, предполагающими 
+  исследование единственной теории.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Методы первой 
+  из перечисленных категорий довольно тривиальны: нужно добавить в имеющуюся теорию 
+  новую информацию и некоторые дополнительные факты, которые необходимы, чтобы 
+  перевести новую теорию в состояние релаксации по отношению к имеющимся ограничениям. 
+  Простой метод, демонстрирующий реализацию второй из перечисленных категорий, 
+  мы рассмотрим в следующем разделе, а в разделах 19.3 и 19.4 рассмотрим методы 
+  третьей и четвертой категорий.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>19.1. 
+  Запись информации о связях</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Программой 
+  на языке CLIPS несложно проиллюстрировать простую процедуру записи зависимостей 
+  между данными в продукционной системе с прямой цепочкой вывода. Если в рабочей 
+  памяти имеются только два типа выражений — выражения импликации типа &quot;Р 
+  имплицирует Q&quot; и атомы, такие как &quot;Р&quot; и &quot;Q&quot;, — то можно 
+  зафиксировать зависимости между элементами рабочей памяти в виде извлеченных 
+  из них характеристик влияния. Объекты литералов имеют поля support, в которых 
+  записывается, какие выражения используются для вывода этих литералов. Может 
+  оказаться так, что некоторые литералы не имеют соответствующих выражений, поскольку 
+  представляют собой предположения, формируемые при инициализации рабочей памяти 
+  на основе конструкций def facts. В поле support таких литералов устанавливается 
+  значение -1. И литералы, и выражения импликации имеют нумерованные идентификаторы, 
+  которые позволяют отслеживать их состояние посредством специальных списков.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">;; 
+  ШАБЛОНЫ<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Литерал - атомарное высказывание, </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftemplate 
+  literal (field id (type INTEGER))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  atom (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(multifield 
+  support (type INTEGER) (default -1))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">| 
+  )<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">Условие 
+  является импликацией в форме<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  &quot;Р имплицирует Q&quot;, где &quot;P&quot; является левой частью правила<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  (left-hand side = Ihs), </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  &quot;Q&quot; - правой частью<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  (right-hand side = rhs).<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftemplate 
+  conditional<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  Id (type INTEGER))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(multifield 
+  Ihs (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(multifield 
+  rhs (type SYMBOL)) )<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Нам понадобится индекс в рабочей памяти, чтобы </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  можно было присваивать идентификаторы новым </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  производным высказываниям, (deftemplate index<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  no (type INTEGER)) )<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Исходная модель мира. (deffacts model<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(conditional 
+  (id 0) (Ihs P) (rhs Q);<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(literal 
+  (id 1) (atom P)) )<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ПРАВИЛА<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Присвоить значение индекса очередному идентификатору, </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  init<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?F 
+  &lt;- (initial-fact)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(literal 
+  (id ?N))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(not 
+  (literal (id ?M&amp;:{&gt; ?M ?N)))) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (index (no (+ ?N 1))))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(retract 
+  ?F) )<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Применить правило modus ponens, чтобы можно было</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; вывести &quot;Q&quot; из &quot;Р&quot; и &quot;Р имплицирует Q&quot;, формируя 
+  </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  указатели на &quot;Р&quot; и &quot;Р имплицирует Q&quot; в попе </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  support литерала &quot;Q&quot;. (defrule mp ?I &lt;- (index (no ?N)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(conditional 
+  (id ?C) (Ihs $?X) (rhs $?Y)) (literal (id ?A)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (atom $?X)) (not (literal (atom $?Y)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (literal (id ?N) (atom $?Y) (support ?C ?A)))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (modify ?I (no (+ ?N 1)))<br>
+  </font></font><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Эта 
+  примитивная программа имеет дело только с условными выражениями и атомами. Например, 
+  нельзя, используя правило modus fallens (см. главу 8), вывести &quot;не Р&quot; 
+  из &quot;Р имплицирует Q&quot; и &quot;не Q&quot;.</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

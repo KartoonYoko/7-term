@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">3.2. 
+  Планировщик STRIPS</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Программа 
+  STRIPS <i>[Fikes and Nilsson, 1971] </i>демонстрирует один из подходов к представлению 
+  проблем. Наименование программы — аббревиатура от Stanford Research Institute 
+  Problem Solver (решатель проблем Станфордского исследовательского института). 
+  Программа предназначалась для решения проблемы формирования плана поведения 
+  робота, перемещающего предметы через множество (анфиладу) помещений. Программа 
+  STRIPS оказала очень большое влияние на последующие разработки в области искусственного 
+  интеллекта, и те базовые методики представления знаний, которые были в ней использованы 
+  для формирования действий, не утратили своей актуальности до настоящего времени.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Текущее состояние 
+  окружающей среды — помещений и предметов в них — представляется набором выражений 
+  <i>предикат-аргумент, </i>которые в совокупности образуют <i>модель мира. </i>Так, 
+  набор формул<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">W 
+  = { at(po6oт, комнатаА), at(ящик1, комнатаБ), at(ящик2, комнатаВ)}</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">означает, 
+  что робот находится в комнате А и имеются два ящика, один из которых находится 
+  в комнате Б, а второй — в комнате В.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Действия, 
+  которые может выполнить робот, принимают форму операторов, приложимых к текущей 
+  модели мира. Эти операторы позволяют добавить в модель некоторые факты (сведения) 
+  или изъять их из модели. Например, выполнение операции<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Переместить 
+  робот из комнаты А в комнату Б&quot;</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">в модели мира 
+  приведет к формированию новой модели <i>W. </i>При этом факт at (робот, комнатаА) 
+  будет изъят из модели, а добавлен факт at (робот, комнатаБ). В результате новая 
+  модель мира будет иметь вид<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">W' 
+  = { at (робот, комнатаБ), at (ящик1, комнатаБ), аt (ящик2, комнатаВ)}</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обращаю ваше 
+  внимание на то, что сейчас мы обсуждаем только символические преобразования 
+  в модели мира и не затрагиваем вопрос о возможности реального перемещения робота 
+  из комнаты А в комнату Б. Обладающий интеллектом робот должен быть не только 
+  способен изменять свое реальное положение в окружающей среде, но и одновременно 
+  менять свое внутренне представление этой среды, знать, где он сейчас находится.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

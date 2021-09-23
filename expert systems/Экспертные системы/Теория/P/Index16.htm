@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index15.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index17.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.4.6. 
+  Обработка метавысказываний</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Имея в своем 
+  распоряжении программу, снабженную механизмом реализации откатов, попробуем 
+  адаптировать ее к работе с метавысказываниями, т.е. высказываниями о высказываниях. 
+  Это позволит нам решать задачи, подобные Р7, которая приведена в упр. 5.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  высказывание:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">А: &quot;В 
+  утверждает, что он правдолюбец&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мы должны 
+  сформировать &quot;мир&quot;, в котором <i>В утверждает, </i>что он правдолюбец, 
+  а внутри этого &quot;мира&quot; другой, в котором В действительно <i>является 
+  </i>правдолюбцем. Такие внедренные &quot;миры&quot; образуют отдельное множество 
+  зависимостей, которое придется отслеживать с помощью механизма обработки правдоподобия. 
+  Начнем с того, что модифицируем шаблон объекта world и внесем в него информацию 
+  о том, является ли данный объект внешним или внутренним, а если внутренним, 
+  то какой объект world является для него внешним.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В более сложных 
+  сценариях работы с &quot;мирами&quot; нам потребуется также отслеживать, был 
+  ли данный объект world проанализирован полностью. Это упростит механизм выполнения 
+  отката.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  world представляет множество утверждений,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;сформированных 
+  при определенном предположении<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;о 
+  правдивости или лживости высказывания,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;принадлежащего 
+  некоторому персонажу.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  имеет уникальный идентификатор<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;в 
+  поле tag, который соответствует<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;тэгу 
+  высказывания.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Смысл 
+  допущения - истинность или лживость -<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;фиксируется 
+  в поле scope.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Поле 
+  TASK содержит одно из перечисленных<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;ниже 
+  значений:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;CHECK 
+  - анализ предположений о<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;правдивости 
+  или лживости высказывания; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;CONTRA 
+  - анализ обнаруженного противоречия; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;CLEAN 
+  - удаляет все утверждения, созданные<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;в 
+  противоречивом &quot;мире&quot; ;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;BАСК 
+  - откат в точку возврата;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;QUIT 
+  - прекращение процесса. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Поле 
+  prior может содержать идентификатор </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;объекта 
+  world, обработанного перед тем, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;как 
+  был создан данный объект, и с которым данный </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;объект 
+  может потенциально конфликтовать. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Поле 
+  upper содержит идентификатор другого объекта </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;world, 
+  в который внедрен данный объект, если</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;соответствующее 
+  высказывание содержит другое </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;высказывание.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Например, 
+  А говорит, что В сказал, что А - лжец. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;В 
+  поле context сохраняется текущий контекст </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;анализируемого 
+  операнда дизъюнкции.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;Поле 
+  done содержит информацию о том, обработано ли </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;уже 
+  высказывание, на основании которого создан этот </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;объект.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  world<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  tag (type INTEGER) (default 1))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  scope (type SYMBOL) (default truth))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  task (type SYMBOL) (default check))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  prior (type INTEGER) (default 0)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  upper (type INTEGER) (default 0)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  context (type INTEGER) (default 0)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  done (type INTEGER) (default 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  statement (высказывание) связан с определенным<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;персонажем 
+  (поле speaker).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Высказывание 
+  содержит утверждение (поле claim).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Высказывание 
+  имеет основание - причину (поле reason).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Если 
+  данный объект не является производным от другого<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;объекта 
+  statement, в поле reason устанавливается<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;значение 
+  0.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;В 
+  поле tag устанавливается уникальный числовой<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;идентификатор 
+  объекта - число, большее 0.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;В 
+  поле DONE устанавливается одно из<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;следующих 
+  значений:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">0 
+  означает, что объект еще не обрабатывался;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;1 
+  означает, что объект обрабатывался в предположении<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;о 
+  правдивости высказывания;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;2 
+  означает, что объект обрабатывался в предположении<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;о 
+  лживости высказывания. (deftemplate statement<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  speaker (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(multifield 
+  claim (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  scope (type SYMBOL) (default truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(multifield 
+  reason (type INTEGER) (default 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  tag (type INTEGER) (default 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  done (type INTEGER) (default 0)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Теперь 
+  разработаем правило, которое будет </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;&quot;распаковывать&quot; 
+  высказывание о высказывании.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ЕСЛИ объект world базируется на предположении о<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  правдивости метавысказывания,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ТО предположить, что персонаж говорит правду и что<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  высказывание истинно.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  unwrap-true-state<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope truth) (task check)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(done 
+  0)) ?S &lt;- (statement (speaker ?X) (claim SAY ?Z $?Y)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(done 
+  0)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf &quot;Assuming &quot; Т ?X &quot; and &quot; ?Z &quot; says &quot; $?Y<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  in world &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Предполагается &quot; Т ?X &quot; и &quot; ?Z &quot; говорит &quot; $?Y</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  &quot;в мире &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Зафиксировать, что высказывание было распаковано </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  в предположении о его правдивости,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (modify 
+  ?S (tag ?N) (done 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Предположим, что персонаж в текущем &quot;мире&quot; является<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  правдолюбцем.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim (content T ?X) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Зафиксировать в объекте world, что высказывание </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  распаковано, (modify ?W (done 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Сформировать новый объект world для внедренного </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  высказывания и зафиксировать, что этот объект</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  является внутренним по отношению к объекту ?N.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (assert 
+  (world (tag ( + ?N 1)) (scope truth) (upper ?N))) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Зафиксировать внедренное высказывание в новом</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  объекте world.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (statement (speaker ?Z) (claim $?Y) (reason ?N)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ЕСЛИ объект world базируется на предположении о<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  лживости метавысказывания,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ТО предположить, что персонаж лжет.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Каких-либо предположений об истинности<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  утверждения не делается.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  unwrap-false-state<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope falsity) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  check)) ?S &lt;- (statement (speaker ?X) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  SAY ?Z $?Y)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(tag 
+  ?N) (done 1)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf &quot;Assuming &quot; F &quot; &quot;?X &quot; and</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> NOT 
+  &quot; ?Z &quot; says &quot; $?Y<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  in. world &quot; ?N <br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Предполагается &quot; F &quot; &quot;?X &quot; и HE &quot; ?Z &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">говорит 
+  &quot; $?Y ;; &quot; в мире &quot; ?N t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Изменить значение в поле scope текущего объекта<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  world.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (scope falsity) (done 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Зафиксировать, что высказывание было распаковано </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  в предположении о лживости, (modify ?S (scope falsity) (done 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Предположить, что в текущем &quot;мире&quot; персонаж, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  произнесший метавысказывание, лжец.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim (content F ?X)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (reason 
+  ?N) (scope falsity))) )<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Чтобы облегчить 
+  себе жизнь, будем считать, что в метавысказывании не может быть отрицания, т.е. 
+  мы не будем рассматривать метавысказывания вида<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">А: &quot;В 
+  <i>не </i>говорил, что он правдолюбец&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Более того, 
+  если А говорит, что В заявил нечто, то по условиям, принятым в головоломках 
+  этого класса, для того чтобы доказать, что А лжец, требуется только показать, 
+  что не существует непротиворечивого &quot;мира&quot;, в котором В мог бы сделать 
+  правдивое утверждение. Таким образом, нам не придется обрабатывать отрицания 
+  в метавысказыва-ниях и анализировать их непротиворечивость. Указанные условия 
+  нашли свое отражение в правиле unwrap-false-state. В этом правиле которое активизируется, 
+  когда предположение о правдивости персонажа не срабатывает, просто предполагается, 
+  что этот персонаж лжет, а более глубокий анализ не проводится.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index15.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index17.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

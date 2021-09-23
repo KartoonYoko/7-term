@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">8.1.2. 
+  Исчисление предикатов</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Исчисление 
+  высказываний имеет определенные ограничения. Оно не позволяет оперировать с 
+  обобщенными утверждениями вроде &quot;Все люди смертны&quot;. Конечно, можно 
+  обозначить такое утверждение некоторой пропозициональной константой <i>р, а 
+  </i>другой константой <i>q </i>обозначить утверждение &quot;Сократ — человек&quot;. 
+  Но из <i>(р л q) </i>нельзя вывести утверждение &quot;Сократ смертен&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для этого 
+  нужно анализировать пропозициональные символы в форме <i>предикатов </i>и <i>аргументов, 
+  кванторов </i>и <i>квантифщированных переменных. </i>Логика предикатов предоставляет 
+  нам набор синтаксических правил, позволяющих выполнить такой анализ, набор семантических 
+  правил, с помощью которых интерпретируются эти выражения, и теорию доказательств, 
+  которая позволяет вывести правильные формулы, используя синтаксические правила 
+  дедукции. Предикатами обозначаются свойства, такие как &quot;быть человеком&quot;, 
+  и отношения, такие как быть &quot;выше, чем&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Аргументы 
+  могут быть отдельными константами, или составным выражением &quot;функция-аргумент&quot;, 
+  которое обозначает сущности некоторого мира интересующих нас объектов, или отдельными 
+  квантифицируемыми переменными, которые определены в этом пространстве объектов. 
+  Специальные операторы — <i>кванторы </i>— используются для связывания переменных 
+  и ограничения области их интерпретации. Стандартными являются кванторы общности 
+  (V) и существования (3). Первый интерпретируется как &quot;все&quot;, а второй 
+  — &quot;кое-кто&quot; (или &quot;кое-что&quot;).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ниже приведены 
+  синтаксические правила исчисления предикатов первого порядка.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Любой символ 
+  (константа или переменная) является термом. Если r<sub>k</sub> является символом 
+  k-местной функции и а<sub>1</sub> ..., &lt;x<sub>k</sub> являются термами, то 
+  Г<sub>k</sub>(a<sub>1</sub>..., a<sub>k</sub>) является термом.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(S 40<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если Tk является 
+  символом k-местного предиката<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">и а<sub>1</sub> 
+  ..., a<sub>k</sub> являются термами,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">то U(а<sub>1</sub> 
+  ..., a<sub>k</sub>) является правильно построенной формулой (ППФ).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(S. -) и (S. 
+  v)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правила заимствуются 
+  из исчисления высказывании.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(S. V) Если 
+  U является ППФ и <i>% </i>является переменной,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">то (любой 
+  Х) U является ППФ.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для обозначения 
+  используются следующие символы:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> U — произвольный предикат;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Г — произвольная функция;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> a — произвольный терм;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> X<i> </i>— произвольная 
+    переменная.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Действительные 
+  имена, символы функций и предикатов являются элементами <i>языка первого порядка.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Использование 
+  квантора существования позволяет преобразовать термы с квантором общности в 
+  соответствии с определением<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(EX)U определено 
+  как -(любой X)-U.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выражение 
+  <i>(EХ)(ФИЛОСОФ(Х)) </i>читается как &quot;Кое-кто является философом&quot;, 
+  а выражение <i>(</i>любой <i>Х)(ФИЛОСОФ(Х)) </i>читается как &quot;Любой является 
+  философом&quot;. Выражение <i>ФИЛОСОФ(Х) </i>представляет собой правильно построенную 
+  формулу, но это не предложение, поскольку область интерпретации для переменной 
+  <i>X </i>не определена каким-либо квантором. Формулы, в которых все упомянутые 
+  переменные имеют определенные области интерпретации, называются <i>замкнутыми 
+  формулами.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Как и в исчислении 
+  высказываний, в исчислении предикатов существует нормальная форма представления 
+  выражений, но для построения такой нормальной формы используется расширенный 
+  набор правил синтаксических преобразований. Ниже приведена последовательность 
+  применения таких правил. Для приведения любого выражения к нормальной форме 
+  следует выполнить следующие операции.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) Исключить 
+  операторы эквивалентности, а затем импликации.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Используя 
+  правила Де Моргана и правила замещения (E X)U на -(любой X)-U (а следовательно, 
+  и (любой X) U на -(E X)-U), выполнить приведение отрицания.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3) Выполнить 
+  приведение переменных. При этом следует учитывать особенности определения области 
+  интерпретации переменных кванторами. Например, в выражении <i>(E Х)(ФИЛОСОФ(Х))&amp;(E 
+  Х)(АТЛЕТ(Х)) </i>переменные могут иметь разные интерпретации в одной и той же 
+  области. Поэтому вынесение квантора за скобки — <i>(E Х)(ФИЛОСОФ(Х))&amp;.(АТЛЕТ(Х))</i>— 
+  даст выражение, которое не следует из исходной формулы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(4) Исключить 
+  кванторы существования. Кванторы существования, которые появляются вне области 
+  интерпретации любого квантора общности, можно заменить произвольным именем (его 
+  называют константой Сколема), в то время как экзистенциальные переменные, которые 
+  могут существовать внутри области интерпретации одного или более кванторов общности, 
+  могут быть заменены функциями Сколема. Функция Сколема— это функция с произвольным 
+  именем, которая имеет следующий смысл: &quot;значение данной переменной есть 
+  некоторая функция от значений, присвоенных универсальным переменным, в области 
+  интерпретации которых она лежит&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(5) Преобразование 
+  в префиксную форму. На этом шаге все оставшиеся кванторы (останутся только кванторы 
+  общности) переносятся &quot;в голову&quot; выражения и таким образом оказываются 
+  слева в списке квантифицированных переменных. За ними следует матрица, в которой 
+  отсутствуют кванторы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(6) Разнести 
+  операторы дизъюнкции и конъюнкции.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(7) Отбросить 
+  кванторы общности. Теперь все свободные переменные являются неявно универсально 
+  квантифицированными переменными. Экзистенциальные переменные станут либо константами, 
+  либо функциями универсальных переменных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(8) Как и 
+  ранее, отбросить операторы конъюнкций, оставив множество фраз.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(9) Снова 
+  переименовать переменные, чтобы одни и те же имена не встречались в разных фразах.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">8.1. 
+  Снова о роботах и комнатах</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">В 
+  главе 3 мы уже упоминали об исчислении предикатов в упрощенном виде. Там выражение 
+  вида<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">at(робот, 
+  комнатаА)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">означало, 
+  что робот находится в комнате А. Термы робот и комнатаА в этом выражении представляли 
+  собой константы, которые описывали определенные реальные объекты. Но что будет 
+  означать выражение вида<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">at(X, 
+  комнатаА) ,<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">в 
+  котором х является переменной? Означает ли оно, что нечто находится в комнате 
+  А? Если это так, то говорят, что переменная имеет экзистенциальную подстановку 
+  (импорт). А может быть, выражение означает, что все объекты находятся в комнате 
+  А? В таком случае переменная имеет универсальную подстановку. Таким образом, 
+  отсутствие набора четких правил не позволяет однозначно интерпретировать приведенную 
+  формулу.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Перечисленные 
+  в этом разделе правила исчисления предикатов обеспечивают однозначную интерпретацию 
+  выражений, содержащих переменные.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">В 
+  частности, фраза<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">at(X, 
+  комнатаА )&lt;—at (X, ящик1) интерпретируется как<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&quot;для 
+  всех X X находится в комнате А, если X находится в ящике 1&quot;. В этой фразе 
+  переменная имеет универсальную подстановку. Аналогично, фраза<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">at(X, 
+  комнатаА) &lt;-интерпретируется как &quot;для всех X X находится в комнате А&quot;. 
+  А вот фраза<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;— 
+  at(X, комнатаА) интерпретируется как &quot;для всех XX не находится в комнате 
+  А&quot;.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Иными 
+  словами, это не тот случай, когда некоторый объект X находится в комнате А и, 
+  следовательно, переменная имеет экзистенциальную подстановку.</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь можно 
+  преобразовать фразовую форму, в которой позитивные литералы сгруппированы слева 
+  от знака стрелки, а негативные — справа. Если фраза в форме<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>P<sub>1</sub>, 
+  ..., Рт </i>&lt;— <i>q<sub>1</sub>,...qn </i>содержит переменные <i>х<sub>1</sub>,..., 
+  хk, </i>то правильная интерпретация имеет следующий вид:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">для всех x<sub>1</sub>, 
+  ..., <i>х<sub>k</sub></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>p<sub>1</sub> 
+  </i>или ... или <i> p<sub>m</sub> </i>является истинным, если <i>q<sub>1</sub> 
+  </i>и ... и <i>q<sub>n</sub> </i>являются истинными.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если <i>п 
+  </i>= 0, т.е. отсутствует хотя бы одно условие, то выражение будет интерпретироваться 
+  следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">для всех x1<i>, 
+  ..., x<sub>k</sub></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>p<sub>1</sub> 
+  </i>или ... или <i>р<sub>т</sub> </i>является истинным.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если <i>т 
+  </i>= 0, т.е. отсутствуют термы заключения, то выражение будет интерпретироваться 
+  следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">для всех x<sub>1</sub>, 
+  ..., <i>x<sub>k</sub></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">не имеет значения, 
+  что <i>q<sub>1</sub> </i>и ... и q<sub>n</sub> являются истинными.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если же <i>т 
+  = п = </i>0, то мы имеем дело с пустой фразой, которая всегда интерпретируется 
+  как ложная.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

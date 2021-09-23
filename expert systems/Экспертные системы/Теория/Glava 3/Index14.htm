@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Что такое 
+  таблица операторов? Можно ли в таблице операторов представить <i>любую </i>операцию, 
+  выполнение которой хотелось бы потребовать от робота?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. Что такое 
+  порождающее правило? Какое, на ваш взгляд, существует соответствие между набором 
+  порождающих правил и деревом решений?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Какая связь 
+  существует между таблицами операторов и набором порождающих правил? Эквивалентны 
+  ли они? Можно ли выразить одни в терминах других?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Представьте 
+  себе, что манипуляционный робот смонтирован над столиком с детскими игрушками. 
+  В таблице операторов имеется оператор move (В, L, М), который заставляет робот 
+  перенести блок В из положения L в положение М.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>move 
+  (В, L, M) </b></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>Предварительные 
+  условия on (В, L), clear (В), clear (M)</b></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>Список 
+  удалений on (В, L), clear (M)</b></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>Список 
+  добавлений </b></font><font face="Arial, Helvetica, sans-serif" color="#666666"><b><font size="3">on 
+  (В, L), clear (L), clear (столик)</font></b></font><font face="Arial, Helvetica, sans-serif"><b><font size="3"><br>
+  </font></b></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Здесь выражение 
+  on (В, L) означает, что блок В устанавливается на объект L, причем в качестве 
+  L может выступать или поверхность столика, или другой блок; <i>непосредственно 
+  </i>на один блок можно поставить только еще один блок, но на поверхность столика 
+  можно ставить сколько угодно блоков; выражение clear (L) означает, что на объекте 
+  L ничего не стоит.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Выразите 
+  сцену, представленную на рис. 3.5, в виде формул модели мира.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Пусть 
+  перед роботом поставлена цель перестроить башню, показанную на рис. 3.5, установив 
+  блоки в следующем порядке: синий— на красном, красный — на зеленом, а зеленый 
+  — на поверхности столика. Таким образом, перед роботом стоит цель преобразовать 
+  модель мира и привести ее к виду<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">on(зеленый, 
+  стол), on(красный, зеленый), on(синий, красный). Представьте план достижения 
+  этой цели.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) Покажите, 
+  как будет изменяться база данных при выполнении плана в соответствии с таблицей 
+  операторов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">IV) Почему 
+  после каждой операции move нужно добавлять формулу clear (столик)?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">V) Можно ли, 
+  используя представленный элемент move в таблице операторов, выразить &quot;отрицательную&quot; 
+  цель, например &quot;зеленый блок <i>не должен </i>стоять<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><img src="5.gif" width="400" height="207"><br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3">Рис. 3.5. 
+  Задача о перемещении блоков</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Как можно 
+  удостовериться в правильности простого плана (как созданный в предыдущем примере), 
+  в том смысле, что он гарантирует успешное достижение поставленной цели, предполагая, 
+  что робот выполняет все операции правильно.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">6. Можете 
+  ли вы представить вид плана, который не может быть сформирован с помощью простого 
+  формализма таблицы операторов, наподобие представленного в предыдущем упражнении.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">7. Рассмотрим 
+  правило системы MYCIN, представленное ниже:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">1) организм 
+  обладает грамположительной окраской, и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2) организм 
+  имеет форму колбочки, и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3) организм 
+  в процессе роста образует цепочки,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО есть основания 
+  предполагать (0,7), что этот микроорганизм относится к классу streptococcus.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что сформулированные в правиле условия характеризуются следующими коэффициентами 
+  уверенности:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Условие 1: 
+  0.8 Условие 2: 0.2 Условие 3: 0.5<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Какой коэффициент 
+  уверенности характеризует заключение о том, что данный организм относится к 
+  классу <i>streptococcus, </i>которое вынесет MYCIN в соответствии со сформулированным 
+  правилом?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">8. Рассмотрим 
+  такую пару правил системы MYCIN:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">1) культура 
+  взята из анализа крови и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2) пациент 
+  страдает повреждением кожи ecthyma gangrenosum,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО есть основания 
+  предполагать (0,6), что этот микроорганизм относится к классу pseudomonas.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> 1) тип инфекции 
+  бактериальный и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2) пациент 
+  имеет серьезные ожоги,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО есть слабые 
+  основания предполагать (0,4), что этот микроорганизм относится к классу pseudomonas.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что сформулированные в первом правиле условия характеризуются коэффициентами 
+  уверенности 0.8 и 0.9, а сформулированные во втором правиле — коэффициентами 
+  уверенности 0.2 и 0.3. Какой коэффициент уверенности будет характеризовать вывод, 
+  что исследуемый микроорганизм относится к <i>классу pseudomonas?</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>9. </i>Начертите 
+  И/ИЛИ-граф по типу приведенного в разделе 3.3.3 для следующего набора правил.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Если<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">ТОПЛИВО, 
+  и<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">ВЫДЕЛЕНИЕ_ТЕПЛА,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">и 
+  КИСЛОРОД, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">то 
+  ПОЖАР</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">Если<br>
+  ЖИДКОСТЬ и<br>
+  ВОСПЛАМЕНЯЕМАЯ, то ТОПЛИВО</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><br>
+  Если<br>
+  ТВЕРДОЕ и<br>
+  ГОРЮЧЕЕ, то ТОПЛИВО</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><br>
+  Если<br>
+  ГАЗ и<br>
+  ГОРЮЧЕЕ, то ТОПЛИВО</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><br>
+  Если<br>
+  ПЛАМЯ и<br>
+  ОТКРЫТОЕ, то ВЫДЕЛЕНИЕ_ТЕПЛА</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><br>
+  Если<br>
+  ЭЛЕКТРИЧЕСТВО,<br>
+  ТО ВЫДЕЛЕНИЕ_ТЕПЛА</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><br>
+  Если<br>
+  ТРЕНИЕ,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><br>
+  ТО. ВЫДЕЛЕНИЕJTEIU1A. 10.</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> Выразите правила 
+  предыдущего упражнения средствами языка CLIPS (см. Приложение).</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+</body>
+</html>

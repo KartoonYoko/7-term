@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">4.3.3. 
+  Приложение функции и лямбда-исчисление</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для того чтобы 
+  разобраться в связи между лямбда-исчислением и языком LISP, нужно постоянно 
+  держать в уме сформулированное Черчем отличие между <i>денотацией (означиванием) 
+  </i>и <i>абстракцией. </i>Так, выражение (X X) <i>означивает </i>конкретное 
+  число, которое зависит от значения X. Но то же число можно получить и при помощи 
+  функции square(X), которая является абстракцией, поскольку ее можно <i>приложить 
+  </i>к разным значениям X. Для того чтобы отличить означивание от абстракции, 
+  первое представляется в лямбда-исчислении в таком виде:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(лх)(X 
+  х)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Говорят, что 
+  лямбда-оператор, <i>X, </i>связан с переменной X, как квантор связывает отдельные 
+  переменные в исчислении предикатов. Тогда (ЛХ)(X X) может служить определением 
+  функции возведения в квадрат:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">square(X) 
+  = (лX)(X X)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь для 
+  применения функции возведения в квадрат к конкретному числу, скажем 3, мы должны 
+  каким-то образом подставить 3 вместо переменной X и оценить (X ,Х), в результате 
+  чего получим 9. Когда определение функции применяется к аргументу 3, используется 
+  правило влияния, получившее наименование <i>лямбда-преобразования. </i>Доложим, 
+  что (лХ)М определяет любую лямбда-абстракцию, и пусть S(a, X, М) — результат 
+  подстановки X в М.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Лямбда-преобразование. 
+  Заменим любую часть <sup>(</sup>l<sup>Х)М</sup> в формуле на <sup>s(a,</sup> 
+  <sup>x,</sup> <sup>М)</sup>, причем ограниченные переменные в <sup>м</sup> отличны 
+  как от <sup>х</sup>, так и от свободных переменных <sup>а</sup>.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если мы полагаем, 
+  что ((ЛХ)М) а обозначает применение определения функции (ЛХ)М к аргументу а, 
+  то<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">((ЛХ)(Х 
+  Х))(3) = (3 3) = 9 .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Какое же все 
+  это имеет отношение к языку LISP? А вот какое. Определение функции возведения 
+  в квадрат в LISP выглядит примерно так:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defun 
+  SQUARE (X) (LAMBDA (X) ( X X))) .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В различных 
+  диалектах языка допустимы вариации, но смысл остается тем же. В частности, в 
+  диалекте COMMON LISP используется сокращенная форма<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defun 
+  SQUARE (X) ( X X)) .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В любом случае 
+  имя функции, в данном случае SQUARE, ассоциируется в определении с лямбда-выражением. 
+  Выражение (LAMBDA (X) ( X X)) — это просто синтаксический вариант ((ЛХ) (X X)). 
+  Фактически, если определено SQUARE, в любом диалекте LISP имеем<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(SQUARE 
+  3) = ((LAMBDA (X)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ( 
+  X X)) 3) = ((АХ)(Х Х))(3) = 9 .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что LAMBDA не является функцией. Это специальный оператор в лямбда-исчислении.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Синтаксическая 
+  форма вызова функции в языке LISP имеет вид<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(&lt;функция&gt; 
+  &lt;аргумент&gt; ... &lt;аргумент&gt;).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это не самая 
+  сложная синтаксическая форма, а вместе с QUOTE, LAMBDA и условными выражениями 
+  этим фактически исчерпывается все, что необходимо знать о синтаксисе языка LISP. 
+  Тем, кто по каким-то иррациональным причинам испытывает тягу к запятым, двоеточиям, 
+  точкам с запятой, палиндромам вроде <i>(if... ft, case ... esac) </i>и тому 
+  подобному, будет поначалу трудно свыкнуться с мыслью, что в LISP единственным 
+  ограничителем являются круглые скобки. Программа на языке LISP — это просто 
+  структура данных, и другая LISP-программа ее может читать, записывать и обрабатывать 
+  точно так же, как любой другой набор данных.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

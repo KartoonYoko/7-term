@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">23.4.3. 
+  Организация обучения в системе SCALIR</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Поскольку 
+  веса С-связей могут регулироваться системой в процессе работы, она способна 
+  таким образом самообучаться в соответствии с информацией, вводимой пользователем. 
+  Ниже мы опишем, как это делается в системе SCALIR, опуская несущественные детали.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что один из входов узла i связан с выходом узла j, причем связь имеет вес W<sub>ij</sub><i>. 
+  </i>Если узел i представляет документ, имеющий отношение к термину, представленному 
+  узлом j, то в процессе обучения нам может потребоваться усилить эту связь. Если 
+  же пользователь посчитает, что документ имеет мало общего с этим термином, то 
+  потребуется ослабить эту связь. Главный вопрос, который нужно при этом решить, 
+  — в какой степени нужно менять значение веса. Одно из простых правил вычисления 
+  значения изменения веса W<sub>ij</sub> может быть выражено формулой<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">W<sub>i</sub> 
+  = n<i>f<sub>i</sub>a<sub>j</sub><b>,</b></i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">где n| — константа 
+  <i>скорости обучения (learning rate), a f<sub>i</sub> </i>— коэффициент обратной 
+  связи от пользователя, который, например, может принимать значение +1 или—1.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Однако применение 
+  такого правила не настолько очевидно, как это может показаться с первого взгляда, 
+  по следующим причинам.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Определить значения 
+    уровня активности <i>а, </i>не так просто, поскольку активизированный при 
+    возникновении запроса входной узел может снизить свою активность после того, 
+    как запрос будет снят.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Соседи узлов, которые 
+    получают обратную связь, также должны, по-видимому, получать некоторую информацию 
+    обратной связи от пользователя, подтверждающую, что они представляют документы, 
+    имеющие отношение к запросу.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Узел i может находиться 
+    в конце сети распространения активности, а следовательно, информация от пользователя 
+    (обратная связь) должна распространяться по сети в обратном направлении.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  получаемая от пользователя информация обратной связи должна распространяться 
+  по сети примерно так же, как активность. Максимальное значение обратной связи 
+  для каждого узла записывается и обновляется в процессе распространения, и эти 
+  значения в дальнейшем играют роль членов <i>f<sub>i</sub> </i>и а<sub>j</sub> 
+  в приведенном выше выражении. Далее полученные значения весов нормализуются 
+  таким образом, чтобы их сумма для каждого отдельного узла была равна 1.0.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Конечно, в 
+  реальной системе SCALIR процесс самообучения несколько сложнее, поскольку в 
+  ней существуют связи разных типов. Читателям, интересующимся деталями этого 
+  процесса, следует познакомиться с работой <i>[Rose, 1994], </i>Но идея комбинированного 
+  использования символических и субсимволических методов заслуживает дальнейшего 
+  углубленного изучения. В системе SCALIR продемонстрирован довольно прагматический 
+  компромисс между чисто статистическим подходом к извлечению информации и традиционным 
+  подходом для экспертных систем, требующим большого объема знаний о предметной 
+  области.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

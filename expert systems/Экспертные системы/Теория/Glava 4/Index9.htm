@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">4.3.5. 
+  Сопоставление с образцом</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Одним из ключевых 
+  компонентов в большинстве программ искусственного интеллекта является <i>анализатор 
+  соответствия (pattern matcher) </i>— компонент, который некоторым образом сравнивает 
+  поступающие на его вход списки (или другие структуры данных) с имеющимися символическими 
+  образцами и таким образом выполняет распознавание входных данных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В главе 3 
+  мы обращали ваше внимание на то, что факты, относящиеся к состоянию окружающего 
+  мира, представляются в форме &quot;предикат— аргумент&quot;. Тот факт, что робот 
+  находится в комнате, был представлен в модели мира формулой<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">at(robot, 
+  room). На языке LISP этот факт будет представлен символическим выражением<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(at robot 
+  room). Положим, что ? — символ универсальной подстановки и что выражение<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(at robot 
+  ?) представляет собой образец, которому соответствует и выражение</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> (at robot 
+  room), и другое выражение в форме<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(at robot 
+  <i>blah),</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">где <i>blah 
+  </i>— любой символ. На языке LISP несложно разработать простой анализатор соответствия, 
+  который будет сравнивать два ординарных списка (т.е. списка, на имеющего подсписков 
+  в качестве элементов) и возвращать значение TRUE, если один из них, sample (пример), 
+  можно представить как реализацию другого — pattern (образец). Текст такой программы 
+  приведен ниже. Предполагается, что образец может иметь любую конечную длину 
+  и содержать любое количество символов универсальной подстановки.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defun 
+  match (sample pattern)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cond 
+  ((and (null sample) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(null 
+  pattern)) T) ((or </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(null 
+  sample) (null pattern)) NIL) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">((eq 
+  (first pattern '?))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(match 
+  (rest sample) (rest pattern)))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ((eq 
+  (first sample) (first pattern)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(match 
+  (rest sample) (rest pattern)))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (T 
+  NIL)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обращение 
+  к этой функции в выражении<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(match 
+  '(at robot room) '(at robot ?))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> даст 
+  результат Т, а обращение </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(match 
+  '(at box room) '(at robot ?))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">даст 
+  результат NIL.<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Можно усовершенствовать 
+  приведенный анализатор соответствия. Например, сделать так, чтобы он различал 
+  другой символ универсальной подстановки в качестве переменной, которой может 
+  быть присвоено значение символа, соответствие с которым анализируется. Например, 
+  образцу<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(at 
+  ?X ?Y)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">должен соответствовать 
+  пример<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(at 
+  robot room),</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">который образуется 
+  при подстановке {?X/robot, ?Y/room}, как об этом говорилось в главе 3. Можно 
+  также потребовать, чтобы присвоение значений переменным было совместимым, т.е. 
+  чтобы пример<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(at 
+  robot room)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">не соответствовал 
+  образцу<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(at 
+  ?Х ? X).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но, как мы 
+  видели в главе 3, главное назначение анализатора соответствия — показать, что 
+  имеющаяся в программе модель мира удовлетворяет условиям некоторого правила, 
+  которое в таком случае программа сможет затем применить. Пусть в программе имеется 
+  простое правило, утверждающее, что все объекты, находящиеся в комнате, нужно 
+  покрасить:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">if 
+  (at ?X room) then (paint ?X)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Нужно проверить, 
+  соответствует ли условию if (at ?X room) этого правила модель мира, представленная 
+  списком<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(at 
+  box room).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Полученную 
+  подстановку {?X/box} применим затем к констатирующей части правила и получим 
+  в результате<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(paint 
+  box).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Анализ соответствия 
+  — это довольно &quot;расточительная&quot; операция в смысле расхода вычислительных 
+  ресурсов, если только не пользоваться ею с умом. В главе 13 мы увидим, что существуют 
+  довольно эффективные алгоритмы, которые позволяют решить, в каких именно из 
+  имеющихся в наборе правилах (или отдельном правиле) сформулированы условия, 
+  соответствующие анализируемым данным. В настоящее время язык LISP не используется 
+  для реализации систем, базирующихся на правилах, в основном из-за недостаточной 
+  его эффективности, но по-прежнему используется тот принцип обработки списков 
+  при анализе соответствия, который был впервые реализован на LISP.</font></p>
+<br>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

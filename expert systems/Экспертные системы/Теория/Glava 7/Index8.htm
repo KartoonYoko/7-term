@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">7.3.1. 
+  Множественное наследование в CLOS и CLIPS</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Механизм множественного 
+  наследования в языках CLOS и CLIPS работает практически так же, как и в языке 
+  LOOPS. Порядок, в котором базовые классы перечислены в определении подкласса, 
+  задает и порядок приоритетов наследования данных и процедур. Кроме того, существует 
+  правило, в соответствии с которым определение процедуры или свойства, сделанное 
+  в классе, всегда имеет приоритет перед унаследованными от суперклассов. Эти 
+  соглашения позволяют разрешить проблему неоднозначности при множественном наследовании 
+  путем формирования <i>списка предшествования классов.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  фрагмент программы на языке CLIPS, представленный в листинге 7.1. Этот фрагмент 
+  описывает &quot;Алмаз Никсона&quot;, о котором шла речь в главе 6. Класс person 
+  определен как объявленный пользователем, классы quaker и republican — производные 
+  от person, a republican-quaker — производный как от quaker, так и от republican. 
+  Класс USER является системным абстрактным классом, т.е. может быть использован 
+  только для создания подклассов. Если планируется создавать экземпляры любого 
+  класса, производного от USER, то этот класс нужно объявлять с квалификатором 
+  concrete, как это и сделано при объявлении класса republican-quaker.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  7.1. Объявление классов на языке CLIPS</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  person (is-a USER)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  quaker (is-a person)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  republican (is-a person)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  republican-quaker </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is-a 
+  republican quaker) (role concrete)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Список предшествования 
+  классов для класса republican-quaker будет иметь вид (republican-quaker republican,quaker 
+  person).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Список формируется 
+  в результате прослеживания графа связей системы классов, который неявно представлен 
+  слотами is-a в определениях классов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Роль списка 
+  предшествования классов становится ясной при разработке обработчика событий 
+  для производного класса. Определим поведение классов quaker и republican как 
+  &quot;голубей&quot; и &quot;ястребов&quot; соответственно:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  quaker speak () (printout t crlf &quot;Peace&quot;)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  republican speak ()<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf &quot;War&quot;) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Сформируем 
+  экземпляр класса republican-quaker:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(definstances 
+  people<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(richard 
+  of republican-quaker))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь загрузим 
+  все это в исполняющую систему CLIPS и введем запрос к экземпляру Richard:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [richard] speak)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В ответ интерпретатор 
+  выведет &quot;War&quot; (война). Оказывается, что &quot;ястребиный&quot; характер 
+  республиканцев возобладал у экземпляра richard, поскольку в списке предшествования 
+  классов republican стоит раньше, чем quaker. Изменим порядок перечисления этих 
+  классов в определении republican-quaker:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  republican-quaker<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is-a 
+  quaker republican)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(role 
+  concrete) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь в характере 
+  экземпляра Richard миролюбие квакеров будет доминировать. Ничего не изменится 
+  в поведении экземпляра и в том случае, если добавить обработчик сообщения в 
+  класс person:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defmessage-handler 
+  person speak ()<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf &quot;Beer&quot;) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эта реализация 
+  метода speak перекрывается другими, поскольку класс находится в списке предшествования 
+  на последнем месте.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Слоты данных 
+  в языке COOL также поддерживают <i>фацеты, </i>т.е. свойства, ответственные 
+  за доступ к слотам в процессе работы программы. Например, существует фацет visibility 
+  (видимость), который определяет, какие другие классы могут обратиться к слоту. 
+  Значение private означает, что только обработчик сообщения данного класса может 
+  получить доступ к данным, а значение public позволяет это сделать также обработчикам 
+  сообщений производных классов и суперклассов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Другие фацеты 
+  позволяют реализовать следующие возможности:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> автоматическое определение 
+    функций доступа и присвоения значений слотам;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> хранение данных, к 
+    которым возможен доступ со стороны всех экземпляров класса, аналогично статическим 
+    членам классов в языке C++.</font></li>
+</ul>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.2.3. 
+  Наблюдение за процессом интерпретации</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь на 
+  простом примере познакомимся с возможностями, которые предоставляет среда разработки 
+  CLIPS в части отладки программы, состоящей из правил и фактов. Введите в текстовый 
+  файл правило, а затем загрузите этот файл в среду CLIPS.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  start<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(initial-fact)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t &quot;hello, world&quot; crlf) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выполните 
+  команду reset. Для этого либо введите эту команду в командной строке интерпретатора<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (reset)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">либо выберите 
+  в меню команду Execution =&gt; Reset, либо нажмите &lt;CTRL+U&gt; (последних 
+  два варианта возможны в версии, которая работает под Windows).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Затем запустите 
+  интерпретатор. Для этого либо введите эту команду run в командную строку интерпретатора<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (run)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">либо выберите 
+  в меню команду ExecutionORun, либо нажмите &lt;CTRL+R&gt; (последних два варианта 
+  возможны в версии, которая работает под Windows).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В ответ программа 
+  должна вывести сообщение hello, world, знакомое всем программистам мира. Для 
+  повторного запуска программы повторите команды reset и run.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если в меню 
+  Execution^Watch ранее был установлен флажок Rules или перед запуском программы 
+  на выполнение вы ввели в командную строку команду watch rules, то на экране 
+  появится результат трассировки процесса выполнения<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (run) FIRE 1 start: f-0 hello, world</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом сообщении 
+  в строке, начинающейся с FIRE, выведена информация об активизированном правиле: 
+  start— это имя правила, а f-0— имя факта, который &quot;удовлетворил&quot; условие 
+  в этом правиле. Команда watch позволяет организовать несколько разных режимов 
+  трассировки, с деталями которых вы можете познакомиться в <i>Руководстве пользователя. 
+  </i>Если перед запуском программы вы ввели<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (dribble-on &quot;dribble.dp&quot;)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">TRUE</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">то выведенный 
+  протокол трассировки будет сохранен в файле dribble.dp. Сохранение протокола 
+  прекратится после ввода команды<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (dribble-off)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">TRUE</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это очень 
+  удобная опция, особенно на этапе освоения языка.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

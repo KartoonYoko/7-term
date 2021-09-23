@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">8.2. 
+  Язык PROLOG</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>Фразы Хорна 
+  (Horn clause) </i>представляют собой подмножество фраз, содержащих только один 
+  позитивный литерал. В общем виде фраза Хорна представляется выражением<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В языке PROLOG 
+  эта же фраза записывается в таком виде (обратите внимание на символ точки в 
+  конце):<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">р :- q<sub>1</sub>,...,q<sub>n</sub>. 
+  Такая фраза интерпретируется следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&quot;Для 
+  всех значений переменных в фразе p истинно, если истинны q<sub>1</sub> и ... 
+  и q<sub>n</sub>&quot;,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">т.е. пара 
+  символов &quot;:-&quot; читается как &quot;если&quot;, а запятые читаются как 
+  &quot;и&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">PROLOG — это 
+  не совсем обычный язык программирования, в котором программа состоит в основном 
+  из логических формул, а процесс выполнения программы представляет собой доказательство 
+  теоремы определенного вида.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Фраза в форме<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">р 
+  :- q<sub>1</sub>, ...,q<sub>n</sub>.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">может рассматриваться 
+  в качестве процедуры. Такая процедура предполагает следующий порядок выполнения 
+  операций.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">(1) 
+  Литерал цели сопоставляется с литералом р <i>(унифицируется </i>с р), который 
+  называется <i>головой </i>фразы.<br>
+  </font></b></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><b><font size="3">(2)<i>Хвост 
+  </i>фразы q<sub>l</sub>, ...,q<sub>n</sub> конкретизируется подстановкой значений 
+  переменных (или унификаторов), сформированных в результате этого сопоставления.<br>
+  </font></b></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><b><font size="3">(3) 
+  Конкретизированные термы хвостовой части образуют затем множество подцелей, 
+  которые могут быть использованы другими процедурами.<br>
+  </font></b></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><b><font size="3">Таким 
+  образом, сопоставление (или <i>унификация) </i>играет ту же роль, что и передача 
+  параметров функции в других, более привычных языках программирования.</font></b></font><font face="Arial, Helvetica, sans-serif"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Например, 
+  рассмотрим набор фраз языка PROLOG, представленных в листинге 8.1. Предположим, 
+  что a, b и с — какие-то блоки в мире блоков. Две первые фразы утверждают, что 
+  а находится на (on) b, a b находится на (on) с. Третья фраза утверждает, что 
+  X находится выше (above) Y, если X находится на (on) Y. Четвертая фраза утверждает, 
+  что X находится выше (above) Y, если существует какой-то другой блок Z, размещенный 
+  на (on) Y, и X находится выше (above) Y.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  8.1. Простая программа на языке PROLOG, определяющая отношение on (на)</b><br>
+  </font></p>
+<p align="left"> <font size="3" face="Verdana, Arial, Helvetica, sans-serif">on(а, 
+  b).<br>
+  </font></p>
+<p align="left"> <font size="3" face="Verdana, Arial, Helvetica, sans-serif">on(b, 
+  с).<br>
+  </font></p>
+<p align="left"> <font size="3" face="Verdana, Arial, Helvetica, sans-serif">above(X, 
+  Y) :- on(X, Y).<br>
+  </font></p>
+<p align="left"> <font size="3" face="Verdana, Arial, Helvetica, sans-serif">above(X, 
+  Y) :- on(Z, Y), </font></p>
+<p align="left"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">above(X, 
+  Z).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Очевидно, 
+  что от программы требуется вывести цель above (а, с) из этого множества фраз. 
+  Как это делается, мы увидим в разделе 8.3.2, но уже сейчас можно сказать, что 
+  процесс формулировки выражения цели включает обработку двух процедур above и 
+  использование двух фраз on.</font></p>
+<br>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">9.3.2. 
+  Нечеткая логика</font></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ту роль, которую 
+  в классической теории множеств играет двузначная булева логика, в теории нечетких 
+  множеств играет многозначная <i>нечеткая логика, </i>в которой предположения 
+  о принадлежности объекта множеству, например <i>FAST-CAR(Porche-944), </i>могут 
+  принимать действительные значения в интервале от 0 до 1. Возникает вопрос, а 
+  как, используя концепцию неопределенности, вычислить значение истинности сложного 
+  выражения, такого как<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">¬<i>FAST¬CAR(Chevy-Nova).</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">По аналогии 
+  с теорией вероятности, если <i>F </i>представляет собой нечеткий предикат, операция 
+  отрицания реализуется по формуле<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">¬F(X)=1-F(X).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но аналоги 
+  операций конъюнкции и дизъюнкции в нечеткой логике не имеют никакой связи с 
+  теорией вероятностей. Рассмотрим следующее выражение:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&quot;Porche 
+  944 является быстрым (fast), представительским (pretentious) автомобилем&quot;. 
+  В классической логике предположение<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">FAST-CAR(Porche-944) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">^<i>PRETENTIOUS-CAR(Porche-944)</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">является истинным 
+  в том и только в том случае, если истинны оба члена конъюнкции. В нечеткой логики 
+  существует соглашение: если <i>F </i>и G являются нечеткими предикатами, то<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  если<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">FAST-CAR(Porche-944) 
+  = </font></i><font face="Verdana, Arial, Helvetica, sans-serif">0.9</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> <i>PRETENTIOUS-CAR(Porche-944) 
+  = </i>0.7,</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">то<br>
+  </font></p>
+<p align="left"> <font size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">FAST-CAR(Porche-944) 
+  ^</font></i> <font face="Verdana, Arial, Helvetica, sans-serif"><i>PRETENTIOUS-CAR(Porche-944) 
+  </i>= 0.7. </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">А теперь рассмотрим 
+  выражение<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">FAST-CAR(Porche-944) 
+  ^</font></i> <font face="Verdana, Arial, Helvetica, sans-serif">¬<i>FAST-CAR(Porche-944).</i></font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">Вероятность 
+  истинности этого утверждения равна 0, поскольку<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">P(FAST-CAR(Porche-944) 
+  | ¬FAST-CAR(Porche-944)) = 0</font></i><font face="Verdana, Arial, Helvetica, sans-serif">,</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">но в нечеткой 
+  логике значение этого выражения будет равно 0.1 . Какой смысл имеет это значение. 
+  Его можно считать показателем принадлежности автомобиля к нечеткому множеству 
+  среднескоростных автомобилей, которые в чем-то близки к быстрым, а в чем-то 
+  — к медленным.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Смысл выражения 
+  <i>FAST-CAR(Porche-944) = </i>0.9 заключается в том, что мы только на 90% уверены 
+  в принадлежности этого автомобиля к быстрым именно из-за неопределенности самого 
+  понятия &quot;быстрый автомобиль&quot;. Вполне резонно предположить, что существует 
+  некоторая уверенность в том, что <i>Porche-944 </i>не принадлежит к быстрым, 
+  например он медленнее автомобиля, принимающего участие в гонках &quot;Формула-1&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Аналог операции 
+  дизъюнкции в нечеткой логике определяется следующим образом:</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> <font face="Verdana, Arial, Helvetica, sans-serif">f<i>(<sub>F 
+  </sub></i><sub>v <i>G</i></sub><i>)(X) = </i>max(f<sub>F</sub>(X),f<sub>G</sub>(X)).</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Здесь также 
+  очевидна полная противоположность с теорией вероятностей, в которой </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Р(А 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">v <i>В) = Р(А) 
+  + Р(B) - Р(А ^ </i> <i>В) .</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  следующие предположения и значения истинности их принадлежности к нечеткому 
+  множеству <i>FAST-CAR:</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">FAST-CAR(Porche-944) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">v ¬<i>FAST-CAR(Porche-944) 
+  = </i>0.9,</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> <i>FAST-CAR(BMW-316) 
+  </i>v <i>FAST-CAR(BMW-316) = </i>0.5,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> <i>FAST-CAR(Chevy-Nova) 
+  </i>v <i>FAST-CAR(Chevy-Novd) = </i>0.9.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Значение вероятности 
+  истинности каждого из этих предположений, как это определено в теории вероятностей, 
+  равно 1. В нечеткой логике более высокие значения для автомобилей <i>Porche-944 
+  </i>и <i>Chevy-Nova </i>объясняются тем фактом, что степень принадлежности каждого 
+  из этих объектов к нечеткому множеству <i>FAST-CAR </i>выше. Нечеткость концепции 
+  &quot;быстрый или не быстрый&quot; более благоприятна для них, чем для более 
+  медленного <i>BMW-316, </i>который &quot;ни рыба ни мясо&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Операторы 
+  обладают свойствами коммутативности, ассоциативности и взаимной дистрибутивности. 
+  Как к операторам в стандартной логике, к ним применим принцип <i>композитивности, 
+  </i>т.е. значения составных выражений вычисляются только по значениям выражений-компонентов. 
+  В этом операторы нечеткой логики составляют полную противоположность законам 
+  теории вероятностей, согласно которым при вычислении вероятностей конъюнкции 
+  и дизъюнкции величин нужно принимать во внимание условные вероятности.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

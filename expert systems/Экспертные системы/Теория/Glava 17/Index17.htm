@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index16.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+  
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Проведите 
+  сравнительный анализ возможностей инструментальных средств разных классов — 
+  оболочек, языков программирования высокого уровня и многофункциональных сред— 
+  применительно к проектированию экспертных систем для задач классификации и проектирования.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. Почему 
+  бывает желательно строить рассуждения в разных контекстах и почему некоторые 
+  контексты оказываются &quot;отравленными&quot;?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Насколько 
+  сказываются на конечном варианте проектируемой экспертной системы характеристики 
+  начального прототипа?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Критически 
+  проанализируйте характеристики той инструментальной среды разработки экспертных 
+  систем, с которой вы лучше всего знакомы. Анализ должен включать следующие моменты:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) детальное 
+  рассмотрение функциональных возможностей среды, наиболее привлекательных с вашей 
+  точки зрения; каким образом эти возможности облегчают проектирование?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) детальное 
+  рассмотрение тех характеристик среды, которые вы считаете неудачными; почему, 
+  на ваш взгляд, эти характеристики затрудняют работу?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) перечень 
+  дополнительных возможностей, которые, по-вашему, имеет смысл реализовать в этой 
+  среде разработки.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В последнем 
+  разделе анализа выделите те дополнительные функции, которые довольно легко встроить 
+  в имеющийся вариант, и те, которые потребуют его значительной переделки или 
+  приведут к снижению производительности существующего варианта.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Попробуйте 
+  сформулировать рекомендации, касающиеся инженерии знаний, основываясь на собственном 
+  опыте, например на опыте выполнения упражнений из предыдущих глав этой книги. 
+  (Только не нужно приводить вариации Законов Мерфи.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">6. Постарайтесь 
+  задокументировать процесс освоения новой для вас инструментальной среды. Попробуйте 
+  классифицировать те трудности, с которыми вам довелось столкнуться. Например, 
+  можно начать с выделения проблем следующих видов.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Проблема управления 
+    режимами работы среды </i>— насколько болезненным был процесс освоения пользовательского 
+    интерфейса таких компонентов, как редактор, отладчик, интерпретатор и т.п.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Проблемы освоения 
+    синтаксиса языка </i>— как быстро вы освоились с правилами расстановки скобок, 
+    знаков препинания и т.п.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Концептуальные проблемы. 
+    </i>Сложности в освоении процедурных или декларативных конструкций. Например, 
+    методики работы с демонами, контекстами и т.п.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">7. В этом 
+  примере демонстрируется, как в языке CLIPS организована интеграция правил и 
+  объектов. Основной механизм взаимодействия правил и объектов состоит в том, 
+  что действия, специфицированные в правилах, посылают сообщения экземпляру класса.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  например, что мы имеем дело с экспертной системой, которая дает пользователю 
+  советы, касающиеся покупки музыкальных инструментов. Пусть это будет гитара, 
+  причем ее характеристики представлены содержимым слотов. Тогда в этой экспертной 
+  системе должны быть правила, подобные приведенному ниже.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  describe-guitar<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(option 
+  ?guitar) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  (symbol-to-instance-name ?guitar) show) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом правиле 
+  show — метод класса guitar, который выводит на экран содержимое слота экземпляра 
+  класса в нужном формате. Определение класса guitar может иметь следующий вид:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  guitar (is-a USER) (slot make) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  model) (slot wood) (slot pickups))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Метод show 
+  этого класса можно представить следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(definessage-handler 
+  guitar show ()</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (printout 
+  t<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;The 
+  &quot; ?self:make &quot; &quot; ?self:model &quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> is 
+  a &quot; ?self:wood &quot; guitar with &quot; ?selfspickups &quot; pickups.&quot;)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ?self:make &quot; &quot; ?self:model &quot; это &quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ?self:wood &quot; гитара с &quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ?self:pickups &quot; звукоснимателем.&quot;)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для экземпляра 
+  этого класса<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(GibSG 
+  of guitar<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(make 
+  Gibson)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(model 
+  SG)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(wood 
+  mahogany)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(pickups 
+  humbucking) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">метод 
+  выведет сообщение<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;The 
+  Gibson SG is a mahogany guitar</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> with 
+  humbucking pickups.&quot;<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Включите подобную 
+  функцию в одну из программ-советчиков, которые предлагалось разработать в упражнениях 
+  предыдущих глав, в частности в упр. 7 главы 14 и в упр. 4 главы 16.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">8. Разработайте 
+  два правила, которые будут удалять все действия и факты, связанные с &quot;отравленным&quot; 
+  контекстом, в примере, представленном в разделе 17.3.5. Почему таких правил 
+  должно быть два?</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index16.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+</body>
+</html>

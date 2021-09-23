@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">23.2.1. 
+  Оболочка экспертной системы MINERVA</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">MINERVA— это 
+  оболочка экспертной системы, разработанная на базе EMYCIN и NEOMYCIN (см. главы 
+  10-12). Система MINERVA обеспечивает ODYSSEUS базой знаний и методом решения 
+  проблем и разработана специально для поддержки метода обучения EBL. Одно из 
+  главных отличий системы MINERVA от EMYCIN состоит в том, что в ней представлены 
+  не только знания о предметной области, но и стратегические знания, отражающие 
+  способ мышления практикующего врача. Такие знания можно рассматривать как дальнейшее 
+  развитие метаправил систем MYCIN, EMYCIN и NEOMYCIN.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Главным компонентом 
+  этой системы является база медицинских знаний о диагностировании менингита и 
+  других неврологических заболеваний. MINERVA реализована на языке PROLOG, и знания 
+  о предметной области представлены в этой системе в виде фраз Хорна (см. главу 
+  8), но правила по содержанию аналогичны тем, что использовались в MYCIN. Например, 
+  следующее выражение представляет тот факт, что фотофобия может быть связана 
+  с головной болью:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">conclude(migraine-headache, 
+  yes) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">:- 
+  finding(photophobia, yes).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Знания о состоянии 
+  проблемы записываются в виде выражений для фактов в процессе работы системы. 
+  Например, выражение<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">rule-applied(rulel63).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">утверждает, 
+  что в процессе работы системы было активизировано правило 123 и что эта информация 
+  доступна программе в процессе дальнейшей работы. Другое простое выражение<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">differential(migraine-headache, 
+  tension-headache).<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">зафиксирует 
+  тот факт, что мигрень и повышенное давление — текущие гипотезы, выдвинутые программой.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Очевидно, 
+  что такая информация может быть представлена и зарегистрирована любым способом, 
+  например установкой флагов или переменных, но наиболее целесообразно использовать 
+  такое же представление, какое принято в базе знаний предметной области.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Несложное 
+  метаправило может быть представлено в следующем виде: goal(findout(Р)) :- not(concluded(P)), 
+  ask-user(P).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это правило 
+  утверждает, что если текущая цель системы — найти значение параметра Р и если 
+  система не может прийти к заключению о значении этого параметра на основании 
+  имеющихся у нее знаний, то она должна запросить его у пользователя. Поскольку 
+  Р является переменной, то головная часть выражения goal (findout (Р)) сопоставляется 
+  с выражением цели системы, представленным в явном виде, например goal (f indout 
+  (temperature)). Подцели вроде not(concluded(P)) могут быть сопоставлены (успешно 
+  или нет) с системными данными, описывающими текущее состояние процесса вычислений, 
+  например concluded (temperature).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Такие стратегические 
+  знания используются для выработки суждения о текущем состоянии проблемы и принятия 
+  решения о том, располагает ли система в данном случае достаточными знаниями. 
+  Кроме того, наличие таких знаний упрощает программу обучения, которая может 
+  обращаться к структурам на метауровне экспертной системы.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

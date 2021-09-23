@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">9.3.1. 
+  Нечеткие множества</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">То знание, 
+  которое использует эксперт при оценке признаков или симптомов, обычно базируется 
+  скорее на отношениях между классами данных и классами гипотез, чем на отношениях 
+  между отдельными данными и конкретными гипотезами. Большинство методик .решения 
+  проблем в той или иной форме включает классификацию данных (сигналов, симптомов 
+  и т.п.), которые рассматриваются как конкретные представители некоторых более 
+  общих категорий. Редко когда эти более общие категории могут быть четко очерчены. 
+  Конкретный объект может обладать частью характерных признаков определенной категории, 
+  а частью не обладать, принадлежность конкретного объекта к определенному классу 
+  может быть размыта. Предложенная Заде <i>[Zadeh, 1965] теория нечетких множеств 
+  (fuzzy set theory) </i>представляет собой формализм, предназначенный для формирования 
+  суждений о таких категориях и принадлежащих к ним объектах. Эта теория лежит 
+  в основе <i>нечеткой логики (fuzzy logic) [Zadeh, 1975] </i>и <i>теории возможностей 
+  (possibility theory) [Zadeh, 1978].</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Классическая 
+  теория множеств базируется на двузначной логике. Выражения в форме <i>а &amp; 
+  А, </i>где <i>а </i>представляет индивидуальный объект, а <i>А </i>— множество 
+  подобных объектов, могут принимать только значение &quot;истина&quot; либо &quot;ложь&quot;. 
+  После появления понятия &quot;нечеткое множество&quot; прежние классические 
+  множества иногда стали называть <i>жесткими. </i>Жесткость классической теории 
+  множеств стала источником ряда проблем при попытке применить ее к нечетко определенным 
+  категориям.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  категорию, определенную словом &quot;быстрый&quot; (fast). Если применить это 
+  определение к автомобилям, то какой автомобиль можно считать быстрым? В классической 
+  теории мы можем определить множество <i>А </i>&quot;быстрых автомобилей&quot; 
+  либо перечислением (составив список всех членов множества), либо введя в рассмотрение 
+  некоторую характеристическую функцию f такую, что для любого объекта <i>X</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>f(X) </i>= 
+  <i>истина </i>тогда и только тогда, когда <i>Х принадлежит А.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Например, 
+  эта функция может отбирать только те автомобили, которые имеют скорость более 
+  150 миль в час:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">GT150(X)={ 
+  истина,если CAR(X) и TOP_SPEED(X) &gt; 150 <i>ложь </i>в противном случае<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Множество, 
+  определенное такой характеристической функцией, представляется формулой<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">{Х 
+  ~ CAR TOP-SPEED(X)&gt; </font></i><font face="Verdana, Arial, Helvetica, sans-serif">150}.</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эта формула 
+  утверждает, что элементами нового множества являются те элементы множества <i>CAR, 
+  </i>которые имеют максимальную скорость свыше 150 миль в час.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">А что можно 
+  сказать о множестве (категории) &quot;быстрых&quot; автомобилей? Интуитивно 
+  кажется, что ситуация сходна с представленной на рис. 9.2, где границы множества 
+  размыты и принадлежность элементов множеству может быть каким-то образом ранжирована. 
+  В таком случае можно говорить о том, что отдельный объект (автомобиль) <i>более 
+  или менее типичен </i>для этого множества (категории). Можно с помощью некоторой 
+  функции/охарактеризовать степень принадлежности объектов <i>X </i>такому множеству. 
+  Функция <i>/(X) </i>определена на интервале [0,1]. Если для объекта <i>X </i>функция 
+  f<i>(X) = </i>1, то объект <i>определенно является </i>членом множества, если 
+  ДА) = 0, то объект <i>определенно не является </i>членом множества. Все промежуточные 
+  значения означают <i>степень членства </i>объекта <i>X </i>в этом множестве. 
+  В примере с автомобилями нам понадобится функция, оперирующая с максимальной 
+  скоростью каждого претендента на членство. Можно определить ее таким образом, 
+  что f<sub>FAST</sub>(80) = 0, f<sub>FAST</sub>(180) = 1, а промежуточные значения 
+  представляются некоторой монотонной гистограммой, имеющей значения в интервале 
+  между нулем и единицей. Тогда множество &quot;быстрых автомобилей&quot; может 
+  быть охарактеризовано функцией<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">f<sub>FAST 
+  </sub><i><sub>CAR</sub>(X) =f<sub>FAST</sub>(TOP-SPEED(X)),</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">которая определена 
+  на множестве всех автомобилей. Таким образом, членами множества становятся пары 
+  <i>(объект, степень), </i>например:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">FAST-CAR 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">= <i>{(Porche-944, 
+  </i>0.9),</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> <i>(BMW-316, 
+  </i>0.5), <i>(Chevy-Nova, </i>0.1)}.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="2.gif" width="400" height="367"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 9.2. 
+  Нечеткое множество &quot;быстрых&quot; автомобилей</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

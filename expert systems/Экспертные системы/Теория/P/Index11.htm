@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.4.1. 
+  Анализ проблемы</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Первым этапом 
+  любого программного проекта является анализ решаемой проблемы. Эксперт должен 
+  уметь решить проблему, а инженер по знаниям должен разобраться, как именно было 
+  получено решение. При решении нашей задачи вам придется выступить в обеих ипостасях.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предложенные 
+  головоломки можно решить, систематически анализируя, что случится, если персонаж, 
+  произносящий реплику, является правдолюбцем, а что, если он — лжец. Обозначим 
+  через <i>Т(А) </i>факт, что А говорит правду и, следовательно, является правдолюбцем, 
+  а через <i>F(A) </i>— факт, что А лжет и, следовательно, является лжецом.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  сначала головоломку Р1. Предположим, что А говорит правду. Тогда из его реплики 
+  следует, что либо А лжец, либо В правдолюбец. Формально это можно представить 
+  в следующем виде:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т(А) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">=&gt; <i>F(A) 
+  </i>v <i>T(B)</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Поскольку 
+  А не может быть одновременно и лжецом и правдолюбцем, то отсюда следует<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">T(A)=&gt; 
+  <i>Т(В). </i>Аналогично можно записать и другой вариант. Предположим, что А 
+  лжет:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">F(A) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">=&gt; <i>-{F(A) 
+  </i>v T(<i>B)). </i></font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">Упростим это 
+  выражение:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">F(A) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">=&gt; -F(A) ^<i> 
+  </i>-T(B) или <i>F(A) </i>=&gt; <i>Т(А) ^ F(B).</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Сравнивая 
+  оба варианта, нетрудно прийти к выводу, что только последний правильный, поскольку 
+  в первом варианте мы пришли к выводу, противоречащему условиям (не могут быть 
+  правдолюбцами одновременно А и В).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  рассматриваемая проблема относится к типу таких, решение которых находится в 
+  результате анализа выводов, следующих из определенных предположений, и поиска 
+  в них противоречий (или отсутствия таковых). Мы предполагаем, что определенный 
+  персонаж говорит правду, а затем смотрим, можно ли в этом случае так распределить 
+  &quot;роли&quot; остальных персонажей, что не будут нарушены условия, сформулированные 
+  в репликах. На жаргоне, принятом в математической логике, предположение о правдивости 
+  или лживости множества высказываний называется <i>интерпретацией, </i>а вариант 
+  непротиворечивого присвоения значений истинности элементам множества — <i>моделью.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Однако наши 
+  головоломки включают и нечто, выходящее за рамки типовых проблем математической 
+  логики, поскольку реплики в них может произносить не один персонаж (как в головоломке 
+  Р2), а на реплику одного персонажа может последовать ответная реплика другого 
+  (как в головоломке РЗ). В исходной версии программы, которую мы рассмотрим ниже, 
+  это усложнение отсутствует, но в окончательной оно должно быть учтено. Мы покажем, 
+  что постепенное усложнение программы довольно хорошо согласуется с использованием 
+  правил.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На практике 
+  оказывается, что в первой версии программы удобнее всего воспользоваться &quot;вырожденным&quot; 
+  вариантом проблемы, т.е. постараться решить ее в тривиальном виде, который, 
+  тем не менее, несет в себе многие особенности реального случая. Вот как это 
+  выглядит в отношении наших правдолюбцев и лжецов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Р0.</b> 
+  А заявляет: &quot;Я лжец&quot;. Кто же в действительности А — лжец или правдолюбец?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мы только 
+  что фактически процитировали хорошо известный <i>Парадокс Лгуна. </i>Если А 
+  лжец, то, значит, он врет, т.е. в действительности он правдолюбец. Но тогда 
+  мы приходим к противоречию. Если же А правдолюбец, т.е. говорит правду, то в 
+  действительности он лжец, а это опять противоречие. Таким образом, в этой головоломке 
+  не существует непротиворечивого варианта &quot;распределения ролей&quot;, т.е. 
+  не существует модели в том смысле, который придается ей в математической логике.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Есть много 
+  достоинств в выборе для прототипа программы варианта головоломки <b>Р0.</b><br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> В головоломке присутствует 
+    только один персонаж.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Выражение не содержит 
+    логических связок, таких как И или ИЛИ, или кванторов, вроде квантора общности 
+    (все) и прочих.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Отсутствует ответная 
+    реплика.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В то же время 
+  существенные черты проблемы в этом варианте присутствуют. Мы по-прежнему должны 
+  попытаться отыскать непротиворечивую интерпретацию высказывания <i>А, </i>т.е. 
+  должны реализовать две задачи, присутствующие в любых вариантах подобной головоломки:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> формировать альтернативные 
+    интерпретации высказываниям;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> анализировать наличие 
+    противоречий.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Вы увидите, 
+  что для выполнения этих двух задач потребуется использовать механизм, очень 
+  близкий к тем, которые мы рассматривали при описании систем обработки правдоподобия 
+  в главах 17 и 19.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

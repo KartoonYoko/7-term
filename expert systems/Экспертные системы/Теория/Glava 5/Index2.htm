@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index1.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">5.1. 
+  Канонические системы</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Порождения 
+  — это в действительности грамматические правила манипулирования строками символов 
+  и потому их иногда называют <i>правилами переписывания (rewrite rules). </i>Пост 
+  изучал свойства систем правил, базирующихся на порождениях, которые он назвал 
+  <i>каноническими системами [Post, 1943]. </i>Каноническая система — это разновидность 
+  формальной системы, основанной на следующих компонентах:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>алфавит А, </i>из 
+    символов которого формируются строки;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> некоторое множество 
+    строк, которые рассматриваются как <i>аксиомы,</i><br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> множества <i>порождений 
+    </i>в форме<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">а1$1 
+  ... am$m-&gt;b1$'1...bn$'1...bn$'n.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">где<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(I) каждое 
+  ai и bi; есть фиксированная строка;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(II) <i>а1 
+  </i>и am, часто есть нуль;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(III) некоторые 
+  или все из ai или bi могут представлять собой нуль;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(IV) каждое 
+  $i является переменной строкой, которая также может быть нулем;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(V) каждое 
+  $i заменяется определенным $'i .<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Определение 
+  канонической системы, возможно, станет более понятным, если привести пример. 
+  Пусть <i>А </i>— алфавит <i>{а, b, с}, </i>а аксиомы суть:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">а, 
+  b, с, аа, bb, cc.</font></i><font face="Verdana, Arial, Helvetica, sans-serif"><br>
+  </font> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Тогда следующие 
+  порождения сгенерируют все палиндромы, базирующиеся на этом алфавите, приняв 
+  за отправную точку имеющиеся аксиомы:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(Р1)$-&gt;а$a 
+  (Р2) $ -&gt; <i>ab$ab </i>(РЗ) $ <i>-&gt; с$с.</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Более того, 
+  в данном случае можно проследить применение правил, которые должны привести 
+  к росту определенного палиндрома. Например, чтобы сгенерировать <i>bacab, </i>нужно 
+  применить Р1 к аксиоме с, а затем Р2 — к результату. Другими словами, приняв 
+  <i>с </i>в качестве аксиомы, можно вывести из нее теорему <i>аса </i>и добавить 
+  ее к имеющимся аксиомам. Затем из <i>аса </i>можно вывести новую теорему <i>bacab. 
+  </i>Обратите внимание, что эта последовательность порождений не обладает свойством 
+  коммутативности, т.е. если применять те же правила, но в ином порядке, получится 
+  совсем другой результат. Например, если к аксиоме <i>с </i>применить сначала 
+  правило Р2, а затем <b>Р1, </b>то получим <i>abcba.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На первый 
+  взгляд канонические системы довольно тривиальны. Все, что можно сделать в рамках 
+  такой системы, — преобразовать одну строку символов в другую. Но если задуматься, 
+  то любое логическое или математическое исчисление в конце концов сводится к 
+  набору правил манипулирования символами. Мы упускаем это из виду, поскольку 
+  для нас часто важен определенный смысл логических и математических символов, 
+  чего не скажешь о строках типа <i>abcba.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Отсюда следует, 
+  что любая формальная система может рассматриваться как каноническая (см., например, 
+  <i>[Minsky, 1972, Chapter 12J). </i>В действительности к этому нужно добавить 
+  тривиальную оговорку, что такая система может нуждаться еще в дополнительном 
+  алфавите, буквы которого будут использоваться в качестве знаков пунктуации в 
+  сложных доказательствах. Таким образом, для проверки доказательства в любой 
+  формальной системе или для того, чтобы выполнить <i>любую </i>эффективную процедуру, 
+  вполне достаточно способности прочесть строку символов, разделить ее на компоненты 
+  и переупорядочить (при этом, возможно, придется добавить еще какие-то символы 
+  или удалить существующие в исходной строке).<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">5.1. 
+  Смысл порождений</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Пусть 
+  задано порождающее правило в форме<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">а1$1...am$m-&gt; 
+  b1$'1...bn$'n</font><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">В 
+  нем a1$1 ... аm$m часто называют антецедентом (antecedent) правила, а b,$'1 
+  ... bn$'n консеквентом (consequent) правила, по аналогии с условным выражением 
+  логики высказываний (см. главу 8). Условный оператор обычно записывается в виде<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">p 
+  U q1 что означает, &quot;если р, то q&quot;, например &quot;если вы упали в 
+  реку, то будете мокрым&quot;.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Однако 
+  часто значок 'U' заменяют значком '-&gt;', что вряд ли стоит делать, поскольку 
+  последний несет более императивный или разрешающий смысл. Как правило, он говорит 
+  не столько о логическом следствии, сколько о том, что нужно сделать, или о том, 
+  что можно было бы сделать.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Правило 
+  в форме Х-&gt;У говорит о том, что можно записать, сгенерировать или породить 
+  консеквент У при заданном анцеденте X. Оно не говорит о том, что набор X, У 
+  является неразрывно связанной последовательностью, как в примере с купанием 
+  в реке. Правила переписывания в теоретической лингвистике называются &quot;порождениями&quot;, 
+  поскольку правило вида<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">S-&gt;NP+ 
+  VP</font><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">имеет 
+  следующую интерпретацию: &quot;один из способов сформировать предложение S состоит 
+  в том, чтобы взять существительное (NР) и добавить к нему глагол (VP)&quot;.</font></font></p>
+<br>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index1.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>
