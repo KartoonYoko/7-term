@@ -1,0 +1,16 @@
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\bin\Debug\net5.0\Lab 1.exe
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\bin\Debug\net5.0\Lab 1.deps.json
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\bin\Debug\net5.0\Lab 1.runtimeconfig.json
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\bin\Debug\net5.0\Lab 1.runtimeconfig.dev.json
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\bin\Debug\net5.0\Lab 1.dll
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\bin\Debug\net5.0\ref\Lab 1.dll
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\bin\Debug\net5.0\Lab 1.pdb
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.csproj.AssemblyReference.cache
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.AssemblyInfoInputs.cache
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.AssemblyInfo.cs
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.csproj.CoreCompileInputs.cache
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.dll
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\ref\Lab 1.dll
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.pdb
+C:\Users\crash\OneDrive\Рабочий стол\Домашка\7-term\Теория языков программирования и методы трансляции\Lab 1\obj\Debug\net5.0\Lab 1.genruntimeconfig.cache
