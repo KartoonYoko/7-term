@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Lab_1
 {
@@ -180,18 +181,20 @@ namespace Lab_1
 						isTypeTwo &= !r.Key.Contains(vt);
 					}
 
-					// проверка для третьего типа TODO подправить работает неверно
+					// 
 					if (isEachTermPosBigger || isEachTermPosSmaller)
 					{
 						List<int> terminlPositions = new();
 						List<int> nonTerminlPositions = new();
 						foreach (string vn in Nonterminal)
 						{
-							nonTerminlPositions.Add(r.Value.IndexOf(vn));
+							int pos = r.Value.IndexOf(vn);
+							if (pos != -1) nonTerminlPositions.Add(pos);
 						}
 						foreach (string vt in Terminal)
 						{
-							terminlPositions.Add(r.Value.IndexOf(vt));
+							int pos = r.Value.IndexOf(vt);
+							if (pos != -1) terminlPositions.Add(pos);
 						}
 						foreach (int pos in terminlPositions)
 						{
@@ -202,6 +205,11 @@ namespace Lab_1
 							}
 						}
 					}
+				}
+
+				if ((isEachTermPosBigger && isEachTermPosSmaller) || (!isEachTermPosBigger && !isEachTermPosSmaller))
+				{
+					isTypeThree = false;
 				}
 				string res = "0";
 				if (isTypeOne) res += " 1";
@@ -290,7 +298,7 @@ namespace Lab_1
 
 			Console.WriteLine("");
 
-			Console.WriteLine("Задание 3.");
+			Console.WriteLine("Задание 4.");
 			Console.WriteLine("Подпункт a)");
 			dict = new()
 			{
@@ -317,6 +325,119 @@ namespace Lab_1
 				dict);
 			Console.WriteLine(gr.GetTypeGrammar());
 
+			Console.WriteLine("Задание 5.");
+			dict = new()
+			{
+				new Rule("S", "aSL"),
+				new Rule("S", "aL"),
+				new Rule("L", "Kc"),
+				new Rule("cK", "Kc"),
+				new Rule("k", "b"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+			dict = new()
+			{
+				new Rule("S", "aSBc"),
+				new Rule("S", "abc"),
+				new Rule("cB", "Bc"),
+				new Rule("bB", "bb"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+
+
+			Console.WriteLine("Задание 6.");
+			dict = new()
+			{
+				new Rule("S", "AB"),
+				new Rule("S", "ABS"),
+				new Rule("AB", "BA"),
+				new Rule("BA", "AB"),
+				new Rule("A", "a"),
+				new Rule("B", "b"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+			dict = new()
+			{
+				new Rule("S", "ab"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+
+			Console.WriteLine("Задание 7.");
+			dict = new()
+			{
+				new Rule("S", "A.A"),
+				new Rule("A", "B"),
+				new Rule("A", "BA"),
+				new Rule("B", "0"),
+				new Rule("B", "1"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+			dict = new()
+			{
+				new Rule("S", "A.0"),
+				new Rule("A", "0"),
+				new Rule("A", "1"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+
+			Console.WriteLine("Задание 8.");
+			Console.WriteLine("Подпункт a)");
+			dict = new()
+			{
+				new Rule("S", "while (condition) { expression }"),
+				new Rule("condition", "true"),
+				new Rule("condition", "false"),
+				new Rule("expression", "i = i + 1;"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine("Подпункт б)");
+			dict = new()
+			{
+				new Rule("S", "for(variableint;condition;changingvar){ circlebody }"),
+				new Rule("variableint", "int i"),
+				new Rule("condition", "i < 10"),
+				new Rule("changingvar", "i++"),
+				new Rule("circlebody", "printf(\"%d\", i);"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine("Подпункт в)");
+			dict = new()
+			{
+				new Rule("S", "do{circlebody} while (condition);"),
+				new Rule("circlebody", "printf(\"%d\", i);"),
+				new Rule("condition", "i < 10"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+
+			Console.WriteLine("Задание 9.");
+			//new Rule("bCD", "\u03B5"),  // epsilon
+			//a\u03B5b\u03B5a\u03B5b\u03B5
+
+			Console.WriteLine("Задание 10.");
+			Console.WriteLine("Подпункт a)");
+			Regex IdentificatorRegex = new(@"^([a-z]|[A-Z]|_){1}([a-z]||[A-Z])*");
+			
+			Console.WriteLine(IdentificatorRegex.IsMatch("_asdasdasd124323fk4j35j36ohng54"));
+			Console.WriteLine(IdentificatorRegex.IsMatch("!_asdasdasd124323fk4j35j36ohng54"));
+			Console.WriteLine(IdentificatorRegex.IsMatch("@qwe2"));
+			Console.WriteLine(IdentificatorRegex.IsMatch("A_qwe2"));
+
+			Console.WriteLine("Подпункт b)");
+			Regex RealConstantRegex = new(@"^[0-9]+(\.((e|E\+?\-?[0-9](f?|F?|l?|L?))|[0-9]*))*");
+			Console.WriteLine(RealConstantRegex.IsMatch("A_qwe2"));
+			Console.WriteLine(RealConstantRegex.IsMatch("0.123f"));
+			Console.WriteLine(RealConstantRegex.IsMatch("123.123"));
+			Console.WriteLine(RealConstantRegex.IsMatch("10.e10"));
+			Console.WriteLine(RealConstantRegex.IsMatch("32.01-e10"));
 		}
 	}
 }
