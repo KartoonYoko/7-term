@@ -57,14 +57,16 @@ namespace Lab_1
 			/// <param name="input">Строка, к которой применяется правило</param>
 			/// <param name="rule">Правило языка</param>
 			/// <param name="count">Количество допустимых повторений</param>
+			/// <param name="isReverse">Проверять ли с конца строки.</param>
 			/// <returns>true - если правило зацикливает перевод, иначе - false</returns>
-			private bool CheckLoop(string input, Rule rule, int count = 5) {
+			private bool CheckLoop(string input, Rule rule, int count = 5, bool isReverse = false) {
 				for (int i = 0; i < count; i++) {
 					string key = rule.Key;
 					string value = rule.Value;
 
-					int pos = input.IndexOf(key);
-
+					int pos;
+					if (isReverse) pos = input.LastIndexOf(key);
+					else pos = input.IndexOf(key);
 					if (pos != -1)
 					{
 						input = input.Remove(pos, key.Length);
@@ -121,7 +123,101 @@ namespace Lab_1
 				RefreshRules();
 				return text;
 			}
+			/// <summary>
+			/// Переводит строку на формальный язык. Анализирует строку справа
+			/// </summary>
+			/// <param name="text">Строка для перевода</param>
+			/// <returns>Строка на формальном языке</returns>
+			public string TranslateRight(string text){
+				int count = 0;
+				bool isEnd = false;	// true - если ни одно из правил непреминимо
+				while (count < MaxRepetitionsCount)
+				{
+					if (isEnd) break;
 
+					count++;
+					isEnd = true;
+					// применяем по очереди каждое правило языка к строке
+					foreach (Rule rule in _rules)
+					{
+						if (!rule.IsLooped)		// если правило зацикливает
+						{
+							string key = rule.Key;
+							string value = rule.Value;
+
+							int pos = text.LastIndexOf(key);
+
+							if (pos != -1)	// если ключ найден
+							{
+								// если правило зацикливает перевод - запоминаем это
+								if (CheckLoop(text, rule, isReverse: true)) rule.IsLooped = true;
+								else
+								{
+									text = text.Remove(pos, key.Length);
+									text = text.Insert(pos, value);
+									isEnd = false;
+
+									break;
+								}
+							}
+						}
+						else rule.IsLooped = !rule.IsLooped;
+					}
+				}
+
+				RefreshRules();
+				return text;
+			}
+			/// <summary>
+			/// Переводит строку на формальный язык. 
+			/// Если встречается несколько выводов из одного нетерминального символа - берет случайный. 
+			/// </summary>
+			/// <param name="text">Строка для перевода.</param>
+			/// <returns>Строка на формальном языке.</returns>	
+			public string TranslateRandom(string text){
+				int count = 0;
+				bool isEnd = false;	// true - если ни одно из правил непреминимо
+				while (count < MaxRepetitionsCount)
+				{
+					if (isEnd) break;
+
+					count++;
+					isEnd = true;
+					// правила, которые применимы к текущему состоянию строки
+					List<Rule> checkedRules = new();
+					// применяем по очереди каждое правило языка к строке
+					foreach (Rule rule in _rules)
+					{
+						string key = rule.Key;
+						string value = rule.Value;
+
+						int pos = text.LastIndexOf(key);
+
+						if (pos != -1)	// если ключ найден
+						{					
+							checkedRules.Add(rule);
+							isEnd = false;														
+						}						
+					}
+					Random random = new();
+					int index = random.Next(checkedRules.Count);
+					Rule ruleChecked = null;
+					if (checkedRules.Count != 0){
+						ruleChecked = checkedRules[index];
+					}					
+					
+					if (ruleChecked != null){
+						string k = ruleChecked.Key;
+						string v = ruleChecked.Value;
+						int p = text.LastIndexOf(k);
+						text = text.Remove(p, k.Length);
+						text = text.Insert(p, v);	
+					}				
+				}
+
+				// RefreshRules();
+				return text;
+			}
 			private void RefreshRules() {
 				foreach (Rule rule in _rules) {
 					rule.IsLooped = false;
@@ -217,6 +313,43 @@ namespace Lab_1
 				if (isTypeThree) res += " 3";
 				return res;
 			}
+			/// <summary>
+			/// Создает дерево вывода из цепочки символов
+			/// </summary>
+			/// <param name="text">Строка (цепочка символов), для которой нужно построить дерево</param>
+			/// <returns></returns>
+			public string MakeTree(string text){				
+				int maxCount = 10000;
+				int count = 0;
+				List<string> tree = new();
+				tree.Add(text);
+				while (count < maxCount){
+					foreach(Rule rule in P){
+						string key = rule.Key;
+						string value = rule.Value;
+
+						int pos = text.LastIndexOf(value);
+						if (pos != -1) {
+							text = text.Remove(pos, value.Length);
+							text = text.Insert(pos, key);
+							
+							string separator = "|"; 
+							for (int i = 0; i < pos; i++){
+								separator = " " + separator;
+							}
+							tree.Add(separator);
+							tree.Add(text);
+						}
+					}
+					count++;
+				}
+				tree.Reverse();
+
+				foreach(string branch in tree){
+					Console.WriteLine(branch);
+				}
+				return text;
+			}
 		}
 
 		static void Main(string[] args)
@@ -242,7 +375,7 @@ namespace Lab_1
 				new Rule("bCD", "\u03B5"),  // epsilon
 			};
 			FormalLanguage fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine(fl.TranslateRight("S"));
 
 			Console.WriteLine("Подпункт б)");
 
@@ -257,7 +390,7 @@ namespace Lab_1
 				new Rule("b", "Ab"),
 			};
 			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine(fl.TranslateRight("S"));
 
 			Console.WriteLine("");
 			Console.WriteLine("Задание 3.");
@@ -421,6 +554,17 @@ namespace Lab_1
 			Console.WriteLine("Задание 9.");
 			//new Rule("bCD", "\u03B5"),  // epsilon
 			//a\u03B5b\u03B5a\u03B5b\u03B5
+			dict = new(){
+				new Rule("S", "aSbS"),
+				new Rule("S", "bSaS"),
+				new Rule("S", "\u03B5"),
+			};
+			gr = new(
+				new List<string> { "S" },
+				new List<string> { "a", "b", "\u03B5" },
+				dict);
+				// aEbaEbE
+			Console.WriteLine(gr.MakeTree("a\u03B5ba\u03B5b\u03B5"));
 
 			Console.WriteLine("Задание 10.");
 			Console.WriteLine("Подпункт a)");
@@ -438,6 +582,37 @@ namespace Lab_1
 			Console.WriteLine(RealConstantRegex.IsMatch("123.123"));
 			Console.WriteLine(RealConstantRegex.IsMatch("10.e10"));
 			Console.WriteLine(RealConstantRegex.IsMatch("32.01-e10"));
+
+			Console.WriteLine("Задание 11.");
+			Console.WriteLine("Подпункт а)");
+			dict = new()
+			{
+				new Rule("S", "S1"),
+				new Rule("S", "A0"),
+				new Rule("A", "A1"),
+				new Rule("A", "0"),
+				
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine("Подпункт б)");
+			dict = new()
+			{
+				new Rule("S", "A1"),
+				new Rule("S", "B0"),
+				new Rule("S", "E1"),
+				new Rule("A", "S1"),
+				new Rule("B", "C1"),
+				new Rule("B", "D1"),
+				new Rule("C", "0"),
+				new Rule("D", "B1"),
+				new Rule("E", "E0"),
+				new Rule("E", "1"),
+				
+			};
+			fl = new(dict);
+			//Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine("Задание 12.");
 		}
 	}
 }

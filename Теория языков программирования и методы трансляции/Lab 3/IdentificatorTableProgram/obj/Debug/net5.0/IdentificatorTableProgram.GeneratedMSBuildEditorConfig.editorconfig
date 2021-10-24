@@ -6,5 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.PublishSingleFile = 
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
-build_property.RootNamespace = Lab_1
-build_property.ProjectDir = C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 1\
+build_property.RootNamespace = IdentificatorTableProgram
+build_property.ProjectDir = C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\

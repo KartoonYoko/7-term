@@ -1,0 +1,16 @@
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\bin\Debug\net5.0\IdentificatorTableProgram.exe
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\bin\Debug\net5.0\IdentificatorTableProgram.deps.json
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\bin\Debug\net5.0\IdentificatorTableProgram.runtimeconfig.json
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\bin\Debug\net5.0\IdentificatorTableProgram.runtimeconfig.dev.json
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\bin\Debug\net5.0\IdentificatorTableProgram.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\bin\Debug\net5.0\ref\IdentificatorTableProgram.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\bin\Debug\net5.0\IdentificatorTableProgram.pdb
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.csproj.AssemblyReference.cache
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.AssemblyInfoInputs.cache
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.AssemblyInfo.cs
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.csproj.CoreCompileInputs.cache
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\ref\IdentificatorTableProgram.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.pdb
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\Lab 3\IdentificatorTableProgram\obj\Debug\net5.0\IdentificatorTableProgram.genruntimeconfig.cache

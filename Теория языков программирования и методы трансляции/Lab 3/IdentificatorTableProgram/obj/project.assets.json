@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 1\\Lab 1.csproj",
-      "projectName": "Lab 1",
-      "projectPath": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 1\\Lab 1.csproj",
+      "projectUniqueName": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj",
+      "projectName": "IdentificatorTableProgram",
+      "projectPath": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj",
       "packagesPath": "C:\\Users\\crash\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 1\\obj\\",
+      "outputPath": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\crash\\AppData\\Roaming\\NuGet\\NuGet.Config"
