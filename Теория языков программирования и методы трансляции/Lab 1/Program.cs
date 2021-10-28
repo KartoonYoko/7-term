@@ -218,6 +218,116 @@ namespace Lab_1
 				// RefreshRules();
 				return text;
 			}
+
+			/// <summary>
+			/// Лвеосторонний вывод.
+			/// </summary>
+			/// <returns>Строка, порожденная на основе правил языка.</returns>
+			public string OutputLeft() {
+
+				string result = "S";
+				int count = 0;
+				while (count < MaxRepetitionsCount) {
+					int pos = -1;
+
+					// найдем крайний левый нетерминальный символ в цепочке
+					foreach (Rule rule in _rules)
+					{
+						string key = rule.Key;
+						int findPos = result.IndexOf(key);
+						if ((pos > findPos || pos == -1) && findPos != -1) {
+							pos = findPos;
+						}
+
+					}
+
+					// если не найдено ниодного подходящего правила - выходим
+					if (pos == -1)
+					{
+						break;
+					}
+
+					// найдем все правил подходящие для крайнего левого нетерминального символа
+					List<Rule> rules = new(); 
+					foreach (Rule rule in _rules) {
+						string key = rule.Key;
+						if (pos == result.IndexOf(key)) {
+							rules.Add(rule);
+						}
+					}
+
+					// случайно выберем правило
+					Random random = new();
+					int index = random.Next(rules.Count);
+					Rule r = rules[index];
+
+					int p = result.IndexOf(r.Key);
+					result = result.Remove(p, r.Key.Length);
+					result = result.Insert(p, r.Value);
+
+					count++;
+				}
+
+				return result;
+			}
+
+			/// <summary>
+			/// Правосторонний вывод.
+			/// </summary>
+			/// <returns>Строка, порожденная на основе правил языка.</returns>
+			public string OutputRight()
+			{
+
+				string result = "S";
+				int count = 0;
+				while (count < MaxRepetitionsCount)
+				{
+					int pos = -1;
+
+					// найдем крайний правый нетерминальный символ в цепочке
+					foreach (Rule rule in _rules)
+					{
+						string key = rule.Key;
+						int findPos = result.IndexOf(key);
+						if ((pos < findPos || pos == -1) && findPos != -1)
+						{
+							pos = findPos;
+						}
+
+					}
+
+					// если не найдено ниодного подходящего правила - выходим
+					if (pos == -1)
+					{
+						break;
+					}
+
+					// найдем все правил подходящие для крайнего правого нетерминального символа
+					List<Rule> rules = new();
+					foreach (Rule rule in _rules)
+					{
+						string key = rule.Key;
+						if (pos == result.LastIndexOf(key))
+						{
+							rules.Add(rule);
+						}
+					}
+
+					// случайно выберем правило
+					Random random = new();
+					int index = random.Next(rules.Count);
+					Rule r = rules[index];
+
+					int p = result.LastIndexOf(r.Key);
+					result = result.Remove(p, r.Key.Length);
+					result = result.Insert(p, r.Value);
+
+					count++;
+				}
+
+				return result;
+			}
+
 			private void RefreshRules() {
 				foreach (Rule rule in _rules) {
 					rule.IsLooped = false;
@@ -585,33 +695,48 @@ namespace Lab_1
 
 			Console.WriteLine("Задание 11.");
 			Console.WriteLine("Подпункт а)");
+			Console.WriteLine("Грамматика описывает язык {0^n 1^n 'Символ перепендикуляра' \u27C2}");
 			dict = new()
 			{
-				new Rule("S", "S1"),
-				new Rule("S", "A0"),
+				new Rule("S", "0S"),
+				new Rule("S", "0B"),
+				new Rule("B", "1B"),
+				new Rule("B", "1C"),
+				new Rule("C", "1C"),
+				new Rule("C", "\u27C2"),
+
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.OutputLeft());
+
+			dict = new()
+			{
+				new Rule("S", "A\u27C2"),
 				new Rule("A", "A1"),
-				new Rule("A", "0"),
-				
+				new Rule("A", "CB1"),
+				new Rule("B", "B1"),
+				new Rule("B", "C1"),
+				new Rule("B", "CB"),
+				new Rule("C", "0"),
+
 			};
 			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine(fl.OutputLeft());
 			Console.WriteLine("Подпункт б)");
+			Console.WriteLine("Грамматика описывает язык a^n b^n 'Символ перепендикуляра' \u27C2");
 			dict = new()
 			{
-				new Rule("S", "A1"),
-				new Rule("S", "B0"),
-				new Rule("S", "E1"),
-				new Rule("A", "S1"),
-				new Rule("B", "C1"),
-				new Rule("B", "D1"),
-				new Rule("C", "0"),
-				new Rule("D", "B1"),
-				new Rule("E", "E0"),
-				new Rule("E", "1"),
+				new Rule("S", "aA"),
+				new Rule("S", "aB"),
+				new Rule("S", "bA"),
+				new Rule("A", "bS"),
+				new Rule("B", "aS"),
+				new Rule("B", "bB"),
+				new Rule("B", "\u27C2"),
 				
 			};
 			fl = new(dict);
-			//Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine(fl.OutputLeft());
 			Console.WriteLine("Задание 12.");
 		}
 	}
