@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj": {}
+    "C:\\Users\\crash\\OneDrive\\Рабочий стол\\Домашка\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj": {}
   },
   "projects": {
-    "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj": {
+    "C:\\Users\\crash\\OneDrive\\Рабочий стол\\Домашка\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj",
+        "projectUniqueName": "C:\\Users\\crash\\OneDrive\\Рабочий стол\\Домашка\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj",
         "projectName": "IdentificatorTableProgram",
-        "projectPath": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj",
+        "projectPath": "C:\\Users\\crash\\OneDrive\\Рабочий стол\\Домашка\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj",
         "packagesPath": "C:\\Users\\crash\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\obj\\",
+        "outputPath": "C:\\Users\\crash\\OneDrive\\Рабочий стол\\Домашка\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\crash\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\crash\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
