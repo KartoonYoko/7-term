@@ -460,6 +460,7 @@ namespace Lab_1
 				}
 				return text;
 			}
+
 		}
 
 		static void Main(string[] args)
@@ -485,7 +486,7 @@ namespace Lab_1
 				new Rule("bCD", "\u03B5"),  // epsilon
 			};
 			FormalLanguage fl = new(dict);
-			Console.WriteLine(fl.TranslateRight("S"));
+			Console.WriteLine(fl.OutputLeft());
 
 			Console.WriteLine("Подпункт б)");
 
@@ -495,172 +496,14 @@ namespace Lab_1
 				new Rule("S", "B\u27C2"),
 				new Rule("A", "a"),
 				new Rule("A", "Ba"),
-				new Rule("b", "b"),
-				new Rule("b", "Bb"),
-				new Rule("b", "Ab"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.TranslateRight("S"));
-
-			Console.WriteLine("");
-			Console.WriteLine("Задание 3.");
-			Console.WriteLine("Подпункт a)");
-			Console.WriteLine("Грамматика: G: ({a, b, c}, {A, B, C}, P, S)");
-			dict = new()
-			{
-				new Rule("S", "aaB"),
-				new Rule("B", "bCCCC"),
 				new Rule("B", "b"),
-				new Rule("C", "Cc"),
-				new Rule("C", "c"),
+				new Rule("B", "Bb"),
+				new Rule("B", "Ab"),
 			};
 			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
+			Console.WriteLine(fl.OutputLeft());
 
-			Console.WriteLine("Подпункт б)");
-			Console.WriteLine("Грамматика: G: ({0, 10}, {A, B}, P, S)");
-			dict = new()
-			{
-				new Rule("S", "0AB"),
-				new Rule("A", "000"),
-				new Rule("B", "1010"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-
-			Console.WriteLine("Подпункт в)");
-			Console.WriteLine("Грамматика: G: ({0, 1}, {A, B}, P, S)");
-			dict = new()
-			{
-				new Rule("S", "AB"),
-				new Rule("A", "1001010"),
-				new Rule("B", "0101001"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-
-			Console.WriteLine("");
-
-			Console.WriteLine("Задание 4.");
-			Console.WriteLine("Подпункт a)");
-			dict = new()
-			{
-				new Rule("S", "0A1"),
-				new Rule("S", "01"),
-				new Rule("0A", "00A1"),
-				new Rule("A", "01"),
-			};
-			Grammar gr = new(
-				new List<string> { "S", "A" },
-				new List<string> { "0", "1" },
-				dict);
-			Console.WriteLine(gr.GetTypeGrammar());
-			Console.WriteLine("Подпункт б)");
-			dict = new()
-			{
-				new Rule("S", "Ab"),
-				new Rule("A", "Aa"),
-				new Rule("A", "ba"),
-			};
-			gr = new(
-				new List<string> { "S", "A" },
-				new List<string> { "a", "b" },
-				dict);
-			Console.WriteLine(gr.GetTypeGrammar());
-
-			Console.WriteLine("Задание 5.");
-			dict = new()
-			{
-				new Rule("S", "aSL"),
-				new Rule("S", "aL"),
-				new Rule("L", "Kc"),
-				new Rule("cK", "Kc"),
-				new Rule("k", "b"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-			dict = new()
-			{
-				new Rule("S", "aSBc"),
-				new Rule("S", "abc"),
-				new Rule("cB", "Bc"),
-				new Rule("bB", "bb"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-
-
-			Console.WriteLine("Задание 6.");
-			dict = new()
-			{
-				new Rule("S", "AB"),
-				new Rule("S", "ABS"),
-				new Rule("AB", "BA"),
-				new Rule("BA", "AB"),
-				new Rule("A", "a"),
-				new Rule("B", "b"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-			dict = new()
-			{
-				new Rule("S", "ab"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-
-			Console.WriteLine("Задание 7.");
-			dict = new()
-			{
-				new Rule("S", "A.A"),
-				new Rule("A", "B"),
-				new Rule("A", "BA"),
-				new Rule("B", "0"),
-				new Rule("B", "1"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-			dict = new()
-			{
-				new Rule("S", "A.0"),
-				new Rule("A", "0"),
-				new Rule("A", "1"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-
-			Console.WriteLine("Задание 8.");
-			Console.WriteLine("Подпункт a)");
-			dict = new()
-			{
-				new Rule("S", "while (condition) { expression }"),
-				new Rule("condition", "true"),
-				new Rule("condition", "false"),
-				new Rule("expression", "i = i + 1;"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-			Console.WriteLine("Подпункт б)");
-			dict = new()
-			{
-				new Rule("S", "for(variableint;condition;changingvar){ circlebody }"),
-				new Rule("variableint", "int i"),
-				new Rule("condition", "i < 10"),
-				new Rule("changingvar", "i++"),
-				new Rule("circlebody", "printf(\"%d\", i);"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-			Console.WriteLine("Подпункт в)");
-			dict = new()
-			{
-				new Rule("S", "do{circlebody} while (condition);"),
-				new Rule("circlebody", "printf(\"%d\", i);"),
-				new Rule("condition", "i < 10"),
-			};
-			fl = new(dict);
-			Console.WriteLine(fl.Translate("S"));
-
+			Grammar gr;
 			Console.WriteLine("Задание 9.");
 			//new Rule("bCD", "\u03B5"),  // epsilon
 			//a\u03B5b\u03B5a\u03B5b\u03B5
@@ -676,26 +519,9 @@ namespace Lab_1
 				// aEbaEbE
 			Console.WriteLine(gr.MakeTree("a\u03B5ba\u03B5b\u03B5"));
 
-			Console.WriteLine("Задание 10.");
-			Console.WriteLine("Подпункт a)");
-			Regex IdentificatorRegex = new(@"^([a-z]|[A-Z]|_){1}([a-z]||[A-Z])*");
-			
-			Console.WriteLine(IdentificatorRegex.IsMatch("_asdasdasd124323fk4j35j36ohng54"));
-			Console.WriteLine(IdentificatorRegex.IsMatch("!_asdasdasd124323fk4j35j36ohng54"));
-			Console.WriteLine(IdentificatorRegex.IsMatch("@qwe2"));
-			Console.WriteLine(IdentificatorRegex.IsMatch("A_qwe2"));
-
-			Console.WriteLine("Подпункт b)");
-			Regex RealConstantRegex = new(@"^[0-9]+(\.((e|E\+?\-?[0-9](f?|F?|l?|L?))|[0-9]*))*");
-			Console.WriteLine(RealConstantRegex.IsMatch("A_qwe2"));
-			Console.WriteLine(RealConstantRegex.IsMatch("0.123f"));
-			Console.WriteLine(RealConstantRegex.IsMatch("123.123"));
-			Console.WriteLine(RealConstantRegex.IsMatch("10.e10"));
-			Console.WriteLine(RealConstantRegex.IsMatch("32.01-e10"));
-
 			Console.WriteLine("Задание 11.");
 			Console.WriteLine("Подпункт а)");
-			Console.WriteLine("Грамматика описывает язык {0^n 1^n 'Символ перепендикуляра' \u27C2}");
+			Console.WriteLine("Грамматика описывает язык 0^n 1^n 'Символ перепендикуляра' \u27C2");
 			dict = new()
 			{
 				new Rule("S", "0S"),
@@ -716,14 +542,14 @@ namespace Lab_1
 				new Rule("A", "CB1"),
 				new Rule("B", "B1"),
 				new Rule("B", "C1"),
-				new Rule("B", "CB"),
+				new Rule("B", "CB1"),
 				new Rule("C", "0"),
 
 			};
 			fl = new(dict);
 			Console.WriteLine(fl.OutputLeft());
 			Console.WriteLine("Подпункт б)");
-			Console.WriteLine("Грамматика описывает язык a^n b^n 'Символ перепендикуляра' \u27C2");
+			Console.WriteLine("Грамматика описывает язык {a^n b^n} 'Символ перепендикуляра' \u27C2");
 			dict = new()
 			{
 				new Rule("S", "aA"),
@@ -737,7 +563,129 @@ namespace Lab_1
 			};
 			fl = new(dict);
 			Console.WriteLine(fl.OutputLeft());
+
+			dict = new()
+			{
+				new Rule("S", "A\u27C2"),
+				new Rule("A", "Ba"),
+				new Rule("A", "Bb"),
+				new Rule("A", "Ab"),
+				new Rule("A", "ABa"),
+				new Rule("A", "ABb"),
+				new Rule("B", "a"),
+				new Rule("B", "b"),
+
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.OutputLeft());
 			Console.WriteLine("Задание 12.");
+			dict = new()
+			{
+				new Rule("S", "S1"),
+				new Rule("S", "A0"),
+				new Rule("A", "A1"),
+				new Rule("A", "0"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.OutputLeft());
+			dict = new()
+			{
+				new Rule("S", "A1"),
+				new Rule("S", "B0"),
+				new Rule("S", "E1"),
+				new Rule("A", "S1"),
+				new Rule("B", "C1"),
+				new Rule("B", "D1"),
+				new Rule("C", "0"),
+				new Rule("D", "B1"),
+				new Rule("E", "E0"),
+				new Rule("E", "1"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.OutputLeft());
+
+			Console.WriteLine();
+			Console.WriteLine();
+			Console.WriteLine("Лабораторная №2");
+			Console.WriteLine("a) Определить тип грамматики.");
+			dict = new() { 
+				new Rule("S", "0S"),
+				new Rule("S", "S0"),
+				new Rule("S", "D"),
+				new Rule("D", "DD"),
+				new Rule("D", "1A"),
+				new Rule("D", "\u03B5"),
+				new Rule("A", "0B"),
+				new Rule("A", "\u03B5"),
+				new Rule("B", "0A"),
+				new Rule("B", "0"),
+			};
+			gr = new(
+				new List<string> { "S", "D", "A", "B" },
+				new List<string> { "0", "1", "\u03B5" },
+				dict);
+
+			Console.WriteLine(gr.GetTypeGrammar());
+			Console.WriteLine("б) Определить язык.");
+			fl = new(dict);
+			for (int i = 0; i < 10; i++)
+			{
+				Console.WriteLine(fl.OutputLeft());
+			}
+			Console.WriteLine("в) Написать р-грамматику почти эквивалентную данной.");
+			dict = new()
+			{
+				new Rule("S", "S0"),
+				new Rule("S", "D0"),
+				new Rule("S", "D1"),
+				new Rule("D", "D0"),
+				new Rule("D", "A1"),
+				new Rule("A", "B0"),
+				new Rule("B", "A0"),
+				new Rule("B", "0"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.OutputLeft());
+		}
+
+		public enum State { H, A, D, B, S, ER }
+		public static void AnalizeToConsole(string text)
+		{
+			State st = State.H;
+			int count = 0;
+			// TODO анализатор для 4 задания 2 лабы
+			// - что делать если из одного состояния (большие буквы)
+			// выходит несколько ождинаково подписанных дуг?
+			// - что делать если состояние переходит в два терминальных символа (D -> DD)?
+			switch (st)
+			{
+				case State.H:
+					{
+						//if (text[count] == '1') { }
+						//else if (text[count] == '') { }
+						break;
+					}
+				case State.A:
+					{
+						count = 1;
+						break;
+					}
+				case State.D:
+					{
+						count = 1;
+						break;
+					}
+				case State.B:
+					{
+						count = 1;
+						break;
+					}
+				case State.S:
+					{
+						count = 1;
+						break;
+					}
+			}
 		}
 	}
 }
