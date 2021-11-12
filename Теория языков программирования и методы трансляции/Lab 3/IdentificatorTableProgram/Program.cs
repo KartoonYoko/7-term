@@ -31,6 +31,8 @@ namespace IdentificatorTableProgram
                 HTR.Add(i);
                 binaryTree.Add(i);
             }
+            string qwe = HTR.GetItem("123asd");
+            Console.WriteLine(qwe);
             HTR.ToConsole();
             Console.WriteLine();
             Console.WriteLine(new string('-', 40));

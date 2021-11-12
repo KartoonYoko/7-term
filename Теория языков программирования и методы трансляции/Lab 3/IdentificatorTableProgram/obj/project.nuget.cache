@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "OZXniPJpIHV1bLTq5EpsWUnJN59VlKo8ZnobMJxULrenlDvmL90xmwMHXSAvvsym/i9e0Kk2nzlG6MnS2TX9Vg==",
+  "dgSpecHash": "iuKmyNI340mVPvLO9qFA7QaSnzTKuYO41Vnd3RB1AnybKer92MTXt8/GZLeoC73w2BmW1a9D5lV9vZpe0j3Fpg==",
   "success": true,
   "projectFilePath": "C:\\Users\\crash\\OneDrive\\Рабочий стол\\Домашка\\7-term\\Теория языков программирования и методы трансляции\\Lab 3\\IdentificatorTableProgram\\IdentificatorTableProgram.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\crash\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
   "logs": []
 }
