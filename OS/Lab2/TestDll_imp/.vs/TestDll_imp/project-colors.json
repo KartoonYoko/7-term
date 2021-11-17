@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    },
+    "6aa3a63d-5c6f-4639-9121-9f5d875c914b": {
+      "ProjectGuid": "6aa3a63d-5c6f-4639-9121-9f5d875c914b",
+      "DisplayName": "Dll_implicit",
+      "ColorIndex": 0
+    },
+    "88b2ba30-a8d4-468d-b6b4-db632e836da3": {
+      "ProjectGuid": "88b2ba30-a8d4-468d-b6b4-db632e836da3",
+      "DisplayName": "TestDll_imp",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
