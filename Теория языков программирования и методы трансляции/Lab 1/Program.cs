@@ -603,6 +603,15 @@ namespace Lab_1
 			};
 			fl = new(dict);
 			Console.WriteLine(fl.OutputLeft());
+			dict = new()
+			{
+				new Rule("S", "S1"),
+				new Rule("S", "A0"),
+				new Rule("S", "A1"),
+				new Rule("A", "0"),
+			};
+			fl = new(dict);
+			Console.WriteLine(fl.OutputLeft());
 
 			Console.WriteLine();
 			Console.WriteLine();
@@ -646,6 +655,8 @@ namespace Lab_1
 			};
 			fl = new(dict);
 			Console.WriteLine(fl.OutputLeft());
+			Console.WriteLine("г) Построить ДС анализатор.");
+			AnalizeToConsole("\u03B5101010\u03B51101010");
 		}
 
 		public enum State { H, A, D, B, S, ER }
@@ -653,39 +664,57 @@ namespace Lab_1
 		{
 			State st = State.H;
 			int count = 0;
-			// TODO анализатор для 4 задания 2 лабы
-			// - что делать если из одного состояния (большие буквы)
-			// выходит несколько ождинаково подписанных дуг? (Выбирать рандомно)
-			// - что делать если состояние переходит в два терминальных символа (D -> DD)? (Вторая D с пустыми дугами)
-			switch (st)
+
+			do
 			{
-				case State.H:
-					{
-						//if (text[count] == '1') { }
-						//else if (text[count] == '') { }
+				switch (st)
+				{
+					case State.H:
+						{
+							if (text[count] == '\u03B5')
+							{
+								var rand = new Random();
+								var i = rand.Next(0, 1);
+								if (i == 0) st = State.A;
+								else if (i == 1) st = State.D;
+								else st = State.ER;
+							}
+							break;
+						}
+					case State.A:
+						{
+							if (text[count] == '0') st = State.B;
+							else st = State.ER;
+							break;
+						}
+					case State.D:
+						{
+							if (text[count] == '1') st = State.A;
+							else if (text[count] == ' ') st = State.D;  // как отобразить переход из D в DD?
+							else st = State.ER;
+							break;
+						}
+					case State.B:
+						{
+							if (text[count] == '0') st = State.A;
+							else st = State.ER;
+							break;
+						}
+					case State.S:
+						{
+							if (text[count] == '0') st = State.S;
+							if (text[count] == ' ') st = State.D;   // как отобразиь переход в D без терминального символа?
+							else st = State.ER;
+							break;
+						}
+					default:
 						break;
-					}
-				case State.A:
-					{
-						count = 1;
-						break;
-					}
-				case State.D:
-					{
-						count = 1;
-						break;
-					}
-				case State.B:
-					{
-						count = 1;
-						break;
-					}
-				case State.S:
-					{
-						count = 1;
-						break;
-					}
-			}
+				}
+
+				Console.WriteLine(st);
+				count++;
+
+			} while (st != State.S && st != State.ER);
 		}
 	}
 }
