@@ -674,7 +674,7 @@ namespace Lab_1
 							if (text[count] == '\u03B5')
 							{
 								var rand = new Random();
-								var i = rand.Next(0, 1);
+								var i = rand.Next(0, 2);
 								if (i == 0) st = State.A;
 								else if (i == 1) st = State.D;
 								else st = State.ER;

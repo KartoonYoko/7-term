@@ -1,0 +1,154 @@
+ACCESS: RULES
+
+GOAL:	RESH
+
+О╩©GOAL: RESH
+
+INITIAL:
+	OUTPUT "EXPERT SYSTEM"
+
+	OUTPUT "ON WORK PLACE"
+
+	OBRAZ=UNKNOWN
+
+	RAZRAB=UNKNOWN
+
+	BALL=UNKNOWN
+
+	STAJ=UNKNOWN
+
+	APPAR=UNKNOWN
+
+	VS=UNKNOWN
+
+	ANGL=UNKNOWN
+
+	KVALIF=UNKNOWN
+
+	PODRAZD=UNKNOWN
+
+	RESH=UNKNOWN
+
+	E.LSTR=50
+
+DO:
+	OUTPUT "SOLUTION: " , RESH
+
+
+RULE: R1
+
+READY: OUTPUT "R1"
+
+IF: (OBRAZ="YES") AND (BALL>3)
+
+THEN: KVALIF="YES"
+
+RULE: R2
+
+READY: OUTPUT "R2"
+
+IF: (OBRAZ="NO") OR (BALL<4)
+
+THEN: RESH="бш янжхнтна"
+
+RULE: R3
+
+READY: OUTPUT "R3"
+
+IF: (KVALIF="YES") AND (RAZRAB="YES")
+
+THEN: PODRAZD="PKO"
+
+RULE: R4
+
+READY: OUTPUT "R4"
+
+IF: (KVALIF="YES") AND (STAJ>=3) AND (APPAR="YES")
+
+THEN: PODRAZD="OTO"
+
+RULE: R5
+
+READY: OUTPUT "R5"
+
+IF: (PODRAZD="PKO") AND (STAJ>=5)
+
+THEN: RESH="бш наыхрекэмш х днбнкэмш фхгмэч"
+
+RULE: R6
+
+READY: OUTPUT "R6"
+
+IF: (PODRAZD="PKO") AND (STAJ<5)
+
+THEN: RESH="бш наыхрекэмш х днбнкэмш фхгмэч, мн бюя люкн хмрепеясер наыемхе"
+
+RULE: R7
+
+READY: OUTPUT "R7"
+
+IF: (PODRAZD="OTO") AND (VS="YES")
+
+THEN: RESH="с бюя унпньхе сякнбхъ фхгмх , ю еы╗ хлеере всбярбн бйсяю.........                        (мер)"
+
+RULE: R8
+
+READY: OUTPUT "R8"
+
+IF: (PODRAZD="OTO") AND (VS="NO")
+
+THEN: RESH="с бюя унпньхе сякнбхъ фхгмх, мн мюд нжемйюлх гю нопняш ъ аш ондслюк"
+
+RULE: R9
+
+READY: OUTPUT "R9"
+
+IF: (KVALIF="YES")
+
+THEN: RESH="бш наыхрекэмши х хмрепеямши векнбей"
+
+RULE: R10
+
+READY: OUTPUT "R10"
+
+IF: (RAZRAB="NO") AND ((APPAR="NO") OR (STAJ<3))
+
+THEN: RESH="бш онярнъммн сярюкш, цпсярхре х ме хмрепеясереяэ мхвел. с бюя юоюрхъ, янберсел напюрхрэяъ й ояхунрепюоебрс"
+
+VAR: OBRAZ
+
+FIND: INPUT OBRAZ WITH "бш вюярн наыюереяэ я кчдэлх?         (YES/NO) "
+
+LABEL: SOCIETY
+
+VAR: BALL
+
+FIND: INPUT BALL NUM WITH "он ьйюке мюяйнкэйн бюл хмрепеямн?           (0-5) "
+
+LABEL: INTEREST
+
+VAR: RAZRAB
+
+FIND: INPUT RAZRAB WITH "ношр наыемхъ бюя сднбкербнпъер?      (YES/NO) "
+
+LABEL: EXPIRIENSE
+
+VAR: STAJ
+
+FIND: INPUT STAJ NUM WITH "спнбемэ бюьеи фхгмх бюя сднбкербнпъер?     (YES/NO) "
+
+LABEL: LIFE QUALITY
+
+VAR: APPAR
+
+FIND: INPUT APPAR WITH "бш яохре днярюрнвмне йнкхвеярбн вюянб?       (YES/NO)"
+
+LABEL: SLEEP
+
+VAR: VS
+
+FIND: INPUT VS WITH "бш днбнкэмш нопнянл?       (YES/NO)"
+
+LABEL: 
+
+END:

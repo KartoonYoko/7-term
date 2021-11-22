@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BC21xfZgOkvVfxkVlAoNSsyWp9HhoepGkdawqOWmxQJpAq2UrM1zQ3+cSy4dPbsx1GmJ6aIYAYN4UbSGV9v89Q==",
+  "dgSpecHash": "Clo4uFB3YbDsMDBbHLGhppuSpoIEGlBj/D1Dd6zSdEV1DvZEZ4J9Yk3MuFI89wyCC/z5K2LBrBeoDfVTHhrrCA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\crash\\OneDrive\\Рабочий стол\\Домашка\\7-term\\Теория языков программирования и методы трансляции\\Lab 1\\Lab 1.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\crash\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\crash\\Desktop\\7-term\\Теория языков программирования и методы трансляции\\Lab 1\\Lab 1.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
