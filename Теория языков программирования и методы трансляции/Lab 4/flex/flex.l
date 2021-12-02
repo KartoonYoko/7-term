@@ -7,31 +7,35 @@
 #define ANSI_COLOR_YELLOW  "\x1b[33m"
 #define ANSI_COLOR_BLUE    "\x1b[34m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
-#define SIZE 2
+#define SIZEOP 5
+#define SIZECONST 2
 char* filename;
-char* keywords[SIZE] = {"for", "do"};
+char* logic_operations[SIZEOP] = {"or", "xor", "and", "not", "="};
+char* logic_constant[SIZECONST] = {"true", "false"};
 
 int resWord(char* id);
+int isLogicConst(char* str);
 %}
 letter [a-zA-Z]
 digit [0-9]
 delim [();]
-operation [<>=]
 ws [ \t\n]
 %%
-({letter}|"_")({letter}|{digit}|"_")* {
+({letter}|{digit}|"=")({letter}|{digit}|"_")* {
         if(resWord(yytext))
         {
-            printf("%s:%d KEYWORD %s\n", filename, yylineno, yytext);
+            printf("%s:%d LOGIC OPERATION %s\n", filename, yylineno, yytext);
         }else{
-            printf("%s:%d IDENTIFIER %s\n", filename, yylineno, yytext);
+            if(isLogicConst(yytext)){
+                printf("%s:%d LOGIC CONST %s\n", filename, yylineno, yytext);
+            }
+            else{
+                printf("%s:%d IDENTIFIER %s\n", filename, yylineno, yytext);
+            }
         }
     }
 \"({letter}|(" ")+)*\" {
     printf("%s:%d STRING CONST %s\n", filename, yylineno, yytext);
-}
-{digit}+ {
-    printf("%s:%d NUMBER %s\n", filename, yylineno, yytext);
 }
 ":=" {
     printf("%s:%d ASSIGN %s\n", filename, yylineno, yytext);
@@ -40,9 +44,6 @@ ws [ \t\n]
     printf("%s:%d DELIMITER %s\n", filename, yylineno, yytext);
 }
 {ws}+ ;
-{operation}+ {
-    printf("%s:%d OPERATION %s\n", filename, yylineno, yytext);
-}
 . {
     printf(ANSI_COLOR_RED "%s:%d Unknown character '%s'\n" ANSI_COLOR_RESET, filename, yylineno, yytext );
 }
@@ -51,9 +52,21 @@ ws [ \t\n]
 int resWord(char* id)
 {
     int i;
-    for(i = 0; i < SIZE; i++)
+    for(i = 0; i < SIZEOP; i++)
     {
-        if(strcmp(id, keywords[i]) == 0)
+        if(strcmp(id, logic_operations[i]) == 0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int isLogicConst(char* str){
+    int i;
+    for(i = 0; i < SIZECONST; i++)
+    {
+        if(strcmp(str, logic_constant[i]) == 0)
         {
             return 1;
         }
