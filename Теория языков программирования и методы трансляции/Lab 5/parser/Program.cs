@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+
+using MyTree;
 
 
 namespace parser
@@ -9,34 +12,46 @@ namespace parser
     {
         static void Main(string[] args)
         {
-            List<LexemItem> LexemTable = new(){ 
-                new(){ Item = "for" },
-                new(){ Item = "(" },
-                new(){ Item = "iden" },
-                new(){ Item = ")" },
-                new(){ Item = "do" },
-                new(){ Item = "iden" },
-                new(){ Item = ";" },
-            };
-
+            using FileStream fStream = new("program.txt", FileMode.OpenOrCreate);
+            byte[] arr = new byte[fStream.Length];
+            fStream.Read(arr, 0, arr.Length);
+            
             Parser parser = new(new List<Rule>() {
-                new("program", 
-                    new List<string>(){
-                        "expr",
+                new("expr", new List<string>(){
+                    "for ( iden ; compareop ; iden ) do expr",
+                    "statement"
                 }),
-                new("expr", 
-                    new List<string>(){
-                        "for ( iden ) do",
-                        "iden"
+                new("statement", new List<string>(){
+                    "iden := strconst ;",
+                    "iden := compareop ;",
+                    "iden := iden ;",
+                }),
+                new("compareop", new List<string>(){
+                    "iden < iden",
+                    "iden > iden",
+                    "iden = iden",
                 }),
             });
+            string programText = System.Text.Encoding.Default.GetString(arr);
+            try{
+                parser.Parse(programText);
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.WriteLine("Programm compiled succesfull!");
+                Console.ResetColor();
+                parser.ParseTree(programText);
+            }
+            catch(Exception e){
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ResetColor();
+            }
 
         }    
     }
 
     public class Parser{
-        private ICollection<Rule> Rules;
-        public Parser(ICollection<Rule> rules){
+        private List<Rule> Rules;
+        public Parser(List<Rule> rules){
             Rules = rules;
         }
 
@@ -44,19 +59,81 @@ namespace parser
         /// Синтаксический анализ.
         /// </summary>
         /// <param name="t">Таблица лексем.</param>
-        public void Parse(ICollection<LexemItem> t){
+        
+        public void Parse(string str){
+            // стек
             string buf = "";
-            foreach(var item in t){
-                if (string.IsNullOrEmpty(buf)) buf = item.Item;
-                else buf += " " + item.Item;
+            for(int i = 0; i < str.Length; i++){
+                buf += str[i];
+                Console.WriteLine(buf);
+                // ищем свертку до тех пор пока не подойдет ни одно правило
+                bool isEnd = true;
+                do{
+                    isEnd = true;
+                    // есть ли свертка для текущего положения
+                    foreach(var r in Rules){
+                        // проходимся по каждой правой части текущего правила
+                        foreach(var rightPart in r.RightPart){
+                            var pos = buf.IndexOf(rightPart);
+                            if (pos != -1) {
+                                buf = buf.Remove(pos, rightPart.Length);
+                                buf = buf.Insert(pos, r.LeftPart);
+                                isEnd = false;
+                                Console.WriteLine(buf);
+                            }
+                        }
+                    }
+                }while(!isEnd);
 
-                foreach(var r in Rules){
-                    foreach(var part in r.RightPart){
-                        if (part == buf) {}
+                if (i == str.Length - 1){
+                    if (buf != Rules[0].LeftPart){
+                        // если стек не содержит целевой символ в конце обработки
+                        throw new Exception("Stack doesn't contain target symbol. Stack: " 
+                            + buf);
                     }
                 }
             }
         }
+        /// <summary>
+        /// Синтаксический анализ.
+        /// </summary>
+        /// <param name="t">Таблица лексем.</param>
+        public void ParseTree(string str){
+            
+            List<string> list = new();
+            bool isNotEnd = true;
+            while(isNotEnd){
+                list = new();
+                foreach(var r in Rules){
+                    // проходимся по каждой правой части текущего правила
+                    foreach(var rightPart in r.RightPart){
+                        var buf = str;
+                        var pos = buf.IndexOf(rightPart);                                              
+                        
+                        if (pos != -1) {
+                            str = str.Remove(pos, rightPart.Length);
+                            str = str.Insert(pos, r.LeftPart);
+                        
+                            Console.Write("(");                            
+                            Console.Write(rightPart);
+                            Console.Write(")");
+                            list.Add(r.LeftPart);
+                            //Console.Write(r.LeftPart + " ");
+                            if (str == Rules[0].LeftPart) isNotEnd = false;
+                        }
+                    }
+                }
+                Console.WriteLine();
+                foreach(var l in list){
+                    Console.Write(l + "\t");
+                }
+                Console.WriteLine();
+            }
+            Console.Write("(");
+            
+            Console.Write(")");
+        }
+            
     }
 
     public class Rule{
@@ -83,13 +160,5 @@ namespace parser
         }
 
 
-    }
-
-    public class LexemItem{
-        public string Item {get; set;}
-        public LexemaInfo Info {get; set;} = new();
-    }
-    public class LexemaInfo{
-        
     }
 }

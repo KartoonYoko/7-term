@@ -384,9 +384,9 @@ goto find_rule; \
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "flex.l"
+#line 1 ".\\zxcqwe.l"
 #define INITIAL 0
-#line 3 "flex.l"
+#line 3 ".\\zxcqwe.l"
 #include <stdio.h>
 #include <string.h>
 #define ANSI_COLOR_RED     "\x1b[31m"
@@ -553,7 +553,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 23 "flex.l"
+#line 23 ".\\zxcqwe.l"
 
 #line 559 "lex.yy.c"
 
@@ -648,7 +648,7 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 24 "flex.l"
+#line 24 ".\\zxcqwe.l"
 {
         if(resWord(yytext))
         {
@@ -665,40 +665,40 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 37 "flex.l"
+#line 37 ".\\zxcqwe.l"
 {
     printf("%s:%d STRING CONST %s\n", filename, yylineno, yytext);
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 40 "flex.l"
+#line 40 ".\\zxcqwe.l"
 {
     printf("%s:%d ASSIGN %s\n", filename, yylineno, yytext);
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 43 "flex.l"
+#line 43 ".\\zxcqwe.l"
 {
     printf("%s:%d DELIMITER %s\n", filename, yylineno, yytext);
 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 46 "flex.l"
+#line 46 ".\\zxcqwe.l"
 ;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 47 "flex.l"
+#line 47 ".\\zxcqwe.l"
 {
     printf(ANSI_COLOR_RED "%s:%d Unknown character '%s'\n" ANSI_COLOR_RESET, filename, yylineno, yytext );
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 50 "flex.l"
+#line 50 ".\\zxcqwe.l"
 ECHO;
 	YY_BREAK
 #line 705 "lex.yy.c"
@@ -1585,7 +1585,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 50 "flex.l"
+#line 50 ".\\zxcqwe.l"
 
 // 1 - если ключевое слово, иначе - 0
 int resWord(char* id)
