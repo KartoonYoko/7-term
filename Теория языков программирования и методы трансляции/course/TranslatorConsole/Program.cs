@@ -29,7 +29,6 @@ catch (Exception ex) {
 
 // лексический анализ
 LexicalAnalyzer lexicalAnalyzer = new();
-
 try
 {
     lexicalAnalyzer.Parse(inputCode);
@@ -38,16 +37,23 @@ catch (Exception ex)
 {
     Console.Error.WriteLine(ex.Message);
 }
-//Console.WriteLine(lexicalAnalyzer.GetTokenTableString());
-//Console.WriteLine(lexicalAnalyzer.GetIdenTableString());
 var tokenTable = lexicalAnalyzer.GetTokenTable();
 var identificatorTable = lexicalAnalyzer.GetIdentificators();
+
 // синтаксический анализ
 SyntaxAnalyzer syntaxAnalyzer = new(tokenTable, identificatorTable);
-syntaxAnalyzer.Analyze();
+Node tree;
+try
+{
+    tree = syntaxAnalyzer.Analyze();
+}
+catch (Exception ex) {
+    Console.Error.WriteLine(ex.Message);
+    return;
+}
 // трансляция из одного языка в другой
-var translator = new Translator(tokenTable, identificatorTable);
-Console.WriteLine(translator.Translate());
+//var translator = new Translator(tokenTable, identificatorTable);
+//Console.WriteLine(translator.Translate());
 
 
 

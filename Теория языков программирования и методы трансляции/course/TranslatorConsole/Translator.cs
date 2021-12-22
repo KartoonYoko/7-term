@@ -14,8 +14,8 @@ namespace TranslatorConsole
     /// </summary>
     public class Translator
     {
-        private readonly List<Token> _tokenTable;
         private readonly Dictionary<string, Identificator> _idenTable;
+        private readonly Node _root;
         private List<string> _localIden = new();
         private int _tabs = 0;
         private string program = "";
@@ -23,9 +23,9 @@ namespace TranslatorConsole
         /// 
         /// </summary>
         /// <param name="ti">Таблица идентификаторов.</param>
-        /// <param name="table">Таблица лексем.</param>
-        public Translator(List<Token> table, Dictionary<string, Identificator> ti) {
-            _tokenTable = table;
+        /// <param name="n">Корень дерева разбора.</param>
+        public Translator(Node n, Dictionary<string, Identificator> ti) {
+            _root = n;
             _idenTable = ti;
         }
 
@@ -36,74 +36,49 @@ namespace TranslatorConsole
         public string Translate() {
             _tabs = 0;
             program = "package main\n";
-            foreach (var t in _tokenTable)
-            {
-                if (!t.IsTranslatable) continue;
-                if (t.Type == TokenType.VOID) Write("func ");
-                else if (t.Type == TokenType.IDENTIFICATOR) 
-                    WriteIdentificator(t.Value);
-                else if (t.Type == TokenType.DELIMITER_LBRACKET) Write(t.Value + " ");
-                else if (t.Type == TokenType.DELIMITER_RBRACKET) Write(t.Value + " ");
-                else if (t.Type == TokenType.DELIMITER_CURLY_LBRACKET)
-                {
-                    Write(t.Value + "\n");
-                    _tabs++;
-                }
-                else if (t.Type == TokenType.DELIMITER_CURLY_RBRACKET)
-                {
-                    _tabs--;
-                    Write(t.Value + "\n");
-                }
-                else if (t.Type == TokenType.DELIMITER_SEMICOLON) Write("\n");
-            }
+
+            WriteBranch(_root);
+            
             return program;
         }
         /// <summary>
-        /// Запишет идентификатор в текст программы.
+        /// Итеративно разбирает каждый узел на код программы.
         /// </summary>
-        /// <param name="idenName">Название идентификатора.</param>
-        private void WriteIdentificator(string idenName) {
-            var id = _idenTable[idenName];
-            if (id is VariableIdentificator variable) {
-                if (_localIden.Contains(idenName)) {
-                    Write(variable.Name, true);
-                }
-                else {
-                    _localIden.Add(idenName);
-                    string v = variable.Type;
-                    if (v == "int") v = "int32";
-                    else if (v == "long") v = "int64";
-                    else if (v == "float") v = "float32";
-                    else if (v == "double") v = "float64";
-
-                    Write("var " + variable.Name + " " + v, true);
-                }
+        /// <param name="node"></param>
+        private void WriteBranch(Node node) {
+            switch (node.Name) {
+                case "FUNCTION":
+                    break;
+                default:
+                    foreach (var n in node.Branches) {
+                        WriteBranch(n);
+                    }                    
+                    break;
             }
-            else if (id is FunctionIdentificator func) {
-                
-                if (_localIden.Contains(idenName))
-                {
-                    Write(func.Name, true);
-                }
-                else
-                {
-                    string args = ")";
-                    foreach (var arg in func.Arguments)
-                    {
-
-                    }
-                    args += ")";
-                    _localIden.Add(idenName);
-                    Write("func " + func.Name, true);
-                }
-            }            
         }
+
+        private void ParseFunc(Node node) {
+            var funcName = node.Branches[1].Name;
+            var returnDataType = node.Branches[0].Name;
+            Write("func " + funcName + "() ");
+            WriteDataType(returnDataType);
+            Write("\n");
+            _tabs++;
+
+        }
+
+        /// <summary>
+        /// Запишет тип данных.
+        /// </summary>
+        /// <param name="dataType">Тип данных из c++.</param>
+        private void WriteDataType(string dataType) { }
+
         /// <summary>
         /// Записывает строку в текст программы.
         /// </summary>
         /// <param name="text">Строка для записи.</param>
         /// <param name="isLineBreak">Можно ли для данной строки делать отступ.</param>
-        private void Write(string text, bool isLineBreak = false) {
+        private void Write(string text, bool isLineBreak = true) {
             if (isLineBreak)
             {
                 for (int i = 0; i < _tabs; i++)

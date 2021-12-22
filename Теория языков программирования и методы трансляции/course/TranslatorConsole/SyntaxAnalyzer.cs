@@ -26,21 +26,21 @@ namespace TranslatorConsole
             // программа
             _rules.Add(new Rule("programm", new()
             {
-                "FUNCTIONS"
+                "SEVERAL_FUNC"
             }));            
-            _rules.Add(new("FUNCTIONS", new()
+            _rules.Add(new("SEVERAL_FUNC", new()
             {
-                "FUNCTIONS FUNCTION",
+                "SEVERAL_FUNC FUNCTION",
                 "FUNCTION"
             }));
             // функция
             _rules.Add(new("FUNCTION", new() {
-                "DATA_TYPE IDEN ( ) { STATEMENTS }"
+                "DATA_TYPE IDEN ( ) { SEVERAL_STATE }"
             }));
             // несколько операторов
-            _rules.Add(new("STATEMENTS", new()
+            _rules.Add(new("SEVERAL_STATE", new()
             {
-                "STATEMENTS STATEMENT",
+                "SEVERAL_STATE STATEMENT",
                 "STATEMENT"
             }));
             // оператор
@@ -69,11 +69,14 @@ namespace TranslatorConsole
         /// <summary>
         /// Проанализирует таблицу лексем и составит дерево разбора.
         /// </summary>
-        public void Analyze() {
+        public Node Analyze() {
             foreach (var token in _tokenTable) { 
                 _buffer.Add(token);
             }
+
+            return _buffer.GetTree();
         }
+
 
         /// <summary>
         /// Буффер, для хранения токенов.
@@ -96,6 +99,12 @@ namespace TranslatorConsole
 
             public Buffer(List<Rule> r) { 
                 Rules = r;
+            }
+
+            public Node GetTree() {
+                if (NodeBuffer.Count != 1) throw new Exception("Analyze tree error");
+
+                return NodeBuffer[0];
             }
 
             /// <summary>
@@ -145,17 +154,17 @@ namespace TranslatorConsole
                                 var countNodes = r.Split(' ').Length;
                                 var idLastNode = count + countNodes;
                                 Node n = new(l);
-                                for (int i = count; i <= idLastNode; i++)
+                                for (int i = count + 1; i <= idLastNode; i++)
                                 {
                                     n.AddBranch(NodeBuffer[i]);
                                 }
                                 // удаляем узлы из буффера
-                                for (int i = idLastNode; i >= count; i--)
+                                for (int i = idLastNode; i > count; i--)
                                 {
                                     NodeBuffer.RemoveAt(i);
                                 }
                                 // новый узел вместо старых
-                                NodeBuffer.Insert(count, n);
+                                NodeBuffer.Insert(count + 1, n);
 
                                 // та же замена уже в строковом буффере
                                 StringBuffer = StringBuffer.Remove(pos, r.Length);
@@ -216,6 +225,8 @@ namespace TranslatorConsole
             if (Branches is null) Branches = new();
             Branches.Add(n);
         }
+
+
         /// <summary>
         /// Является ли узел листом дерева.
         /// </summary>
