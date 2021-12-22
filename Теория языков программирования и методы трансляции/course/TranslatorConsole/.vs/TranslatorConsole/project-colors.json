@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b6f77557-f0a2-47a8-9187-9c4f79f5cf62": {
+      "ProjectGuid": "b6f77557-f0a2-47a8-9187-9c4f79f5cf62",
+      "DisplayName": "TranslatorConsole",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

@@ -59,7 +59,6 @@ namespace parser
         /// Синтаксический анализ.
         /// </summary>
         /// <param name="t">Таблица лексем.</param>
-        
         public void Parse(string str){
             // стек
             string buf = "";

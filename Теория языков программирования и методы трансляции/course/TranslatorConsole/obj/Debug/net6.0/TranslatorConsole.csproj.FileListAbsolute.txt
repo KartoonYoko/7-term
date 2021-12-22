@@ -1,0 +1,15 @@
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\bin\Debug\net6.0\TranslatorConsole.exe
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\bin\Debug\net6.0\TranslatorConsole.deps.json
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\bin\Debug\net6.0\TranslatorConsole.runtimeconfig.json
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\bin\Debug\net6.0\TranslatorConsole.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\bin\Debug\net6.0\ref\TranslatorConsole.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\bin\Debug\net6.0\TranslatorConsole.pdb
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.csproj.AssemblyReference.cache
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.AssemblyInfoInputs.cache
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.AssemblyInfo.cs
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.csproj.CoreCompileInputs.cache
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\ref\TranslatorConsole.dll
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.pdb
+C:\Users\crash\Desktop\7-term\Теория языков программирования и методы трансляции\course\TranslatorConsole\obj\Debug\net6.0\TranslatorConsole.genruntimeconfig.cache
