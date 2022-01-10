@@ -32,11 +32,17 @@ namespace TranslatorConsole
             KeyWordTable.Add("long");
             KeyWordTable.Add("short");
             KeyWordTable.Add("void");
-            // циклы
+            // 
             KeyWordTable.Add("break");
             KeyWordTable.Add("else");
             KeyWordTable.Add("if");
             KeyWordTable.Add("while");
+            KeyWordTable.Add("for");
+            KeyWordTable.Add("return");
+            //
+            KeyWordTable.Add("std");
+            KeyWordTable.Add("cout");
+            KeyWordTable.Add("<<");
         }
         /// <summary>
         /// Разбирает текст программы на лексемы.
@@ -66,7 +72,7 @@ namespace TranslatorConsole
             var regexDigitBegin = new Regex(@"[0-9]|\.");
 
             string fileName = "";
-
+            string? error = null;
             int pos = 0;
             int line = 1;
             int linePos = 1;
@@ -98,13 +104,10 @@ namespace TranslatorConsole
                         AddKeyWordType(t);
                     }
                     else
-                    {
-                        t.Type = TokenType.IDENTIFICATOR;
+                    {                       
                         t.TypeStr = "IDEN";
-                        // если предыдущий токен - тип данных, то делаем его не транслируемым
-                        // т.к. эта информация будет храниться в списке идентификаторов
                         var token = TokenTable[^1];
-                        if (token.Type == TokenType.DATA_TYPE) token.IsTranslatable = false;
+
                         // добавляем в таблицу идентификаторов, если еще нет
                         if (!IdentificatorTable.ContainsKey(buf)) {
                             IdentificatorTable.Add(buf,
@@ -145,7 +148,6 @@ namespace TranslatorConsole
 
                     t = new Token(pos, line, fileName, buf)
                     {
-                        Type = TokenType.STRING_CONST,
                         TypeStr = "CONST_STRING"
                     };
                 }
@@ -169,8 +171,8 @@ namespace TranslatorConsole
                     }
 
                     t = new Token(pos, line, fileName, buf);
-                    if (regexDigit.IsMatch(buf)) t.Type = TokenType.INTEGER_CONST;
-                    else if (regexFloat.IsMatch(buf)) t.Type = TokenType.FLOAT_CONST;
+                    if (regexDigit.IsMatch(buf)) { }
+                    else if (regexFloat.IsMatch(buf)) { }
                     else throw new Exception(line + ":" + linePos + ": Wrong syntax of number: " + buf);
                     t.TypeStr = "CONST_DIGIT";
                 }
@@ -182,7 +184,6 @@ namespace TranslatorConsole
                 else if (nextChar == "=") {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.SIGN_EQUAL,
                         TypeStr = nextChar
                     };
 
@@ -192,7 +193,6 @@ namespace TranslatorConsole
                 else if (nextChar == ">") {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.SIGN_GREATER,
                         TypeStr = nextChar
                     };
 
@@ -202,7 +202,6 @@ namespace TranslatorConsole
                 else if (nextChar == "<") {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.SIGN_LESS,
                         TypeStr = nextChar
 
                     };
@@ -212,7 +211,6 @@ namespace TranslatorConsole
                 else if (nextChar == "+") {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.SIGN_PLUS,
                         TypeStr = nextChar
                     };
                     pos++;
@@ -221,7 +219,6 @@ namespace TranslatorConsole
                 else if (nextChar == "-") {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.SIGN_MINUS,
                         TypeStr = nextChar
                     };
                     pos++;
@@ -230,7 +227,6 @@ namespace TranslatorConsole
                 else if (nextChar == "/") {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.SIGN_DIVIDE,
                         TypeStr = nextChar
                     };
                     pos++;
@@ -239,7 +235,6 @@ namespace TranslatorConsole
                 else if (nextChar == "*") {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.SIGN_MULTIPLY,
                         TypeStr = nextChar
                     };
                     pos++;
@@ -249,11 +244,10 @@ namespace TranslatorConsole
                 {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.DELIMITER_LBRACKET,
                         TypeStr = nextChar
                     };
                     // если предыдущая лексема - идентификатор, меняем ей тип на фукнцию
-                    if (TokenTable[^1].Type == TokenType.IDENTIFICATOR) {
+                    if (TokenTable[^1].TypeStr == "IDEN") {
                         var token = TokenTable[^1];
                         var iden = IdentificatorTable[token.Value];
                         if (iden is VariableIdentificator vi) {
@@ -273,7 +267,6 @@ namespace TranslatorConsole
                 {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.DELIMITER_RBRACKET,
                         TypeStr = nextChar
                     };
                     pos++;
@@ -283,7 +276,6 @@ namespace TranslatorConsole
                 {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.DELIMITER_CURLY_LBRACKET,
                         TypeStr = nextChar
                     };
                     pos++;
@@ -293,7 +285,6 @@ namespace TranslatorConsole
                 {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.DELIMITER_CURLY_RBRACKET,
                         TypeStr = nextChar
                     };
                     pos++;
@@ -303,7 +294,15 @@ namespace TranslatorConsole
                 {
                     t = new Token(pos, line, fileName, nextChar)
                     {
-                        Type = TokenType.DELIMITER_SEMICOLON,
+                        TypeStr = nextChar
+                    };
+                    pos++;
+                    linePos++;
+                }
+                else if (nextChar == ":")
+                {
+                    t = new Token(pos, line, fileName, nextChar)
+                    {
                         TypeStr = nextChar
                     };
                     pos++;
@@ -314,10 +313,20 @@ namespace TranslatorConsole
                     // Неизвестный символ
                     pos++;
                     linePos++;
-                    Console.WriteLine(line + ":" + linePos + " unrecognized symbol: " + nextChar);
+                    
+                    string s = line + ":" + linePos + ": unrecognized symbol: " + nextChar; ;
+                    if (string.IsNullOrEmpty(error)) error = s;
+                    else error += "\n" + s;
                 }
 
                 if (t is not null) TokenTable.Add(t);
+            }
+
+            if (!string.IsNullOrEmpty(error)) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(error);
+                Console.ResetColor();
+                throw new Exception(error);
             }
         }
 
@@ -329,40 +338,46 @@ namespace TranslatorConsole
         private void AddKeyWordType(Token keyWord) {
             switch (keyWord.Value) {
                 case "int":
-                    keyWord.Type = TokenType.DATA_TYPE;
                     keyWord.TypeStr = "DATA_TYPE";
                     break;
                 case "long":
-                    keyWord.Type = TokenType.DATA_TYPE;
                     keyWord.TypeStr = "DATA_TYPE";
                     break;
                 case "float":
-                    keyWord.Type = TokenType.DATA_TYPE;
                     keyWord.TypeStr = "DATA_TYPE";
                     break;
                 case "double":
-                    keyWord.Type = TokenType.DATA_TYPE;
                     keyWord.TypeStr = "DATA_TYPE";
                     break;
                 case "void":
-                    keyWord.Type = TokenType.VOID;
                     keyWord.TypeStr = "DATA_TYPE";
                     break;
                 case "break":
-                    keyWord.Type = TokenType.BREAK;
                     keyWord.TypeStr = "BREAK";
                     break;
                 case "else":
-                    keyWord.Type = TokenType.ELSE;
                     keyWord.TypeStr = "ELSE";
                     break;
                 case "if":
-                    keyWord.Type = TokenType.IF;
                     keyWord.TypeStr = "IF";
                     break;
                 case "while":
-                    keyWord.Type = TokenType.WHILE;
                     keyWord.TypeStr = "WHILE";
+                    break;
+                case "for":
+                    keyWord.TypeStr = "FOR";
+                    break;
+                case "return":
+                    keyWord.TypeStr = "RETURN";
+                    break;
+                case "std":
+                    keyWord.TypeStr = "STD";
+                    break;
+                case "cout":
+                    keyWord.TypeStr = "COUT";
+                    break;
+                case "<<":
+                    keyWord.TypeStr = "<<";
                     break;
                 default: throw new Exception("Unrecognized keyword.");
             }
@@ -378,7 +393,7 @@ namespace TranslatorConsole
             string res = "";
             foreach (Token t in TokenTable)
             {
-                res += t.LinePos + ":" + t.Type.ToString() + " " + t.Value + "\n";
+                res += t.LinePos + ":" + t.TypeStr + " " + t.Value + "\n";
             }
             return res;
         }
@@ -392,41 +407,6 @@ namespace TranslatorConsole
 
     }
 
-    public enum TokenType {
-        INCLUDE,
-        INCLUDE_NAME,
-        FUNCTION,
-        IDENTIFICATOR,
-        KEYWORD,
-        DATA_TYPE,                  // тип данных
-        DATA_TYPE_INT,
-        DATA_TYPE_FLOAT,
-        DATA_TYPE_DOUBLE,
-        VOID,
-        DATA_TYPE_LONG,
-        BREAK,
-        IF,
-        WHILE,
-        ELSE,
-        STRING_CONST,               // строковая константа в кавычках
-        FLOAT_CONST,                // любая числовая константа с плавающей точкой
-        INTEGER_CONST,              // любая целая константа
-        UNDEFINED,                  // неопределенный тип
-        SIGN_GREATER,               // знак больше
-        SIGN_LESS,                  // меньше
-        SIGN_EQUAL,                 // равно
-        SIGN_MULTIPLY,              // умножить
-        SIGN_DIVIDE,                // разделить
-        SIGN_PLUS,                  // плюс
-        SIGN_MINUS,                 // минус
-        DELIMITER_LBRACKET,         // левая круглая скобка
-        DELIMITER_RBRACKET,         // правая круглая
-        DELIMITER_COMMA,            // запятая
-        DELIMITER_SEMICOLON,        // точка с заяпятой
-        DELIMITER_CURLY_LBRACKET,   // фигурная левая скобка
-        DELIMITER_CURLY_RBRACKET    // фигурная правая
-
-    }
 
     /// <summary>
     /// Класс лексемы (токена). Описывает единичную структуру языка.
@@ -447,7 +427,6 @@ namespace TranslatorConsole
         /// <summary>
         /// Тип токена.
         /// </summary>
-        public TokenType Type { get; set; }
         public string TypeStr { get; set; }
 
         /// <summary>
@@ -468,12 +447,11 @@ namespace TranslatorConsole
         /// <param name="linep">Номер строки.</param>
         /// <param name="file">Название файла.</param>
         /// <param name="v">Значение.</param>
-        public Token(int p, int linep, string file, string v, TokenType t = TokenType.UNDEFINED) {
+        public Token(int p, int linep, string file, string v) {
             Pos = p;
             FileName = file;
             LinePos = linep;
             Value = v;
-            Type = t;
         }
         public Token(int p, int linep, string file, string v, 
             Dictionary<string, Identificator> t) {

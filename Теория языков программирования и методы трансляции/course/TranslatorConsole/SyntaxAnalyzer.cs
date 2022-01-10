@@ -23,11 +23,7 @@ namespace TranslatorConsole
             _idenTable = idens;
             _rules = new();
 
-            // программа
-            _rules.Add(new Rule("programm", new()
-            {
-                "SEVERAL_FUNC"
-            }));            
+            // программа           
             _rules.Add(new("SEVERAL_FUNC", new()
             {
                 "SEVERAL_FUNC FUNCTION",
@@ -35,7 +31,9 @@ namespace TranslatorConsole
             }));
             // функция
             _rules.Add(new("FUNCTION", new() {
-                "DATA_TYPE IDEN ( ) { SEVERAL_STATE }"
+                "DATA_TYPE IDEN ( ) { SEVERAL_STATE }",
+                "DATA_TYPE IDEN ( FUNC_ARG ) { SEVERAL_STATE }",
+                "DATA_TYPE IDEN FUNC_ARG { SEVERAL_STATE }"
             }));
             // несколько операторов
             _rules.Add(new("SEVERAL_STATE", new()
@@ -47,20 +45,93 @@ namespace TranslatorConsole
             _rules.Add(new("STATEMENT", new()
             {
                 "ANNOUNCE",
-                "ASSIGN"
+                "ASSIGN",
+                "FOR_STATE",
+                "IF_STATE",
+                "RETURN_STATE",
+                "OPERATOR",
+                "OPERATOR ;",
+                "PRINT"
             }));
 
             // объявление переменной
             _rules.Add(new Rule("ANNOUNCE", new()
             {
-                "DATA_TYPE IDEN ;",
                 "DATA_TYPE IDEN ;"
+            }));
+            // аргумент функции
+            _rules.Add(new Rule("FUNC_ARG", new()
+            {
+                "( DATA_TYPE IDEN )",
             }));
             // инициализация перременной
             _rules.Add(new Rule("ASSIGN", new()
             {
                 "IDEN = CONST_STRING ;",
                 "IDEN = CONST_DIGIT ;"
+            }));
+            // сравнение
+            _rules.Add(new Rule("COMPARE", new()
+            {
+                "IDEN < IDEN",
+                "IDEN > IDEN",
+                "IDEN = = IDEN",
+                "IDEN < CONST_DIGIT",
+                "IDEN > CONST_DIGIT",
+                "IDEN = = CONST_DIGIT",
+                "IDEN < CONST_STRING",
+                "IDEN > CONST_STRING",
+                "IDEN = = CONST_STRING"
+            }));
+            // унарные операции
+            _rules.Add(new Rule("UNAR", new()
+            {
+                "IDEN + +",
+                "IDEN - -"
+            }));
+            // for
+            _rules.Add(new Rule("FOR_STATE", new()
+            {
+                "FOR ( SEVERAL_STATE COMPARE ; UNAR ) { SEVERAL_STATE }"
+            }));
+            // if
+            _rules.Add(new Rule("IF_STATE", new()
+            {
+                "IF ( COMPARE ) { SEVERAL_STATE }"
+            }));
+            // return
+            _rules.Add(new Rule("RETURN_STATE", new()
+            {
+                "RETURN CONST_DIGIT ;",
+                "RETURN IDEN ;",
+                "RETURN CONST_STRING ;",
+                "RETURN SEVERAL_STATE ;",
+            }));
+            //
+            _rules.Add(new Rule("FUNC_USE", new()
+            {
+                "IDEN ( IDEN )",
+                "IDEN ( CONST_DIGIT )",
+                "IDEN ( SEVERAL_STATE )"
+            }));
+            // printf
+            _rules.Add(new Rule("PRINT", new()
+            {
+                "STD : : COUT < < IDEN < < CONST_STRING ;",
+                "STD : : COUT < < IDEN ;",
+                "STD : : COUT < < CONST_STRING ;",
+                "STD : : COUT < < FUNC_USE < < CONST_STRING ;",
+                "STD : : COUT < < FUNC_USE ;"
+            }));
+            // арифметичиские операции
+            _rules.Add(new Rule("OPERATOR", new()
+            {
+                "FUNC_USE + FUNC_USE",
+                "FUNC_USE - FUNC_USE",
+                "FUNC_USE * FUNC_USE",
+                "FUNC_USE / FUNC_USE",
+                "IDEN - CONST_DIGIT",
+                "IDEN + CONST_DIGIT",
             }));
 
             _buffer = new(_rules);
@@ -177,8 +248,6 @@ namespace TranslatorConsole
 
             }
         }
-        
-
     }
     /// <summary>
     /// Синтаксическое правило.
