@@ -206,7 +206,6 @@ function sortQuestion(a,b)
  */
 function Test(testObject)
 {
-
     this.title = "";
     this.items = [];
     this.questions = [];
