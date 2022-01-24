@@ -334,7 +334,7 @@ Test.prototype.parseData = function(data)
                 index          : index,
                 questionPoints : []
             };
-            //Вероятности событий при 100 и 0% вероятностях ответа на вопрос
+            // Вероятности событий при 100 и 0% вероятностях ответа на вопрос
             for (var i = 1; i < pointItems.length; i+= 3)
             {
                 while (pointItems[i] == "") i++;
@@ -346,8 +346,6 @@ Test.prototype.parseData = function(data)
                 newItem.questionPoints[questionIndex] = questionPoint;
 
                 this.questions[questionIndex].items.push(newItem);
-
-
             }
 
             this.items.push(newItem);

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">8.4. 
+  Процедурная дедукция в системе PLANNER</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система PLANNER 
+  явилась одной из первых попыток разработки языка программирования задач искусственного 
+  интеллекта, базирующегося на идеях автоматического доказательства теорем. Хотя 
+  разработчикам и не удалось в полной мере реализовать задуманное, созданное подмножество 
+  языка, получившего название Micro-PLANNER, нашло применение в системах планирования, 
+  в частности в программе SHRDLU, представленной в главе 2. Ниже мы обсудим те 
+  аспекты системы PLANNER, которые имеют отношение к представлению знаний.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система PLANNER 
+  моделировала состояние некоторой области рассуждений в терминах ассоциативной 
+  базы данных, которая содержала как <i>утверждения, </i>так и <i>теоремы, </i>функционирующие 
+  как процедуры. Утверждения представляли собой списки типа &quot;предикат-аргумент&quot;, 
+  подобные тем, что используются в LISP. Например:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(BLOCK 
+  B1) (ON Bl TABLE)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теоремы же 
+  в действительности представляли собой выражения, в которых можно было проследить 
+  влияние одних термов на другие. Например, теорема<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(ANTE 
+  (BLOCK X) (ASSERT (ON X TABLE)))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">в действительности 
+  является процедурой, которая говорит: &quot;Если утверждается, что X это блок, 
+  то также утверждается, что X находится на столе&quot;. Таким образом, если существует 
+  утверждение (BLOCK B1), то можно также считать утверждением и выражение (ON 
+  Bl TABLE). Функция ASSERT добавляет собственный <i>конкретизированный </i>аргумент 
+  (т.е. аргумент, которому присвоено определенное значение) в базу данных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выше был приведен 
+  пример антецедентной теоремы. Это название акцентирует внимание на том, что 
+  нас интересует только логическая связь между антецедентом и консек-вентом (по 
+  аналогии с правилом <i>modus ponens), </i>а не связь между отрицанием консеквен-та 
+  и отрицанием антецедента (по аналогии с правилом <i>modus fallens). </i>Мы говорим, 
+  что в действительности эта теорема является процедурой, поскольку в ней содержится 
+  управляющая информация. Ее функционирование во многом напоминает демонов в системе 
+  фреймов, описанных в главе 6.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система PLANNER 
+  поддерживает и другой вид процедур, которые получили наименование <i>консеквентной 
+  теоремы. </i>Пример процедуры такого типа приведен ниже:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(CONSE 
+  (MORTAL X) (GOAL (MAN X))).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эта процедура 
+  может быть прочитана так: &quot;Для того чтобы показать, что X смертен, покажите, 
+  что X — человек&quot;. Если выражение, которое нужно доказать (цель), сформулировано 
+  в виде (MORTAL SOCRATES) (Сократ смертен), то в качестве подцели будет выступать 
+  выражение (MAN SOCRATES) (Сократ человек). Функция GOAL организует поиск в базе 
+  данных собственного конкретизированного аргумента. Однако не удастся использовать 
+  эту теорему для перехода от утверждения (MAN SOCRATES) (Сократ человек) к утверждению 
+  (MORTAL SOCRATES) (Сократ смертен).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Консеквентные 
+  теоремы могут также манипулировать базой данных. Например, для того чтобы положить 
+  блок В1, на котором ничего не стоит, на блок В2, на котором также ничего не 
+  стоит, нужно отыскать, на чем же стоит блок В1, удалить соответствующее утверждение 
+  и сформировать новое, которое говорит, что блок В1 стоит на блоке В2.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(CONSE 
+  (ON X Y)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(GOAL 
+  (CLEAR X)) (GOAL (CLEAR Y)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(ERASE 
+  (ON X Z)) (ASSERT (ON X Y)))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Задавшись 
+  целью (ON Bl B2), если на Bl и на В2 ничего не стоит, PLANNER выполнит необходимые 
+  операции с базой данных. Таким образом, консеквентная теорема поддерживает в 
+  системах автоматизации планирования работу механизма реализации операторов, 
+  подобных тем, которые мы видели в программе STRIPS (см. главу 3).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Из этого краткого 
+  описания читатель может сделать заключение, что в системе PLANNER управляющая 
+  информация явно представлена в базе данных процедур, а не скрывается в компоненте, 
+  ведающем стратегией выполнения доказательства теорем, как это делается в системах, 
+  работающих на основе метода опровержения резолюций. Достоинство такого подхода 
+  состоит в том, что можно решить в каждом конкретном случае, какие правила влияния 
+  следует применять. Кроме того, в нашем распоряжении оказывается довольно эффективный 
+  инструмент моделирования изменения состояния задачи.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">С концепцией 
+  процедурной дедукции связана <i>проблема полноты. </i>Система доказательства 
+  является полной, если все тавтологии, т.е. тривиально истинные выражения вроде 
+  <i>(р </i>v <i>—pi), </i>могут быть выведены в ней как теоремы. В системе PLANNER 
+  это свойство отсутствует. Мы уже обращали внимание на то, что нельзя сформировать 
+  выражение (MORTAL SOCRATES) из базы данных, в которой содержатся<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(MAN 
+  SOCRATES)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(CONSE 
+  (MORTAL X)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (GOAL 
+  (MAN X))).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это те издержки, 
+  с которыми нужно смириться, если мы хотим объединить управляющую информацию 
+  с пропозициональным представлением. К сожалению, система PLANNER оказалась не 
+  более эффективной, чем системы, основанные на теоремах резолюций. Это произошло 
+  потому, что использованная в ней управляющая информация страдает &quot;близорукостью&quot;, 
+  отсутствует общая стратегия, а имеющийся набор теорем позволяет формулировать 
+  локальные решения, которые могут давать, а могут и не давать желаемый эффект. 
+  Отсутствует в PLANNER и возможность каким-то образом формировать суждения о 
+  механизме управления, что-то вроде метаправил, о которых шла речь в главе 5.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В следующем 
+  разделе мы кратко остановимся на системах, в которых была предпринята попытка 
+  устранить эти недостатки.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

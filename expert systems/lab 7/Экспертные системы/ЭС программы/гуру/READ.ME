@@ -1,0 +1,90 @@
+
+This version of Guru includes text mapping files containing
+European character sets that can be used in all names, data, functions,
+sorting and printer output.  The following files appear as part of
+your distribution:
+
+	FRENCH.MAP
+	GERMAN.MAP
+	FINNISH.MAP
+	NORSK.MAP
+	DANISH.MAP
+	SWEDISH.MAP
+	SPANISH.MAP
+	
+To use a particular character set from one of the above countries,
+copy the appropriate .MAP file to LMAP.TRE in the Guru installation 
+directory:
+ 
+                      copy FRENCH.MAP LMAP.TRE.
+
+This file is loaded at run time to provide the appropriate eight bit
+character handling.
+If the LMAP.TRE file is not present, English version mapping is assumed.  
+
+Once the LMAP.TRE file is loaded, the Guru utilities (ie. KLIB,
+USRMAN and WORDMAN) will recognize eight bit characters in names and data.
+The TBL library (TBL.LIB) loads and uses the LMAP.TRE file to provide
+compatability with English Guru.
+
+
+
+
+			ADDENDUM TO DOCUMENTATION
+
+A few important features were added to the LAN version of this release
+after the final documentation was printed.  The text in this file
+explains these new features and any omissions from the manual.
+
+HOLDR()
+-------
+	The HOLDR() function now re-reads the current record from disk
+	immediately after holding the record.  This helps assure the
+	current held record has the most recently added information in it.
+
+DROPR()
+-------
+	The DROPR() function now automatically flushes the current record
+	to disk immediately prior to dropping the lock.  This helps assure
+	the most current information is written to disk before the next
+	modification is made.
+
+OBTAIN . . . WITH HOLDR
+-----------------------
+	This syntax is documented in the Command Reference chapter under
+	OBTAIN. The exact error handling for this condition is not in the
+	manual, but conforms to the following:
+
+	If the HOLDR fails due to the record being held by another user,
+	the error message #171 "Record held by another user" appears.
+	If HOLDR fails for any other reason, error message #172 "System error
+	during hold" appears.  When successful, no error message appears.
+
+PLUCK expressions FROM tablename WITH HOLDR USING "filename"
+------------------------------------------------------------
+	The ". . . WITH HOLDR . . " clause of the PLUCK command, on
+	multiuser systems, tells Guru to first hold the record with the
+	HOLDR function, then pluck the specified record.  This insures the
+	most current data is obtained on each request.  If an error occurs,
+	one of the following error messages is returned:
+
+	If the HOLDR fails due to the record being held by another user,
+	the error message #171 "Record held by another user" appears.  If
+	HOLDR fails for any other reason, error message #172 "System error 
+	during hold" appears.  When successful, no error message appears.
+
+TBLFLUSH(table_name)
+--------------------
+	If the current record has been modified in any way, that record is
+	flushed to disk and the table_name is updated.  If the flush is
+	successful, it returns 0, or -1 if an error occurs.  Newly attached
+	records are treated as modified records and will be flushed to disk
+	by TBLFLUSH.  TBLFLUSH is also mentioned in the Command Reference
+	chapter under OBTAIN.
+
+#CHATLOG
+--------
+	This is a string variable containing the name of the log file for
+	CHAT to record a session when E.OCHT is set to TRUE.  The default
+	name is "CHAT.LOG" and may contain a maximum of eight characters
+	plus the file extension.  This was omitted from the reference manual.

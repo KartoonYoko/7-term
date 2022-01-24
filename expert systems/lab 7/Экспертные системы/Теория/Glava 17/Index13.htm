@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index14.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">17.4.3. 
+  Практическое освоение инструментальных средств</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В рекламном 
+  проспекте множества программных средств для проектирования экспертных систем 
+  можно встретить утверждение, что данным инструментом &quot;может успешно пользоваться 
+  даже непрограммист&quot; или программист, малознакомый с технологиями искусственного 
+  интеллекта. В этом разделе мы попытаемся критически рассмотреть, насколько справедливы 
+  подобные утверждения, основываясь на имеющихся обзорах и опубликованных сведениях 
+  об опыте работы с такого рода программами. Имеющиеся в нашем распоряжении данные 
+  свидетельствуют, что, как правило, овладение типовыми инструментальными средствами 
+  проектирования экспертных систем не легче, чем овладение новым языком программирования. 
+  Даже опытный программист на начальном этапе освоения такой программы допускает 
+  ошибки, свойственные только студентам-новичкам, приступившим к изучению обычного 
+  программирования.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В работе <i>[Ward 
+  and Sleeman, 1987] </i>представлены результаты мониторинга процесса изучения 
+  опытными программистами методики работы с оболочкой для проектирования экспертных 
+  систем S.1 <i>[Teknowledge, 1985]. </i>Прародителем S.1 является известная система 
+  EMYCIN, а дальнейшим развитием — система М.4. Базы знаний в S.1 содержат множество 
+  объектов разного назначения — управляющие выражения, классы, типы классов, порождающие 
+  правила, иерархии значений и функций. Таким образом, выбранная для S.1 архитектура, 
+  с одной стороны, позволила расширить возможности, которыми обладала система 
+  EMYCIN, а с другой — весьма усложнила саму систему. Это замечание еще более 
+  справедливо в отношении системы М.4 (см. врезку 17.3).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Среда S.1 
+  поддерживает четыре режима работы:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> подготовка и редактирование 
+    базы знаний;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> использование базы 
+    знаний для выполнения консультации, т.е. прогон программы;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> выявление и устранение 
+    ошибок на стадии компиляции;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> выявление и устранение 
+    ошибок на стадии выполнения.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Как показал 
+  опрос, программисты с трудом осваивают методику совместного использования этих 
+  режимов в процессе проектирования экспертной системы, хотя все они имеют большой 
+  опыт работы и владеют такими распространенными навыками, как работа с файлами, 
+  компилирование файлов, выполнение программ, поиск и устранение ошибок. Те сообщения 
+  об ошибках, которые формируются инструментальной средой, несут информации не 
+  больше, чем стандартные сообщения об ошибках в большинстве компиляторов обычных 
+  языков программирования. По этим сообщениям трудно отличить место <i>возникновения 
+  </i>ошибки от места в программном коде, в котором эта ошибка <i>проявилась. 
+  </i>Учитывая, что разработка базы данных ведется в режиме постепенного наращивания 
+  ее объема (а такая стратегия рекомендуется всеми авторитетными специалистами), 
+  переключение с режима на режим в среде разработки должно выполняться как можно 
+  проще, поскольку инженеру по знаниям приходится выполнять итеративные процедуры 
+  пополнения базы знаний значительно чаще, чем обычному программисту выполнять 
+  расширение функций программы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Анализ опыта 
+  освоения этой инструментальной среды также показал, что если программисты отдают 
+  предпочтение простейшей стратегии отладки (эта стратегия включает этапы ввода 
+  данных, обращения к системе с запросом о значении какого-либо параметра на основе 
+  анализа небольшого множества правил и вывода результата), то они сталкиваются 
+  с рядом проблем, касающихся методов представления информации и управления поиском. 
+  По мере увеличения сложности проектируемой системы — увеличение объема базы 
+  знаний, включение в рассмотрение неопределенностей разного рода, включение в 
+  алгоритм работы системы дополнительных режимов — стратегия проектирования требует 
+  все более тщательной предварительной подготовки. Авторы обзора <i>[Ward and</i> 
+  <i>Sleeman, 1987] </i>пришли к выводу, что хотя освоение системы S.1 и не сложнее 
+  освоения нового языка программирования уровня PASCAL, но утверждать, что эта 
+  система проще, тоже нельзя.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Утверждение, 
+  что эту систему могут освоить люди, не имеющие навыков программирования, &quot;не 
+  нашло подтверждения на практике&quot;, а если уж говорить совсем откровенно, 
+  то это не более чем рекламный трюк. Мой собственный опыт наблюдения за аспирантами, 
+  которые пользовались такого рода инструментальными системами, полностью согласуется 
+  с этими выводами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В своих аналитических 
+  заметках Робинсон <i>[Robinson, 1987] </i>обращает внимание на то, что выбор 
+  инструментальной среды разработки экспертной системы представляет собой достаточно 
+  сложную задачу по следующим причинам:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> большинство развитых 
+    сред разработки настолько дороги, что покупать их для проведения сравнительного 
+    анализа перед выбором подходящего не по средствам разработчикам;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> время, необходимое 
+    для освоения навыков работы с системой и выявления ее сильных и слабых сторон, 
+    также слишком велико, а потому редко кто может себе позволить проводить сравнение 
+    конкурирующих моделей на практике;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> терминология, которую 
+    применяют в документации изготовители разных систем, существенно отличается, 
+    причем это относится даже к понятиям и технологиям, ставшим стандартными в 
+    области искусственного интеллекта. Поэтому проводить сопоставление разных 
+    моделей по тем сведениям, которые публикуются в технической документации, 
+    также достаточно трудно.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Последнее 
+  замечание справедливо в отношении большинства программных продуктов, предлагающихся 
+  на рынке. Когда же речь идет о программных средствах, связанных с областью искусственного 
+  интеллекта, то новизна и необычность терминологии еще более усугубляет проблему. 
+  Уже давно в среде специалистов бытует мнение, что сравнение конкурирующих систем 
+  одного класса можно выполнять только после тщательного изучения их на практике.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">17.3. 
+  Правила и процедуры в инструментальной среде М.4</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Основным 
+  средством представления знаний в оболочке М.4 являются порождающие правила, 
+  ориентированные на построение обратной цепочки логического вывода, причем применяется 
+  тот же синтаксис, что и в системе EMYCIN (см. главу 1.1), Приведенное ниже правило 
+  выбирает болт определенного размера, принимая во внимание ограничения на длину, 
+  диаметр и шаг резьбы. Прописными буквами в тексте правила выделены наименования 
+  переменных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">If 
+  recommended type = bolt and<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">recommended 
+  length = LENGTH and<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">recommended 
+  diameter = DIAMETER and<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">recommended 
+  thread_pitch = PITCH and<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">fastener(bolt, 
+  LENGTH, DIAMETER, PITCH) = BOLT </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">then 
+  recommended fastener = BOLT<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Построение 
+  прямой цепочки логического вывода моделируется конструкциями whenfound и whencached, 
+  которые выполняют функции демонов (см. главу 6). Например, оператор whencached 
+  разрешает выполнение определенного действия при установке значения определенного 
+  элемента данных. Выполнение такого действия, как правило, включает вызов процедуры, 
+  причем на его характер накладывается меньше ограничений, чем на характер действия, 
+  специфицированного в правой части порождающего правила в CLIPS. Например, в 
+  приведенном ниже фрагменте утверждается, что обнаружен самолет в определенной 
+  точке LOC в момент времени TIME, как только при считывании показаний сенсора 
+  в момент времени TIME обнаруживается наличие реактивного двигателя или пропеллера, 
+  и эти показания согласуются с аналогичными показаниями соседнего сенсора в предыдущий 
+  момент времени.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">whencached 
+  (sensor_reading</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">( 
+  SENSOR, TIME) = SIGNATURE) = </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">((signature-type 
+  (SIGNATURE) = jet or<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">signature-type 
+  (SIGNATURE) = prop)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  and TIME -1 = PREVIOUS and cached </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">( 
+  sensor jreading) OTHER, PREVIOUS = SIGNATURE)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">and<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">neighbor 
+  (SENSOR) = OTHER and location </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(SENSOR) 
+  = LOC and do ( set plane_detected ( LOC , TIME ) ) ) .<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Насколько 
+  этот фрагмент программы читабелен, судить вам.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Процедуры 
+  в М.4 имеют синтаксис, весьма напоминающий синтаксис языка программирования 
+  С или PASCAL. Например, ниже приведен текст простой процедуры.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">procedure 
+  ( determine_and_display recs ( FAULT ) ) =<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">{<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">f 
+  ind_recomendations( FAULT) ;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">LIST 
+  := listof( recommendations (FAULT) };<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">COUNT 
+  := 1;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">while 
+  (LIST == [ITEM | REST])<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">{<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">display 
+  ([COUNT, &quot;. &quot;, ITEM, nl]); </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">COUNT 
+  := COUNT + 1; LIST := REST;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">В 
+  этом фрагменте конструкция LIST == [ITEM (REST] заимствована из языка PROLOG. 
+  Она разделяет список LIST на головной элемент ITEM и хвост REST. Читатель может 
+  судить по этому фрагменту, насколько просто в среде М.4 программировать процедуры.</font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font><i><font size="3"></font></i></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index14.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

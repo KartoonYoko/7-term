@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">7.4. 
+  Множественное наследование в C++</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Так же, как 
+  язык CLOS представляет собой объектно-ориентированное расширение языка LISP, 
+  так и язык C++ создан на основе широко известного языка С и сохранил все его 
+  возможности, добавив к ним средства объектно-ориентированного программирования. 
+  Если отвлечься от того факта, что CLOS и C++ основаны на разных языках-прототипах, 
+  то основное отличие между ними заключается в реализации механизма наследования, 
+  в частности множественного наследования. В языке C++ множественное наследование 
+  трактуется совсем не так, как мы это делали в предшествующих разделах настоящей 
+  главы, а потому этот вопрос заслуживает подробного обсуждения.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В языке C++ 
+  родовые операции реализуются в виде <i>виртуальных функций. </i>Виртуальная 
+  функция, объявленная в классе X, это функция, которая может быть <i>перегружена 
+  </i>(переопределена) в классе, производном от X. При объявлении в классе X виртуальная 
+  функция вообще может не иметь <i>тела, </i>т.е. программного кода реализации. 
+  В таком случае функция называется <i>чисто виртуальной, </i>а класс, имеющий 
+  одну или более чисто виртуальных функций, является <i>абстрактным базовым </i>классом, 
+  экземпляры которого создать невозможно. В любом случае ключевое слово virtual 
+  говорит компилятору, что программный код функции будет уточнен в производных 
+  классах.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Те методы, 
+  которые вызываются на выполнение, являются невиртуальными членами-функциями, 
+  т.е. функциями, имеющими определенный программный код, который не перегружается 
+  в производных классах. В этом смысле C++ существенно отличается от языка CLOS, 
+  в котором практически все функции суперкласса в большей или меньшей степени 
+  модифицируются механизмом наложения методов. Поэтому в C++ существует множество 
+  синтаксических тонкостей, в которых не нуждается CLOS. Например, во всех классах 
+  иерархии виртуальная функция должна иметь квалификатор virtual до тех пор, пока 
+  в некотором производном классе не будет представлена ее конкретная реализация.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В чисто иерархической 
+  структуре классов, когда каждый производный класс имеет единственного &quot;родителя&quot;, 
+  передача методов по наследству выполняется совершенно очевидным способом. Единственная 
+  тонкость в реализации этого механизма в C++ состоит в использовании квалификаторов 
+  наследования public и private. Если не вдаваться в подробности, то наследование 
+  вида public представляет собой отношение &quot;is а&quot; (является), которое 
+  мы использовали при обсуждении фреймов. Наследование вида private ближе к отношению 
+  &quot;реализовано в терминах&quot;, которое позволяет скрыть определенные детали 
+  реализации интерфейсов объектов. Такое полезное разделение &quot;выпало&quot; 
+  в языке CLOS, в котором каждое отношение &quot;класс-подкласс&quot; несет семантический 
+  смысл.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но если обратиться 
+  к множественному наследованию, то механизмы его реализации в C++ и CLOS существенно 
+  отличаются. Поскольку в языке C++ не существует такого понятия, как порядок 
+  предшествования классов, то даже такой простой случай, как в рассмотренном выше 
+  примере &quot;Алмаз Никсона&quot;, приводит к неоднозначности. Будем считать, 
+  что отношения между классами Person, Quaker, Republican и Republican_Quaker, 
+  как и прежде, имеют вид, представленный на рис. 7.8.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Объявление 
+  классов Person, Quaker, Republican и Republican Quaker на языке C++ показано 
+  в листинге 7.2 (программный код объявления включен в файл nixon.h).<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="8.gif" width="550" height="220"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 7.8. 
+  Отношения между классами в примере &quot;Алмаз Никсона&quot;<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  7.2. Файл nixon.h. Объявление классов, версия 1</b></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">// 
+  Объявление классов для задачи &quot;Алмаз Никсона&quot; finclude &lt;iostream.h&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{ 
+  public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Personf) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  &quot;Person() {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  void speak() = 0; };<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican : public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{ 
+  public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican)) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Republican)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  void speak() { cout &laquo; &quot;War&quot;;} };<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Quaker : public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{ 
+  public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Quakerf) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Quaker)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  void speak)) { cout &laquo; &quot;Peace&quot;;} };<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican_Quaker : public Republican,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> public 
+  Quaker<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{ 
+  public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican_Quaker() 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Republican_Quaker() {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Создадим 
+  экземпляр richard класса Republican_Quaker.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">#include 
+  &quot;nixon.h&quot; void main))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican_Quaker 
+  richard; richard.speak));</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При обработке 
+  этого программного кода компилятор C++ обнаружит, что вызов richard.speak)) 
+  содержит неоднозначную ссылку. Оно и понятно, поскольку нельзя однозначно заключить, 
+  скажет ли Ричард &quot;War&quot; (война) или &quot;Peace&quot; (мир).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если мы решим, 
+  что метод speak)) класса Republican_Quaker должен &quot;брать пример&quot; с 
+  класса Quaker, то проблему можно решить, определив этот метод одним из двух 
+  способов:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">void 
+  S::speak(){ cout &lt;&lt; &quot;Peace&quot;; }</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">или<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">void 
+  S::speak)({Quaker::speak)); }</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Первый вариант 
+  просто перегружает оба наследованных определения метода, а второй в явном виде 
+  вызывает один из них, а именно тот вариант, который реализован в классе Quaker.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Однако совершенно 
+  незначительное на первый взгляд изменение в файле определения классов может 
+  разительно изменить поведение объекта. Предположим, решено удалить объявления 
+  методов speak)) из всех классов, кроме Person, как это показано в листинге 7.3.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  7.3. Файл nixon.h. Объявление классов, версия 2</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Person)) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  &quot;Person)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  void speak)){ cout &laquo; &quot;Beer&quot;;}<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican : public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican)) 
+  {}; virtual ~Republican)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Quaker : public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Quaker)) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Quaker)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican Quaker : public Republican, public Quaker<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican_Quaker( 
+  ) {} ;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Republican_Quaker( ) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">}</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При обработке 
+  такого файла определения компилятор опять выдаст сообщение о неоднозначности 
+  ссылки на метод speak ( ). Это произойдет по той причине, что компилятор сформирует 
+  две копии объявления класса Person — по одной для каждого пути наследования, 
+  а это приведет к конфликту имен. Чтобы устранить эту неоднозначность, нужно 
+  объявить Person как <i>виртуальный базовый класс </i>и для Republican, и для 
+  Quaker. Тогда оба производных класса будут ссылаться на единственный объект 
+  суперкласса (листинг 7.4).<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  7.4. Файл nixon.h. Объявление классов, версия 3</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{ 
+  public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Per 
+  son () {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  &quot;Person)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  void speak(){ cout &lt;&lt; &quot;Beer&quot;;} И<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican : virtual public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{ 
+  public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican)) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Republican)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Quaker : virtual public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Quaker)) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Quaker)) .{};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">}<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican_Quaker : public Republican, public Quaker<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican_Quaker 
+  { ) { } ;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> virtual 
+  &quot;Republican_Quaker( ) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">}</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Объявление 
+  Person в качестве виртуального базового класса для Republican и Quaker имеет 
+  и еще одно преимущество. Предположим, что нам нужно сделать так, чтобы класс 
+  Republican_Quaker отдавал предпочтение стилю поведения квакеров, а все другие 
+  были индифферентны к вопросам войны и мира и следовали линии поведения, определенной 
+  классом Person. Тогда, поскольку Person является виртуальным базовым классом, 
+  можно заставить доминировать Quaker::speak)) над Person::speak)) для класса 
+  Republican_Quaker (листинг 7.5).<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  7.5. Файл nixon.h. Объявление классов, версия 4</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Person)) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Person)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  void speak)){ cout &laquo; &quot;Beer&quot;;}<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican : virtual public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican)) 
+  {}; virtual ~Republican)) {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Quaker : virtual public Person<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Quaker)) 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  ~Quaker() {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  void speak)) { cout &laquo; &quot;Peace&quot;;}<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">class 
+  Republican_Quaker : public Republican, public Quaker<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">public:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Republican_Quaker() 
+  {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">virtual 
+  &quot;Republican_Quaker() {};<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">}<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При создании 
+  языка C++ преследовалась цель не усложнять механизм множественного наследования 
+  по сравнению с единственным и разрешать все неоднозначности на стадии компиляции 
+  <i>[Stromtrup, 1977]. </i>В этом существенное различие между C++ и SmallTalk. 
+  В последнем такого рода конфликты разрешаются на стадии выполнения программы. 
+  Это также отличается и от метода, основанного на списке предшествования классов, 
+  который используется в CLOS. Кроме того, в языке CLOS конфликта имен, подобного 
+  тому, который мы наблюдали с классом Person, быть просто не может, поскольку 
+  все базовые классы с одинаковыми именами считаются идентичными.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  за высокую эффективность языка C++ приходится платить, тщательно продумывая 
+  передачу свойств и поведения от классов родителей к производным классам с учетом 
+  всех нюансов функционирования механизма наследственности в C++.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом отношении 
+  C++ напоминает свой прототип — язык С, который требует гораздо более близкого 
+  знакомства с работой компьютера, чем язык LISP, поскольку позволяет напрямую 
+  обращаться к памяти компьютера, манипулировать адресами, формировать собственный 
+  механизм выделения памяти и т.д. Какую стратегию предпочесть — зависит от индивидуальных 
+  предпочтений разработчика, но если главным требованием к продукту является высокая 
+  производительность, то чем большими возможностями управления ресурсами обладает 
+  разработчик, тем лучше, тем более эффективную программу можно создать.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Суммируя все 
+  сказанное о языке C++, отметим, что он вполне может послужить базовым программным 
+  инструментом для создания экспертных систем. Если потребуется интерпретатор 
+  порождающих правил, то можно либо разработать его самостоятельно (хотя это и 
+  далеко не тривиальная задача), либо воспользоваться одним из имеющихся на рынке, 
+  которые допускают внедрение в среду C++. Если вам удастся избежать описанных 
+  выше сложностей в реализации множественного наследования, вы сможете в полной 
+  мере воспользоваться многочисленными преимуществами этого языка — проверкой 
+  статических типов, разделением между закрытым и общедоступным наследованием, 
+  множеством средств защиты данных от случайных изменений.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

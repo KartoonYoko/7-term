@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Что понимается 
+  под прототипом в системе CENTAUR? Какие функции возлагаются на прототипы?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. В чем преимущества 
+  смешанного способа представления знаний в системе CENTAUR?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Что представляет 
+  собой модель заболевания в системе INTERNIST? Объясните смысл концепции <i>доминантности 
+  </i>применительно к модели заболеваний в системе INTERNIST.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Какие проблемы 
+  обнаружились при работе над системой INTERNIST и как они соотносятся с проведенным 
+  Кленси анализом различных видов знаний?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Выполнение 
+  этого упражнения потребует некоторых познаний в медицине — знаний о физическом 
+  смысле некоторых параметров, измеряемых при лабораторных анализах органов дыхания. 
+  (Лично я узнал о них от д-ра Джереми Уатта (Jeremy Wyatt) и д-ра Патриции Твидейл 
+  (Patricia Tweedale). Любые фактические ошибки в приведенном ниже описании прошу 
+  отнести на мой счет, но думаю, они не повлияют на смысл самого упражнения.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При диагностике 
+  легочных заболеваний используются следующие параметры, измеряемые при лабораторном 
+  обследовании пациентов.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm FEV1 (Forced 
+    Expiratory Volume). Объем форсированного выдоха за 1 секунду, измеренный в 
+    литрах. Измеряется количество воздуха, выдыхаемого пациентом в течение 1 секунды. 
+    Этот параметр является показателем эластичности легочных тканей (а следовательно, 
+    и их здоровья).<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm IFV1. Показатель 
+    изменения FEV1 после курса лечения с применением бронхолитиков.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm FVC (Forced 
+    Vital Capacity). Жизненная емкость легких - объем вдыхаемого воздуха при максимальном 
+    наполнении легких.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm IFVC. Показатель 
+    изменения FVC после курса лечения с применением бронхолитиков.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm TLC (Total 
+    Lung Capacity). Общая емкость легких.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm RV (Residual 
+    Volume). Остаточный объем легких - объем воздуха, который остается в легких 
+    после максимального выдоха.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm RATI01 = 
+    FEV1/FVC.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3">Index0.htm RATI02 = 
+    FEV1/FVC после курса лечения с применением бронхолитиков.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ниже в постановке 
+  задачи переменная PRED означает ожидаемое значение любого из перечисленных выше 
+  параметров. (Ожидаемое значение медицинского параметра зависит главным образом 
+  от пола пациента.) Выражения вида<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">80% 
+  &lt; RATI01 &lt; 100% (PRED-2SD)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">означают, 
+  что параметр RATI01 имеет значение между 80 и 100 процентами от ожидаемого значения, 
+  уменьшенного на удвоенное стандартное отклонение в соответствующей популяции.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Аббревиатура 
+  RTB означает <i>Response To Bronchodilation (реакция на прием бронхолитиков).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Разработайте 
+  структуру фреймов для каждого из следующих заболеваний дыхательных органов и 
+  связанных с ними медицинских параметров. Организуйте иерархию фреймов и включите 
+  ее в иерархию других аналогичных заболеваний, представленную на рис. 13.1.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">AIRWAIS 
+  OBSTRUCTION</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">существует, 
+  если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI01 
+  &lt; PRED-2SD отсутствует RTB, если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI02 
+  &lt; PRED-2SD хороший показатель RTB, если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI02 
+  &gt; PRED-2SD<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">SLIGHT 
+  AIRWAIS OBSTRUCTION<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">существует, 
+  если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">801 
+  &lt; RATI01 &lt; 100% (PRED-2SD) отсутствует RTB, если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">IFV1 
+  &lt; FEV1/10<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">IFVC 
+  &lt; FVC/10 хороший показатель RTB, если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FEV1 
+  &gt; (PRED-2SD)/4<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FEV1/3 
+  &lt; IFEV1<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">MODERATE 
+  AIRWAIS OBSTRUCTION<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">существует, 
+  если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">55% 
+  &lt; RATI01 &lt; 80% (PRED-2SD)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">SEVERE 
+  AIRWAIS OBSTRUCTION<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">существует, 
+  если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI01 
+  &lt;= 55% (PRED-2SD)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RESTRICTIVE 
+  DEFECT<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">существует, 
+  если: RV &lt; PRED+2SD TLC &lt;= 80% (PRED-2SD)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI01 
+  &gt; 80% (PRED-2SD) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">EARLY 
+  RESTRICTIVE DEFECT существует, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">если: 
+  TLC &lt; (PRED-2SD) RATI01 &gt; (PRED-2SD)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">MILD 
+  RESTRICTIVE DEFECT<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">существует, 
+  если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI01 
+  &gt; (.PRED-2SD) 80% &lt; TLC &lt; 100% (PRED-2SD)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">MODERATE 
+  RESTRICTIVE DEFECT<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">существует, 
+  если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI01 
+  &gt; (PRED-2SD)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">60% 
+  &lt; TLC &lt; 80 (PRED-2SD)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">SEVERE 
+  RESTRICTIVE DEFECT существует, если:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">RATI01 
+  &gt; (PRED-2SD) TLC &lt; 60 (PRED-2SD)<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Вам понадобятся 
+  процедуры для накопления диагностических знаний, связанных с этими заболеваниями.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В каждом фрейме 
+  нужно предусмотреть слоты для хранения ожидаемых среднестатистических значений 
+  и стандартных отклонений. Так, слот PRED-RATI01 будет хранить ожидаемое значение 
+  параметра RATI01, а слот SD-RATI01 — стандартное отклонение этого параметра. 
+  Конечно, для этого упражнения можно подставить любые значения в эти слоты, поскольку 
+  главное, что от вас требуется, — правильно организовать связи между слотами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Например, 
+  фрейм-объект SEVERE-RESTRICTIVE-DEFECT может включать метод (процедуру LISP) 
+  PRESENT, который определен следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">SEVERE-RESTRICTIVE-DEFECT.PRESENT<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(and( 
+  &gt; RATI01 (- PRED-RATI01 ( SD-RATI01 2)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(&lt; 
+  TLC (/ ( 6 (- PRED-TLC (*SD-TLC 2))) 10)))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эта процедура 
+  возвращает значение Т, если соблюдаются специфицированные в ней условия.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Представьте 
+  диагностические знания, связанные с этими фреймами, в виде порождающих правил, 
+  а не в виде процедур. Как и в предыдущем случае, правила должны ссылаться на 
+  значения слотов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">6. Разработайте 
+  и реализуйте простую программу извлечения знаний, которая позволила бы пользователю 
+  передать сведения о неисправностях в некотором устройстве и перечислить их возможные 
+  причины. Например, если вас привлекает предметная область обслуживания автомобиля, 
+  то программа должна принимать сведения о таких видах отказов (в терминологии 
+  TDE), как &quot;двигатель не заводится&quot;, уточнять причину отказа, например 
+  &quot;подается ли ток на электродвигатель стартера?&quot;, и связывать возможные 
+  причины с каждым таким уточнением.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Естественно 
+  ожидать, что отказ &quot;двигатель не заводится&quot; будет связан с такими 
+  причинами, как &quot;неисправна аккумуляторная батарея&quot; и &quot;неисправен 
+  соленоид стартера&quot;, а узлы отказов вроде &quot;неисправна аккумуляторная 
+  батарея&quot; должны требовать дальнейшего уточнения — &quot;разряжена аккумуляторная 
+  батарея&quot; и &quot;недостаточный уровень электролита в аккумуляторной батарее&quot;. 
+  Программа должна сохранять всю полученную информацию в древовидной структуре, 
+  которая была описана в разделе 13.4.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">7. Протестируйте 
+  разработанную в упр. 6 программу либо самостоятельно, либо пригласите коллегу, 
+  которого считаете специалистом в соответствующей предметной области. Если не 
+  удастся найти никого, кто помог бы вам в этом деле, воспользуйтесь доступной 
+  технической литературой. Например, для ввода знаний о возможных неисправностях 
+  автомобиля вполне достаточно руководства, которое выдают к каждому автомобилю 
+  при покупке.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+   
+  </tr>
+</table>
+</body>
+</html>

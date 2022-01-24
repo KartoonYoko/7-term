@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.2.4. 
+  Использование шаблонов</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для определения 
+  фактов можно использовать не только списочные структуры, но и шаблоны, которые 
+  напоминают простые записи. (Шаблоны в CLIPS не имеют ничего общего с шаблонами 
+  C++.) Шаблон выглядит примерно так:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  student &quot;a student record&quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(slot 
+  name (type STRING)) (slot age (type NUMBER) (default 18))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Каждое определение 
+  шаблона состоит из произвольного имени шаблона, необязательного комментария 
+  и некоторого количества определений слотов. Слот включает поле данных, например 
+  name, и тип данных, например STRING. Можно указать и значение по умолчанию, 
+  как в приведенном выше примере.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если в программу 
+  включено приведенное выше определение шаблона, то выражение<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  students<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(student 
+  (name fred))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(student 
+  (name freda) (age 19)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">приведет к 
+  тому, что в базу фактов после выполнения команды reset будет добавлено<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(student 
+  (name fred) (age 18)) (student (name freda) (age 19))</font><font face="Arial, Helvetica, sans-serif" size="3"></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index14.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.4.3. 
+  Разработка правил</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом разделе 
+  мы рассмотрим набор правил, который помогает справиться с вырожденной формулировкой 
+  <b>Р0 </b>задачи о лжецах и правдолюбцах. Первые два правила, unwrap-true и 
+  unwrap-false, извлекают содержимое высказывания в предположении, что персонаж, 
+  которому принадлежит высказывание, является соответственно правдолюбцем или 
+  лжецом, и на этом основании формируют объект claim.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Извлечение содержимого высказывания, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  unwrap-true<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope truth))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (statement 
+  (speaker ?X) (claim $?Y) (tag ?N)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim (content Т ?Х) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim (content $?Y) (reason ?M)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (scope 
+  truth)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  unwrap-false<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(statement 
+  (speaker ?X) (claim $?Y) (tag ?N)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim (content F ?X) (reason ?N)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (scope 
+  falsity)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim (content NOT $?Y) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  falsity)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В каждом из 
+  приведенных правил первый оператор в условной части делает предположение соответственно 
+  о правдивости или лживости персонажа, а второй оператор в заключительной части 
+  правила распространяет предположение на формируемые утверждения — объекты claim.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Далее нам 
+  понадобятся правила, которые введут отрицания в выражения. Поскольку <i>—&lt;Т(А) 
+  </i>эквивалентно <i>F(A), a —F(A) </i>эквивалентно <i>Т(А), </i>то правила, 
+  выполняющие соответствующие преобразования, написать довольно просто. Анализ 
+  результатов применения этих правил значительно упростит выявление противоречий, 
+  следующих из определенного предположения.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Правила отрицания (defrule notl<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (content NOT Т ?Р)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?F (content F ?P))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  not2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (content NOT F ?P)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?F (content Т ?Р))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Выявление противоречия между предположением о</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  правдивости и следующими из него фактами,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (defrule 
+  contra-truth<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 10))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?S 
+  &lt;- (statement (speaker ?Y) (tag ?N))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?P 
+  &lt;- (claim (content Т ?Х) (reason ?N) (scope truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?Q 
+  &lt;- (claim (content F ?X) (reason ?N) (scope truth)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Statement 
+  is inconsistent if &quot; ?Y &quot; is a knight.&quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  &quot;Высказывание противоречиво, если &quot; ?Y &quot; правдолюбец.&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?Q)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?P)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (scope falsity)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если предположить, 
+  что исходное высказывание было правдивым, то в дальнейшем обнаруживается противоречивая 
+  пара утверждений, которые затем удаляются из рабочей памяти, а значение &quot;правдивости&quot; 
+  предположения в объекте world изменяется на falsity (лживость). Если же после 
+  этого также будет обнаружено противоречие, то мы приходим к выводу о глобальной 
+  несовместимости условий задачи, т.е. в данной постановке мы имеем дело с логическим 
+  парадоксом.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Выявление противоречия между предположением о </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  лживости и следующими из него фактами, (defrule contra-falsity<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 10))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?S 
+  &lt;- (statement (speaker ?Y) (tag ?N))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?P 
+  &lt;- (claim (content F ?X) (reason ?N) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?Q 
+  &lt;- (claim (content T ?X) (reason ?N) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  falsity)) =&gt; (printout t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Statement 
+  is inconsistent if &quot; ?Y &quot; is a knave. &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Высказывание противоречиво, если &quot; ?Y &quot; лжец.&quot; t crlf)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (modify 
+  ?W (scope contra))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило sweep 
+  обеспечивает проверку, <i>все </i>ли следствия из неверного предположения удалены 
+  из памяти.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Удалить из базы фактов все утверждения,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  которые следуют из предположения о правдивости.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  sweep<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 20))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (reason ?N) (scope truth)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?F)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что правила contra-truth, contra-f alsity и sweep имеют более высокий 
+  приоритет (значение параметра salience), чем другие правила. Этим обеспечивается 
+  как можно более ранее обнаружение противоречия, а следовательно, и удаление 
+  из базы фактов утверждений, сделанных на основе предположения, приведшего к 
+  противоречию.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если теперь 
+  запустить на выполнение программу, представив ей исходный набор фактов, соответствующих 
+  условию задачи РО, то программа обнаружит, что оба контекста противоречивы. 
+  Другими словами, независимо от того, предполагаем ли мы, что А говорит правду 
+  или лжет, программа обнаружит противоречие в контексте world. Трассировка программы 
+  в этом случае представлена в листинге А. 1. Строки, выведенные курсивом, — сообщения 
+  основной программы, а прочие — сообщения программы трассировки. Для удобства 
+  строки, указывающие на активизацию правил, представлены полужирным шрифтом.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  А.1. Трассировка решения задачи Р0</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (reset)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-0 (initial-fact)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-1 (world (tag 1) (scope truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-2 (statement (speaker A)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (claim 
+  F A) (reason 0) (tag 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (run)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  1 unwrap-true: f-1,f-2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>Assumption:</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>A 
+  is a knight, so (T A) is true.</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-3 (claim (content F A) (reason 1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-4 (claim (content T A) (reason 1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (scope 
+  truth)) FIRE 2 contra-truth: </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">f-1, 
+  f-2, f-4, f-3 </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>Statement 
+  is inconsistent if A is a knight. </i></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-3 (claim (content F A) (reason 1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth)) &lt;== f-4 (claim (content T A)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (reason 
+  1) (scope truth)) &lt;== f-1 (world (tag 1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth)) ==&gt; f-5 (world (tag 1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (scope 
+  falsity)) FIRE 3 unwrap-false:</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> f-5, 
+  f-2 <i>Assumption</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>A 
+  is a knave, so (T A) is false.</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-6 (claim (content NOT F A)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (reason 
+  1) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-7 (claim (content F A) (reason 1) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  4 not2: f-6<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-6 (claim (content NOT F A) (reason 1) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-8 (claim (content Т A) (reason 1) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  5 contra-falsity: f-5, f-2, f-7, f-8<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>Statement 
+  is inconsistent if A is a knave.</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-5 (world (tag 1) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-9 (world (tag 1) (scope contra))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Упражнение 
+  1</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Читателям, 
+  желающим самостоятельно поэкспериментировать с этой программой, я предлагаю 
+  рассмотреть другой вырожденный случай головоломок этого класса.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>Предположим, 
+  что персонаж А утверждает: &quot;Я всегда говорю правду&quot;. К какой категории 
+  следует отнести этот персонаж?</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>В </i>такой 
+  постановке задача имеет неоднозначное решение. Предположение, что А правдолюбец, 
+  <i>не </i>приводит нас к противоречию. Но точно так же не приводит к противоречию 
+  и предположение, что А —лжец.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ваша задача— 
+  модифицировать описанную выше программу таким образом, чтобы она давала заключение, 
+  что оба контекста непротиворечивы. Один из возможных вариантов модификации — 
+  ввести в состав программы правила consist-truth и consist-falsity, разработав 
+  их по образцу правил contra-truth и contra-falsity. Эти правила должны дать 
+  пользователю знать, что при данном предположении противоречий не обнаружено, 
+  причем правила должны активизироваться в случае, когда нет больше правил, претендующих 
+  на внимание интерпретатора.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что в задачах этого класса недостаточно убедиться, что начальное предположение 
+  об <i>истинности </i>некоторого высказывания не <i>приводит </i>к противоречию. 
+  Необходимо еще и проверить, <i>приведет </i>ли к противоречию <i>обратное </i>предположение. 
+  Если окажется, что оно также непротиворечиво, значит, задача не имеет <i>единственного 
+  </i>решения.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index14.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

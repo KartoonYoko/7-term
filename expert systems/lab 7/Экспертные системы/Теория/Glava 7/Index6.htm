@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">7.2.3. 
+  Метаклассы</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Отличительной 
+  чертой языка LOOPS является поддержка концепции <i>метаклассов, </i>т.е. классов, 
+  членами которых являются другие классы. Впервые метаклассы появились в языке 
+  SmallTalk. В первой системе реализации этого языка имелся единственный метакласс 
+  Class, членами которого были все прочие классы в системе, в том числе и Class. 
+  В более поздних реализациях SmallTalk метакласс формировался автоматически всякий 
+  раз, когда создавался новый класс, и этот класс становился экземпляром класса 
+  Metaclass. Метаклассы в SmallTalk-80 сами по себе не являлись экземплярами метаклассов, 
+  а принадлежали единственному метаклассу Metaclass. Во избежание путаницы мы 
+  в дальнейшем будем называть &quot;классами объектов&quot; те классы, которые 
+  не являются метаклассами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Смысл существования 
+  метаклассов — поддержка создания и инициализации экземпляров классов. Обычно 
+  сообщение посылается экземпляру класса, а не самому классу. Экземпляр класса 
+  наследует поведение от своего класса объектов. Но иногда желательно передать 
+  сообщение именно классу, например сообщение &quot;сформировать экземпляр с такими-то 
+  свойствами&quot;. Классы наследуют поведение от своих метаклассов и таким образом 
+  вся система обладает приятным с точки зрения пользователя единообразием. (Обычно 
+  сообщения метаклассам не посылаются, но если такое произойдет, то они будут 
+  наследовать поведение от класса Metaclass, к которому они все принадлежат, включая 
+  и сам Metaclass.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В языке LOOPS 
+  метакласс не создается для каждого класса. Этот язык имеет более простую структуру 
+  классов, представленную схематически на рис. 7.4. Узлы в форме эллипсов представляют 
+  классы объектов и метаклассы, а узлы в форме прямоугольников представляют экземпляры 
+  классов объектов. Тонкие стрелки означают отношения вида <i>&quot;А </i>является 
+  подклассом <i>В&quot;, </i>а толстые — отношения вида <i>&quot;А </i>является 
+  экземпляром <i>В&quot;.</i><br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="4.gif" width="550" height="358"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 7.4. 
+  Структура классов в языке LOOPS<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">LOOPS поддерживает 
+  три стандартных метакласса: Object, Class и Metaclass. Тонкие стрелки на рис. 
+  7.4 означают, что Object является суперклассом класса Class, a Class является 
+  суперклассом класса Metaclass. Кроме того, Object является членом Class, Class 
+  — членом Metaclass, a Metaclass — членом самого себя. Таким образом, оказывается, 
+  что Object является корнем иерархии классов (не имеет суперкласса), а Metaclass 
+  является корнем иерархии экземпляров (не имеет ни одного класса, кроме самого 
+  себя).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Узлы, вычерченные 
+  утолщенными линиями — ship (корабль) и liner (лайнер), — типичные классы, определенные 
+  пользователем. Обратите внимание на то, что все классы такого рода являются 
+  членами класса Class, от которого они наследуют свое поведение. Таким образом, 
+  для того чтобы сформировать экземпляр Titanic, нужно переслать сообщение new 
+  классу liner, который наследует метод new от класса Class. Поведение экземпляра 
+  Titanic, естественно, будет унаследовано от его класса— в данном случае liner.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Использование 
+  метаклассов позволяет запрограммировать поведение по умолчанию и определенные 
+  виды структур в объектно-ориентированной системе на самом высоком уровне. Экземпляры 
+  классов объектов, таких как liner, обычно формируются стандартным способом, 
+  но если для одного или семейства классов желательно использовать какой-то более 
+  специфический вариант, нужно включить между liner и Class определенный пользователем 
+  метакласс (например, metaliner), в котором и &quot;прописать&quot; желаемые 
+  модификации (рис. 7.5). Таким образом, структура классов в языке LOOPS позволяет 
+  в одной системе объединить мощность и гибкость представления объектов реального 
+  мира.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="5.gif" width="550" height="402"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 7.5. 
+  Вставка метакласса, определенного пользователем</font></p>
+<br>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

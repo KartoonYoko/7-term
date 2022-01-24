@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">22.1.1. 
+  Программа CHEF</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для демонстрации 
+  возможностей экспертной системы, базирующейся на прецедентах, рассмотрим систему 
+  CHEF, которая предназначалась для формирования кулинарных рецептов <i>[Hammond, 
+  1986]. </i>Эта программа принимает информацию о целевых характеристиках блюда 
+  (тип, вкусовые качества, своеобразие) и формирует подходящий рецепт. Например, 
+  программа может получить следующий &quot;заказ&quot;:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>блюдо из 
+  баранины (beef);</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>включает 
+  брокколи (broccoli);</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>использует 
+  поджаривание (stir-fry);</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>блюдо должно 
+  получиться хрустящим (crisp).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Заказ оформляется 
+  в виде выражения на специальном формальном языке:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">dish(beef), 
+  include(broccoli), method(stir-frv), texture(crisp)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Результатом 
+  работы программы должен быть рецепт— последовательность операций, позволяющая 
+  приготовить такое блюдо.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Получив заказ, 
+  программа просматривает свою базу прецедентов, отыскивает в ней рецепт приготовления 
+  аналогичного блюда и адаптирует его в соответствии с особенностями текущего 
+  заказа (проблемы). Например, если в базе уже имеется рецепт для баранины с зеленым 
+  горошком, его можно скопировать и вместо горошка вставить брокколи. Этим, правда, 
+  адаптация не исчерпывается, поскольку горошек варится, а не жарится, как указано 
+  в заказе. Раз блюдо будет жариться, значит, брокколи придется сначала измельчить 
+  (если бы нужно было варить, то качанчики брокколи можно было бросать в воду 
+  целиком), следовательно, первоначальный план придется дополнить еще одной операцией. 
+  Кроме того, если кусочки баранины и броколли жарить вместе, то броколли, вероятно, 
+  пропитается соком. Значит, в системе нужно иметь правило, которое определит 
+  этот факт и изменит первоначальный простой план, — предложит сначала обжарить 
+  брокколи, а затем вынуть их.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На рис. 22.1 
+  представлена упрощенная схема той части программы CHEF, которая имеет отношение 
+  к манипуляциям с базой прецедентов.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="1.gif" width="550" height="190"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 22.1. 
+  Архитектура программы CHEF<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Модель извлечения 
+  отыскивает в базе прецедентов рецепты, наиболее близкие к текущему заказу. Очевидно, 
+  что этот модуль должен обладать способностью обращаться к базе прецедентов как 
+  к памяти, адресуемой по содержанию, оценивать степень соответствия между набором 
+  входных спецификаций и характеристиками выбранного прецедента и ранжировать 
+  отобранные прецеденты на основании этой оценки.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Модуль модификации 
+  затем копирует и переименовывает выбранный прецедент и пытается скорректировать 
+  его в соответствии с полученной целевой спецификацией. В приведенном выше примере 
+  подстановка &quot;брокколи&quot; вместо &quot;зеленый горошек&quot; и модификация 
+  плана выполняются именно этим модулем.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">После выполнения 
+  всех необходимых коррекций новый рецепт записывается модулем сохранения в базу 
+  прецедентов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В программе 
+  CHEF корректировка неудачного плана (рецепта) в действительности выполняется 
+  отдельным модулем, который имеет доступ к специальному словарю термов, описывающих 
+  отказы, и индексированному множеству стратегий восстановления. Имеется также 
+  и специальный &quot;симулятор&quot;, который позволяет &quot;проиграть&quot; 
+  сформированный рецепт и выявить в нем подводные камни, не заметные на первый 
+  взгляд. По основные модули работы с прецедентами выполняют именно те функции, 
+  которые мы описали выше.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index1.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">20.1. 
+  Индуктивное обучение</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Точное определение 
+  термину &quot;обучение&quot; дать довольно трудно, но большинство авторов сходятся 
+  во мнении, что это — качество адаптивной системы, которая способна совершенствовать 
+  свое поведение (умение справляться с проблемами), накапливая опыт, например 
+  опыт решения аналогичных задач <i>[Simon, 1983]. </i>Таким образом, обучение 
+  — это одновременно и способность, и действие. Любая программа обучения должна 
+  обеспечивать возможность сохранять и анализировать полученный опыт решения проблем, 
+  а также обладать способностью применять сделанные выводы для решения новых проблем.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В работе <i>[Carbonell 
+  et al, 1983] </i>представлена классификация программ обучения на основе используемой 
+  стратегии. Попросту говоря, использованная стратегия зависит от того, насколько 
+  глубоко может программа проникнуть в суть той информации, которую она получает 
+  в процессе обучения.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На одном конце 
+  спектра находятся программы, которые обучаются, непосредственно воспринимая 
+  новые знания, и не выполняют при этом никакого логического анализа. Обычно такую 
+  методику обучения называют <i>rote learning </i>(&quot;зубрежка&quot;, а программы 
+  соответственно — &quot;зубрилками&quot;). Аналогов такой методике в обычной 
+  жизни не счесть. Самый знакомый всем — зазубривание таблицы умножения (или &quot;Отче 
+  наш...&quot;). На другом конце спектра обучающих программ находятся те, которые 
+  пользуются методикой <i>unsupervised learning, </i>т.е. обучение без преподавателя. 
+  Под этим подразумевается способность формулировать теоремы, которая имеет очевидную 
+  аналогию с образом мышления человека, делающего научное открытие на основе эмпирических 
+  фактов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этой главе 
+  мы рассмотрим методики, лежащие посередине между этими двумя крайностями. Они 
+  получили наименование <i>супервизорного обучения (supervised learning). </i>Программам, 
+  использующим такую методику, демонстрируются ряд примеров. Программа должна 
+  проанализировать набор свойств этих примеров и идентифицировать подходящие концепты. 
+  Свойства примеров известны и представлены парами &quot;атрибут-значение&quot;. 
+  &quot;Надзор&quot; за процессом обучения заключается, главным образом, в подборе 
+  репрезентативных примеров, т.е. в формировании пространства атрибутов, над которым 
+  будет размышлять программа.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Наиболее общая 
+  форма задач, решаемых в такой системе обучения, получила наименовании <i>индукции 
+  (induction). </i>Таким образом, <i>индуктивная </i>программа обучения — это 
+  программа, способная к обучению на основе обобщения свойств предъявляемых ей 
+  примеров (экземпляров, образцов). В работе <i>[Michalski, 1983, р. 83] </i>дано 
+  такое определение процессу обучения:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&quot;Эвристический 
+  поиск в пространстве символических описаний, сформированный применением различных 
+  правил вывода к исходным наблюдаемым проявлениям&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Символические 
+  описания представляют собой, как правило, обобщения, которые можно сделать на 
+  основе наблюдаемых проявлений. Такие обобщения являются формой логического заключения, 
+  т.е. они предполагают выполнение определенных, регламентируемых некоторыми правилами 
+  трансформаций символических описаний, которые представляют наблюдаемые проявления. 
+  Одна из форм индуктивного обучения предусматривает демонстрацию примеров двух 
+  типов — тех, которые соответствуют концепту <i>(позитивные экземпляры), </i>и 
+  тех, которые ему не соответствуют <i>(негативные экземпляры). </i>Задача программы 
+  обучения — выявить или сконструировать подходящий концепт, т.е. такой, который 
+  включал бы все позитивные экземпляры и не включал ни одного негативного. Такой 
+  тип обучения получил название <i>обучение концептам (concept learning).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  набор данных, представленный в табл. 20.1.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Таблица 
+  20.1. Обучающая выборка примеров</b><br>
+  </font></p>
+<div align="left"> 
+  <table frame="BOX" rules="ALL" border="1" cellspacing="0" cellpadding="0" width="550" height="249">
+    <tr> 
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="134" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="103" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="114" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="148" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="44"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="44"> 
+        <div width="140" height="44"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Экземпляр</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="134" height="44"> 
+        <div width="134" height="44"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Страна-изготовитель</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="103" height="44"> 
+        <div width="103" height="44"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Размер</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="114" height="44"> 
+        <div width="114" height="44"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Старая модель</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="148" height="44"> 
+        <div width="148" height="44"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Позитивный/ 
+            негативный</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="44"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="42"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="42"> 
+        <div width="140" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Oldsmobile Cutlass<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="134" height="42"> 
+        <div width="134" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">США<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="103" height="42"> 
+        <div width="103" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Большой<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="114" height="42"> 
+        <div width="114" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="148" height="42"> 
+        <div width="148" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Негативный<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="42"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="26"> 
+        <div width="140" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">BMW 31 6<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="134" height="26"> 
+        <div width="134" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Германия<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="103" height="26"> 
+        <div width="103" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Малый<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="114" height="26"> 
+        <div width="114" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="148" height="26"> 
+        <div width="148" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Позитивный<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="42"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="42"> 
+        <div width="140" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Thunderbird Raodster<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="134" height="42"> 
+        <div width="134" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">США<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="103" height="42"> 
+        <div width="103" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Малый<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="114" height="42"> 
+        <div width="114" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="148" height="42"> 
+        <div width="148" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Негативный<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="42"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="24"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="24"> 
+        <div width="140" height="24"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">VW Cabriolet<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="134" height="24"> 
+        <div width="134" height="24"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Германия<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="103" height="24"> 
+        <div width="103" height="24"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Малый<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="114" height="24"> 
+        <div width="114" height="24"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Нет<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="148" height="24"> 
+        <div width="148" height="24"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Позитивный<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="24"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="42"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="42"> 
+        <div width="140" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Rolls Royce Corniche<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="134" height="42"> 
+        <div width="134" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Великобритания<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="103" height="42"> 
+        <div width="103" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Большой<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="114" height="42"> 
+        <div width="114" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="148" height="42"> 
+        <div width="148" height="42"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Негативный<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="42"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="28"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="28"> 
+        <div width="140" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Chevrolet Bel 
+            Air<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="134" height="28"> 
+        <div width="134" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">США<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="103" height="28"> 
+        <div width="103" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Малый<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="114" height="28"> 
+        <div width="114" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Да<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="148" height="28"> 
+        <div width="148" height="28"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Негативный<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="28"> </td>
+    </tr>
+    <tr> 
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="140" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="134" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="103" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="114" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="148" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+    </tr>
+  </table>
+</div>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что концепт, которому мы хотим обучить программу, это Немецкий автомобиль. Тогда 
+  позитивными экземплярами для этого концепта будут BMW 316 и VW Cabriolet, а 
+  остальные— негативными. Если же целевой концепт— Американский автомобиль старой 
+  марки, то позитивными экземплярами будут Thunderbird Raodster и Chevrolet Bel 
+  Air, а остальные — негативными.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Очень существенно 
+  предъявлять программе и позитивные, и негативные экземпляры. В первой из рассмотренных 
+  выше задач и BMW 316, и VW Cabriolet являются малыми автомобилями, поэтому если 
+  программе не представить в качестве негативного экземпляра Chevrolet Bel Air, 
+  то она может сделать вывод, что концепт Немецкий автомобиль совпадает с концептом 
+  Малый автомобиль. Аналогично, если во второй задаче не будет представлен негативный 
+  экземпляр Oldsmobile Cutlass, то программа может посчитать концепт Американский 
+  автомобиль старой марки совпадающим с более общим концептом Американский автомобиль.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">С формальной 
+  точки зрения любое множество данных, в котором выделены положительные и отрицательные 
+  экземпляры, можно считать обучающей выборкой для индуктивной программы обучения. 
+  В обучающей выборке также нужно специфицировать некоторый набор атрибутов, имеющих 
+  отношение к обучаемым концептам, а запись каждого экземпляра должна содержать 
+  значения этих атрибутов. В табл. 20.1 представлены значения атрибутов обучающей 
+  выборки для концепта Немецкий автомобиль.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Другая задача 
+  обучения получила наименование <i>обобщение дескрипторов (descriptive generalization). 
+  </i>Формулируется задача следующим образом: программе обучения предъявляется 
+  набор экземпляров некоторого класса объектов (т.е. представляющих некоторый 
+  концепт), а программа должна сформировать описание, которое позволит идентифицировать 
+  (распознавать) любые объекты этого класса. Пусть, например, обучающая выборка 
+  имеет вид<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{Cadillac 
+  Seville, Oldsmobile Cutlass, Lincoln Continental},</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">причем каждый 
+  экземпляр выборки имеет атрибуты размер, уровень комфорта и расход топлива. 
+  Тогда в результате выполнения задачи обобщения дескрипторов программа сформирует 
+  описание, представляющее набор значений дескрипторов, характерный для данного 
+  класса объектов:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{большой, 
+  комфортабельный, прожорливый}.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Отличие между 
+  задачами <i>обучение концептам </i>и <i>обобщение дескрипторов </i>состоит в 
+  следующем:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> задача обучения концептам 
+    предполагает включение в обучающую выборку как позитивных, так и негативных 
+    экземпляров некоторого заранее заданного набора концептов, а в процессе выполнения 
+    задачи будет сформировано правило, позволяющее затем программе распознавать 
+    ранее неизвестные экземпляры концепта;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> задача обобщения дескрипторов 
+    предполагает включение в обучающую выборку только экземпляров определенного 
+    класса, а в процессе выполнения задачи создается <i>наиболее компактный </i>вариант 
+    описания из всех, которые подходят к <i>каждому </i>из предъявленных экземпляров.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обе задачи 
+  относятся к классу методик, который мы назвали супервизорным обучением, поскольку 
+  в распоряжении программы имеется и специально подготовленная обучающая выборка, 
+  и пространство атрибутов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В следующем 
+  разделе мы рассмотрим две программы обучения, которые разработаны в связи с 
+  созданием экспертной системы DENDRAL. Первый вариант реализации программы обучения 
+  нельзя отнести ни к одной из перечисленных выше категорий, но второй вариант 
+  использовал методику, которую мы сейчас можем отнести к категории &quot;индуктивное 
+  обучение&quot;. В оригинальном описании программы авторы назвали ее <i>version 
+  space </i>(пространство версий). Постановка задачи очень напоминает обучение 
+  концептам, поскольку предусматривает включение в обучающую выборку позитивных 
+  и негативных экземпляров концепта.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Интересно 
+  сравнить оба варианта системы и выяснить, как знания, специфичные для определенной 
+  предметной области (в данном случае, химии), могут быть использованы алгоритмом 
+  обучения, независящим от предметной области.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В разделе 
+  20.3 описана современная программа индуктивного обучения, на примере которой 
+  будет продемонстрировано, как формируются правила для экспертных систем. В разделе 
+  20.4 мы затронем вопрос настройки отдельных правил и набора связанных правил.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index1.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

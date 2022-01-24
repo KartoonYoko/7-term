@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">5.2.2. 
+  Рабочая память</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Основная функция 
+  рабочей памяти — хранить данные в формате векторов <i>объект-атрибут-значение. 
+  </i>Эти данные используются интерпретатором, который в случае присутствия (или 
+  отсутствия) определенного элемента данных в рабочей памяти активизирует те правила, 
+  предпосылки в которых удовлетворяются наличными данными. Как это делается, рассмотрим 
+  на примере.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Пусть в рабочей 
+  памяти содержатся векторы<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(patient 
+  (name Jones) (age 40)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (organism 
+  organism-1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism 
+  (name organism-1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (morphology 
+  rod) (aerobicity .aerobic)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В очередном 
+  цикле интерпретатор просмотрит имеющийся список правил и отыщет в нем то, которое 
+  содержит условия, удовлетворяющиеся этими векторами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если предпосылка 
+  в правиле не содержит переменных, она удовлетворяется при точном совпадении 
+  выражений в правиле и в рабочей памяти. Если же предпосылка в правиле содержит 
+  переменные, т.е. является образцом, то она удовлетворяется, если в рабочей памяти 
+  содержится вектор, включающий такую пару <i>атрибут-значение, </i>которая остается 
+  постоянной при удовлетворении всех остальных условий в том же правиле.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В самом простом 
+  случае соответствие проверяется присвоением постоянных значений переменным, 
+  которые делают предпосылку совпадающей с вектором в рабочей памяти. Так, вектор 
+  состояния в рабочей памяти<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(patient 
+  (name Jones) (age 40) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism 
+  organism-1)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">удовлетворяет 
+  предпосылку в правиле<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(patient 
+  (name ?pat) (organism ?org))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">подстановкой 
+  Jones вместо ?pat и Organism-1 вместо ?org.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что мы опускаем при анализе соответствия пары, которые отсутствуют в 
+  предпосылке правила. Поскольку другая предпосылка в этом же правиле также удовлетворяется 
+  при указанной подстановке, то новый вектор<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism 
+  (name organism-1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(identify 
+  enterobacteriaceae) (confidence 0.8))<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">добавляется 
+  интерпретатором в рабочую память.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Поскольку 
+  для заключения правила значение ?pat безразлично, поле имени пациента можно 
+  в условии вообще игнорировать.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь рассмотрим 
+  набор правил, представленный в листинге 5.3, вместе с множеством векторов в 
+  рабочей памяти. Этот пример основан на планировщике STRIPS, о котором шла речь 
+  в главе 3. Программа состоит из выражений трех типов:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>деклараций </i>(или 
+    шаблонов), которые определяют формат векторов в рабочей памяти;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>определений фактов, 
+    </i>которыми задается начальное состояние проблемы;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>порождающих правил, 
+    </i>которые определяют возможные трансформации состояния проблемы.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Строки, которые 
+  начинаются символами &quot;;;&quot;, являются комментариями. </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  5.3. Набор правил для проблемы в системе STRIPS</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Шаблоны<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Цель (goal) представляет собой вектор, состоящий из<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  четырех компонентов:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  действие, которое нужно выполнить,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  объект, над которым должно быть выполнено действие;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  исходное положение;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  положение, в которое нужно перейти.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  goal<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  action (type SYMBOL))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  object (type SYMBOL)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  from (type SYMBOL)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  to (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Вектор 'in' указывает, где находится объект, (deftemplate in<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  object (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  location (type SYMBOL)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">ФАКТЫ<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Функция 
+  'deffacts' вводит в рабочую память<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;описание 
+  исходного состояния.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Функция 
+  вызывается при перезапуске системы.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Исходное 
+  состояние объектов следующее.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Робот 
+  находится в комнате А,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;ящик 
+  находится в комнате В,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;цель 
+  - вытолкнуть ящик в комнату А. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  world<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(in 
+  (object robot)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (location 
+  RoomA)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(in 
+  (object box)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (location 
+  RoomB)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (action push)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (object 
+  box) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(from 
+  RoomB) (to RoomA))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРАВИЛА<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Это правило утверждает:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Прекратить процесс, когда цель будет достигнута.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  stop<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (object ?X) (to ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(in 
+  (object ?X) (location ?Y)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(halt) 
+  )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Если робот отсутствует в том месте, где находится </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  объект, который нужно передвинуть, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  переместить туда робот. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  move<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (object ?X) (from ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(in 
+  (object ?X) (location ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?robot-position 
+  &lt;- (in (object robot)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(location 
+  ?Z&amp;~?Y)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?robot-position (location ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Если робот и объект не в том помещении,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  которое указано в цепи,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  переместить туда робот и объект.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  push<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (object ?X) (from ?Y) (to ?Z))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(in 
+  (object ?X) (location ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?object-position 
+  &lt;- (in (object ?X) (location ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?robot-position 
+  &lt;- (in (object robot) (location ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">=&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?robot-position (location ?Z)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?object-position (location ?Z))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это законченная 
+  программа на языке CLIPS, которую можно запустить на выполнение в среде разработки 
+  <b><i>CLIPS 6.O. </i></b>В этой программе не нужно было специально предусматривать 
+  какие-либо варианты разрешения конфликтных ситуаций, поскольку стратегия, предложенная 
+  по умолчанию, всегда обеспечит решение задачи (см. раздел 5.3). Введите в систему 
+  текст этой программы и запустите на выполнение:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> введите (reset),<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> затем введите (run).<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">С помощью 
+  команды watch посмотрите, в каком порядке будут использоваться специфицированные 
+  в программе правила. Во врезке 5.2 представлены трассировка выполнения этой 
+  программы и краткие пояснения.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">5.2. 
+  Трассировка программы управления роботом</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Представленная 
+  ниже карта трассировки будет сформирована при запуске про-граммы в режиме трассировки.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Команда 
+  reset обеспечит перезагрузку описания исходного состояния в рабочую память, 
+  а команда run запустит программу на выполнение.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">В 
+  карте трассировки каждая строка, которая начинается с символов ==&gt;, представляет 
+  добавление вектора в рабочую память, а строка, которая начинается с символов, 
+  &lt;==, — удаление вектора из рабочей памяти. Строки, которые начинаются с 'FIRE', 
+  представляют активизацию какого-либо правила. Остальные строки пока ,что игнорируйте.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(reset)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-0 (initial-fact)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt; 
+  f-1 (in (object robot) (location RoomA)) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-2 (in (object box) (location RoomB))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-3 (goal (action push) {object box)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (from RoomB) (to RoomA)) CLIPS&gt; </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(run) 
+  FIRE 1 move: f-3, f-2, f-1<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-1 (in (object robot) (location RoomA))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-4 (in (object robot) (location RoomB))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  2 push: f-3, f-2, f-4 &lt;== f_4</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (in (object robot) (location RoomB)) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-5 (in (object robot) (location RoomA))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-2 (in (object box) (location RoomB))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-6 (in (object box) (location RoomA))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  3 stop: f-3, f-6<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">[PRCCODE4] 
+  Execution halted during the actions of defrule stop.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">CLIPS&gt; 
+  (reset)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-0 (initial-fact)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-3 (goal {action push)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (object box) (from RoomB) (to RoomA))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-5 (in (object robot) (location RoomA))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-6 (in (object box) (location RoomA))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">CLIPS&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Обратите 
+  внимание на то, что выполнение программы останавливается правилом 'stop'.</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font></font></p>
+<br>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

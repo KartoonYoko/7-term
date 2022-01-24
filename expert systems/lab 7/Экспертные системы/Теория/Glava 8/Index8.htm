@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">8.3.2. 
+  Поиск доказательства в системе резолюций</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Резолюция 
+  представляет собой правило вывода, с помощью которого можно вывести новую ППФ 
+  (правильно построенную формулу) из старой. Однако в приведенном выше описании 
+  логической системы ничего не говорилось о том, как выполнить доказательство. 
+  В этом разделе мы обратим основное внимание на стратегические аспекты доказательства 
+  теорем.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Пусть <i>р 
+  </i>представляет утверждение &quot;Сократ — это человек&quot;, a <i>q </i>— 
+  утверждение &quot;Сократ смертен&quot;. Пусть наша теория имеет вид<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т={{¬р,q}, 
+  {р}}.</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  утверждается, что если Сократ человек, то Сократ смертен, и что Сократ — человек. 
+  {17} выводится из теории <i>Т </i>за один шаг резолюции, эквивалентной правилу 
+  <i>modus ponens. </i>.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выражения 
+  {¬р, <i>q} </i>и <i>{р} </i>&quot;сталкиваются&quot; на паре дополняющих литералов 
+  <i>р </i>и ¬<i>р, </i>а <i>{q} </i>является резольвентой. Таким образом, теория 
+  Алогически подразумевает <i>д, </i>что записывается в форме <i>Т|-q. </i>Теперь 
+  можно добавить новую фразу <i>{q} </i>— резольвенту — в теорию Т и получить 
+  таким образом теорию </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т'= 
+  {{ </font></i><font face="Verdana, Arial, Helvetica, sans-serif">¬<i>ip, q}, 
+  {p}, {q}}.</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Конечно, в 
+  большинстве случаев для доказательства требуется множество шагов. Положим, например, 
+  что теория <i>Т </i>имеет вид<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этой теории 
+  <i>р </i>и <i>q </i>сохраняют прежний смысл, а <i>г </i>представляет утверждение 
+  &quot;Сократ — бог&quot;. Для того чтобы показать, что <i>Т|- </i>¬<i>r , </i>потребуются 
+  два шага резолюции:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{¬q,p},{Р}/{q}<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{¬q,-r},{q} 
+  / {-r}</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание, 
+  что на первом шаге используются две фразы из исходного множества <i>Т, </i>а 
+  на втором— резольвента {q}, добавленная к <i>Т. </i>Кроме того, следует отметить, 
+  что доказательство может быть выполнено и по-другому, например:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{¬p,q},{¬q,¬r}/{¬p,¬r},<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">{¬p,¬r},{p}/{¬r}</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При таком 
+  способе доказательства к <i>Т </i>добавляется другая резольвента. В связи со 
+  сказанным возникает ряд проблем.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Когда множество <i>Т 
+    </i>велико, естественно предположить, что должно существовать несколько способов 
+    вывести интересующую нас конкретную формулу (эта формула является <i>целевой). 
+    </i>Естественно, что предпочтение следует отдать тому методу, который позволяет 
+    быстрее сформулировать доказательство.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Множество <i>Т </i>может 
+    поддерживать и те правила, которые не имеют ничего общего с доказательством 
+    целевой формулы. Как же заранее узнать, какие правила приведут нас к цели?<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Потенциально весь процесс 
+    подвержен опасности комбинаторного взрыва. На каждом шаге множество Г растет, 
+    и в нашем распоряжении оказывается все больше и больше возможных путей продолжения 
+    процесса, причем некоторые из них могут привести в зацикливанию.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Та схема логического 
+  вывода, которой мы следовали до сих пор, обычно называется <i>прямой, </i>или 
+  <i>восходящей стратегией. </i>Мы начинаем с того, что нам известно, и строим 
+  логические суждения в направлении к тому, что пытаемся доказать. Один из возможных 
+  способов преодоления сформулированных выше проблем — попытаться действовать 
+  в обратном направлении: от сформулированной целевой формулы к фактам, которые 
+  нужны нам для доказательства истинности этой формулы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  перед нами стоит задача вывести <i>{q} </i>из некоторого множества фраз<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т= 
+  {...,{ </font></i><font face="Verdana, Arial, Helvetica, sans-serif">¬p, <i>q},...}.</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Создается 
+  впечатление, что это множество нужно преобразовать, отыскивая фразы, включающие 
+  <i>q </i>в качестве литерала, а затем попытаться устранить другие литералы, 
+  если таковые найдутся. Но фраза <i>{q} </i>не &quot;сталкивается&quot; с такой 
+  фразой, как, например, { <i>—р, q}, </i>поскольку пара, состоящая из одинаковых 
+  литералов <i>q, </i>не является взаимно дополняющей.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если <i>q 
+  </i>является целью, то метод <i>опровержения резолюции </i>реализуется добавлением 
+  негативной формулы цели к множеству <i>Т, </i>а затем нужно показать, что формула<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т' 
+  = Т U </font></i><font face="Verdana, Arial, Helvetica, sans-serif"> {¬q}</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> является несовместной. 
+  Полагая, что множество <i>Т </i>непротиворечиво, приходим к выводу, что <i>Т' 
+  </i>может быть противоречивым вследствие <i>Т |- q.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  этот вопрос более подробно. Сначала к существующему множеству фраз добавляется 
+  отрицание проверяемой фразы {-q}. Затем предпринимается попытка резольвиро-вать 
+  {-q} с другой фразой в <i>Т. </i>При этом существуют только три возможные ситуации.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>В Т не </i>существует 
+    фразы, содержащей <i>q. </i>В этом случае доказать искомое невозможно.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Множество <i>Т </i>содержит 
+    <i>{q}. </i>В этом случае доказательство выполняется немедленно, поскольку 
+    из {¬q} и <i>{q} </i>можно вывести пустую фразу, что означает <i>несовместность 
+    </i>(наличие противоречия).<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Множество <i>Т </i>содержит 
+    фразу {..., <i>q, ...}. </i>Резольвирование этой фразы с {¬q} формирует новую 
+    фразу, которая содержит остальные литералы, причем для доказательства противоречия 
+    все они должны быть удалены в процессе резольвирования.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эти оставшиеся 
+  литералы можно рассматривать в качестве подцелей, которые должны быть разрешены, 
+  если требуется достичь главной цели. Описанная стратегия получила название <i>нисходящей 
+  </i>(или <i>обратной) </i>и очень напоминает формулирование подцелей в системе 
+  MYCIN.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В качестве 
+  примера положим, что множество <i>Т, </i>как и ранее, имеет вид <i>{{</i>¬<i>p,q},{</i>¬<i>q,</i>¬<i>r},{p}}. 
+  </i>Мы пытаемся показать, что <i>Т|- </i>¬<i>r. </i>Для этого докажем, что фраза 
+  {r} является следствием существующего множества <i>Т, </i>для чего добавим к 
+  этому множеству отрицание фразы ¬<i>r. </i>Поиск противоречия происходит следующим 
+  образом:</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">[{¬q,¬r},{r}]/{¬q}</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">[{¬p,q},{¬q}]/{¬q}</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">[{¬p},{p}]/{}</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Этот метод 
+  доказ_ательства теорем получил название &quot;опровержение резолюции&quot;, 
+  поскольку, во-первых, он использует правило вывода резолюций, а во-вторых, следует 
+  стратегии &quot;от противного&quot; (стратегии опровержения).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь вернемся 
+  к примеру PROLOG-программы, представленному в листинге 8.1. На рис. 8.1 показано 
+  <i>дерево доказательства </i>утверждения above(a, с). Дерево строится сверху 
+  вниз, и каждая ветвь связывает две &quot;родительские фразы&quot;, в которых 
+  содержатся дополняющие литералы, с фразой, которая образуется в результате применения 
+  правила резолюции. Ко всем целям, записанным справа от значка &quot;:-&quot;, 
+  неявно применяется отрицание. В левой части дерева представлены формулы целей, 
+  а в правой — фразы, взятые из базы данных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Корнем дерева 
+  является пустая фраза {}. Это означает, что поиск доказательства был успешным. 
+  Добавление негативной фразы :- above (а, с) к исходному множеству (теории) привело 
+  к противоречию. Таким образом, можно утверждать, что фраза above (а, с) является 
+  логическим следствием из этой теории.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на роль операции <i>унификации </i>в этом доказательстве. Цель above (а, с) 
+  унифицируется с головной фразой above(X, Y) с помощью подстановки {Х/а, Y/c}, 
+  где выражение Х/а можно интерпретировать как <i>&quot;X </i>получает значение 
+  <i>а&quot;. </i>Затем эта подстановка применяется к хвостовой части фразы<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">on(Z, 
+  Y), above(X, Z), </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">из чего следует 
+  формулировка подцелей</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> <font face="Verdana, Arial, Helvetica, sans-serif">on(Z, 
+  с), above(a, Z).</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Следующая 
+  подцель on(Z, с) унифицируется с on(b, с) подстановкой {Z/b}. Эта подстановка 
+  затем применяется и к оставшейся подцели, которая таким образом превращается 
+  в above (а, b), и так до тех пор, пока не образуется пустая фраза.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="1.gif" width="550" height="341"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 8.1. 
+  Дерево доказательства методом опровержения резолюций<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Восходящий 
+  процесс доказательства, использующий в качестве отправной точки утверждение, 
+  которое мы стараемся доказать, позволяет сфокусировать внимание на процессе 
+  поиска решения, поскольку анализируемые логические связи по крайней мере потенциально 
+  ведут нас к цели. Правда, основанный на этой стратегии метод опровержения резолюций 
+  не позволяет решить все перечисленные выше проблемы. В частности, этот метод 
+  не гарантирует, что найденный путь доказательства будет короче других (или длиннее).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В следующих 
+  двух разделах мы рассмотрим эволюцию <i>процедурных дедуктивных систем, </i>т.е. 
+  систем, в которых процедуры используются для добавления дополнительных управляющих 
+  свойств в процесс целенаправленного поиска и для представления знаний, которые 
+  не имеют четко выраженного декларативного характера.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Процесс становления 
+  этого класса систем весьма поучителен, поскольку демонстрирует, как, отталкиваясь 
+  от стандартной логики и добавляя методики, обычно используемые при доказательстве 
+  теорем, можно построить успешно функционирующую автоматическую систему доказательства.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Почему 
+  в качестве пояснения процесса логического вывода пользователю недостаточно представить 
+  только результаты трассировки активизируемых правил?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. Почему 
+  формирование пояснений в системах, основанных на порождающих правилах, упрощается, 
+  если разделить используемые правила на группы по назначению?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Какую помощь 
+  в формировании пояснений может оказать использование фреймов? С какой целью 
+  фреймы комбинируются с порождающими правилами?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Ниже представлена 
+  новая версия программы Assault-weapon (оружие нападения), которая была рассмотрена 
+  в главе 11. В этой версии программа задает пользователю вопросы об определенном 
+  виде оружия, а затем формирует пояснение, почему данный тип оружия относится 
+  (или не относится) к классу &quot;оружие нападения&quot; в соответствии с имеющимися 
+  в программе правилами. Программа состоит из двух частей: в первой уточняются 
+  характеристики модели оружия, а во второй формируется пояснение.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Разработайте 
+  правила, которые не представлены в приведенном ниже тексте программы. Указания, 
+  какие именно правила требуется разработать, выделены в комментариях в тексте 
+  программы.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Объявления (deftemplate gun<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  name (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  model (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  class (type SYMBOL) (default NIL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  action (type SYMBOL) (default NIL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  caliber (type FLOAT) (default 0.0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  capacity (type INTEGER) (default 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  features (type SYMBOL) (default NIL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  assault-weapon<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  make (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  model (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРАВИЛА<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Общий случай<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Любая полуавтоматическая<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  винтовка (semi-automatic rifle)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  или охотничье ружье (shotgun) с емкостью<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  магазина более 5 патронов.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  Parti<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (make ?M) (model ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(class 
+  ?CSrifle|shotgun) (action semi) (capacity ?X&amp;:(&gt; ?X 5))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (assault-weapon (make ?M) (model ?N)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Разработайте 
+  правило make-and-model, которое будет запрашивать у пользователя необходимую 
+  информацию о модели оружия и формировать вектор gun в рабочей памяти. Используйте 
+  в качестве модели следующие правила, (defrule class-and-action<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?G 
+  &lt;- (gun (action NIL)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Please 
+  enter the class of gun&quot; t crlf &quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">for 
+  example shotgun, rifle, pistol &quot; t crlf &quot;CLASS:&quot; t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Введите класс оружия, &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;например, охотничье ружье, карабин, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;пистолет и т.д. &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;КЛАСС:&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(bind 
+  ?class (read)) (printout t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Please 
+  enter the action type of the gun&quot; t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;for 
+  example bolt, slide, lever, semi,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> revolver 
+  ... &quot; t crlf &quot;ACTION:&quot; t crlf </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Введите тип оружия, &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;например, с цилиндрическим затвором, со </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  скользящим затвором, с рычажным затвором, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  полуавтоматический, револьвер ... </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;ТИП:&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(bind 
+  ?action (read))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?G (class ?class) (action ?action)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Разработайте правило capacity, которое будет</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  запрашивать емкость магазина модели оружия.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  В качестве прототипа используйте приведенное</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  ниже правило caliber, которое запрашивает у </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  пользователя значение калибра модели,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (defrule 
+  caliber<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?G 
+  &lt;- (gun (caliber 0.0)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Please 
+  enter the caliber of gun&quot; t crlf &quot;CALIBER:&quot; t crlf </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Введите калибр оружия, &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;КАЛИБР:&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modufy 
+  ?G (caliber (read))) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Любая полуавтоматическая<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  винтовка (semi-automatic rifle)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  или охотничье ружье (shotgun) с<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  перечисленными дополнительными признаками.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  Part2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (make ?M) (model ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(class 
+  ?CSrifle|shotgun) (action semi)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (features 
+  ?F&amp;flash-suppressor|barrel-shroud|night-scope)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (assault-weapon (make ?M) (model ?N))) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Разработайте 
+  правило pistol-grip-shotgun,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;которое 
+  будет относить любое охотничье ружье</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;с 
+  пистолетной рукояткой к категории </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;&quot;оружие 
+  нападения&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Разработайте 
+  правила, которые будут</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;запрашивать 
+  у пользователя сведения о</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;дополнительных 
+  конструктивных характеристиках </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;модели 
+  ранее определенного класса. Например,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;пистолет, 
+  как правило, не имеет защитного</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;кожуха 
+  на стволе, поэтому в наборе правил не</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;имеет 
+  смысла запрашивать эту характеристику, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;если 
+  ранее определен класс модели pistol.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Особые 
+  случаи касаются тех моделей, которые</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;явно 
+  перечислены в законодательном акте<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Модель 
+  Cobray Mil относится к категории<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;оружие 
+  нападения&quot;, defrule cobray<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 20))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (make cobray) (model Mil)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(class 
+  pistol)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (assault-weapon (make cobray)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(model 
+  Mil))) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Модель этого типа не относится</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  к категории &quot;оружие нападения&quot;, (defrule rimfire<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 10))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?except 
+  &lt;- (gun (make ?M) (model ?N)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (class 
+  rifle) (caliber .22))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?mistake 
+  &lt;- (assault-weapon) (model ?N))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">=&gt; 
+  :<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf &quot;The &quot; ?M &quot; &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  is definitely not an assault weapon. &quot; t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Модель &quot; ?М &quot; &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;по определению в законе не относится к<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  категории &quot;оружие нападения&quot;.&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?mistake)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?except) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Разработайте 
+  аналогичное правило </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;slide-action, 
+  которое будет исключать</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;любое 
+  охотничье ружье со скользящим затвором </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;из 
+  категории &quot;оружие нападения&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Правила 
+  вывода результатов.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Разработайте 
+  правило probably-is, которое</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;будет 
+  извещать пользователя о том, что </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;представленная 
+  им модель может быть отнесена</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;к 
+  категории &quot;оружие нападения&quot;, согласно действующему</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;законодательному 
+  акту. В качестве прототипа</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;можете 
+  воспользоваться приведенным ниже</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;правилом, 
+  которое извещает пользователя об </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;обратном 
+  результате экспертизы.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  probably-is-not (declare (salience -20)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (make ?M) (model ?N)) (not</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (assault-weapon 
+  (make ?M) (model ?N))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf &quot;The &quot; ?M &quot; &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  is probably not an assault weapon. &quot; t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Модель &quot; ?M &quot; &quot; ?N </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;, вероятно, не относится к </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  категории &quot;оружие нападения&quot;.&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(halt) 
+  )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Теперь 
+  обратимся к той части программы, которая должна давать пользователю пояснения, 
+  на чем основывается сделанное заключение. Сначала нам понадобится зафиксировать 
+  в программе пояснения ко всем решениям, неявно представленным в правилах, а 
+  затем процитировать соответствующие статьи из законодательного акта. Представленный 
+  в нем перечень характеристик, на основании которых модель оружия относится к 
+  категории &quot;оружие нападения&quot;, состоит из пяти разделов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) Общее 
+  описание полуавтоматического огнестрельного оружия с большой емкостью магазина.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Перечень 
+  дополнительных характеристик.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3) &quot;Любое 
+  охотничье ружье с пистолетной рукояткой&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(4) Перечень 
+  фирм-изготовителей и выпускаемых ими моделей, которые безоговорочно относятся 
+  к этой категории.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(5) Перечень 
+  характеристик, которые позволяют исключить рассматриваемую модель из категории 
+  &quot;оружие нападения&quot; даже в том случае, если она удовлетворяет требованиям, 
+  перечисленным в предыдущих разделах.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В случае положительного 
+  решения (рассматриваемая модель отнесена к категории &quot;оружие нападения&quot;) 
+  в пояснении должно быть указано, какой из первых четырех разделов послужил основанием 
+  для такого заключения. Если же сделано отрицательное заключение, то оно также 
+  должно быть мотивировано в пояснении, опираясь на процитированные пять разделов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для того чтобы 
+  реализовать в программе формирование такого пояснения, придется добавить два 
+  новых поля в вектор assault-weapon:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  assault-weapon<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  make (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  model (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  just (type SYMBOL) (default NIL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  part (type INTEGER) (default 0)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правила, которые 
+  формируют этот вектор в новом варианте, должны заполнять эти атрибуты. Например:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  Part)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (make ?M) (model ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(class 
+  ?C&amp;rifle|shotgun) (action semi)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (capacity 
+  ?X&amp;:(&gt; ?X 5))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (assault-weapon (make ?M) (model ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(just 
+  capacity) (part 1))) )<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этом правиле 
+  устанавливается, что причиной, по которой данная модель отнесена к категории 
+  &quot;оружие нападения&quot;, является емкость ее магазина (capacity), причем 
+  сделано это на основании раздела 1 (part 1) законодательного акта.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для завершения 
+  разработки программы нужно выполнить следующее.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Модифицировать 
+  правило Part2, воспользовавшись в качестве прототипа приведенным выше текстом 
+  правила Part1.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Модифицировать 
+  правило cobray таким образом, чтобы отразить в нем причину, по которой эта модель 
+  отнесена к категории &quot;оружие нападения&quot; (причиной является значение 
+  атрибута model).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Аналогично 
+  модифицировать и тот вариант правила pistol-grip-shotgun, который вы разработаете, 
+  выполняя первую часть этого упражнения.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Отредактировать правила 
+    rimf ire, slide-action и probably-is, включив в них манипуляции <i>с </i>атрибутами 
+    just и part.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При выводе 
+  поясняющих сообщений оператором printout воспользуйтесь шаблоном, в который 
+  требуется подставить значения переменных из атрибутов make, model, part и features. 
+  Шаблон должен выглядеть примерно так:<font face="Verdana, Arial, Helvetica, sans-serif"><br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;The 
+  MAKE MODEL is (not) an assault weapon </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">under 
+  Part NUMBER of the definition because of the FEATURE&quot;</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">&quot;Изделие 
+  ИЗГОТОВИТЕЛЬ, МОДЕЛЬ (не) является оружием нападения на основании раздела НОМЕР 
+  определения вследствие ХАРАКТЕРИСТИК.&quot;<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Прописными 
+  буквами в шаблоне выделены элементы, которые должны быть заменены значениями 
+  соответствующих атрибутов.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+</body>
+</html>

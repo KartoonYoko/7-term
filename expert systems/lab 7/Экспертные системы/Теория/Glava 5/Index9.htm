@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">5.3.3. 
+  Правила и метаправила</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Код каждого 
+  порождающего правила является самодостаточным, т.е. весь необходимый контекст 
+  активизации правила содержится только в его предпосылках. Не существует способа, 
+  который позволял бы одному правилу вызывать другое, как если бы правила были 
+  процедурами. Правило <i>R, </i>которое активизируется в цикле С<sub>i</sub>, 
+  может облегчить последующую активизацию правила <i>R' </i>в цикле C<sub>i+1</sub>, 
+  но единственный способ сделать это — изменить состояние рабочей памяти.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Иногда, для 
+  того чтобы решить, какое правило следует активизировать, желательно использовать 
+  конкретные знания, а не следовать общей стратегии разрешения конфликтов. С этой 
+  целью в некоторые интерпретаторы правил включены средства, позволяющие программисту 
+  сформулировать и ввести в программу метаправила. Эти метаправила определяют 
+  правила применения правил, т.е. правила, по которым выполняется отбор тех правил 
+  из претендующих на выполнение, которые следует рассматривать в первую очередь 
+  или, более того, выполнять обязательно, (Такая возможность отсутствует в интерпретаторе 
+  CLIPS.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Метаправила, 
+  таким образом, существенно отличаются от обычных правил, поскольку они направляют 
+  ход рассуждений, а не принимают непосредственное участие в процессе формирования 
+  суждений. Часто это отличие формулируется в терминах разграничения уровней функционирования 
+  правил —<i>метауровня </i>и <i>объектного уровня.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Например, 
+  в системе MYCIN набор порождающих правил индексирован по клиническим параметрам, 
+  которые упоминаются в его правой части (заключение правила). В результате появляется 
+  предпосылка для значительного ускорения процедуры извлечения правил, которые 
+  можно использовать для определения величины определенного параметра (лекарственного 
+  препарата). Эта информация используется метаправилами, которые применяются по 
+  отношению к правилам, с помощью которых достигается определенная подцель. Пусть, 
+  например, сформулирована очередная подцель G, скажем, классифицировать микроорганизм. 
+  Для достижения этой подцели в системе при данном состоянии рабочей памяти можно 
+  применить множество, например порядка 30 правил. Метаправила позволяют значительно 
+  сузить круг кандидатов на основании какого-либо критерия, заложенного программистом 
+  в формулировку этого правила.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ниже представлено 
+  простое метаправило сокращения количества кандидатов в системе MYCIN, заимствованное 
+  из книги Бучанана и Шортлиффа <i>[Buchanan and Shortliffe, 1984, Chapter 28].</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">МЕТАПРАВИЛO001<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> культура получена 
+  не из стерильного источника, и существуют правила, в предпосылках которых упоминается 
+  предыдущий классифицированный организм, который может быть тем же самым, что 
+  и текущий,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> с совершенной 
+  определенностью (1.0) можно предположить, что каждое из этих правил в данном 
+  случае не применимо.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это метаправило 
+  позволяет исключить из рассмотрения те правила, которые использовались для классификации 
+  других организмов из этого же источника.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Другие метаправила 
+  могут быть использованы для изменения порядка приоритетов правил. В них фактически 
+  заложены знания, рекомендующие: &quot;сначала попробуйте этот способ, а уж потом 
+  — тот&quot;. Примером может служить приведенное ниже метаправило, также относящееся 
+  к системе MYCIN.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">МЕТАПРАВИЛO002 
+  </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">(1)инфекция 
+  относится к классу pelvic-abscess, и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2)существуют 
+  правила, в предпосылках которых упоминается enterobacteriaceae, и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3)существуют 
+  правила, в предпосылках которых упоминается грамполохительная окраска,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> есть основания 
+  предполагать (0.4), что приоритет следует отдать первым из перечисленных правил.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что в приведенном метаправиле также присутствует коэффициент уверенности 
+  меньше единицы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Последний 
+  пример демонстрирует метаправило, которое относится к общей стратегии решения 
+  проблем, а не к конкретным проблемам предметной области.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">МЕТАПРАВИЛO00З<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1)существуют 
+  правила, в предпосылках которых не упоминается текущая цель, и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2)существуют 
+  правила, в предпосылках которых упоминается текущая цель,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> с совершенной 
+  определенностью (1.0) можно утверждать, что сначала следует активизировать первые 
+  из перечисленных правил.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Довольно часто 
+  метаправила отражают знания относительно конкретной предметной области. Например, 
+  если мы обратимся к системам медицинской диагностики, то в виде метаправила 
+  можно представить тот факт, что пациенты определенной группы, например склонные 
+  к употреблению алкоголя или пострадавшие от ожогов, особенно подвержены влиянию 
+  определенных видов инфекций. Тогда в метаправиле нужно указать, что для таких 
+  пациентов при анализе правил-кандидатов предпочтение следует отдавать тем, которые 
+  специфичны именно для этой инфекции.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но очень важно, 
+  чтобы применение метаправил не увело нас в сторону, а для этого при их формулировке 
+  на основе существующих знаний нужно использовать определенный уровень абстрагирования. 
+  Например, метаправило<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> (1)х алкоголик,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">сначала следует 
+  рассмотреть правила, имеющие отношение к болезни А, а затем правила, имеющие 
+  отношение к болезни Б может быть сформулировано более абстрактно:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) существует 
+  определенная причина X, которая склоняет нас к мысли, что Y относится к категории 
+  Z, и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2)существуют 
+  специальные правила, связанные именно с категорией Z,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ТО</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> применить 
+  эти правила прежде, чем попробовать другие, допустимые в данных условиях.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Вторая формулировка 
+  менее связана с предметной областью, а потому такое метаправило можно применять 
+  в системах различного назначения. Первую формулировку можно рассматривать и 
+  как реализацию в конкретной предметной области более общей второй формулировки 
+  метаправила. По мере проникновения экспертных систем во все новые предметные 
+  области растет интерес к таким обобщенным формулировкам метаправил на высоком 
+  уровне абстракции (см. главы 11, 12 и 17).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мы еще вернемся 
+  к теме метаправил в главах 12, 15, 18 и 23, а сейчас только отметим, что это 
+  довольно продуктивная идея, которой, тем не менее, следует пользоваться осмотрительно. 
+  Если программа потратит значительную часть времени на определение того, какими 
+  правилами пользоваться, то это может сказаться отрицательно на ее производительности.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">5.5. 
+  Свойство выпуклости в CLIPS: пингвины обретают способность летать (или не обретают)</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">В 
+  языке CLIPS отсутствуют средства определения метаправил. Но в интерпретаторе 
+  этого языка имеется возможность анализировать свойство правил, названное разработчиками 
+  salience (выпуклость), и отдавать при разрешении конфликтов предпочтение тому 
+  правилу, которое характеризуется большим значением этого свойства.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Вспомним 
+  пример с классификацией пингвинов, рассмотренный в главе 2. Нужно так организовать 
+  систему правил, чтобы то правило, которое имеет отношение именно к пингвинам, 
+  имело более высокий приоритет перед более общим правилом, имеющим отношение 
+  ко всем птицам. Для этого правилу, касающемуся пингвинов, придается большая 
+  &quot;выпуклость&quot;, чем правилу, относящемуся ко всем птицам. Это правило 
+  как бы выталкивается на авансцену. На языке CLIPS определение правил тогда будет 
+  иметь вид<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">(defrule 
+  (bird (type ?X))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (yes))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">) 
+  (defrule<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience 100))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(bird 
+  (type penguin))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (no)) )</font></font><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">По 
+  умолчанию любое правило имеет нулевое значение свойства salience, если оно явно 
+  не задано. Этому свойству можно придавать как положительное значение, &quot;выталкивая&quot; 
+  соответствующее правило вперед, а можно присвоить и отрицательное значение, 
+  насильно отправляя его в конец очереди.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">С 
+  точки зрения теории не рекомендуется приписывать жесткие приоритеты правилам, 
+  поскольку в общем случае это влечет за собой много побочных следствий, но в 
+  отдельных конкретных случаях такой подход дает весьма неплохие результаты.</font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="4"><b>15.2. 
+  Архитектура систем планирования и метапланирования</b></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Экспертная 
+  система MOLGEN, предназначенная для планирования экспериментов в исследованиях 
+  по молекулярной генетике, имеет многоуровневую организацию, в которой каждый 
+  более верхний уровень управляет расположенными ниже. Такой вид организации экспертной 
+  системы получил в литературе название <i>метауровневой архитектуры (meta-level 
+  architecture). </i>Идея состоит в том, что в дополнение к представлению &quot;первого 
+  уровня&quot; проблемы в предметной области добавить еще более высокие уровни, 
+  представляющие такие понятия, как возможные действия с объектами предметной 
+  области, критерии выбора и комбинирования таких действий.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В терминологии 
+  системы MOLGEN уровни управления называются <i>пространствами планирования (planning 
+  space). </i>Программа использует три таких пространства, каждое из которых имеет 
+  собственные объекты и операторы, которые взаимодействуют друг с другом с помощью 
+  <i>протоколов передачи сообщений </i>(см. главу 7). Схематически организация 
+  уровней управления в системе MOLGEN представлена на рис. 15.1. На этой схеме 
+  в левой части прямоугольников, представляющих каждое пространство планирования, 
+  приведен список некоторых операторов этого пространства. Интерпретатор организует 
+  внешний цикл управления системой. Фактически он формирует и следит за соблюдением 
+  определенной стратегии поведения системы. Как будет показано ниже, в этих стратегиях 
+  реализуется логический вывод суждений на метауровне, которые управляют <i>способом 
+  </i>решения проблемы планирования эксперимента.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мы начнем 
+  анализ архитектуры системы MOLGEN с самого нижнего уровня — <i>пространства 
+  лабораторных экспериментов (laboratory space). </i>В этом пространстве содержатся 
+  знания об объектах и операциях, выполняемых в лаборатории в процессе проведения 
+  экспериментов. Объектами этого пространства являются те сущности, которыми манипулируют 
+  лаборанты, а операторы — это те действия, которые с этими сущностями могут выполняться, 
+  например сортировка, слияние и т.д. Мы не будем подробно останавливаться на 
+  этом уровне. Читатели, которых интересуют подробности его организации, могут 
+  обратиться к статьям Стефика <i>[Stefik, 1981, а] </i>и <i>[Stefik, I981, b].</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>Пространство 
+  разработки (design space) </i>содержит знания о планах проведения экспериментов 
+  в форме классов операторов для выполнения следующих действий:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> проверки прогнозируемых 
+    характеристик и выявления необычных характеристик объектов — операторы <i>сравнения 
+    (comparison-operators),</i><br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> формирования предложений 
+    относительно целей, операций и прогнозируемых результатов — операторы <i>временного 
+    расширения (temporal-extension operators);</i><br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> уточнения этапов плана 
+    в соответствии с имеющимися ограничениями — операторы <i>специализации (specialization 
+    operators).</i><br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Например, 
+  оператор Propose-Goal (предложение цели) относится к группе операторов временного 
+  расширения и устанавливает для лабораторного пространства цели проведения экспериментов. 
+  Оператор Check-Prediction (проверка прогнозируемых результатов) относится к 
+  группе операторов сравнения и выполняет сравнение прогнозируемых результатов 
+  экспериментов с текущей целью. Оператор Refine-Operator (уточнение) входит в 
+  группу операторов специализации. Он заменяет в форме уточняемого плана абстрактные 
+  этапы в операциях пространства лабораторных экспериментов на более конкретные.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="1.gif" width="550" height="389"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 15.1. 
+  Организация пространств планирования в системе MOLGEN ([Stefik, 1981,b])</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Каждому оператору 
+  назначается определенный уровень приоритета. Как правило, операторы сравнения 
+  имеют более высокий приоритет, чем операторы <i>временного расширения, </i>а 
+  последние имеют приоритет перед операторами специализации. Такое ранжирование 
+  операторов является, по существу, одним из отражений стратегии наименьшего принуждения, 
+  поскольку операции с более высоким приоритетом, как правило, оставляют большую 
+  свободу действий на будущее, чем операторы с более низким приоритетом. В той 
+  предметной области, для которой предназначена система MOLGEN, с помощью этих 
+  операторов моделируется экспертность специалистов, разрабатывающих эксперименты, 
+  но общие принципы организации этой системы вполне применимы и в других областях 
+  проектирования и планирования.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Большую роль 
+  в системе MOLGEN (как, впрочем, и в других приложениях, предназначенных для 
+  решения проблем конструирования) играют следующие три операции с ограничениями.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Формулирование ограничений. 
+    </i>Эта операция формирует ограничения для пространства решений. Если воспользоваться 
+    примером из области планирования компоновки помещений, то такой операцией 
+    будет принятие решения, что кухня и столовая должны быть расположены рядом.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Распространение 
+    ограничений. </i>Эта операция организует передачу информации между подзадачами, 
+    которые являются в определенной мере независимыми. Например, компоновка помещений 
+    на верхнем и нижнем этажах коттеджа является почти независимыми задачами, 
+    но они связаны друг с другом наличием одних и тех же ограничений в виде расположения 
+    лестниц и элементов водопроводной системы.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Удовлетворение ограничений. 
+    </i>Эта операция собирает информацию об ограничениях, извлекая ее из деталей 
+    реализации отдельных подзадач проектирования. Например, при планировке помещений 
+    можно попробовать подгонять планировку верхнего и нижнего этажей таким образом, 
+    чтобы облегчить выполнение подзадачи планирования системы водоснабжения.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Полезно попытаться 
+  охарактеризовать отдельные операции в терминах тех ограничений, которые на них 
+  накладываются. Например, если проблема состоит в том, чтобы выяснить, что делать 
+  сегодня вечером, а текущая операция — это &quot;пойти в кино&quot;, то можно 
+  сказать, что эта операция <i>недоопределена </i>(underconstrained), если в городке 
+  есть более одного кинотеатра. В более общем смысле операция является недоопределенной, 
+  если отсутствует вся необходимая информация для того, чтобы эта операция могла 
+  быть однозначно реализована в терминах более детальных этапов. Но операция &quot;пойти 
+  посмотреть фильм-ужастик&quot; является <i>переопределенной (overconstrained), 
+  </i>если в городке нет ни одного кинотеатра, в котором бы шел такой фильм. В 
+  более общем смысле операция является переопределенной в том случае, если любая 
+  попытка выполнить ее приводит к нарушению наложенных ограничений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Назначение 
+  <i>пространства стратегий (strategy space) </i>— выработка суждений об этапах 
+  плана в пространстве разработки. Основным инструментом для этого являются эвристики 
+  стратегии наименьшего принуждения. Если операторы <i>пространства разработки 
+  </i>отвечают за формирование последовательности этапов выполнения в <i>предметной 
+  области, </i>то операторы <i>пространства стратегий </i>отвечают за формирование 
+  последовательности выполнения операторов <i>пространства разработки. </i>Таким 
+  образом, можно утверждать, что операторы этого пространства выполняют <i>метапланирование.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Пространство 
+  стратегий системы MOLGEN состоит из следующих операторов, которые мы будем описывать 
+  в терминах сообщений, передаваемых сущностям управляемого пространства разработки.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Оператор Focus посылает 
+    сообщение &quot;find task&quot; каждому оператору пространства разработки, 
+    побуждающее его найти такую задачу, которую этот оператор мог бы выполнить 
+    в развитии текущего плана. Затем предлагаемые операции включаются в список 
+    и сортируются в порядке приоритетов соответствующих операторов. Не все из 
+    этих операций могут быть действительно выполнены. Некоторые из них недоопределены, 
+    а другие— переопределены. Оператор Focus просматривает сформированный список 
+    и выполняет те задачи, которые могут быть выполнены, отсылая после каждого 
+    успешного выполнения сообщение &quot;find task&quot;. Если обнаруживается 
+    недоопределенная задача, ее выполнение приостанавливается. Когда же будет 
+    обнаружена переопределенная задача, управление передается оператору Undo.<br>
+    </font> </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="3"> Оператор Resume во многом 
+    похож на оператор Focus. Отличие состоит в том, что он не формирует новые 
+    задачи, а старается выявить ранее приостановленные и повторно запустить их 
+    на выполнение.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Оператор Guess активизируется 
+    в том случае, когда оказывается, что все предлагаемые для дальнейших действий 
+    задачи являются недоопределенными. Возникает ситуация, когда обычный &quot;регулярный&quot; 
+    подход на основе стратегии наименьшего принуждения не позволяет определить 
+    следующее действие и нужно привлекать на помощь эвристики. Оператор Guess 
+    посылает каждой приостановленной задаче сообщение, предлагая оценить степень 
+    &quot;полезности&quot; опций, которыми располагает эта задача, а затем выбирает 
+    ту из них, у которой самый высокий рейтинг.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Оператор Undo активизируется, 
+    когда обнаруживается, что в план включена переопределенная задача. В этом 
+    случае складывается ситуация, в которой нельзя применить стратегию наименьшего 
+    принуждения. В том виде, в каком он реализован в системе MOLGEN, оператор 
+    Undo выглядит довольно примитивным. Он отыскивает тот этап, который привел 
+    к включению в план переопределенной задачи, и предлагает изъять его из плана.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В системе 
+  MOLGEN список актуальных операторов используется более гибко, чем в системах 
+  INTERNIST и CENTAUR, описанных в главе 13. Хотя во всех трех системах разделяется 
+  предложение задач к выполнению и их реальное выполнение, только архитектура 
+  MOLGEN позволяет задачам взаимодействовать нетривиальным способом. Как отметил 
+  Стефик (Stefik), если такое взаимодействие не организуется явным образом на 
+  более, высоких уровнях, оно может привести к весьма неожиданным результатам 
+  на более низких. Естественно, многоуровневая архитектура должна существенно 
+  упростить решение проблемы, если в ней правильно выполнено распределение нагрузки 
+  по уровням. По мере перехода на более высокие уровни решаемые задачи должны 
+  упрощаться. На самом высоком уровне, уровне интерпретатора, решается единственная 
+  тривиальная задача запуска на выполнение той подзадачи, которая стоит первой 
+  в списке актуальных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Как уже отмечалось, 
+  основной &quot;слабостью&quot; системы MOLGEN является то, что в ней отсутствует 
+  достаточно совершенный механизм обратного прослеживания. Другими словами, если 
+  вспомнить о наименовании стратегии <i>предложение и пересмотр, </i>то эта система 
+  сильна в выработке предложений, но слаба в их пересмотре, а потому ей не всегда 
+  удается &quot;выкарабкаться&quot; из ситуации, которая складывается после неудачного 
+  предложения.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В следующем 
+  разделе будет описана экспертная система, в которой используется та же парадигма 
+  <i>предложение и пересмотр, </i>но процесс пересмотра реализован более удачно.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">15.1. 
+  Программа планирования мероприятий</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Ниже 
+  приведена программа планирования мероприятий, написанная на языке CLIPS. При 
+  сформировании расписания программа сначала старается как можно раньше назначить 
+  для каждого отдельного мероприятия начальный момент выполнения, а затем назначает 
+  конечный момент, если в расписании найдено место для мероприятия. Программа 
+  расставляет задачи в соответствии с их приоритетами и старается сохранять себе 
+  свободу действий как можно дольше. Однако эта программа не способна справиться 
+  с ситуацией, которая складывается после неудачно принятого решения, ни с помощью 
+  обратного прослеживания, ни с помощью коррекции частичного расписания, из которого 
+  развился тупиковый вариант.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">;; 
+  ШАБЛОНЫ<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Объект мероприятий.<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftemplate 
+  errand<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  name (type SYMBOL)) ; имя </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  интервал времени, в течение которого нужно<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  приступить к выполнению мероприятия<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  не раньше (field earliest (type INTEGER) (default 0))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  не позже<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  latest (type INTEGER) (default 0)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  продолжительность<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  duration (type INTEGER) (default 0))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; приоритет<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  priority (type INTEGER) (default 0)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  включено в расписание (field done (type SYMBOL) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(default 
+  no));<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">; 
+  ; Объект расписания (def template schedule<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  task (type SYMBOL)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  задача<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  интервал времени, в течение которого нужно<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  выполнить задачу </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  начало<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  start (type INTEGER) (default 0)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  конец<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  finish (type INTEGER) (default 0))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  приоритет<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  priority (type INTEGER) (default 0))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  полностью заполнено<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  status (type SYMBOL) (default no))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Объект цели. Используется для управления поведением </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  программы, принуждая ее к определенному порядку </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  достижения целей. (def template goal<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  subgoal (type SYMBOL)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ФАКТЫ<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deffacts 
+  the-facts (goal (subgoal start)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name hospital) (earliest 1030) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(latest 
+  1030)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  200) (priority 1)) (errand </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(namе 
+  doctor) (earliest 1430) (latest 1530)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  200) (priority 1)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name lunch) (earliest 1130) (latest 1430)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  100) (priority 2)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name guitar-shop) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(earliest 
+  1000)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(latest 
+  1700) (duration 100)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (priority 3)) (errand (name haircut)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (earliest 900) (latest 1700)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  30) (priority 4)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name groceries) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(earliest 
+  900) (latest 1800)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  130) (priority 5)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name dentist) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(earliest 
+  900) (latest 1600)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  100) (priority 2))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Попадает ли время начала S в интервал [Т, T+D]? </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Две задачи не могут начинаться в одно и то же время.</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (deffunction overlapl (Is ?t ?d)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (and (&lt;= ?t ?s) (&lt; ?s (+ ?t ?d))))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Попадает ли время завершения S в интервал [Т, T+D]?</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; Для задачи А можно назначить время начала выполнения </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  равным времени завершения задачи В. </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deffunction 
+  overlap2 (?s ?t ?d)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (and (&lt; ?t ?s) (&lt; ?s (+ ?t ?d))))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Операция добавления к значению времени интервала,</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; выраженного в формате INTEGER, </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deffunction 
+  +t (?X ?Y) (bind ?T (+ ?X n))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (if(or (= (- ?T 60) ( (div (- ?T 60) 100) 100))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(= 
+  (- ?T 70) ( (div (- ?T 70) 100) 100))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(= 
+  (- ?T 80) ( (div (- ?T 80) 100) 100))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(= 
+  (- ?T 90) ( (div (- ?T 90) 100) 100)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">then 
+  (+ ?T 40)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">telse 
+  ?T))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ПРАВИЛА<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  На выполнение некоторых задач отводится </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  фиксированное время, (defrule fixed<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience 80))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(goal 
+  (subgoal start))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?E 
+  &lt;- (errand (name ?N)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(earliest 
+  ?T) (latest ?T) (duration ?D) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(priority 
+  ?P) (done no))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(not 
+  (schedule (start ?U1&amp;:(overlapl ?U1 ?T ?D))))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(not 
+  (schedule (finish ?U2&amp;:(overlap2 ?U2 ?T ?D))))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf &quot;Fixing start and end of &quot; ?N t crlf)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; ( &quot;Определение начала и завершения &quot; ?N<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?E (done finish)) (assert (schedule (task ?N)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(start 
+  ?T) (finish (+t ?T ?D)) (priority ?P)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Следующей в расписание включается задача с наиболее </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  высоким приоритетом, причем ей задается самое раннее </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  время начала выполнения, (defrule priorityl<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience 50))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(goal 
+  (subgoal start))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">: 
+  ?Е &lt;- (errand (name ?N) (earliest ?T)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  ?D) (priority ?P)) (not (errand </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(priority 
+  ?Q&amp;:(&lt; ?Q ?P)) (done no))) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(not 
+  (schedule (start ?01&amp;:(overlapl ?Ul ?T ?D)))) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(not 
+  (schedule (finish ?U2S:(overlap2 ?U2 ?T ?D))) =&gt; <br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf &quot;Fixing start of &quot; ?N t crlf) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;&quot;Коррекция 
+  начала: &quot; ?N<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?E (done start)) (assert (schedule </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(task 
+  ?N) (start ?T) (priority ?P)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Скорректировать значение параметра earliest задач </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  более низкого приоритета, если это время уне занято </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  теми задачами, которые включены в расписание, </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  priority2<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience 60))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(goal 
+  {subgoal start)) ?E &lt;- (errand (name ?N)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (earliest ?T)(duration ?D) (priority ?P) (done no))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(not 
+  (errand (priority ?QS:(&lt; ?Q ?P)') (done no)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(schedule 
+  (task ?M) (start ?U&amp;:(overlapl 7U ?T ?D)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name ?M&amp;~?N) (duration ?C)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf ?N &quot; overlaps with start of &quot; ?M t crlf) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ?N &quot; пересекается с началом &quot; ?M<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?E (earliest (+t ?U ?C))) )<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Скорректировать значение параметра earliest задач </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  более низкого приоритета, если запуск задачи в </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  указанное этим параметром время приведет к тому,</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; что она не успеет завершиться до запуска другой </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  задачи более высокого приоритета, </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ухе включенной в расписание, </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  priority3<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience 60))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(goal 
+  (subgoal start))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?E 
+  &lt;- (errand (name ?N) (earliest ?T) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(priority 
+  ?P) (done no))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name ?M&amp;&quot;?N) (duration ?C))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(schedule 
+  (task ?M)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(start 
+  ?0&amp;:(overlap1 ?T ?U ?C)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf ?N &quot; overlaps with end of &quot; ?M t crlf) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ?N &quot; пересекается с концом &quot; ?M<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?E (earliest (+t ?U ?C)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;Скорректировать 
+  значение параметра earliest</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  задач более низкого приоритета, </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;если 
+  запуск задачи в указанное этим </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;параметром 
+  время приведет к тому,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  что ее начало перекроет одну </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;;задачу, 
+  уже включенную </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ранее в расписание, и она не успеет завершиться </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  до запуска другой задачи более высокого приоритета , </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  уже включенной в расписание. </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  priority4<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience 60))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(goal 
+  (subgoal start))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?E 
+  &lt;- (errand (name.?N) (earliest ?T)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(duration 
+  ?D) (priority ?P) (done no))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (errand (name ?M&amp;~?N) (duration ?C)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(schedule 
+  (task ?M)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(start 
+  ?U&amp;:(&lt;= ?U ?T)) (finish ?F&amp;:</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(&lt;= 
+  (+ ?T ?D) ?F)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf ?N &quot; would </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">occur 
+  during &quot; ?M t crlf)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?N 
+  &quot; может появиться во время &quot; </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?М 
+  (modify ?E (earliest (+t ?U ?C)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Изменение цели. Новая цель - установка конечного </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  времени выполнения задачи. (defrule change-goal<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?G 
+  &lt;- (goal (subgoal start)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?G (subgoal finish))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Время завершения задачи - это время начала ее</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; выполнения плюс продолжительность . (defrule endpoint<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(goal 
+  (subgoal finish))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(errand 
+  (name ?N) (latest ?L) (duration ?D))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?S 
+  &lt;- (schedule (task ?N) (start </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?!&amp;:(&lt;= 
+  ?T ?L)) (finish 0)) ... =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf &quot;Fixing end of&quot; ?N t crlf)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; &quot;Определение завершения &quot; ?N<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?S (finish (+t ?T ?D)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Новая цель - вывести отчет о плане. </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  unfinish<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?G 
+  &lt;- (goal (subgoal finish)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?G (subgoal report))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Вывести задачи в хронологическом порядке.</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (defrule scheduled<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(declare 
+  (salience 10)) (goal (subgoal report)) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?S 
+  &lt;- (schedule (task ?N) (start ?T1) (finish ?T2S&quot;0)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">( 
+  status 0 ) ) . '(not (schedule (start ?T</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">3&amp;:(&lt;= 
+  ?T3 ?T1)) (status 0)))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf ?N &quot; from &quot; ?T1 &quot; till &quot; ?T2t crlf) </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ?N &quot; от &quot; ?T1 &quot; до &quot; ?T2<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?S (status 1))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Для некоторых задач в расписании может не найтись<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  места.<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  unscheduled<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(goal 
+  (subgoal report))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">?S 
+  &lt;- (schedule (task ?N) (finish 0) (status 0))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf ?N &quot; not scheduled. &quot; t crlf)</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ?N &quot; не включена в расписание. &quot;<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?S (status 1)) )</font></font><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Эта 
+  программа успешно справляется с составлением расписания мероприятий, перечисленных 
+  после оператора deffact. В упр. 4 в конце главы будет показано, что существуют 
+  наборы мероприятий, с которыми программа не может справиться, хотя составить 
+  расписание для них с учетом оговоренных ограничений можно.</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"><br>
+  </font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index15.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="4"><b>А.4.4. 
+  Расширение набора правил — работа с составными высказываниями</b></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Расширим теперь 
+  возможности программы таким образом, чтобы она могла работать с составными высказываниями. 
+  Это даст возможность охватить в ней не только вырожденный случай, рассмотренный 
+  в предыдущем разделе, но и более сложные. За основу возьмем следующую головоломку.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Р4. Встречаются 
+  два персонажа, А и В, каждый из которых либо лжец, либо правдолюбец. Персонаж 
+  А говорит: &quot;Мы оба лжецы&quot;. К какой категории следует отнести каждого 
+  из них?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этой задаче 
+  нам придется иметь дело с конъюнкцией, поскольку утверждение, высказанное персонажем 
+  А, моделируется выражением<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эту конъюнкцию 
+  нужно разделить на выражения-компоненты и проанализировать их непротиворечивость. 
+  Очевидно, что А не может быть правдолюбцем, поскольку это противоречит утверждению, 
+  которое содержится в его реплике. Но программа должна самостоятельно &quot;распаковать&quot; 
+  эту конъюнкция для того, чтобы прийти к такому выводу.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Нам также 
+  понадобится снабдить программу и средствами обработки дизъюнкции, поскольку, 
+  если предположить, что А лжет, нужно будет оперировать с отрицанием этого утверждения, 
+  которое преобразует выражение<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т(А) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">v <i>Т(B).</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  в программу нужно включить правило выполнения отрицания составных высказываний 
+  и правило, которое &quot;понимало&quot; бы, что дизъюнкты вроде <i>Т(А) в </i>действительности 
+  являются предположениями. Составное выражение <i>Т(А) </i>v <i>T(B) </i>будем 
+  обрабатывать, предположив <i>Т(А), </i>и проанализируем, нет ли в нем противоречия. 
+  Если таковое не обнаружится, то можно предположить, что <i>Т(А) </i>v <i>Т(B) 
+  </i>совместимо с утверждением о том, что А лгун, т.е. <i>F(A). </i>Но если предположение 
+  <i>Т(А) </i>приведет к несовместимости, то нужно отказаться от него и предположить 
+  <i>Т(Е). </i>Если и это предположение приведет к несовместимости, то это означает, 
+  что утверждение <i>Т(А) </i>v <i>T(B) </i>несовместимо с предположением <i>F(A). 
+  </i>В противном случае <i>Т(В) </i>образует часть совместимой интерпретации 
+  исходного высказывания.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В CLIPS составные 
+  высказывания проще всего представлять с помощью так называемой &quot;польской&quot; 
+  (или префиксной) нотации операций. Суть этого способа представления операций 
+  состоит в том, что символ операции предшествует символам операндов. Каждый оператор 
+  имеет фиксированное количество операндов, а потому всегда существует возможность 
+  однозначно установить область действия операции даже в случае, если операнды 
+  представляют собой вложенные выражения. Таким образом, выражение, представленное 
+  скобочной формой —(F(/4) ^ <i>Т(В)), </i>в польской записи будет иметь вид<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">NOT 
+  AND F А Т В.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Легче всего 
+  восстановить исходный вид выражения, представленного в польской нотации, просматривая 
+  его справа налево. При этом операнды считываются до тех пор, пока не встретится 
+  объединяющий их оператор. Полученное выражение оказывается операндом следующего 
+  оператора. В представленном выше выражении <i>В </i>является операндом одноместного 
+  оператора <i>Т, </i>а пара операндов <i>Т(В) </i>и <i>F(A) </i>объединяется 
+  оператором AND.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Задавшись 
+  таким способом представления составных высказываний, сформируем правило выполнения 
+  отрицания дизъюнктивной и конъюнктивной форм, в котором будет использоваться 
+  функция flip, заменяющая &quot;Т&quot; на &quot;F&quot; и наоборот.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  not-or<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (content NOT OR ?P ?X ?Q ?Y)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?F (content AND (flip ?P) ?X (flip ?Q) ?Y))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  not-and<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (content NOT AND ?P ?X ?Q ?Y)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?F (content OR (flip ?P) ?X (flip ?Q) ?Y)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Использование 
+  функции flip упрощает преобразование и позволяет перейти от выражения<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">NOT 
+  AND F А Т В<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">прямо 
+  к<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">OR 
+  Т A F В,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">минуя<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">OR 
+  NOT F A NOT Т В.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Функция flip 
+  определена следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(def 
+  function flip (?P)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(if 
+  (eq ?P Т) then F else T) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для упрощения 
+  мы ограничимся утверждениями в виде простых дизъюнкций или конъюнкций вида<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т(А) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">v <i>Т(В)</i></font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">или<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">F(A) 
+  ^</font></i><font face="Verdana, Arial, Helvetica, sans-serif"> T(<i>B), </i></font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">но не будем 
+  использовать более сложные утверждения в форме<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">F(B) 
+  ^ </font></i> <font face="Verdana, Arial, Helvetica, sans-serif"><i>(T(А) </i>v 
+  T)<i>B)) </i></font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">или<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">поскольку 
+  для решения большинства интересных головоломок вполне достаточно простых выражений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Наибольшие 
+  сложности при модификации нашей программы связаны с обработкой дизъюнктивных 
+  выражений, поскольку вывод о наличии противоречия может быть сделан только после 
+  завершения анализа всех членов операндов дизъюнкции. Например, нет противоречия 
+  между <i>F(A) </i>и <i>Т(А) </i>v <i>F(B). </i>Противоречие, которое обнаружится 
+  при обработке первого операнда дизъюнкции ДЛ) в предположении <i>F(A), </i>будет 
+  локальным в контексте <i>Т(А). </i>Но если мы вернемся к исходной дизъюнкции 
+  и попробуем проанализировать контекст <i>F(B), </i>то никакого противоречия 
+  обнаружено не будет, и, следовательно, <i>интерпретация </i>найдена.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Реализовать 
+  такой анализ локальных и глобальных противоречий можно, добавив в шаблон объекта 
+  claim атрибут context:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(def 
+  template claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(multifield 
+  content (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(multifield 
+  reason (type INTEGER) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(default 
+  0)) (field scope (type SYMBOL)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  context (type INTEGER) (default 0)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Значение 0 
+  в поле context означает, что мы имеем дело с глобальным контекстом, значение 
+  1 — с локальным контекстом левого операнда, а значение 2 — с локальным контекстом 
+  правого операнда дизъюнкции. Пусть, например, анализируется дизъюнкция<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">T(A) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">v<i> F(B)</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">причем <i>Т(А) 
+  </i>будет истинным в контексте 1, a <i>F(B)</i>— истинным в контексте 2. В этом 
+  случае все выражение будет истинным глобально, т.е. в контексте 0.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Структуру 
+  объекта world также нужно модифицировать — внести в нее поле context. Это позволит 
+  отслеживать ход вычислений. Пусть, например, объект world имеет вид<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag 1) (scope truth) (context 2)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это означает, 
+  что данный &quot;мир&quot; создан следующей парой предположений:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> истинно высказывание, 
+    имеющее идентификатор (tag), равный 1, и<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> правый операнд утверждения, 
+    которое содержится в этом высказывании, имеет значение &quot;истина&quot;.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Новый вариант 
+  шаблона объекта world приведен ниже.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Объект world 
+  представляет контекст, сформированный определенными предположениями о правдивости 
+  или лживости персонажей.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Объект имеет 
+  уникальный идентификатор в поле tag, а смысл допущения - истинность или лживость 
+  - фиксируется в поле scope.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В поле context 
+  сохраняется текущий контекст анализируемого операнда дизъюнкции.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">0 означает 
+  глобальный контекст дизъюнкции,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1 означает 
+  левый операнд,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2 означает 
+  правый операнд, (deftemplate world<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  tag (type INTEGER) (default 1))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  scope (type SYMBOL) (default truth))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  context (type INTEGER) (default 0)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Следующий 
+  шаг— разработка правил, манипулирующих контекстом. Приведенное ниже правило 
+  формирует контекст для левого операнда дизъюнкции.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  left-or<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (context 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content OR ?P ?X ?Q ?Y)(reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  ?V)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (context 1)) (assert (claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  ?P ?X) (reason ?N) (scope ?V)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  1))) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это правило 
+  устанавливает значение 1 в поле context объекта world и формирует соответствующий 
+  объект claim.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">По этому же 
+  принципу разработаем правило для формирования контекста правого операнда дизъюнкции.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  right-or<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (context 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content OR ?P ?X ?Q ?Y) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  ?V)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (context 2)) (assert (claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  ?Q ?Y) (reason ?N) (scope ?V) (context 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Упражнение 
+  2</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Разработайте 
+  самостоятельно правило, которое оперировало бы с объектом claim содержим утверждение 
+  в конъюнктивной форме, как показано ниже.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content AND Т A F В) (reason 1) (scope truth))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это правило 
+  должно разделить такое утверждение на два: суть первого — утверждение, что А 
+  — правдолюбец, а второго — утверждение, что В — лжец. Новые объекты claim должны 
+  существовать в текущем контексте, определенном в объекте world.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Далее разработаем 
+  правила, чувствительные к контексту, которые будут выявлять наличие противоречий 
+  в анализируемых утверждениях.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Выявление противоречия между предположением о </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  правдивости и следующими из него фактами </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  в разных контекстах одного и того же объекта world, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  contra-truth-scope </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 10)) (world (tag ?N) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) (context ?T)) (claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  Т ?Х) (reason ?N) (scope truth) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S&amp;:(&lt; ?S ?T))) ?Q &lt;- (claim </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  P ?x) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) (context ?T)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t &quot;Disjunct &quot; ?T<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  is inconsistent with earlier truth context. &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Дизъюнкт &quot; ?T<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot; противоречит ранее установленному контексту правдивости.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?Q)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Выявление противоречия между предположением о </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  лживости и следующими из него фактами </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  в разных контекстах одного и того же объекта world. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  contra-falsity-scope (declare (salience 10))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope falsity) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?T&raquo; (claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  F ?X) (reason ?N) (scope falsity) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S&amp;:(&lt; ?S ?T))) ?Q &lt;- (claim (content Т ?Х)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (reason 
+  ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  falsity) (context ?T)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t &quot;Disjunct &quot; ?T<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  is inconsistent with earlier falsity context.&quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Дизъюнкт &quot; ?T </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot; противоречит ранее установленному контексту лживости . &quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?Q) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Нам 
+  потребуется модифицировать и прежний вариант правила centra-truth.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Выявление противоречия между предположением о<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  правдивости и следующими из него фактами<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  в одном и том же контексте одного и того же объекта world .<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  contra-truth<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 10))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?P 
+  &lt;- (claim (content Т ?Х) (reason ?N) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) ) ?Q &lt;- (claim (content F ?X) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(reason 
+  ?N) (context ?S)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) ) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Statement 
+  is inconsistent if &quot;?X &quot; is a knight&quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Высказывание противоречиво, если &quot; ? X</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  &quot; правдолюбец . &quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?Q) (retract ?P) (modify ?W (scope falsity) (context 0)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Выявление противоречия между предположением о<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  лживости и следующими из него фактами<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  в одном и том же контексте одного и того же объекта world.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  contra-falsity (declare (salience 10))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope falsity)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">?P 
+  &lt;- (claim (content F ?X) (reason ?N) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?Q 
+  &lt;- (claim (content Т ?Х) (reason ?N) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S)(scope falsity)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Statement 
+  is inconsistent whether &quot; ?X<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot; 
+  is knight or knave.&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Высказывание противоречиво, независимо от того,&quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  &quot;является ли &quot; ?Х &quot; правдолюбцем или лжецом.&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (scope contra) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Поскольку 
+  теперь постановка задачи усложнилась по сравнению с вырожденным случаем, имеет 
+  смысл включить в программу распечатку предположений о характеристиках персонажей, 
+  упомянутых в высказываниях.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  consist-truth<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience -10))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(statement 
+  (speaker ?Y) (tag ?N)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Statement 
+  is consistent:&quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Высказывание непротиворечиво:&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (scope consist)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  consist-falsity<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience -10)) ?W &lt;- (world (tag ?N) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  falsity)) (statement (speaker ?Y) (tag ?N)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Statement 
+  is consistent:&quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Высказывание непротиворечиво:&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">crlf) 
+  (modify ?W (scope consist)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  true-knight<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope consist))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?C 
+  &lt;- (claim (content T ?X) (reason ?N) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?X 
+  &quot;is a knight&quot; ;; ?X &quot;- правдолюбец&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">crlf) 
+  (retract ?C)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  false-knave<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?M) (scope consist))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?C 
+  &lt;- (claim (content F ?X) (reason ?N))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?X 
+  &quot; is a knave&quot; ;; ?X &quot;- лжец&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?C) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ниже приведено 
+  правило разделения операции конъюнкции, которое ранее мы предлагали вам разработать 
+  самостоятельно. Обратите внимание на то, что в нем также отслеживается контекст, 
+  хотя в данном случае без этого можно было бы и обойтись.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  conj<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N<i> </i>(context ?S))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content AND ?P ?X ?Q ?Y) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  ?V)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  ?P ?X) (reason ?N) (scope ?V) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S))) (assert (claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  ?Q ?Y) (reason ?N) (scope ?V) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S))) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Прежде чем 
+  запустить программу на выполнение, сформируем исходные факты в соответствии 
+  с условиями задачи Р4:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  the-facts<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(statement 
+  (speaker A) (claim AND F A F B) (tag 1)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">После запуска 
+  программы в режиме трассировки интерпретатор сформирует распечатку процесса 
+  ее выполнения, приведенную в листинге А.2.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  А.2. Трассировка решения задачи Р4</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (reset)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-0 (initial-fact)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-1 (world (tag 1) (scope truth) (context 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-2 (statement (speaker A) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  OR F A T B) (reason 0) (tag 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (run)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  1 unwrap-trues f-1,f-2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>Assumption</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>A 
+  is a knight, so (OR F A T B) </i>is true.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-3 (claim (content OR F A T B) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(reason 
+  1) (scope truth) (context 0))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ==&gt; 
+  f-4 (claim (content T A) (reason 1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) (context 0)) FIRE 2 left-or: f-1,f-3<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-5 (claim (content F A) (reason 1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) (context 1)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-1 (world (tag 1) (scope truth) (context 0))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ==&gt; 
+  f-6 (world (tag 1) (scope truth) (context 1)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  3 contra-truth-scope: f-6,f-4,f-5 </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>Disjunct 
+  1 </i>is inconsistent <i>with earlier truth </i>context.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> &lt;== 
+  f-5 (claim (content F A) (reason 1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (scope 
+  truth) (context 1)) FIRE 4 right-or: f-6,f-3 .<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-7 (claim (content Т В) (reason 1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) (context 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-6 (world (tag 1) (scope truth) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-8 (world (tag 1) (scope truth) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  5 consist-truth: f-8, f-2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>Statement 
+  is consistent:</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-8 (world (tag 1) (scope truth) (context 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">==&gt; 
+  f-9 (world (tag 1) (scope consist) (context 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  6 true-knight: f-9, f-7<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>В 
+  is a knight</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-7 (claim (content Т В) (reason 1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (scope 
+  truth) (context 2))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">FIRE 
+  7 true-knight: f-9,f-4<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><i>A 
+  is a knight</i><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;== 
+  f-4 (claim (content Т A) (reason 1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  truth) (context 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt;</font><font face="Arial, Helvetica, sans-serif" size="3"></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index15.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

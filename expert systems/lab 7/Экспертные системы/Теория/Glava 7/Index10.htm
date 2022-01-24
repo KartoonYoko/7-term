@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">7.3.3. 
+  Метаклассы в CLOS и CLIPS</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В языке CLOS 
+  классы и метаклассы интегрированы в среду LISP. Фактически каждый объект LISP 
+  является экземпляром класса. Например, существует класс массивов array, соответствующий 
+  типу данных array в Common LISP.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В CLOS поддерживаются 
+  три базовых метакласса.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> standard-class. Это 
+    метакласс по умолчанию для любого класса объектов, определенных пользователем 
+    с помощью функции defclass. Ниже приведено определение обычного класса father 
+    (отец), который имеет суперклассы man (мужчина) и parent (родитель), слоты 
+    для хранения имени (name) и рода занятий (occupation) экземпляров класса, 
+    а также краткого описания (documentation).<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  father (man parent) (:name) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(:occupation) 
+  (:documentation &quot;Класс родителя мужского пола&quot;))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Большинство 
+  классов, определенных пользователем, имеет именно этот метакласс.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> build-in-class. Это 
+    метакласс тех классов объектов, которые реализованы необычным способом. Например, 
+    некоторые из таких классов могут соответствовать типам данных Common LISP. 
+    Большинство системных классов имеет именно этот метакласс.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> structure-class. Это 
+    метакласс тех классов объектов, которые определены с помощью функции defstruct, 
+    а не defclass. Функция defstruct используется в Common LISP для формирования 
+    фреймов, состоящих из слотов и наполнителей, но не поддерживающих множественное 
+    наследование.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Хотя функциональные 
+  возможности базовых метаклассов вполне приемлемы для большинства приложений, 
+  программист может воспользоваться и опциями формирования специализированного 
+  standard-class, который будет обладать каким-нибудь экзотическим поведением. 
+  В частности, можно использовать <i>meta-object protocols </i>(протоколы мета-объектов) 
+  и переопределить родовой алгоритм диспетчирования. В результате у разработчика 
+  появляется возможность создать собственный механизм наследования, более приемлемый 
+  для конкретного приложения, чем стандартный. Нужно отметить, что подобного рода 
+  возможности отсутствуют в языках, подобных C++, правда, как показал опыт, большинство 
+  пользователей обращаются к ним очень редко.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Язык COOL, 
+  включенный в состав CLIPS, имеет 17 системных классов, причем некоторые из них 
+  выполняют функции метаклассов. Верхние уровни структуры классов схематически 
+  представлены на рис. 7.7.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="7.gif" width="550" height="241"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 7.7. 
+  Верхние уровни иерархической системы классов языка COOL<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Все классы, 
+  определенные пользователем, являются производными от USER, который отчасти выполняет 
+  функции метакласса. В нем реализованы практически все базовые обработчики сообщений 
+  инициализации и удаления объектов. Однако USER все-таки не является метаклассом, 
+  поскольку классы, определенные пользователем, — это производные от USER, а не 
+  его экземпляры. Initial-Object является экземпляром по умолчанию, который создается 
+  при выполнении функции def instaces. Класс Primitive и его подклассы реализуют 
+  основные структуры данных — числа, символы строки, адреса и многокомпонентные 
+  объекты. Все классы, представленные на рис. 7.7, кроме Initial-Object, являются 
+  абстрактными и служат только для определения родовых операций и структур данных.<br>
+  </font></p>
+<br>
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

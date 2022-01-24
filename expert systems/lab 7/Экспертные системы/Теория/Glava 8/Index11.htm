@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">8.5.1. 
+  Правила поиска в языке PROLOG</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Существует 
+  аналогия между выражениями вида </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">admire(Y, 
+  X) :- philosopher (X) , beats (X,Y)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">в языке PROLOG 
+  и консеквентной теоремой в системе PLANNER. При запросе &quot;who admires whom?&quot; 
+  (&quot;кто кем восхищается?&quot;), который может быть представлен в виде фразы<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">:- 
+  admire(V, W). ,</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">приведенное 
+  выше выражение интерпретируется следующим образом: &quot;Для того чтобы показать, 
+  что Y восхищается X, покажите, что X является философом, а затем покажите, что 
+  X обогнал Y&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Цель, которая 
+  унифицируется с выражением admire(Y, X), может быть истолкована как <i>вызов 
+  процедуры, </i>а процесс унификации может рассматриваться как механизм передачи 
+  действительных параметров другим литералам, образующим тело процедуры. В данном 
+  случае не имеет значения, являются ли эти &quot;параметры&quot; переменными, 
+  как в представленном примере. Подцели в теле процедуры упорядочены. В языке 
+  PROLOG такое упорядочение называется <i>правилом поиска слева направо.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В PLANNER 
+  и ранних системах, основанных на методе резолюций, цель легко достигается, если 
+  в базе данных содержатся утверждения<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">philosopher 
+  (zeno) . beats (zeno, achilles).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Тогда получим 
+  ответ<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">admire 
+  (achilles, zeno).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если в базе 
+  данных содержится другая информация, касающаяся искомой цели, то программе может 
+  потребоваться выполнить <i>обратный просмотр (backtrack), </i>прежде чем добраться 
+  до цели. Обратный просмотр используется в том случае, когда нужно отменить присвоение 
+  значений переменным, выполненное при обработке некоторой подцели, поскольку 
+  это присвоение приводит к неудаче в обработке поздней подцели. Положим, что 
+  база данных содержит дополнительную фразу<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">philosopher 
+  ( socrates ) . </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">В этом случае, 
+  если эта формула отыщется прежде, чем формула<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">philosopher(zeno).,</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">обработка 
+  следующей подцели приведет к неудаче, а следовательно, нужно будет поискать 
+  другого философа. Объем работы, который придется выполнить системе в процессе 
+  достижения цели admire(V, W), зависит от количества альтернативных вариантов 
+  утверждений, касающихся философов, которые имеются в базе данных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположим, 
+  что в базе данных содержатся факты еще о ста философах, т.е. в ней имеются сто 
+  других выражений в формате philosopher(X), в которых X отличается от zeno. Тогда 
+  в худшем случае программе потребуется 100 раз выполнить обратный просмотр, прежде 
+  чем будет найдено именно то утверждение, которое согласуется с целью.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">База данных 
+  может содержать и другие правила, которые взаимодействуют с интересующим нас 
+  выражением admire (V, W). Например, можно положить, что утверждение &quot;X 
+  обогнал Y&quot; представляет транзитивное отношение. В этом случае в нашем распоряжении 
+  будет правило<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">beats(X, 
+  Y) :- beats(X, Z), beatsf Z, Y).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Можно также 
+  дать такое определение понятию &quot;философ&quot;, что таковым будет считаться 
+  только тот, кого хотя бы однажды обогнала черепаха:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">philosopher(X) 
+  :- beats(Y, X), tortoise(Y).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Наличие этих 
+  правил очень усложнит пространство поиска и значительно увеличит количество 
+  случаев, когда придется выполнять обратный просмотр.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В следующем 
+  разделе описано одно из расширений языка PROLOG— система MBASE, на базе которой 
+  реализована программа МЕСНО для решения задач вузовского курса теоретической 
+  механики.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index12.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

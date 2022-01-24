@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">7.3.2. 
+  Наложение методов в CLOS и CLIPS</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В языках FLAVORS 
+  и LOOPS реализованы разные механизмы комбинирования поведения, унаследованного 
+  от разных &quot;родителей&quot;. В языке FLAVORS используется описанный выше 
+  механизм вставок, а в языке LOOPS производится дополнительное обращение к альтернативному 
+  коду.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В языке CLOS 
+  поддерживаются оба варианта. Обычно существует главный метод, который берет 
+  на себя основную часть работы по выполнению родовой операции (примером является 
+  метод refresh, о котором шла речь при обсуждении набора классов окон). Как и 
+  в языке FLAVORS, <i>before-методы </i>(предварительные методы) используются 
+  для подготовки данных для тех вычислений, которые должны быть выполнены <i>primary-методом 
+  </i>(основным методом), а <i>after-методы </i>(заключительные-методы) используются 
+  для выполнения заключительных операций.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Кроме того, 
+  в CLOS имеется возможность использовать так называемые <i>around-методы </i>(методы 
+  оболочки), которые образуют своего рода оболочку вокруг ядра (последовательности 
+  &quot;before-метод— primary-метод— after-метод&quot;). Такая методика предназначена 
+  для ситуаций, в которых ядро не позволяет достичь требуемого результата. Например, 
+  желательно, чтобы before-метод установил локальные переменные, которые должны 
+  быть использованы primary-методом, или когда нужно заключить primary-метод в 
+  какую-либо управляющую структуру. В ядре before- и after-методы используются 
+  только для того, чтобы сформировать побочные эффекты; возвращается же значение, 
+  сформированное primary-методом, причем это значение не ограничивается никакими 
+  внешними управляющими структурами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Наиболее специфический 
+  around-метод связывается с сообщением, которое передается перед тем, как будут 
+  вызваны подходящие before-, primary- или after-методы. Обращение к ядру производится 
+  в процессе выполнения системной функции call-next-method, которая размещается 
+  в теле around-метода.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Стандартная 
+  методика наложения методов суммирована в схеме, представленной на рис. 7.6.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В CLOS предлагается 
+  множество дополнительных типов наложения методов. Более того, пользователь может 
+  самостоятельно создавать и собственные типы. Например, тип <i>or-combination 
+  </i>передает вызывающему объекту значение первого компонента, вернувшего значение, 
+  отличное от NIL. При создании собственных функций наложения пользователь может 
+  использовать операторы разных видов: логические, арифметические или манипулирования 
+  списками.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Следует отметить, 
+  что стандартная схема наложения методов удовлетворяет потребности программирования 
+  практически на 90%.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Методы в CLOS 
+  являются эффективными родовыми функциями, возможность применения которых зависит 
+  от специальных параметров, представляющих класс первого аргумента сообщения. 
+  Методы вызываются точно так же, как и функции LISP (т.е. не используются никакие 
+  функции отсылки, как это делается в LOOPS). Получатель сообщения представляется 
+  первым аргументом, а остальные'аргументы — обычные параметры функции.<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="6.gif" width="550" height="551"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 7.6. 
+  Стандартная схема наложения методов в языках CLOS и CLIPS ([Keene,1989])</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Кроме того, 
+  в CLOS существуют и так называемые <i>мультиметоды, </i>которые позволяют настраивать 
+  поведение в зависимости от классов нескольких аргументов, а не одного. Например, 
+  люди, принадлежащие к разным культурам, не только отдают в своем рационе приоритет 
+  разным продуктам, но и готовят их по-разному. Так, японцы, в отличие от американцев, 
+  отдают предпочтение рыбе, но, кроме того, они часто едят рыбу сырой. Таким образом, 
+  метод prepare-meal (приготовить пищу) должен быть чувствителен как к национальности 
+  получателя сообщения, так и к виду предлагаемого блюда. Метод имеет два аргумента<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(prepare-meal 
+  X Y)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">и его реализация 
+  зависит как от класса аргумента X (повара), так и от класса аргумента У (блюда). 
+  Аналогичные возможности в CLIPS обеспечиваются посредством родовых функций (подробнее 
+  об этом — в главе 17).<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>7.3. 
+  Как сделать людей вежливыми</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Положим, 
+  что используются те же обработчики сообщений для классов guaker и republican, 
+  что и в предыдущем примере. Можно, определив специальный заключительный метод 
+  для класса person, придать формируемым ответам вежливый вид. Этот метод будет 
+  выполняться после того, как будет выполнен основной метод, выбранный для ответа 
+  на сообщение speak:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defmessage-handler 
+  guaker speak () </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout 
+  t crlf &quot;Peace&quot;)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defmessage-handler 
+  republican speak ()</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (printout t crlf &quot;War&quot;)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defmessage-handler 
+  person speak after()</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (printout t &quot;, please&quot; t crlf)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Теперь 
+  в ответ на запрос (send frichard] speak) последует ответ &quot;War, please&quot; 
+  Обработчики сообщений базовых классов имеют статус primary по умолчанию, а потому 
+  можно и не указывать это явно в объявлении обработчика, как это сделано, например, 
+  ниже:<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defmessage-handler 
+  republican speak primary () (printout t crlf &quot;War&quot;)</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font></font></p>
+<p align="left">&nbsp;</p>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index10.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

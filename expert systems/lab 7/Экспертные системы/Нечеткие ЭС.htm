@@ -1,0 +1,406 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0051)http://inf.susu.ac.ru/~pollak/expert/fuzzy/doc4.htm -->
+<HTML><HEAD><TITLE>Нечеткие ЭС</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 5.50.4522.1800" name=GENERATOR></HEAD>
+<BODY text=#000000 vLink=#551a8b aLink=#ff0000 link=#0000ee 
+bgColor=#ffffff>&nbsp; 
+<TABLE cols=1 width="100%">
+  <TBODY>
+  <TR>
+    <TD bgColor=#ffffff><B><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=+2>Нечеткая экспертная система</FONT></FONT></B> <BR>
+      <HR width="100%">
+      <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Нечеткая экспертная 
+      система - экспертная система, которая для вывода решения использует место 
+      Булевой логики совокупность нечетких функций принадлежности и правил. 
+      Правила в нечеткой экспертной системе имеют обычно вид, подобный 
+      следующему: Если x низок, и y высок, тогда z = средний,где x b y - входные 
+      переменные ( для которых известны значения ), z -выходная переменная ( 
+      значение, которое будет вычислено), низко - функция принадлежности 
+      (нечеткое подмножество) определенная на x, высоко - функция 
+      принадлежности, определенная на y, и среднее - функция принадлежности, 
+      определенная на z. Антецедент правила (предпосылка правила) описывает, 
+      когда правило применяется, в то время как заключение (следствие правила) 
+      назначает функцию принадлежности к каждому из выведенных значений 
+      переменных. Большинство инструментальных средств, работающих с нечеткими 
+      экспертными системами позволяют применять в правиле несколько заключений. 
+      Совокупность правил в нечеткой экспертной системе известна как база 
+      знаний. В общем случае вывод решения происходит за три (или четыре) 
+      шага.</FONT></FONT> 
+      <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>1. С 
+        помощью функций ПРИНАДЛЕЖНОСТИ, определенных на входных переменных, 
+        вычисляются их фактические значения и определяется степень уверенности 
+        для каждой предпосылки правила.</FONT></FONT> <BR><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT size=-1>2. Используя процедуру 
+        ВЫВОДА, вычисляется значение истинности для предпосылки каждого правила, 
+        которое применяется к заключению каждого правила. В результате этого 
+        каждой переменной вывода для каждого правила назначается одно значения 
+        из нечеткого подмножества значений. Обычно в качестве для вывода 
+        используется МИНИМИЗАЦИЯ или правила ПРОДУКЦИИ. При МИНИМИЗИРУЮЩЕМ 
+        логическом выводе , выходная функция принадлежности ограничена сверху в 
+        соответствии с вычисленной степенью истинности предпосылок (нечеткое 
+        логическое И). В логическом выводе с использованием ПРОДУКЦИЙ , выходная 
+        функция принадлежности масштабируется с помощью вычисленной степенью 
+        истинности предпосылки правила.&nbsp;</FONT></FONT> <BR><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT size=-1>3. Используя КОМПОЗИЦИЮ, 
+        все нечеткие подмножества, назначенные для каждой выходной переменной 
+        объединяются вместе и формируется единственное нечеткое подмножество 
+        значение для каждой выводимой переменной .Наконец снова, обычно 
+        используются функции MAX или SUM . При использовании композиции MAX 
+        объединенное выходное нечеткое подмножество значений создается путем 
+        нахождения максимума из всех нечетких подмножеств, назначенных 
+        переменным в соответствии с правилом вывода (нечеткое логическое ИЛИ). В 
+        композиции SUM объединенное выходное нечеткое подмножество создается 
+        суммированием всех нечетких значений из подмножеств, назначенных для 
+        переменной вывода с помощью правил вывода.</FONT></FONT> <BR><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT size=-1>4. Наконец - 
+        (необязательный) процесс точной интерпретации , который используется 
+        тогда, когда полезно преобразовывать нечеткий набор значений выводимых 
+        переменных к точным значениям. Имеется достаточно большое количество 
+        методов перехода к точным значениям (по крайней мере 30). Два из общих 
+        методов - это методы <B>Полной интерпретации </B>и по <B>Максимуму</B>.В 
+        методе полной интерпретации, точное значение выводимой переменной 
+        вычисляется как значение "центра тяжести" функции принадлежности для 
+        нечеткого значения. В методе Максимума в качестве точного значения 
+        выводимой переменной принимается максимальное значение функции 
+        принадлежности нечеткого соответствия.</FONT></FONT></BLOCKQUOTE><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1><B>Пример: 
+      </B>:</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1>Предположм, что переменные x, y, и z имеют значения из интервала 
+      [0,10], и что определены следующие правила и функции принадлежности 
+      :</FONT></FONT> 
+      <BLOCKQUOTE>
+        <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Низко 
+          (t) = 1 - (t / 10)</FONT></FONT> <BR><FONT 
+          face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Высоко (t) = t / 
+          10</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+          size=-1>Правило 1: если <B>x </B>низок и <B>y</B> низок тогда <B>z</B> 
+          высок&nbsp;</FONT></FONT> <BR><FONT 
+          face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Правило 2: если <B>x</B> 
+          низок и <B>y</B> высок тогда <B>z</B> низок</FONT></FONT> <BR><FONT 
+          face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Правило 3: если <B>x 
+          </B>высок и <B>y</B> низок тогда <B>z</B> низок</FONT></FONT> 
+          <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Правило 4: если 
+          <B>x</B> высок и <B>y</B> высок тогда <B>z</B> 
+        высок</FONT></FONT></BLOCKQUOTE></BLOCKQUOTE><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Обратите внимание, что вместо 
+      назначения единственного значения выводимой переменной z, каждому правилу 
+      назначено нечеткое подмножество значений из множества(низко или 
+      высоко).</FONT></FONT> <BR><B><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1>Примечания:</FONT></FONT></B> 
+      <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>1. В этом 
+        примере, низко (t) +high (t) =1.0 для всех t. Это общесправедливое 
+        утверждение .</FONT></FONT> <BR><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT size=-1>2. Значение t, для которого 
+        низко (t) является максимальным то же самое, что и значение t, для 
+        которого высоко (t) является минимальным, и наоборот.</FONT></FONT> 
+        <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>3. Для всех 
+        переменных используются одни и те же функции принадлежности . При 
+        решении задачи , функции принадлежности, определенные на входных 
+        переменных, применяются к их фактическим значениям и вычисляется степень 
+        истинности для каждой предпосылки правила. Степень истинности для 
+        предпосылок правила иногда обозначается как АЛЬФА. Если предпосылка 
+        правила имеет степень истинности, отличную от нуля, то говорят, что 
+        правило АКТИВИЗИРУЕТСЯ.</FONT></FONT></BLOCKQUOTE><B><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Например</FONT></FONT></B> 
+      <TABLE cols=10 width="100%" border=1>
+        <TBODY>
+        <TR>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>X;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>y</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>низко(x)</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>высоко 
+            (x)</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>низко 
+            (y)</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>высоко 
+            (y)</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>alpha1</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>alpha2</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>alpha3&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>alpha4</FONT></FONT></TD></TR>
+        <TR>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>1.0&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>1.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>1.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0</FONT></FONT></TD></TR>
+        <TR>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>3.2</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>1.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.68</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.32</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.68&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.32</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0</FONT></FONT></TD></TR>
+        <TR>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0&nbsp;</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>&nbsp;6.1</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>1.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.0</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.39</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.61</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.39</FONT></FONT></TD>
+          <TD><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+            size=-1>0.61</FONT></FONT></TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD></TR>
+        <TR>
+          <TD>0.0</TD>
+          <TD>10.0</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD></TR>
+        <TR>
+          <TD>3.2</TD>
+          <TD>0.0</TD>
+          <TD>0.68</TD>
+          <TD>0.32</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>0.68</TD>
+          <TD>0.0</TD>
+          <TD>0.32</TD>
+          <TD>0.0</TD></TR>
+        <TR>
+          <TD>6.1</TD>
+          <TD>0.0</TD>
+          <TD>0.39</TD>
+          <TD>0.61</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>0.39</TD>
+          <TD>0.0</TD>
+          <TD>0.61</TD>
+          <TD>0.0</TD></TR>
+        <TR>
+          <TD>10.0</TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD>
+          <TD>1.0</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD></TR>
+        <TR>
+          <TD>3.2</TD>
+          <TD>3.1</TD>
+          <TD>0.68</TD>
+          <TD>0.32</TD>
+          <TD>0.69</TD>
+          <TD>0.31</TD>
+          <TD>0.68</TD>
+          <TD>0.31</TD>
+          <TD>0.32</TD>
+          <TD>0.31</TD></TR>
+        <TR>
+          <TD>3.2</TD>
+          <TD>3.3</TD>
+          <TD>0.68</TD>
+          <TD>0.32</TD>
+          <TD>0.67</TD>
+          <TD>0.33</TD>
+          <TD>0.67</TD>
+          <TD>0.33</TD>
+          <TD>0.32</TD>
+          <TD>0.32</TD></TR>
+        <TR>
+          <TD>10.0</TD>
+          <TD>10.0</TD>
+          <TD>0.0</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>1.0</TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD>
+          <TD>0.0</TD>
+          <TD>1.0</TD></TR></TBODY></TABLE><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>&nbsp;&nbsp; В процессе 
+      вывода вычисляется значение истинности для предпосылок каждого правила и 
+      применяется заключение каждого правила. Это приводит к тому, что каждой 
+      выводимой переменной в каждом правиле назначается одно значение из 
+      нечеткого подмножества значений.&nbsp;</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>&nbsp;&nbsp; Минимизация и 
+      Правила продукции - два МЕТОДА ВЫВОДА или ПРАВИЛА ВЫВОДА. При 
+      минимизирующем логическом выводе, функция принадлежности вывода ограничена 
+      сверху значением вычисленной степени истинности для предпосылки правила. 
+      Это соответствует традиционной интерпретации операции нечеткого 
+      логического И. В логическом выводе с использованием правил продукции 
+      функция принадлежности вывода масштабируется вычисленной степенью 
+      истинности предпосылки правила.&nbsp;</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1><B>Например,</B> рассмотрим 
+      правило 1 для значений x = 0.0 и y = 3.2. Как показано в таблице , степень 
+      истинности предпосылки равна 0.68. Для этого правила, при использовании 
+      минимизирующего логического вывода, z получит значение из нечеткого 
+      подмножества значений, определенное функцией 
+      принадлежности:&nbsp;</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Rule1 (z) = {z / 10, если z 
+      &lt; = 6.8</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      0.68, если z&gt; = 6.8}</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Для тех же самых условий, 
+      логический вывод с использованием правил продукции назначит z значение из 
+      нечеткого подмножества значений, определенной функцией принадлежности: 
+      :</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1>Rule1 (z) = 0.68 * высоко (z)</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      = 0.068 * z</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1><B>&nbsp;&nbsp; Заметьте,</B> что терминология, использованная 
+      здесь, является слегка нестандартной. В большинстве статей, термин " метод 
+      вывода " используется для обозначения комбинации действий, упомянутых 
+      здесь как "вывод" и "композиция". Таким образом вы сможете встретить в 
+      литературе такие термины как вывод " MinMax " и вывод "Product - Sum " Они 
+      - комбинация композиции MAX и Минимизирующего вывода, или композиция SUM и 
+      Правил Продукций соответственно. Опишем два процесса 
+      отдельно.</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1>&nbsp;&nbsp; В процессе композиции все нечеткие подмножества 
+      значений, полученные для каждой выводимой переменной, объединяются для 
+      формирования единственного нечеткого подмножества для каждой выводимой 
+      переменной. Композиция MAX и композиция Sum - два ПРАВИЛА КОМПОЗИЦИИ 
+      .&nbsp;</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+      size=-1>&nbsp;&nbsp; При использовании композиции MAX, объединенное 
+      выходное нечеткое подмножество создается взятием максимумального значения 
+      по всем нечетким подмножествам значений, полученных для выводимой 
+      переменной в соответствии с правилом вывода.</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>&nbsp; При использовании 
+      композиции SUM, объединенное выходное нечеткое подмножество значений 
+      создается взятием суммы по всем значениям из нечетких подмножеств, 
+      полученным для выводимой переменной согласно правилу вывода.Заметьте, что 
+      может получиться более чем одно значение ! По этой причине, композиция SUM 
+      используется только тогда, когда она сопровождается методом точной 
+      интерпретации типа метода Полной интерпретации, который не имеет проблем с 
+      таким случаем. Иначе композиция Sum может быть объединена c нормализацией, 
+      что снова приводит к универсальному методу.&nbsp;</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1><B>Например</B>, пусть x = 
+      0.0 и y = 3.2. МИНИМУМИЗИРУЮЩИЙ логический вывод назначил бы для z 
+      следующие значения из четырех нечетких подмножеств:&nbsp;</FONT></FONT> 
+      <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Rule1 (z) 
+        = {z / 10, если z &lt;= 6.8</FONT></FONT> 
+        <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+          size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.68, если z&gt; = 
+          6.8}</FONT></FONT></BLOCKQUOTE><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Rule2 (z) = {0.32, если z 
+        &lt;= 6.8</FONT></FONT> 
+        <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+          size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 - z / 10, если z&gt; = 
+          6.8}</FONT></FONT></BLOCKQUOTE><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Rule3 (z) = 
+        0.0</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+        size=-1>Rule4 (z) = 0.0</FONT></FONT></BLOCKQUOTE><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Композиция MAX привела бы к 
+      такому нечеткому подмножеству:</FONT></FONT> 
+      <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Нечеткий 
+        (z) = {0.32, если z &lt;= 3.2</FONT></FONT> <BR><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT 
+        size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        Z / 10, если 3.2 &lt; = z &lt; = 6.8</FONT></FONT> <BR><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT 
+        size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        0.68, если z&gt; = 6.8}</FONT></FONT></BLOCKQUOTE><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Логический вывод согласно 
+      правилам продукции назначил бы для z следующие значения из четырех 
+      нечетких подмножеств:</FONT></FONT> 
+      <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Rule1 (z) 
+        = 0.068 * z</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+        size=-1>Rule2 (z) = 0.32 - 0.032 * z</FONT></FONT> <BR><FONT 
+        face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Rule3 (z) = 
+        0.0</FONT></FONT> <BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+        size=-1>Rule4 (z) = 0.0</FONT></FONT></BLOCKQUOTE><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>Композиция SUM привела бы к 
+      нечеткому подмножеству:</FONT></FONT> 
+      <BLOCKQUOTE><FONT face="Arial Cyr,Helvetica Cyr"><FONT 
+        size=-1>нечеткий(z) = 0.32+ 0.036 * z</FONT></FONT></BLOCKQUOTE><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>&nbsp;&nbsp;&nbsp;&nbsp; 
+      Иногда полезно только исследовать нечеткие подмножества, которые являются 
+      результатом композиционного процесса, но более часто это НЕЧЕТКОЕ ЗНАЧЕНИЕ 
+      необходимо преобразовать к единственному ТОЧНОМУ ЗНАЧЕНИЮ. Именно это 
+      выполняет процесс точной интерпретации. Два наиболее общих метода -это 
+      метод полной интерпретации и интерпретация по максимуму функции 
+      принадлежности. В методе полной интерпретации, точное значение выводимой 
+      переменной вычисляется как значение "центра тяжести" функции 
+      принадлежности для нечеткого значения. В методе Максимума в качестве 
+      точного значения выводимой переменной принимается максимальное значение 
+      функции принадлежности нечеткого соответствия. Имеется несколько вариаций 
+      метода максимума , которые отличаются тем, что они делают, когда имеется 
+      более чем одно значение переменной, в котором достигается максимальное 
+      значение функции принадлежности. Один из них возвращает среднее из 
+      значений переменных, для в которых достигается максимальное значение 
+      функции принадлежности.&nbsp;</FONT></FONT> 
+      <P><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1><B>Например,</B> 
+      вернемся к нашему предыдущему примеру. Использование MaxMin логического 
+      вывода и метода, определяющего " среднее значение из максимумов " 
+      вычисляет точное значение z = 8.4.</FONT></FONT> <BR><FONT 
+      face="Arial Cyr,Helvetica Cyr"><FONT size=-1>&nbsp;&nbsp;&nbsp;&nbsp; 
+      Использование логического вывода Sum- Product и метода точной 
+      интерпретации приводит к точному значение z, равному 5.6 . Вычисления 
+      выполнялись следующим образом. Как было сказано, все переменные (включая 
+      z) имеют значения в диапазоне [0, 10]. Вычислять центр тяжести функции f 
+      (x), это значит разделить момент функции на площадь функции. Вычислить 
+      момент f (x), это значит вычислить интеграл x*f (x) dx, а вычислить 
+      площадь f (x), это значит вычислить интеграл f (x) dx. В нашем случае, мы 
+      должны были вычислить площадь как интеграл от функции (0.32+0.036*z) в 
+      диапазоне от 0 до 10 dz, который равен ( 0.32 * 10 + 0.018*100) =( 3.2 + 
+      1.8) =5.0, а момент функции равен интегралу из (0.32*z+0.036*z*z) dz в 
+      диапзоне от 0 до 10 , или ( 0.16 * 10 * 10 + 0.012 * 10 * 10 * 10) = ( 16 
+      + 12) =28. Наконец, центр тяжести есть - 28/5 или 5.6.&nbsp;</FONT></FONT> 
+
+      <P><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1><B>Замечание:</B> 
+      Иногда объединение композиции и процесса точного представления нечетких 
+      соответствий упрощает математические зависимости для вычисления 
+      окончательного результата значения 
+  переменной</FONT></FONT></P></TD></TR></TBODY></TABLE>
+<HR width="100%">
+<BR><FONT face="Arial Cyr,Helvetica Cyr"><FONT size=-1><A 
+href="http://inf.susu.ac.ru/~pollak/expert/fuzzy/doc14.htm">Возврат</A></FONT></FONT> 
+</BODY></HTML>

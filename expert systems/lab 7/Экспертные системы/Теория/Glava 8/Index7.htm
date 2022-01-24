@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="4">8.3.1. Принцип 
+  резолюций</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ранее я уже 
+  вскользь упоминал о том, что мы стараемся упростить синтаксис исчисления таким 
+  образом, чтобы уменьшить количество правил влияния, необходимое для доказательства 
+  теорем. Вместо дюжины.или более правил, которые используются при доказательстве 
+  теорем вручную, системы автоматического доказательства для фразовых форм используют 
+  <i>единственное </i>правило вывода — <i>принцип резолюций, </i>— впервые описанное 
+  Робинсоном <i>([Robinson, 1965]).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  следующий пример из исчисления высказываний. В дальнейшем прописными буквами 
+  <i>Р, Q, R,... </i>будут обозначаться отдельные фразы, а строчными греческими 
+  U, ф и &pound; — пропозициональные переменные, как и раньше.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если U и ф 
+  представляют две произвольные фразы, которые можно представить в конъюнктивной 
+  нормальной форме, и<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">U={ 
+  U<sub>1</sub>, ..., Ui, ...., U<sub>m</sub>},</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> и<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">ф= 
+  {ф<sub>1</sub>..., фi.....,ф<sub>n</sub>}, и<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">U<sub>i</sub>, 
+  = ¬ф<sub>i</sub> при 1[i[m<i>m,1 [j [ n,</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">то новую фразу 
+  &pound; можно вывести из объединения U' и ф', где<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">U' 
+  = U¬{ U<sub>i</sub>} и ф' = ф¬{ф,}.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Фраза &pound; 
+  = U' и ф' называется <i>резольвентой </i>шага резолюции, а U и ф являются <i>родительскими 
+  фразами. </i>Иногда говорят, что U и ф &quot;сталкиваются&quot; на паре <i>дополняющих 
+  литералов U<sub>i</sub> </i>, и ф<sub>j</sub>.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Мощность резолюции 
+  обеспечивается тем, что в ней суммируется множество других правил. Это станет 
+  очевидно после того, как обычные правила будут представлены в конъюнктивной 
+  нормальной форме.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В левой колонке 
+  табл. 8.1 перечислены наименования правил вывода, в средней показано, как они 
+  выглядят в обычных обозначениях, а в правой колонке — во фразовой форме. В каждой 
+  записи выражения в верхней части представляют схему предпосылок, а выражения 
+  в нижней части — схему заключений. Из этой таблицы видно, что каждое из цитированных 
+  выше пяти правил является одним из экземпляров резолюции!</font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Таблица 8.1. 
+  Обобщение резолюции<br>
+  </font></p>
+<div align="left"> 
+  <table frame="BOX" rules="ALL" border="1" cellspacing="0" cellpadding="0" width="550" height="423">
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="51"> </td>
+      <td align="LEFT" valign="TOP" width="170" height="51"> 
+        <div width="170" height="51"> 
+          <p> <font face="Arial, Helvetica, sans-serif"><b><font size="3">Правило 
+            вывода<br>
+            </font></b></font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="219" height="51"> 
+        <div width="219" height="51"> 
+          <p> <font face="Arial, Helvetica, sans-serif"><b><font size="3">Обычная 
+            форма<br>
+            </font></b></font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="255" height="51"> 
+        <div width="255" height="51"> 
+          <p> <font face="Arial, Helvetica, sans-serif"><b><font size="3">Конъюнктивная 
+            нормальная форма<br>
+            </font></b></font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="51"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="67"> </td>
+      <td align="LEFT" valign="TOP" width="170" height="67"> 
+        <div width="170" height="67"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><i>Modus ponens</i><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="219" height="67"> 
+        <div width="219" height="67"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">(U<img src="prinadl.gif" width="9" height="10">ф,U)/Ф<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="255" height="67"> 
+        <div width="255" height="67"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">{¬U,Ф},{U}/{ф}<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="67"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="66"> </td>
+      <td align="LEFT" valign="TOP" width="170" height="66"> 
+        <div width="170" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><i>Modus fallens</i><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="219" height="66"> 
+        <div width="219" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">(U<img src="prinadl.gif" width="9" height="10">ф.¬ф)/-U<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="255" height="66"> 
+        <div width="255" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">{¬U,ф},{-,ф}/{-U}<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="66"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="66"> </td>
+      <td align="LEFT" valign="TOP" width="170" height="66"> 
+        <div width="170" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Сцепление<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="219" height="66"> 
+        <div width="219" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">(U<img src="prinadl.gif" width="9" height="10">ф,ф<img src="prinadl.gif" width="9" height="10">&pound;)(U<img src="prinadl.gif" width="9" height="10">&pound;)<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="255" height="66"> 
+        <div width="255" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">{¬U,ф},{¬ф,&pound;}/{¬U,&pound;}<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="66"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="66"> </td>
+      <td align="LEFT" valign="TOP" width="170" height="66"> 
+        <div width="170" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Слияние<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="219" height="66"> 
+        <div width="219" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">(U<img src="prinadl.gif" width="9" height="10">ф,¬U 
+            <img src="prinadl.gif" width="9" height="10"> ф)/ф<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="255" height="66"> 
+        <div width="255" height="66"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">{U,ф},{¬U,ф}/{ф}<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="66"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="70"> </td>
+      <td align="LEFT" valign="TOP" width="170" height="70"> 
+        <div width="170" height="70"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><i>Reductio</i><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="219" height="70"> 
+        <div width="219" height="70"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">(U,¬U)/ |<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="255" height="70"> 
+        <div width="255" height="70"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">{¬U},{U}/{}<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="70"> </td>
+    </tr>
+  </table>
+</div>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что противоречие в правиле, которое обычно обозначается значком 1, дает 
+  в результате пустую фразу— {}. Это означает, что предпосылки несовместимы. Если 
+  считать, что предпосылки описывают некоторое состояние предметной области, то 
+  такой набор предпосылок не может быть реально обеспечен в ней, т.е. такое состояние 
+  невозможно.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Главное, что 
+  нужно вынести из всего сказанного выше, что компонент автоматического доказательства 
+  теорем, который является основным компонентом большинства систем искусственного 
+  интеллекта и, в частности, языков программирования искусственного интеллекта, 
+  таких как PROLOG, является <i>системой, опровержения резолюций. </i>Для того 
+  чтобы доказать, что <i>р </i>следует из некоторого описания состояния (или теории) 
+  <i>Т, </i>нужно положить <i>—р </i>и попытаться доказать, что из этого предположения 
+  следует утверждение, противоречащее <i>Т. </i>Если это удастся сделать, то тем 
+  самым подтверждается утверждение р, а в противном случае оно опровергается.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В исчислении 
+  предикатов использование резолюций требует дополнительных усилий, поскольку 
+  в этом исчислении присутствуют переменные. Основная операция сопоставления в 
+  доказательстве теорем с помощью резолюций называется <i>унификацией </i>(подробное 
+  описание используемого при этом алгоритма читатель найдет, например, в работе 
+  Нильсона <i>[Nilsson, 1980]). </i>При сопоставлении дополняющих литералов отыскивается 
+  такая подстановка переменных, которая превращает оба выражения в идентичные.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Например, 
+  выражения <i>БЕЖИТ_БЫСТРЕЕ_ЧЕМ(Х, улитка) </i>и <i>БЕЖИТ_БЫСТРЕЕ _ЧЕМ (черепаха, 
+  Y) </i>превращаются в идентичные при подстановке <i>{Х/черепаха, Y/улитка}. 
+  </i>Такая подстановка называется <i>унификатором. </i>Наша цель — отыскать наиболее 
+  общую подстановку такого рода.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index8.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

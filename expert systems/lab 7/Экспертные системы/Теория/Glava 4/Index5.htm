@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">4.3.1. 
+  Структуры данных в языке LISP</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Одним из первых 
+  языков обработки списков был LISP<sup>2</sup> <i>[McCarthy, 1960]. </i>За четыре 
+  десятилетия, которые прошли после появления его первой версии, язык неоднократно, 
+  модифицировался и расширялся, но в основе своей изменился мало. Разработчики 
+  языка утверждали, что LISP отличается от прочих языков программирования следующими 
+  свойствами <i>[McCarthy et al, I960]:</i><br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> основной структурой 
+    данных в нем является список;<br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="3"> программы на этом языке 
+    также имеют списочную структуру;<br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="3"> его базовыми операциями 
+    являются операции над списками.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В 1960 году 
+  выбор списков в качестве базовой структуры языка программирования рассматривался 
+  как революционный шаг. Сейчас большинство языков программирования общего назначения 
+  тем или иным образом поддерживает операции над списочными структурами, хотя 
+  от программистов обычно требуется запрашивать выделение памяти для формирования 
+  списка, а затем после его использования — возвращать память системе. В LISP 
+  еще на ранних стадиях развития в исполняющую систему был встроен механизм &quot;уборки 
+  мусора&quot;, и программисту не требовалось следить за распределением памяти.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Базовым блоком 
+  в структуре данных языка LISP является символическое выражение. Простое символическое 
+  выражение использует атомарные символы, или <i>атомы </i>— строки буквенно-цифровых 
+  символов, которые начинаются с буквы, например WOMBAT. (Допустимая длина строки 
+  варьируется в зависимости от версии исполняющей системы.) Во внутренней структуре 
+  данных атом представлен ячейкой памяти. Отдельным атомом является символ Т, 
+  которым представляется константа &quot;True&quot; — истина. Другой специальный 
+  атом, NIL, представляет, с одной стороны, константу &quot;False&quot;—ложь, 
+  а с другой — <i>пустой список.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Составные 
+  выражения объединяются в древовидной структуре, при этом используется очевидное 
+  соответствие между символическими выражениями и представлением конечных деревьев. 
+  Читатели, склонные к математическим формулировкам, найдут более строгое изложение 
+  этого соответствия во врезке 4.2.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Списки представляют 
+  собой довольно гибкие структуры данных, поскольку могут объединять элементы 
+  разных типов и иметь произвольную длину и размерность (вложенность). Например, 
+  в LISP возможен такой список:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(&quot;а&quot; 
+  (9) () N (? (WOMBAT)) (A . В) NIL 0.9)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Этот список 
+  содержит элементы разных типов — строки, числа с фиксированной и плавающей точкой, 
+  атомы, булевы значения, точечные пары и другие списки.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но списки 
+  имеют и определенные недостатки, из-за которых в LISP были включены и другие 
+  структуры данных. Списки в LISP представляют собой стеки, т.е. доступ к ним 
+  возможен только с одного конца списка. Манипулируя только таким списком, невозможно 
+  обратиться к элементу списка по его позиции, как это делается с элементом массива. 
+  Поэтому для представления больших совокупностей относительно постоянных или 
+  редко меняющихся данных в LISP были включены другие типы структур. В современных 
+  версиях LISP поддерживаются массивы, хэш-таблицы и структуры, подобный записям, 
+  которые позволяют эффективнее использовать пространство памяти и повысить скорость 
+  доступа.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">4.2. 
+  Списки и точечные пары</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Пусть 
+  задан оператор &quot;.&quot; для комбинирования ячеек в древовидной структуре. 
+  Тогда определение символического выражения в LISP можно сформулировать следующим 
+  образом.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Любой 
+  атом является символическим выражением.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Если 
+  А<sub>1</sub> и А<sub>2</sub> суть символические выражения, то (А<sub>1</sub> 
+  A<sub>2</sub>)— это также символические выражения.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Если 
+  S = (А,. (А<sub>2</sub> . (.... (А<sub>п</sub>-1. AJ ....))) — суть символическое 
+  выражение для некоторого п&gt;0, то S — список тогда и только тогда, когда А<sub>n</sub> 
+  =NIL.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">В 
+  соответствии с этим определением, если п=0, то S представляет собой пустой список, 
+  NIL. Такое определение допускает существование списка списков, а также списка 
+  атомов. Если S<sub>1</sub> S<sub>2</sub>, ..., S<sub>n</sub>— символические 
+  выражения, то мы будем представлять список<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">S<sub>1</sub>.(S<sub>2</sub>.(.... 
+  (S<sub>n</sub>. NIL)....)))</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">в 
+  виде<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(S<sub>1 
+  </sub>S<sub>2</sub>.... S<sub>n</sub>)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Таким 
+  образом, (А . (В . NIL)) является списком. Он представляет список (А В), но 
+  (А . (В. С)) списком не является, поскольку (С=NIL)).<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Символическое 
+  выражение, которое не является ни атомом, ни списком, называется точечной парой. 
+  Если (А . В) — точечная пара, то А — это голова пары, а B — ее хвост. Точечные 
+  пары могут иметь произвольную сложность. Так, ((А . В). С) — тоже точечная пара, 
+  так же, как и ((А . В) . (С. D)). Благодаря наличию соответствия между точечными 
+  парами и списками, понятия головы и хвоста определены и для списков. Поскольку 
+  список (А В) — это (А . (В . NIL)), то очевидно, что А — голова в списке (А 
+  В), а хвост — это (В), но не В. Хвостом списка (В) является NIL</font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

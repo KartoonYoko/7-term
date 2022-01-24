@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">21.2. 
+  Методика Перла</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Альтернативой 
+  теории Демпстера—Шефера является методика Перла <i>[Pearl, 1986], </i>в которой 
+  свидетельства учитываются на основе Байесовского подхода к группированию и распространению 
+  влияния свидетельств на достоверность гипотез. Как и в методике, предложенной 
+  Гордоном (Gordon) и Шортлиффом (Shortliffe), предполагается, что в пространстве 
+  гипотез выделено некоторое подмножество гипотез, представляющих интерес в определенном 
+  семантическом контексте, причем это подмножество имеет иерархическую структуру.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предполагается 
+  также, что еще до получения свидетельств с каждой отдельной гипотезой связано 
+  определенное значение степени доверия к ее правдоподобности. Перл не уточняет, 
+  каким именно способом формируются эти исходные значения, но скорее всего это 
+  должен сделать эксперт в предметной области при формулировке гипотез.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">От эксперта 
+  также требуется выделить множество гипотез <i>S, </i>на которые непосредственно 
+  распространяется определенное множество свидетельств <i>Е. </i>Если свидетельства 
+  из <i>Е </i>непосредственно влияют на гипотезы из <i>S, </i>то должен существовать 
+  какой-то причинный механизм, связывающий каждый член множества S со свидетельствами, 
+  причем он является уникальным для каждого из них. Однако сами по себе свидетельства 
+  в множестве <i>Е </i>не несут никакой информации, которая позволила бы нам отдать 
+  предпочтение одному из членов S перед другими.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это отображение 
+  множеств друг на друга позволяет ввести понятие условной независимости между 
+  свидетельствами и отдельными гипотезами <i>h<sub>i</sub>:</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Р(Е 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">| <i>S, h<sub>i</sub></i>) 
+  = <i>Р(Е | S, h<sub>1</sub>), </i>для всех h<sub>i</sub> <img src="prinadl.gif" width="9" height="10"> 
+  <i>S.</i></font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>С </i>помощью 
+  отношения вероятностей можно количественно оценить степень, с которой свидетельства 
+  подтверждают или опровергают множество гипотез <i>S:</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">лS=[P(E|S)] 
+  / [P(E|-S)].</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Влияние свидетельств 
+  <i>Е </i>на множество <i>S </i>вычисляется следующим образом. Каждая отдельная 
+  гипотеза h<sub>i</sub>, принадлежащая множеству <i>S, </i>получает вес <i>W<sub>i</sub> 
+  = л<sub>S </sub>, в </i>то время как каждая гипотеза из дополняющего множества 
+  S<sup>C</sup> получает вес <i>W<sub>i</sub> </i>= 1. Все это выполняется на 
+  фазе распределения весов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Затем, когда 
+  наступает фаза обновления, вычисляется новое значение функции доверия ВЕL'(h<sub>i</sub>) 
+  по ее прежнему значению ВЕL(h<sub>i</sub>):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">BEL'(h<sub>i</sub>) 
+  = <i>P(h<sub>i</sub> | Е) </i>= a<i><sub>s</sub></i>W<sub>i</sub>ВЕL(h<sub>i</sub>), 
+  </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">где a<i><sub>s</sub> 
+  </i>— коэффициент нормализации, заданный соотношением<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">a<i><sub>s</sub></i>=( 
+  <img src="sum.gif"><sub>i</sub>[W<sub>i</sub>BEL'(h<sub>i</sub>))<sup>-1</sup>.]<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  степень доверия, назначенная множеству гипотез, распределяется между членами 
+  этого множества как функция их априорных вероятностей. В то же время степень 
+  доверия, назначенная группе гипотез, является суммой соответствующих показателей 
+  элементов этой группы. Обновление значений показателей доверия может выполняться 
+  рекурсивно, т.е. апостериорные оценки, полученные на основании одних свидетельств, 
+  могут использоваться в качестве априорных оценок для следующего цикла обновления 
+  при получении новых свидетельств.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Вся схема 
+  вычислений основана на предположении об условной независимости и соблюдении 
+  симметричности множеством S<sup>C</sup>, дополняющим <i>S. </i>Из соотношения<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Р(Е 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">| S<sup>C</sup>, 
+  h<sub>i</sub>) = <i>Р(Е | S<sup>C</sup>, h<sub>i</sub>)</i></font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">для всех</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> <font face="Verdana, Arial, Helvetica, sans-serif">h<sub>i</sub> 
+  <img src="prinadl.gif" width="9" height="10"> S<sup>C</sup> следует,</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> что 
+  <i>Р(Е | h<sub>i</sub></i>) = <i>Р(Е | S), </i>если h<sub>i</sub>, h<sub>i</sub> 
+  <img src="prinadl.gif" width="9" height="10"> <i>S, </i>иначе <i>Р(Е | S<sup>C</sup></i>).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Из этого соотношения 
+  и правила Байеса следует, что <i>P(h,| Е) </i>= <i>a<sub>s</sub>X<sub>s</sub>P(h,), 
+  </i>если Л, е <i>S, </i>иначе <i>a<sub>s</sub>P(h,).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но, хотя Перл 
+  использует формализм Байеса, частичное свидетельство в пользу какой-либо гипотезы 
+  не может быть истолковано и как частичная поддержка отрицания этой гипотезы. 
+  Свидетельство в пользу подмножества гипотез S не может быть истолковано как 
+  свидетельство в пользу дополнения к этому подмножеству 5<sup>е</sup>.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Распределение 
+  свидетельств в пользу подмножества между отдельными гипотезами восстанавливает 
+  точечное распределение вероятностей на пространстве гипотез, но это происходит 
+  за счет точности оценок для отдельных гипотез. Перл утверждает, что нет необходимости 
+  распределять общий показатель, взятый для всего подмножества <i>S, </i>на его 
+  элементы до тех пор, пока не будут получены дополнительные свидетельства (или 
+  все возможные). Нормализацию также можно отложить до тех пор, пока полученные 
+  свидетельства не подтолкнут систему к выделению определенных гипотез (возможно, 
+  разных). Например, если получены свидетельства <i>Е<sub>1</sub>, ..., Е<sub>n</sub> 
+  </i>соответственно в пользу гипотез S<sub>1</sub>, ..., S<sub>n</sub>, то веса 
+  будут комбинироваться мультипликативно<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">W<sub>i</sub>(E<sub>1</sub>,...,E<sub>n</sub>)=W<sub>1,i</sub>,W<sub>2,i</sub>... 
+  W<sub>n,i</sub></font></i></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">где<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">W<sub>k,i</sub> 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">=л<sub>Sk</sub> 
+  если hi <img src="prinadl.gif" width="9" height="10"><i>S<sub>k</sub>,</i></font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">иначе 1 .<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Перл предложил 
+  также и альтернативный механизм обновления, который позволяет обойтись без нормализации 
+  и включает распространение пересмотра параметров гипотез как вверх, так и вниз 
+  по иерархической структуре с помощью передачи сообщений. С точки зрения практической 
+  реализации этот механизм кажется более привлекательным, чем правило Демпстера. 
+  Перл утверждает, что метод распространения, основанный на передаче сообщений, 
+  достаточно прозрачен, поскольку пути влияния имеют семантическое обоснование. 
+  Отказ от глобальной нормализации позволяет лучше понять результаты на промежуточных 
+  этапах распространения. Остается только один числовой параметр — отношение вероятностей, 
+  — смысл которого достаточно понятен.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>21.1. 
+  Байесовские сети</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">В 
+  работе [Pearl, 1988] описан формализм, которому автор присвоил название Байесовские 
+  сети. Этот механизм можно рассматривать как обобщение описанных в данном разделе 
+  иерархических сетей доверия. В Байесовской сети дуги между узлами также представляют 
+  причинные зависимости, но допускается ситуация, когда некоторые узлы имеют множество 
+  родителей, причем структура сети может содержать петли. Обновление оценок доверия 
+  выполняется с помощью передачи сообщений, как и в случае строгой иерархической 
+  организации, хотя действие этого механизма очевидно только для полидеревьев, 
+  т.е. сетей, в которых между любыми двумя узлами существует единственный путь.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Представляет 
+  интерес сравнение формализма Перла и теории Демпстера — Шефера.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"> В системе 
+    Перла нужно присваивать априорные оценки доверия отдельным событиям, а в теории 
+    Демпстера — Шефера оценка распространяется на всю область анализа.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"> В системе 
+    Перла определение функции ВЕL(h<sub>1</sub>) через P(h<sub>1</sub>) и BEL'(h<sub>1</sub>) 
+    через P(h, | E) позволяет более корректно обосновать эти функции на основе 
+    выводов теории вероятностей, чего нельзя сказать о правилах комбинирования 
+    Демпстера, с чем согласился и Шефер в работе [Shafer, 1976].<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"> Йен 
+    [Yen, 1986] обратил внимание на то, что в формализме Перла теряется понятие 
+    доверительного интервала, внутри которого могут изменяться вероятностные оценки. 
+    Доверительные интервалы очень удобно использовать в экспертных системах, поскольку 
+    они позволяют судить о &quot;качестве&quot; гипотез, возможности их совершенствования 
+    и ассоциированной степени неопределенности.</font><font face="Arial, Helvetica, sans-serif" size="3" color="#666666"></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В своей книге 
+  <i>[Pearl, 1988] </i>Перл совершенно справедливо отмечает, что теория Демпстера—Шефера 
+  основана на неполной вероятностной модели, а потому может дать только частичные 
+  ответы. Вместо того чтобы непосредственно оценить, насколько близка гипотеза 
+  к тому, чтобы ее можно было считать истинной, эта теория говорит, как сильно 
+  полученное свидетельство должно продвинуть нас к убеждению, что данная гипотеза 
+  истинна. В этом отношении теория Демпстера—Шефера значительно больше напоминает 
+  объективистские методы проверки значимости с использованием доверительных интервалов, 
+  чем субъективистские методы на основе Байесовского подхода <i>[Neapolitan, 1990].</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но, несмотря 
+  на отмеченные различия, в обоих подходах есть много общего, почему мы и рассматриваем 
+  их совместно в рамках одной главы. Ассоциирование свидетельств с подмножествами 
+  гипотез в рамках метода Перла не противоречит отображению одного множества на 
+  другое в теории Демпстера—Шефера. Оба варианта можно рассматривать как использование 
+  метафоры &quot;массового распределения&quot; в том смысле, что основное внимание 
+  уделяется распределению полученных свидетельств в контексте структурированного 
+  пространства альтернатив, причем оба метода позволяют вычислять значения функции 
+  доверия на основе простых вероятностных оценок.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index6.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

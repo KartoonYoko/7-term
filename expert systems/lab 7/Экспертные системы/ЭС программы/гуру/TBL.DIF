@@ -1,0 +1,24 @@
+Comparing files TBL.H and TBL.ZZZ
+***** TBL.H
+#define S_UNSIGNED      unsigned char
+#defiHˆr€
+ò
+/* number of records in file               */
+        D_UNSIGNED t_fracc;     /* table read access codes                 */
+***** TBL.ZZZ
+#define S_UNSIGNED      unsigned char
+#define D_UNSIGNED      short unsigned
+
+/********
+ *
+ * structure declarations for use with TBL
+ *
+ ********/
+ 
+struct  t_tsd   {               /* tbl_show table descriptor structure     */
+        char      *t_fpfifn;    /* physical file name                      */
+        long       t_frecn;     /* number of records in file               */
+        D_UNSIGNED t_fracc;     /* table read access codes                 */
+*****
+
+

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.4.2. 
+  Онтологический анализ и представление знаний</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Следующий 
+  этап — определить, с какими видами данных нам придется иметь дело при решении 
+  этого класса головоломок. Какие объекты представляют интерес в мире правдолюбцев 
+  и лжецов и какими атрибутами эти объекты характеризуются?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">По-видимому, 
+  для решения задач этого класса нам придется иметь дело со следующими объектами.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Персонажи, </i>произносящие 
+    реплики. Произносимая реплика характеризует либо самого персонажа, либо прочих 
+    персонажей, либо и тех и других. Персонаж может быть либо правдолюбцем, либо 
+    лжецом.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Утверждение, </i>содержащееся 
+    в реплике. Это утверждение может быть либо целиком лживым, либо абсолютно 
+    правдивым (истинным).<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Немного поразмыслив, 
+  мы придем к выводу, что существуют еще и другие объекты, которые необходимо 
+  учитывать при решении задач этого класса.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Существует <i>среда 
+    (мир), </i>которая характеризуется совокупностью наших предположений. Например, 
+    существует <i>мир, </i>в котором мы предположили, что А — правдолюбец, а следовательно, 
+    высказанное им утверждение (или утверждения) истинно. Это предположение влечет 
+    за собой разные следствия, которые образуют контекст данного гипотетического 
+    мира.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Существует еще нечто, 
+    что мы назовем <i>причинами, </i>или <i>причинными связями </i>(reasons), 
+    которые связывают высказывания в том или ином гипотетическом мире. Если А 
+    утверждает, что &quot;В — лжец&quot;, и мы предполагаем, что А — правдолюбец, 
+    то это утверждение является причиной (основанием), по которой мы можем утверждать, 
+    что в данном гипотетическом мире В — лжец, а следовательно, все утверждения, 
+    которые содержатся в репликах, произносимых В., лживы. Отслеживая такие связи 
+    между высказываниями, можно восстановить исходное состояние проблемы, если 
+    в результате рассуждений мы придем к противоречию.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Естественно, 
+  что эти объекты можно представлять в программе по-разному. Онтологический анализ 
+  практически никогда не приводит к единственному способу представления. Для первой 
+  версии CLIPS-программы я выбрал следующее представление описанных объектов:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  statement (высказывание) связан с определенным </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;персонажем 
+  (поле speaker). </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Высказывание 
+  содержит утверждение (поле claim).</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;Высказывание 
+  имеет основание - причину (поле reason), </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;по 
+  которой ему можно доверять, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;и 
+  тэг (tag) - это может быть произвольный </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;идентификатор, 
+  (deftemplate statement<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  speaker (type SYMBOL)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(multifield 
+  claim (type SYMBOL))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (multifield 
+  reason (type INTEGER) (default 0))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  tag (type INTEGER) (default 1)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Вместо того 
+  чтобы фокусировать внимание на персонаже, во главу угла я ставлю произносимую 
+  им реплику (высказывание), а персонаж отношу к атрибутам высказывания. Я хочу 
+  обеспечить возможность представить определенную головоломку в виде экземпляра 
+  шаблона, приведенного ниже.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(statement 
+  (speaker A) (claim F A))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Этот шаблон 
+  можно перевести на &quot;человеческий&quot; язык следующим образом: &quot;Существует 
+  высказывание, сделанное персонажем А, в котором утверждается, что А лжец и тэг 
+  этого высказывания по умолчанию получает значение 1&quot;. Обратите внимание 
+  на то, что в поле reason также будет установлено значение по умолчанию (это 
+  значение равно 0), т.е. мы можем предположить, что никаких предшествующих высказываний, 
+  которые могли бы подтвердить данное, в этой задаче не было.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание, 
+  что поля claim и reason имеют квалификатор multifield, поскольку они могут содержать 
+  несколько элементов данных (более подробно об этом рассказано в <i>Руководстве 
+  пользователя).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Однако недостаточно 
+  только представить в программе высказывания персонажей — нам понадобится также 
+  выявить суть содержащихся в них утверждений. Далее, приняв определенное предположение 
+  о правдивости или лживости персонажа, которому принадлежит высказывание, можно 
+  построить гипотезу об истинности или лживости этого утверждения. С каждым таким 
+  утверждением свяжем уникальный числовой идентификатор.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Утверждение, 
+  смысл которого, например, состоит в следующем, ;;Т А ... означает, что А правдолюбец; 
+  ;;F А ... означает, что А лжец. ;;Утверждение может иметь под собой ;;основание 
+  (reason) - обычно это тэг ;;высказывания (объекта statement) или тэг ;;другого 
+  утверждения (объекта claim). ;;Утверждение также характеризуется признаком scope, 
+  ;;который может принимать значение &quot;истина&quot; или &quot;ложь&quot;, 
+  (deftemplate claim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(multifield 
+  content (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(multifield 
+  reason (type INTEGER) (default 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  scope (type SYMBOL)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Например, 
+  раскрыв содержимое приведенного выше высказывания в предположении, что А говорит 
+  правду, получим следующее утверждение (объект claim):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content F A) (reason 1) (scope truth)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  объект claim наследует содержимое от объекта statement. Последний становится 
+  обоснованием (reason) данного утверждения. Поле scope объекта claim принимает 
+  значение предположения о правдивости или лживости этого высказывания.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Еще нам потребуется 
+  представление в программе того <i>мира </i>(world), в котором мы в настоящее 
+  время находимся. Объекты world порождаются в момент, когда мы формируем определенные 
+  предположения. Нужно иметь возможность различать разные множества предположений- 
+  и идентифицировать их в программе в тот момент, когда процесс размышлений приводит 
+  нас к противоречию. Например, противоречие между высказываниями <i>Т(А) </i>и 
+  <i>F(A) </i>отсутствует, если они истинны в разных мирах, т.е. при разных предположениях. 
+  Если у вас есть на сей счет сомнения, вернитесь вновь к примерам в самом начале 
+  раздела А.4.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Миры будем 
+  представлять в программе следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  world представляет контекст,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;сформированный 
+  определенными предположениями</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;о 
+  правдивости или лживости персонажей. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  имеет уникальный идентификатор в поле tag,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;а 
+  смысл допущения - истинность или лживость -</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;фиксируется 
+  в поле scope, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  world<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  tag (type INTEGER) (default 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  scope (type SYMBOL) (default truth)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что при указанных в шаблоне значениях по умолчанию мы можем начинать 
+  каждый процесс вычислений с объекта world, имеющего в поле значение 1, причем 
+  этот &quot;мир&quot; можно заселить высказываниями персонажей, которых мы предположительно 
+  считаем правдолюбцами. Таким образом можно инициализировать базу фактов the-facts 
+  для задачи <b>Р0 </b>следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">;;<font face="Verdana, Arial, Helvetica, sans-serif"> 
+  Утверждение, что А лжец. </font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  the-facts<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(statement 
+  (speaker A) (claim FA)) )<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если этот 
+  оператор deffacts будет включен в тот же файл, что и объявления шаблонов (а 
+  также правила, о которых речь пойдет ниже), то после загрузки этого файла в 
+  среду CLIPS нам понадобится для запуска программы дать только команду reset.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

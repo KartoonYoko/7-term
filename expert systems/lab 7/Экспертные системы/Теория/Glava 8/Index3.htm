@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER =0  COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">8.1.1. 
+  Исчисление высказываний</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Исчисление 
+  высказываний представляет собой логику неанализируемых предположений, в которой 
+  <i>пропозициональные константы </i>могут рассматриваться как представляющие 
+  определенные простые выражения вроде &quot;Сократ — мужчина&quot; и &quot;Сократ 
+  смертен&quot;. Строчные литеры <i>р, q, r, ... </i>в дальнейшем будут использоваться 
+  для обозначения пропозициональных констант, которые иногда называют <i>атомарными 
+  формулами, </i>или <i>атомами.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ниже приведены 
+  все синтаксические правила, которые используются для конструирования <i>правильно 
+  построенных формул </i>(ППФ) в исчислении высказываний.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(S. U) ЕслиU 
+  является атомом, то <i>у </i>является ППФ.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(S¬) Если 
+  U является ППФ, то —U также является ППФ.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(S. v) Если 
+  U и ф являются ППФ, то (U u ф) также является ППФ.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В этих правилах 
+  строчные буквы греческого алфавита (например, U и ф) представляют <i>пропозициональные 
+  переменные, </i>т.е. не атомарные формулы, а любое простое или составное высказывание. 
+  Пропозициональные константы являются частью <i>языка высказываний, </i>который 
+  используется для приложения исчисления пропозициональных переменных к конкретной 
+  проблеме.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выражение 
+  -U читается как &quot;не U<i>&quot;, </i>а (U v ф) читается как дизъюнкция &quot;U 
+  или ф (или оба)&quot;. Можно ввести другие логические константы — &quot;л&quot; 
+  (конъюнкция), &quot;D&quot; (импликация, или обусловленность), &quot;=&quot; 
+  (эквивалентность, или равнозначность), которые, по существу, являются сокращениями 
+  комбинации трех приведенных выше констант. .<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(U ^ ф) Эквивалентно¬(¬U 
+  v ф). Читается &quot;U и ф&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(U <img src="prinadl.gif" width="9" height="10">ф) 
+  Эквивалентно (¬U v ф). Читается &quot;U имплицирует ф&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(U==ф) Эквивалентно 
+  (U<img src="prinadl.gif" width="9" height="10">ф)^(ф<img src="prinadl.gif" width="9" height="10">U). 
+  Читается &quot;U эквивалентно ф&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В конъюнктивной 
+  нормальной форме исчисления высказываний константы &quot;импликация&quot; и 
+  &quot;эквивалентность&quot; заменяются константами &quot;отрицание&quot; и &quot;дизъюнкция&quot;, 
+  а затем отрицание сложного выражения раскрывается с помощью формул Де Моргана:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">¬(U^ф) преобразуется 
+  в (¬Uv¬ф), ¬(U v ф) преобразуется в (-U^ф) , ¬¬U преобразуется в U<i> .</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Последний 
+  этап преобразований — внесение дизъюнкций внутрь скобок: (&pound; v (U ^ф))) 
+  заменяется ((&pound;vU\(U)^(&pound;vф)).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Принято сокращать 
+  вложенность скобочных форм, отбрасывая в нормальной конъюнктивной форме знаки 
+  операций v и л. Ниже представлен пример преобразования выражения, содержащего 
+  импликацию двух скобочных форм, в нормальную конъюнктивную форму.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">¬(pvq)<img src="prinadl.gif" width="9" height="10">(-p^A-q) 
+  Исходное выражение.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">¬¬(pvg)v(-p^- 
+  <i>q) </i>Исключение~.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(pvq)v(-p^- 
+  <i>q) </i>Ввод - внутрь скобок.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(¬pv(pvq))v(¬pv(pvq)) 
+  Занесение v внутрь скобок.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">{{-p, <i>р, 
+  q}, </i>{¬q, <i>р, q} } </i>Отбрасывание А и v в конъюнктивной нормальной форме.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выражения 
+  во внутренних скобках — это либо атомарные формулы, либо негативные атомарные 
+  формулы. Выражения такого типа называются <i>литералами, </i>причем с точки 
+  зрения формальной логики порядок литералов не имеет значения. Следовательно, 
+  для представления множества литералов — фразы — можно позаимствовать из теории 
+  множеств фигурные скобки. Литералы в одной и той же фразе неявно объединяются 
+  дизъюнкцией, а фразы, заключенные в фигурные скобки, неявно объединяются конъюнкцией.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Фразовая форма 
+  очень похожа на конъюнктивную нормальную форму, за исключением того, что позитивные 
+  и негативные литералы в каждой дизъюнкции группируются вместе по разные стороны 
+  от символа стрелки, а затем символ отрицания отбрасывается. Например, приведенное 
+  выше выражение<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">преобразуется 
+  в две фразы:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">p,q&lt;¬q.</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">в которых 
+  позитивные литералы сгруппированы слева от знака стрелки, а негативные справа.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Более строго, 
+  фраза представляет собой выражение вида<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">в котором 
+  <i>p<sub>1</sub>..., р<sub>т</sub> q<sub>1</sub></i>,..., <i>q<sub>n</sub> </i>являются 
+  атомарными формулами, причем <i>т=&gt;0 </i>и <i>п=&gt;0. </i>Атомы в множестве 
+  <i>р<sub>1</sub>,..., р<sub>т</sub> </i>представляют <i>заключения, </i>объединенные 
+  операторами дизъюнкции, а атомы в множестве <i>q<sub>1 </sub>..., q<sub>n</sub> 
+  </i>— <i>условия, </i>объединенные операторами конъюнкции.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index2.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index4.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

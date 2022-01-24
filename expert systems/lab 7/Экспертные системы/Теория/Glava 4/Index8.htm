@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">4.3.4. 
+  Обработка списков</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Языку LISP 
+  можно дать очень лаконичное формальное определение. Большинство LISP-программ 
+  можно специфицировать, используя только пять простейших операторов над символическими 
+  выражениями (см. врезку 4.4) и одну специальную форму (условное выражение). 
+  Эта элегантность и красота языка LISP часто не заметна неопытному взгляду, поскольку 
+  большинство LISP-приложений включает множество дополнительных операторов, собственно 
+  к LISP не относящихся. Современные диалекты LISP в буквальном смысле задыхаются 
+  от программных конструкций, заимствованных из языка FORTRAN, некоторые из которых 
+  оказались полезными, а другие просто вызывают отвращение (справедливости ради, 
+  нужно отметить, что некоторые обладают и тем и другим).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Как оказалось, 
+  структурой, наиболее подходящей для нечисловых вычислений, являются списки. 
+  Именно такие вычисления необходимо выполнять в процессе поиска решения в пространстве 
+  альтернатив, как это было показано в главе 2. В списке можно держать в поле 
+  зрения те альтернативные варианты, которые уже были рассмотрены ранее, не которые 
+  еще предстоит рассмотреть, и т.д. Поскольку между списками и древовидными ориентированными 
+  графами существует изоморфизм, естественно представлять развернутое пространство 
+  состояний в виде одного или более списков.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">4.4. 
+  Примитивы в LISP</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">В 
+  языке LISP имеется пять операций, которые, хотя и не имеют специальных наименований, 
+  лежат в основе всех остальных. LISP использует их в качестве виртуального машинного 
+  кода&quot; при построении более сложных примитивов. Например, в LISP имеются 
+  полиморфные предикаты равенства.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Пусть 
+  s — множество символических выражений. Можно, например, записать:<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Е(Х 
+  , Y): S x S -&gt; {Т, NIL}<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Это 
+  означает, что Е является функцией двух аргументов, причем оба аргумента — символические 
+  выражения из множества S, которые могут принимать значение либо Т, либо NIL.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(1)Е(Х 
+  , Y): S x S -&gt; {Т, NIL} проверяет, равны ли два атома.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(2)А(Х): 
+  S -&gt; {Т, NIL} проверяет, является ли символическое выражение атомом.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(З)Н(Х): 
+  S -&gt; S извлекает голову символического выражения, которое не является атомом; 
+  если х — атом, то результат функции не определен.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(4) 
+  Т(Х): S —&gt; S извлекает хвост символического выражения, которое не является 
+  атомом; если х — атом, то результат функции не определен.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(5)С(Х 
+  , Y): S х S —&gt; S формирует символическое выражение; если А и в являются символическими 
+  выражениями , то можно сформировать новое символическое выражение (А . В).<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Совокупности 
+  операции композиции функций и условного оператора описанных оераций вполне достаточно 
+  для того, чтобы вычислить любую обобщенную рекурсивную функцию. Композиция функций 
+  — это способность сделать значение одной срункции аргументом другой, т.е. организовать 
+  гнездование функций, например С(Н(Х), У).<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Фактически 
+  система, состоящая из трех компонентов<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(1) 
+  единственного атома NIL;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(2) 
+  условного выражения, проверяющего равенство, в форме<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">if 
+  E(X, NIL) then ... else ... 3) функций Н(Х), Т(Х), С(ХД)</font><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">к 
+  которым добавлена операция композиции функций, вполне позволяет реализовать 
+  машину Тьюринга (см. [Minsky, 1972, Chapter 10]).</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Можно использовать 
+  списки и для представления ассоциативной связи одних символов с другими. Например, 
+  список<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">((Alabama 
+  Montgomery) (Alaska Juneau) (Arizona Phoenix) ... )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">позволяет 
+  представить столицы пятидесяти штатов. Представленная ниже LISP-программа сможет 
+  затем извлечь название столицы заданного штата из этого ассоциативного списка.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defun 
+  assoc (key alist)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cond 
+  ((null alist) NIL)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">((eq 
+  (first (first a list)) key) (first alist))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(T 
+  (assoc key (rest alist)))) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если обратиться 
+  к этой функции с помощью, например, выражения (assoc 'Alaska '((Alabama Montgomery) 
+  (Alaska Juneau) (Arizona Phoenix) ... ), то функция возвратит список<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(Alaska 
+  Juneau) .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">NULL — это 
+  предикат, который проверяет, не пуст ли список, EQ — предикат, который проверяет 
+  равенство двух атомов, FIRST — функция, которая возвращает головной элемент 
+  списка, a REST — функция, которая возвращает хвост списка (см. врезку 4.4).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Основным условным 
+  выражением в LISP является COND. В приведенном выше фрагменте программного LISP-кода 
+  это условное выражение может быть расшифровано следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>если </i>alist 
+  <i>это </i>null, <i>то вернуть </i>NIL, <i>иначе</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">{<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>если головной 
+  элемент головного элемента </i>alist <i>равен </i>key, <i>то вернуть головной 
+  элемент </i>alist,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>иначе вернуть 
+  результат применения функции </i>assoc <i>к хвосту </i>alist. }<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Условное выражение 
+  COND можно представить в терминах примитива if-then-else, описанного во врезке 
+  4.4. Выражение COND может включать сколько угодно вложенных конструкций if-then-else.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Конечно, ассоциативные 
+  списки — это не самое лучшее средство хранения данных, но наш пример с таким 
+  списком помог вам представить, как в LISP организуется рекурсивная обработка 
+  списков.</font></p>
+<br>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

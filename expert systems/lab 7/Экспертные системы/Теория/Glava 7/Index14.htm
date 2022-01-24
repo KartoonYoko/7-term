@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+   
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Чем отличаются 
+  объектно-ориентированные языки программирования от обычных процедурных языков?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. В чем состоит 
+  отличие между конкретными и абстрактными классами?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Почему 
+  при множественном наследовании иерархическая структура превращается в гетерархическую?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. В чем состоит 
+  проблема наложения методов при множественном наследовании?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Что такое 
+  метакласс и в чем польза применения такой конструкции?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">6. Что понимается 
+  под термином &quot;список предшествования классов&quot;? 7. Рассмотрите схему 
+  отношений между классами на рис. 7.9.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Используя 
+  конструкцию def class языка CLIPS, опишите эту структуру классов таким образом, 
+  чтобы соблюдался следующий порядок наследования в классах, имеющих несколько 
+  суперклассов:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">wkg-man: 
+  (man worker) father: (parent man) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">wkg-woman: 
+  (worker woman) mother: (parent woman)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">wkg-father: 
+  (wkg-man father)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> wkg-raother: 
+  (mother wrk-woman)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">Начните 
+  с класса person:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defclass 
+  person (is-a USER) (role concrete))<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Какой вид 
+  будет иметь список предшествования классов wkg-father и wkg-mother?<br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="9.gif" width="550" height="322"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 7.9. 
+  Схема структуры классов для упражнения 7<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">8. Предположим, 
+  что классы на рис. 7.9 имеют следующие предпочтения при выборе блюд на завтрак:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">man: 
+  donut woman:</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> croissant 
+  parent:</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> fruit 
+  worker: bacon</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Закодируйте 
+  данные предпочтения в обработчиках сообщений этих классов таким образом, чтобы 
+  класс-получатель сообщения вернул наименование того блюда, которое он предпочитает.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Сформируйте 
+  следующие экземпляры классов:</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> Joan — экземпляр 
+  класса wrk-mother, </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">Jim — экземпляр 
+  класса wrk-man. </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">Передайте им 
+  сообщение, например, в такой форме:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(send 
+  [Joan] breakfast)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Чем ответят 
+  экземпляры Joan и Jim на такое сообщение и почему?</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+</body>
+</html>

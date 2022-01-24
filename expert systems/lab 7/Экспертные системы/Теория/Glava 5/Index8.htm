@@ -1,0 +1,532 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">5.3.2. 
+  Прямая и обратная цепочки рассуждений</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На глобальном 
+  уровне управления последовательностью применения правил можно выделить две стратегии 
+  поведения — применять правила в прямом и обратном порядке. Прямой порядок означает, 
+  что цепь рассуждений строится, отталкиваясь от данных (условий, о которых известно, 
+  что они удовлетворяются), к гипотезам (состоянию проблемы, вытекающему из этих 
+  условий). Обратная цепочка означает, что рассуждения строятся, отталкиваясь 
+  от заданной цели (гипотезы, представляющие целевое состояние системы) к условиям, 
+  при которых возможно достижение этой цели. Здесь явно чувствуется аналогия с 
+  прямой и обратной стратегиями доказательства теорем (см. об этом в главе 8).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">CLIPS представляет 
+  собой систему, в которой строится <i>прямая цепочка </i>рассуждений, а порождающие 
+  правила в системе MYCIN используются в большинстве случаев для построения обратной 
+  цепочки рассуждений, как было показано в главе 3. В CLIPS всегда сопоставляются 
+  состояние рабочей памяти и левые части правил, а затем выполняются действия, 
+  предусмотренные правой частью выбранного правила. А в MYCIN ведущей в рассуждениях 
+  является правая часть правила. Если мы задались целью установить природу некоторого 
+  микроорганизма, то отбираются все правила, в правой части которых дается соответствующее 
+  заключение, и затем анализируется, предпосылки какого из них удовлетворяются 
+  текущими данными.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Проще всего 
+  представить отличие между прямой и обратной цепочками рассуждений в терминах 
+  грамматических правил, аналогичных представленным в разделе 5.1. Как было показано, 
+  набор правил<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(Р1) 
+  $ -&gt; а$а </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(Р2) 
+  $ -&gt; b$b </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(РЗ) 
+  $ -&gt; с$с</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">можно использовать 
+  двумя способами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Во-первых, 
+  их можно использовать <i>для формирования </i>палиндромов. Если задаться некоторым 
+  начальным символом из имеющегося алфавита, то любая последовательность применения 
+  правил приведет к формированию палиндрома. Так, применение правил <b>Р1, Р1, 
+  РЗ, Р2, Р3</b> к исходному символу с приведет к формированию строк<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">аса, 
+  aacaa, caacaac, bcaacaacb, cbcaacaacbc.</font></i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это пример 
+  прямой цепочки, поскольку <i>с </i>и каждая последующая сформированная строка 
+  сопоставляются с левой частью правила, а затем означивается правая часть правила.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Во-вторых, 
+  можно использовать этот же набор правил не для формирования, а для <i>распознавания 
+  </i>палиндромов. Мы уже видели ранее, что, задавшись некоторой строкой, например 
+  <i>ЬасаЬ, </i>можно проследить, в какой последовательности применялись правила 
+  при построении этой строки. Строка <i>bасаb </i>соответствует правой части правила 
+  Р2; можно сказать, что правая часть правила Р2 &quot;допускает&quot; строку 
+  <i>bacab. </i>Означенная <i>левая </i>часть правила Р2 — это строка <i>аса, 
+  </i>которая соответствует правой части правила PI, a означенная левая часть 
+  этого правила — аксиома <i>с. </i>Таким образом, процесс распознавания успешно 
+  завершился — мы доказали, что <i>bacab </i>представляет собой палиндром. Описанный 
+  процесс распознавания — это пример применения обратной цепочки рассуждений. 
+  Начальная строка <i>bacab </i>и каждая очередная подстрока анализируются на 
+  соответствие с правыми частями имеющихся правил, а результатом является означивание 
+  левой части выбранного правила. Если в качестве исходной мы зададимся строкой 
+  <i>acbcb, </i>то для нее не удастся найти в имеющемся наборе правил такое, правая 
+  часть которого &quot;допускала&quot; бы эту строку, а значит, исходная строка 
+  не может быть палиндромом.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В литературе 
+  по теории доказательства теорем прямая цепочка рассуждений, как правило, ассоциируется 
+  с &quot;восходящим&quot; процессом, т.е. рассуждениями от фактов к целям, а 
+  обратная цепочка — с &quot;нисходящим&quot; процессом, рассуждением от целей 
+  к фактам. Но, строго говоря, в отношении продукционных систем эти термины не 
+  являются синонимами. Например, вполне возможно реализовать нисходящий процесс 
+  в продукционной системе с прямой цепочкой рассуждений, если должным образом 
+  настроить локальный режим управления, например задать явное указание целей.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В листинге 
+  5.4 показана простая программа построения башни из блоков. Эта программа переключается 
+  между двумя задачами: выбором очередного блока и установкой блока в башню.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В разделе 
+  шаблонов блоки представлены объектами, обладающими такими свойствами, как цвет, 
+  размер и положение. Если положение блока не определено, предполагается, что 
+  он находится в куче блоков (heap), еще не уложенных в башню. Шаблон on предоставляет 
+  в наше распоряжение средство, позволяющее описать размещение блоков одного (upper) 
+  на другом (lower). Информацию о текущей фазе решения проблемы (поиск или установка) 
+  несет шаблон goal.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  5.4. Набор правил для построения башни из блоков</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  СТРАТЕГИЯ РАЗРЕШЕНИЯ КОНФЛИКТОВ</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (declare 
+  (strategy mea))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Шаблоны<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Объект block характеризуется цветом, размером и положением,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (deftemplate 
+  block<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  color (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  size (type INTEGER))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  place (type SYMBOL)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Вектор 'on' указывает, что блок &lt;upper&gt;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  находится на блоке &lt;lower&gt;. (deftemplate on<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  upper (type SYMBOL&raquo;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  lower (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  place (type SYMBOL) (default heap)] )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Текущая цель (goal) может быть либо 'найти' (find), </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  либо 'уложить' (build), (deftemplate goal<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  task (type SYMBOL)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ИНИЦИАЛИЗАЦИЯ<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Имеются три блока разных цветов и размеров.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Предполагается, что они находятся в куче.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  the-facts<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(block 
+  (color red) (size 10))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (block(color 
+  yellow) (size 20))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (block 
+  (color blue) (size 30))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРАВИЛА<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Задать первую цель: найти первый блок,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (defrule 
+  begin<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(initial-fact) 
+  =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (goal (task find))) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Взять самый большой блок в куче (heap), </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  pick-up<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?my-goal 
+  &lt;- (goal (task find))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?my-block 
+  &lt;- (block (size ?S1) (place heap))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(not 
+  (block (color ?C2) (size ?S2&amp;:(&gt;-?S2 ?S1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(place 
+  heap))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?my-block (place hand))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?my-goal (task build)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Установить первый блок в основание башни (tower). </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Этот блок не имеет под собой никакого другого, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  place-first<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?my-goal 
+  &lt;- (goal (task build))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?my-block 
+  <i>&lt;- </i>(block (place hand))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(not 
+  (block (place tower)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">=&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?my-block (place tower))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?my-goal (task find)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Установить последующие блоки на тот, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  что лежит в основании башни, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  put-down<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?my-goal 
+  &lt;- (goal (task build))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?my-block 
+  &lt;- (block (color ?C0)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (place 
+  hand))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(block 
+  (color ?C1) (place tower)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(not 
+  (on (upper ?C2) (lower ?C1) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(place 
+  tower)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">=&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?my-block (place tower))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (on (upper ?CO) (lower ?C1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (place 
+  tower)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?my-goal (task find)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Если в куче больше нет блоков, прекратить процесс,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (defrule 
+  stop<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?my-goal 
+  &lt;- (goal (task find))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(not 
+  (block (place heap)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">=&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?my-goal) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что порядок перечисления правил в программе не имеет значения. В программе 
+  управления роботом, представленной в листинге 5.3, правило прекращения выполнения 
+  стояло в списке первым, а в этой программе оно стоит в самом конце списка. Трассировку 
+  выполнения приведенной программы и некоторые комментарии вы найдете во врезке 
+  5.4.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666"><b>5.4. 
+  Трассировка программы строительства башни</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">При 
+  запуске программы в режиме трассировки будет сформирована следующая карта трассировки.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3" face="Verdana, Arial, Helvetica, sans-serif">CLIPS&gt; 
+  (reset)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-0 (initial-fact)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-1 (block (color red) (size 10) (place heap))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt;f-2 
+  (block (color yellow) (size 20) (place heap))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-3 (block (color blue) (size 30) (place heap))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">CLIPS&gt; 
+  (run)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">TIRE 
+  1 begin: f-0<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-4 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  2 pick-up: f-4, f-3,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-3 (block (color blue) (size 30) (place heap))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-5 (block (color blue) (size 30) (place hand))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-4 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-6 (goal (task build))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  3 place-first: f-6, f-5,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-5 (block (color blue) (size 30) (place hand))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-7 (block (color blue) (size 30) (place tower))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-6 (goal (task build))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-8 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  4 pick-up: f-8, f-2,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-2 (block (color yellow) (size 20) (place heap))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-5 (block (color yellow) (size 20) (place hand))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-8 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-10 (goal (task build))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  5 put-down: f-10, f-9, f-7,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-9 (block (color yellow) (size 20) (place hand))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt;. 
+  f-11 (block (color yellow) (size 20) (place tower))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-12 (on (upper yellow) (lower blue) (place tower))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-10 (goal (task build))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-13 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  6 pick-up: f-13, f-1,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-1 (block (color red) (size 10) (place heap))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-5 (block (color red) (size 10) (place hand))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-13 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-15 (goal (task build))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  7 put-down: f-15, f-14, f-11,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-14 (block (color red) (size 10) (place hand))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-16 (block (color red) (size 10) (place tower))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-17 (on (upper red) (lower yellow) (place tower))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-15 (goal (task build))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">==&gt; 
+  f-18 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">FIRE 
+  8 stop: f-18,<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-18 (goal (task find))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">CLIPS&gt; 
+  (reset)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-0 (initial-fact)<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-7 (block (color blue) (size 30) (place tower))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-11 (block (color yellow) (size 20) (place tower))<br>
+  </font></font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3">&lt;== 
+  f-12 (on (upper yellow) (lower blue) (place tower))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  &lt;== f-16 (block (color red) (size 10) (place tower))</font></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  &lt;== f-17 (on (upper red) (lower yellow) (place tower))</font></font><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Обратите 
+  внимание на манипулирование лексемой цели в ходе выполнения программы. Конечное 
+  состояние представлено при очистке рабочей памяти. Блоки в башне расположились 
+  в таком порядке: красный (red) — самый верхний, он стоит на желтом (yellow), 
+  который стоит на синем (blue).</font></font><font face="Arial, Helvetica, sans-serif"><font size="3"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Особенность 
+  этого примера в том, что в программе реализована нисходящая стратегия рассуждений, 
+  хотя правила предполагают использование прямой цепочки анализа данных, т.е. 
+  &quot;работают&quot; в направлении снизу вверх. Этот эффект достигается манипулированием 
+  лексемами цели. В данном случае выражение (initial-fact) формулирует цель верхнего 
+  уровня — построить башню. Эта цель имеет две подцели — поиск блока и установка 
+  блока в башню, которые представлены лексемами<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (task find)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">и<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(goal 
+  (task build)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Когда оказывается, 
+  что в куче больше нет блоков, главная цель достигнута. Мы делаем это в определенной 
+  степени неформально, используя (initial-fact) для упрощения программного кода, 
+  но принцип, тем не менее, соблюдается.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Иногда необходимо 
+  провести четкую границу между направленностью цепочки и направленностью действительных 
+  рассуждений. Эти две операции представляют разные уровни анализа. Очевидно, 
+  что цепочка является реализацией рассуждений, а не наоборот, но стратегия рассуждений 
+  управляет процессом построения цепочки, что в данном случае выполняется манипулированием 
+  лексемами цели. В главе 14 будет продемонстрирован гораздо более сложный пример 
+  использования этого метода в системе R1/XCON.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это разделение 
+  высвечивает проблему, с которой очень часто приходится сталкиваться при обсуждении 
+  функционирования программ искусственного интеллекта. Большинство сложных систем, 
+  независимо от того, являются ли они программными системами, или физическими 
+  устройствами, или комбинацией тех и других, могут быть описаны на разных уровнях 
+  <i>[Newell, 1982]. </i>В соответствии с терминологией Ньюэлла, построение цепочки 
+  — это свойство символического уровня, где нас интересуют только левые и правые 
+  части правил, а рассуждение— это нечто, возникающее на уровне знаний, где можно 
+  провести разделение между фактами и задачами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ранее уже 
+  утверждалось, что большинство порождающих правил, представляющих реальный интерес 
+  с точки зрения приложений искусственного интеллекта, являются недетерминированными. 
+  При построении прямой цепочки рассуждений может оказаться, что текущие данные 
+  удовлетворяют предпосылки не одного правила, а нескольких. При построении обратной 
+  цепочки также зачастую оказывается, что одна и та же цель достигается при выполнении 
+  не единственного правила, а нескольких. Поэтому понятно, какая важная роль отводится 
+  механизму управления правилами в функционировании продукционной системы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В главе 3 
+  мы рассказывали о представлении пространства поиска, связанного с набором порождающих 
+  правил, с помощью <i>И/ИЛИ-дерева. </i>Узлы такого дерева соответствуют состояниям 
+  рабочей памяти, а дуги — правилам, которые при этом возможно применить. Древовидная 
+  схема очень хорошо согласуется с методикой обратной цепочки рассуждений, если 
+  считать, что корень дерева соответствует целевому состоянию, промежуточные узлы 
+  — подцелям, а терминальные узлы (листья) — данным.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В И/ИЛИ-дереве 
+  корень представляет исходное состояние проблемы, а листья — возможные варианты 
+  ее решения. Нетерминальные узлы могут быть двух видов: И-узлы и ИЛИ-узлы. И-узлы 
+  соответствуют применению нескольких правил, которые в совокупности формируют 
+  цель как объединение нескольких подцелей, а ИЛИ-узлы соответствуют наличию альтернативы 
+  при выборе возможных правил. Таким образом, используя терминологию главы 2, 
+  можно говорить о том, что возможные варианты применения правил формируют <i>пространство 
+  поиска </i>и определяют его структуру.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Программирование, 
+  основанное на правилах (логическое программирование), не снимает с повестки 
+  дня проблему комбинаторного взрыва, поскольку для любой проблемы И/ИЛИ-дерево 
+  может ветвиться по экспоненциальному закону. Но на практике стратегия разрешения 
+  конфликтов, реализованная в интерпретаторах правил, позволяет надеяться на отыскание 
+  разумного решения.</font></p>
+<br>
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index9.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

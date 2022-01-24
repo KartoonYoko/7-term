@@ -1,0 +1,431 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">12.2.1. 
+  Модель предметной области выполнения буровых работ</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система MUD 
+  <i>[Kahn and McDermott, 1984] </i>предназначена для консультирования инженеров 
+  при проведении буровых работ на газонаполненных и текучих пластах. Основываясь 
+  на описании свойств пластов, система анализирует проблемы, возникающие при таком 
+  бурении, и предлагает способы их преодоления. Изменение свойств пластов, такое 
+  как внезапное увеличение вязкости в процессе бурения, может возникать вследствие 
+  самых различных факторов, например повышения температуры или давления или неправильной 
+  рецептуры смеси химических добавок.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Система MUD 
+  реализована с помощью языка описания порождающих правил OPS5 (предшественника 
+  CLIPS). Правила связывают изменения свойств пластов (абстрактные категории данных) 
+  с возможными причинами этих изменений (абстрактные категории решений). Ниже 
+  приведено одно из таких правил в переводе на &quot;человеческий&quot; язык.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ:</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3"> (1) обнаружено 
+  уменьшение плотности пласта и<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) обнаружено 
+  повышение вязкости, </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">ТО: </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">есть умеренные 
+  (7) основания предполагать, что имеется приток воды.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В формулировке 
+  таких правил числа в скобках — коэффициенты уверенности, которые при &quot;сцеплении&quot; 
+  правил комбинируются таким же способом, как и в системе MYCIN (подробнее об 
+  этом см. в главе 3). Таким образом, для того, чтобы определить достоверность 
+  предположения о проникновении воды, нужно принять во внимание все правила, которые 
+  &quot;порождают&quot; свидетельства за и против этой гипотезы. Мера доверия 
+  (или недоверия), связанная с каждым свидетельством, определяется способом, описанным 
+  в главе 9, а коэффициент уверенности в достоверности гипотезы является разностью 
+  между мерами доверия и недоверия.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Опыт, приобретенный 
+  Каном в процессе работы над этой системой, показал, что эксперты часто затрудняются 
+  сформулировать правила, приемлемые для подхода на основе эвристической классификации. 
+  Формат правила далеко не всегда соответствует способу мышления, привычному для 
+  экспертов, и способу обмена знаниями, принятыми в их среде. Определенные сложности 
+  вызывает и назначение коэффициентов уверенности в констатирующей части новых 
+  правил. При этом обычно приходится пересматривать сформулированные ранее правила 
+  и сравнивать имеющиеся в них значения коэффициентов. Очень часто эксперты используют 
+  коэффициенты уверенности для частичного упорядочения в отношении определенного 
+  &quot;заключения. Бучанан и Шортлифф <i>[Buchanan and Shortliffe, 1984, Chapter 
+  7] </i>также отмечали, что экспертам иногда для правильной формулировки правил 
+  нужно располагать довольно подробной информацией о режиме применения правил 
+  и распространении значений коэффициентов уверенности в процессе их &quot;сцепления&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При проектировании 
+  программ эвристической классификации, таких как MUD или MYCIN, процесс уточнения 
+  правил является, по существу, шестиэтапным.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) Эксперт 
+  сообщает инженеру по знаниям, какие правила нужно добавить или изменить.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Инженер 
+  по знаниям вносит изменения в базу знаний системы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3) Инженер 
+  по знаниям запускает на выполнение программу, вводит данные, которые ранее уже 
+  обрабатывались прежним набором правил, и проверяет таким образом полноту нового 
+  набора.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(4) Если при 
+  обработке новым набором правил ранее проверенных исходных данных возникают какие-либо 
+  проблемы, инженер по знаниям обсуждает способы их преодоления с экспертом и 
+  далее повторяется этап 1.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(5) Эксперт 
+  запускает систему и вводит новый вариант данных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(6) Если при 
+  обработке нового варианта не возникает никаких проблем, можно считать очередной 
+  сеанс внесения изменений в правила завершенным. В противном случае повторяется 
+  вся процедура начиная с 1-го этапа.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Как было показано 
+  в главе 10, именно такой базовый алгоритм внесения изменений в базу знаний используется 
+  в системе MYCIN, а для повышения эффективности выполнения отдельных этапов применяются 
+  разнообразные инструментальные средства, в частности язык сокращенного описания 
+  правил из состава оболочки EMYCIN, библиотека тестовых наборов данных, средства 
+  выполнения тестовых примеров в пакетном режиме и т.п.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Кан и его 
+  коллеги пошли по другому пути <i>[Kahn et al, 1985], [Kahn, 1988]. </i>Они применили 
+  программу извлечения знаний MORE, которая использует для обновления базы знаний 
+  MUD как знания о предметной области, так и знания о стратегии решения проблем. 
+  Как и OPAL, программа MORE располагает моделью предметной области, в которой 
+  представлены основные отношения между базовыми концепциями. Эти знания используются 
+  для организации опроса экспертов, обнаружения ошибок при назначении коэффициентов 
+  доверия и для генерации правил, на основании которых выполняется эвристическая 
+  классификация.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В программе 
+  MORE модель предметной области состоит из следующих компонентов:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>симптомы, </i>т.е. 
+    явления, которые можно наблюдать в процессе проведения диагноза; появление 
+    этих явлений и должна объяснить система;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>атрибуты, </i>которые 
+    являются средством детализации симптомов, например резкое возрастание или 
+    снижение значения какого-либо параметра;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> события, которые являются 
+    возможным следствием симптомов и таким образом могут рассматриваться в качестве 
+    <i>гипотез;</i><br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>фоновые условия, 
+    </i>позволяющие судить о большей или меньшей вероятности наличия связи между 
+    обнаруженными симптомами и теми или иными гипотетическими причинами их появления;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>тестовые процедуры, 
+    </i>которые можно использовать для обнаружения наличия или отсутствия упомянутых 
+    выше фоновых условий;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>условия выполнения 
+    тестовых процедур, </i>способные повлиять на точность результатов тестирования.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эти знания 
+  организованы в виде сети, в которой явно обозначены связи между симптомами и 
+  возможными причинами их появления, а также связи между условиями и теми состояниями 
+  или событиями, на которые эти условия могут повлиять. На рис. 12.1 представлен 
+  фрагмент сети представления модели предметной области, в которой используется 
+  система MUD.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>Загрязнение 
+  сланцами </i>и <i>приток воды </i>— это гипотезы, объясняющие появление четырех 
+  симптомов: <i>понижение давления внутри пласта, повышение доли твердых включений, 
+  повышение уровня содержания неэмульсионной воды </i>и <i>повышение вязкости. 
+  </i>Все они являются свойствами вязких и жидких пластов, на которых может сказаться 
+  загрязнение теми или иными компонентами при выполнении буровых работ. Обратите 
+  внимание, что на этой схеме некоторые линии причинно-следственных связей параметризиро-ваны 
+  степенью влияния на симптом. <i>ТСМ</i>— это тест синевы метилена, который проверяет 
+  повышение количества твердых включений в вязких пластах, а <i>используется масляная 
+  эмульсия </i>— фоновое условие, которое может сказаться на связи между <i>притоком 
+  воды </i>и <i>повышением уровня содержания неэмульсионной воды.</i><br>
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif"><img src="1.gif" width="550" height="350"> 
+  </font></p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3">Рис. 12.1. 
+  Фрагмент модели предметной области, которая используется в программе MORE<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">12.1. 
+  Диагностические правила в М U D</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Ниже 
+  приведены некоторые диагностические правила для той предметной области, на которую 
+  ориентирована система MUD. Правила, реализованные в виде программы на языке 
+  CLIPS, описывают те же причинно-следственные связи, что и на рис. 12.1. Если 
+  вы запустите эту программу на выполнение и ответите на оба вопроса утвердительно, 
+  то программа придет к заключению, что возможны два варианта объяснения наличия 
+  указанных симптомов— и загрязнение сланцами, и приток воды. Если на один из 
+  вопросов ответить отрицательно, то программа отдаст предпочтение одной из гипотез.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ШАБЛОНЫ (deftamplate symptom<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  datum (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  change (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  degree (type SYMBOL) (default NIL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftamplate 
+  hypothesis<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  object (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  event (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  status (type SYMBOL) (default NIL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deftemplate 
+  testing<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  name (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  for (type SYMBOL))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(field 
+  status (type SYMBOL) (default NIL)) )<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ФАКТЫ<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(deffacts 
+  mud<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">a(symptom 
+  (datum viscosity)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (change increase))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(symptom 
+  (datum density) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(change 
+  decrease) (degree gradual))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(testing 
+  (name МВТ)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (for low-SG-solids))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(testing 
+  (name oil-mud) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(for 
+  unemulsified-water))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  ПРАВИЛА<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Правило обратного вывода, принимающее во внимание<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  вязкость (viscosity).<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  viscosity (symptom </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(datum 
+  viscosity) (change increase))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (hypothesis (object low-SG-water)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (event increase))) (assert (hypothesis </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(object 
+  unemulsified-water) (event increase)))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Правила обратного вывода, принимающие во внимание</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; плотность (density). (defrule density :<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(symptom 
+  (datum density) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(change 
+  decrease) (degree gradual))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (hypothesis (object shale) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(event 
+  contamination)))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  density<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(symptom 
+  (datum density) (change decrease) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(degree 
+  rapid)) =&gt; <br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (hypothesis (object water) (event influx&raquo;)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Свидетельства в пользу загрязнения сланцами</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (shale contamination) (defrule shale ?effect</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  &lt;- (hypothesis (object low-SG-water) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(event 
+  increase)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(status 
+  yes)) =&gt; (assert (hypothesis </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(object 
+  shale) (event contamination)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(status 
+  yes)))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?effect (status done)) )<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Свидетельства в пользу притока воды (water influx)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  water ?effect &lt;- (hypothesis </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(object 
+  unemulsified-water)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(event 
+  increase) (status yes)) =&gt; </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(assert 
+  (hypothesis (object water) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(event 
+  influx)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(status 
+  yes))) (modify ?effect </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(status 
+  done))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Поиск теста гипотезы (defrule peek-test<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(hypothesis 
+  (object ?obj) (event ? change))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">?operator 
+  &lt;- (testing (name ?name) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(for 
+  ?obj) (status NIL)) =&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">t 
+  crlf<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">&quot;Is 
+  there &quot; ?obj &quot; &quot; ?change &quot; according to the &quot;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">?name 
+  &quot; test? &quot;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  &quot;Существует &quot; ?obj &quot; &quot; ?change &quot; в соответствии с &quot; 
+  ,</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  &quot; тестом &quot; ?name &quot; ? &quot;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">) 
+  ;; (modify ?operator (status (read)))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">;; 
+  Применить результат теста к гипотезе.</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  {defrule poke-test<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">?cause 
+  &lt;- (hypothesis (object ?obj)</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  (event ?change))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">?operator 
+  &lt;- (testing (name ?name) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(for 
+  ?obj) (status yes))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?cause (status yes)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(modify 
+  ?operator (status done))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">; 
+  ; Вывести активную гипотезу. </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(defrule 
+  show-and-tell<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(hypothesis 
+  (object ?obj) </font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(event 
+  ?ev) (status yes))<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">=&gt;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">(printout<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">t 
+  crlf<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">?obj 
+  &quot; &quot; ?ev &quot;is a possibility. &quot; t crlf</font></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3"> 
+  ;; ?obj &quot; &quot; ?ev &quot; является вероятной. &quot;<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">)</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"></font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

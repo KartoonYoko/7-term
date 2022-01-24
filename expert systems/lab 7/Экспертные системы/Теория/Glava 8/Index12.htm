@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">8.5.2. 
+  Управление поиском в системе MBASE</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Один из распространенных 
+  способов управления поиском в применении к доказательству какого-либо утверждения 
+  — тщательное упорядочение базы данных. При поиске нужных фактов или правил исполнительная 
+  система языка PROLOG просматривает базу данных от начала до конца. Используя 
+  это обстоятельство, можно несколько сократить время доказательства.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Определенные факты 
+    </i>(основные атомы — ground atoms) нужно разместить в базе данных раньше, 
+    чем правила, которые в качестве цели имеют соответствующие предикаты. Таким 
+    образом будут минимизированы издержки обращения к правилам. Например, утверждение<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">beats(achilles, 
+  zeno).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">должно стоять 
+  раньше правила<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">beats(X, 
+  Y) :- beats(X, Z), beats( Z, Y).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Исключения </i>из 
+    общих правил также должны располагаться в базе данных раньше, чем сами общие 
+    правила. Например, правило, утверждающее, что пингвины не летают,<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">flies(X) 
+  :- penguin(X), !, fail .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">должно стоять 
+  раньше общего правила, гласящего, что птицы летают,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">flies(X) 
+  :- bird(X).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Литерал fail 
+  представляет собой один из способов выражения отрицания в языке PROLOG. Кроме 
+  того, в языке PROLOG имеется литерал !, который называется &quot;отсечением&quot;. 
+  Этот литерал говорит исполнительной системе PROLOG, что не нужно осуществлять 
+  возврат из этой точки. Комбинация литералов представляет эффективный механизм 
+  управления обратным просмотром, предотвращая выполнение ненужных операций.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Предположения по 
+    умолчанию </i>реализуются включением неосновных атомов в самый конец базы 
+    знаний. Например, если желательно, чтобы по умолчанию квакеры считались пацифистами, 
+    то фраза<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">pacifist(X) 
+  :- quaker(X).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">должна появиться 
+  <i>после </i>всех фраз вида<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">pacifist(nixon) 
+  :- !, fail.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В случае, 
+  если при просмотре базы знаний не будет найдено утверждение об обратном, касающееся 
+  конкретного квакера, то на него распространится утверждение, справедливое для 
+  всех остальных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Общее правило 
+  гласит, что сначала в базе данных следует располагать данные об особых случаях, 
+  т.е. определенные факты и исключения, затем данные об общих случаях, например 
+  правила влияния, и последними должны располагаться сведения о свойствах по умолчанию.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Все эти требования 
+  соблюдены в системе MBASE, но, кроме того, еще существует и возможность управления 
+  глубиной поиска. В этой системе существуют литералы, задающие один из трех имеющихся 
+  режимов поиска.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Обращение к базе 
+    данных </i>(DBC — database call). Этот режим ограничивает зону поиска только 
+    основными литералами в базе данных и таким образом исключает применение правил. 
+    Для настройки этого режима нужно включить основной литерал в предикат ВВС. 
+    Например, факт, что b1 является блоком, будет представлен фразой<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">DBC(block(b1)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Тогда для 
+  некоторой фразы Р при обработке подцелей в форме DBC (Р) будет просматриваться 
+  только указанная часть базы данных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Описанная 
+  выше комбинация литералов отсечения и неудачи также может использоваться в сочетании 
+  с предикатом DBC. Таким образом, формируется своего рода &quot;ловушка&quot;, 
+  прекращающая поиск цели, которая не может быть найдена. Например, можно таким 
+  способом прекратить попытки доказать, что блок одновременно находится в двух 
+  местах:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">at(Block, 
+  Placel) :-<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">DEC(at(Block, 
+  Place2)), different(Placel, Place2), !, fail.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что если бы в теле процедуры отсутствовал предикат ВВС, то программа 
+  очень быстро зациклилась.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Вызов правил влияния 
+    </i>(DBINF — inference call) — это обычный режим работы исполнительной системы 
+    PROLOG с использованием всех имеющихся правил. При этом соблюдаются соглашения 
+    о порядке поиска в базе сверху вниз, а в правиле слева направо.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Порождающий вызов 
+    </i>(СС — creative call). В этом режиме формируются место-держатели для неизвестных 
+    и выполняются вычисления в тех случаях, когда обычный режим может привести 
+    к неудаче. Режим используется для математических вычислений, когда отсутствуют 
+    значения всех переменных в уравнении.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">С помощью 
+  литералов 1 и fail обычно определяется отрицание определенной процедуры, например, 
+  так:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">not(P) 
+  :- call(P) !, fail. not(P) .</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В языке PROLOG 
+  специальный предикат call обрабатывает цель, переданную ему в качестве параметра. 
+  Идея состоит в том, что если такая обработка приведет к успеху, то отрицание 
+  цели приведет к неудаче, а литерал отсечения предотвратит обратный просмотр. 
+  В противном случае мы перейдем ко второй фразе, и отрицание цели очевидно приведет 
+  к успеху.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Некоторые 
+  из проблем полноты, отмеченные в системе PLANNER, существуют и в языке PROLOG. 
+  В частности, использование литералов отсечения и неудачи может серьезно сказаться 
+  на полноте и согласованности фактов и правил. Существует множество способов 
+  внедрения отрицаний в логику фразы Хорна, но условия, при которых это можно 
+  сделать, весьма ограничены (см., например, <i>[Shepherdson, 1984], [Shepherdson, 
+  1985]).</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Тем не менее 
+  исследователи пришли к выводу, что описанный выше механизм управления далеко 
+  не всегда может привести процесс вычислений к искомому заключению, поскольку 
+  не обладает достаточной &quot;глобальностью&quot;. Проблема состоит в том, что 
+  все описанные методы базируются все-таки на довольно ограниченных, локальных 
+  знаниях о текущем состоянии процесса вычислений. В MBASE была предпринята попытка 
+  дополнить локальное управление двумя механизмами— <i>схематизацией (schemata) 
+  </i>и <i>мета-предикатами. </i>О них-то и пойдет речь ниже.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Под схематизацией 
+  подразумеваются ассоциативные механизмы, которые используются в основном для 
+  представления в компьютере знаний общего характера. Например, ниже приведено 
+  представление знаний о системе подъема грузов на основе ворота (pulley system):<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">sysinfo(pullsys,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">[Pull, 
+  Str, P1, P2],<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">[pulley, 
+  string, solid, solid]<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">[ 
+  supports(Pull, Str),<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">attached(Str, 
+  Pi),<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">attached(Str, 
+  P2) ]).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предикат sysinfo 
+  принимает четыре аргумента, каждый из которых аналогичен слоту в системе фреймов 
+  (см. об этом в главе 6):<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> первый аргумент, pullsys, 
+    свидетельствует о том, что эта схема представляет типовую систему подъема 
+    грузов с воротом и, таким образом, аналогичен слоту наименования;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> второй аргумент, [Pull, 
+    Str, P1, P2], является перечнем деталей в этом механизме — ворот, трос и два 
+    груза;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> третий аргумент, [pulley, 
+    string, solid, solid], содержит информацию о типе этих компонентов;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> четвертый аргумент 
+    содержит список отношений (связей) между компонентами.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обратите внимание 
+  на то, что в этом представлении нет никакой пропозиционально-сти, например сведений 
+  о том, каким способом можно неявно сопоставить два списка. По существу, это 
+  представление очень похоже на описание фрейма (но вряд ли с ним можно работать 
+  так же эффективно).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Описанная 
+  схематизация представляет только один из использованных в МЕСНО способов организации 
+  фоновой информации, которая нужна программе. Имеются и другие типы структур, 
+  которые помогают выбрать подходящие формулы для определения характеристических 
+  параметров той или иной моделируемой системы. Например, выражение<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">kind(al, 
+  accel, relaccel(...)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">означает, 
+  что al является параметром типа accel (ускорение), который определен в утверждении 
+  relaccel, т.е. в контексте относительных ускорений. Другое выражение<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">relates(accel, 
+  [resolve, constaccel, relaccel)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">означает, 
+  что формулы resolve, constaccel и relaccel содержат переменные типа accel и, 
+  следовательно, могут быть использованы для вычисления ускорения. Приведенные 
+  выражения можно рассматривать как один из видов дополнительного индексирования 
+  в ассоциативной сети. В данном случае индексирование представлено в форме логики, 
+  причем используются структуры, обычно редко встречающиеся в исчислении предикатов 
+  первого порядка.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Роль <i>метапредикатов 
+  </i>состоит в отборе правил, наиболее подходящих для вывода конкретной цели. 
+  Рассмотрим следующий пример:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">solve(U, 
+  Exprl, Ans) :-<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">occur)U, 
+  Exprl, 2), collect(U, Exprl, Expr2), isolate(U, Expr2, Ans).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эта процедура 
+  означает, что Ans является уравнением, которое решается относительно неизвестного 
+  U в выражении Exprl, если<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> в выражение Exprl неизвестная 
+    U входит дважды:<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> выражение Ехрг2 представляет 
+    собой Exprl, в котором выполнено приведение неизвестной U;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Ans является выражением 
+    Ехрг2, в котором неизвестная U вынесена в левую часть.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В данном случае 
+  метапредикат solve указывает способ преобразования уравнения к виду, который 
+  позволит разрешить его относительно неизвестного. Метапредикаты используются 
+  для того, чтобы <i>формировать суждения о том, как формировать суждения, </i>и 
+  в этом подобны метаправилам в продукционных системах.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Некоторые 
+  примеры использования системы МЕСНО демонстрируют, что методика логического 
+  программирования во многом сходна с программированием на обычных языках. Однако 
+  при создании приложений, которые требуют обработки обширного набора структурированных 
+  фактов, подчиняющихся определенным физическим законам (анализ электрических 
+  цепей или сложных механических систем), единственным подходящим языком часто 
+  оказывается PROLOG. Этот же язык может быть использован и для описания теорий, 
+  затрагивающих такие общие категории, как пространство, время, допустимость и 
+  обязательность, в которых существуют общие принципы, допускающие декларативное 
+  представление, и в которых не требуется глубокий поиск.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В главе 23 
+  мы увидим, что, несмотря на существование определенных проблем при использовании 
+  концепций логического программирования и основанного на них языка PROLOG, эта 
+  концепция имеет приложение в двух других областях исследований, которые представляют 
+  интерес с точки зрения экспертных систем, а именно: <i>обобщение на базе объяснения 
+  (explanation-based generalization) </i>и <i>логический вывод на метауровне (meta-level 
+  inference). </i>Обобщение на базе объяснения используется для машинного обучения, 
+  а логический вывод на метауровне позволяет программе строить суждения о собственном 
+  поведении.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index11.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index13.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

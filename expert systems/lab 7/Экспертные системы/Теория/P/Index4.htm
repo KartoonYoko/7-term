@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">А.2.1. 
+  Факты</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Сразу после 
+  запуска CLIPS-приложения на выполнение на экране появится приглашение, извещающее 
+  пользователя, что он работает с интерпретатором.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt;</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В режиме интерпретатора 
+  пользователь может использовать множество команд. Факты можно включить в базу 
+  фактов прямо из командной строки с помощью команды assert, например:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (assert (today is Sunday))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;Fact-0&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (assert (weather is warm))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;Fact-l&gt;</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для лучшего 
+  восприятия текста Приложения мы в дальнейшем будем выделять текст, вводимый 
+  пользователем, полужирным шрифтом, а запросы и ответы интерпретатора — обычным 
+  моноширинным шрифтом.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для вывода 
+  списка фактов, имеющихся в базе, используется команда facts:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (facts)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">f-0 
+  (today is Sunday)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">f-1 
+  (weather is warm)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В последних 
+  версиях CLIPS, в частности, в той, которая работает в операционной среде Windows, 
+  такие команды, как facts, можно вызывать с помощью меню. Для удаления фактов 
+  из базы используется команда retract.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (retract 1)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (facts)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">f-0 
+  (today is Sunday)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эти же команды, 
+  assert и retract, используются в выполняемой части правила (заключении правила) 
+  и с их помощью выполняется программное изменение базы фактов. Часто приходится 
+  пользоваться и другой командой интерпретатора, clear, которая очищает базу фактов 
+  (как правило, эта команда доступна в одном из выпадающих меню).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (clear) CLIPS&gt; (facts)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В тексте программы 
+  факты можно включать в базу не по одиночке, а целым массивом. Для этого в CLIPS 
+  имеется команда deffacts.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  today<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(today 
+  is Sunday)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(weather 
+  is warm) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выражение 
+  deffacts имеет формат, аналогичный выражениям в языке LISP. Выражение начинается 
+  с команды deffacts, затем приводится имя списка фактов, который программист 
+  собирается определить (в нашем примере — today), а за ним следуют элементы списка, 
+  причем их количество не ограничивается. Этот массив фактов можно затем удалить 
+  из базы командой undef facts.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (undeffacts today)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Выражение 
+  def facts можно вводить и в командную строку интерпретатора, но лучше записать 
+  его в текстовый файл с помощью редактора CLIPS или любого другого текстового 
+  редактора. Загрузить этот файл в дальнейшем можно с помощью команды в меню File 
+  либо из командной строки.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (load &quot;my file&quot;)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Однако после 
+  загрузки файла факты не передаются сразу же в базу фактов CLIPS. Команда deffacts 
+  просто указывает интерпретатору, что существует массив today, который содержит 
+  множество фактов. Собственно загрузка выполняется командой reset.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">CLIPS&gt; 
+  (reset)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Команда reset 
+  сначала очищает базу фактов, а затем включает в нее факты из <i>всех </i>ранее 
+  загруженных массивов. Она также добавляет в базу единственный системно определенный 
+  факт:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">f-0 
+  (initial-fact)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Это делается 
+  по умолчанию, поскольку иногда имеет смысл включить в программу правило start 
+  rule, которое может быть сопоставлено с этим фактом и позволит выполнить какие-либо 
+  нестандартные инициализирующие операции. Однако включать такое правило в программу 
+  или нет — дело программиста.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Можно проследить, 
+  как выполняется команда reset, если перед выполнением приведенных выше команд 
+  установить режим слежения среды разработки. Для этого нужно вызвать команду 
+  Watch из меню Execution и установить в ней флажок Facts.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

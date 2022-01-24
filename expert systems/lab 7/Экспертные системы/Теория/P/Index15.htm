@@ -1,0 +1,1094 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background=""><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index14.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index16.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">A.4.5. 
+  Обратное прослеживание и множество контекстов</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Модифицируем 
+  программу таким образом, чтобы она могла справиться и с задачами этого класса 
+  в более сложной постановке. Речь идет о задачах, в которых несколько персонажей 
+  произносят реплики. Пример такого рода головоломки приведен ниже.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Упражнение 
+  3</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>Р5. Встречаются 
+  два человека, А и В, которые заявляют следующее. А: &quot;Я говорю правду, либо 
+  В лжец&quot;, В: &quot; А говорит правду, либо я лжец&quot;.<br>
+  </i></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif"><i><font size="3">К 
+  какой категории следует отнести каждый из персонажей? (Решите эту задачу самостоятельно 
+  вручную, используя ту же систему обозначений, которая применялась ранее в этом 
+  Приложении.)<br>
+  </font></i></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Задача анализа 
+  высказываний нескольких персонажей потребует использования более сложной методики, 
+  которая получила наименование &quot;обратное прослеживание на основе анализа 
+  зависимостей&quot;(dependency-directed backtracking).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">От программы 
+  потребуется выполнить обратное прослеживание (откат) в следующих ситуациях:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> когда обнаружится конфликт 
+    между текущим &quot;миром&quot; и ранее существовавшим, причем в ранее существовавшем 
+    &quot;мире&quot; предполагается истинность высказывания, но не была проанализирована 
+    его лживость;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> когда обнаружится конфликт 
+    между текущим &quot;миром&quot; и ранее существовавшим, причем в ранее существовавшем 
+    &quot;мире&quot; был проанализирован только один операнд в составном дизъюнктивном 
+    утверждении.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Чтобы смысл 
+  этих формулировок стал более понятным, рассмотрим следующий пример. Р6. Встречаются 
+  два человека, А и В, которые заявляют следующее.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">А: &quot;Хотя 
+  бы один из нас говорит правду&quot;. В: &quot;Хотя бы один из нас лжец&quot;. 
+  К какой категории следует отнести каждый из персонажей?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Высказывания 
+  персонажей представим в следующем виде:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">А: 
+  <i>Т(А) </i>v <i>Т(В) </i>В: <i>F(A) </i>v <i>F(B)</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Начнем с заявления 
+  персонажа В 71(5) =&gt; <i>F(A) </i>v F(B)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">и проанализируем 
+  левый операнд дизъюнкции. В результате будет сформирована корректная непротиворечивая 
+  интерпретация: В — правдолюбец, А — лжец.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Получив непротиворечивую 
+  интерпретацию высказывания персонажа В, перейдем к анализу высказывания персонажа 
+  А:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">Т(А) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">=&gt; FALSE,</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">поскольку 
+  правдивость А противоречит сформированной ранее интерпретации высказывания персонажа 
+  В. Предположим, что А — лжец. Тогда:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">F(A) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">=&gt; <i>-(T(А) 
+  </i>v <i>T(B)) =&gt; F(A) ^</i> <i>F(B) </i>=&gt; FALSE.</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  оказывается, что это предположение также не работает, поскольку противоречит 
+  выбранной ранее интерпретации высказывания персонажа В , из которой следует, 
+  что В говорит правду,<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но анализ 
+  высказывания персонажа В нельзя считать законченным, поскольку не был выполнен 
+  анализ правого операнда дизъюнкции<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">N(B) 
+  =&gt; <i>F(A) </i>v <i>F(B)</i></font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">и не было 
+  проанализировано предположение, что В лжец. До тех пор, пока это не будет выполнено, 
+  мы не имеем права делать вывод, что высказывания в формулировке задачи противоречат 
+  друг другу.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Поэтому придется 
+  вернуться назад в ту точку процесса логического анализа, где было сделано предположение 
+  об истинности левого операнда в дизъюнкции, и проанализировать вместо него правый 
+  операнд <i>F(B). </i>При этом сразу же будет обнаружено противоречие между истинностью 
+  <i>F(B) </i>и ранее высказанным предположением о правдивости персонажа В, но, 
+  не вернувшись назад и не выполнив этот анализ, мы не смогли бы обнаружить это 
+  противоречие. Теперь остается проанализировать следствие из предположения, что 
+  В — лжец.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">F(B) 
+  </font></i><font face="Verdana, Arial, Helvetica, sans-serif">=&gt; -(F(A) v 
+  F(B)) =&gt; <i>Т(А) ^T(В) </i>=&gt; FALSE.</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Только теперь 
+  можно с чистой совестью утверждать, что не существует непротиворечивой интерпретации 
+  высказываний, приведенных в условии задачи. Предположение о правдивости персонажа 
+  В приводит к конфликту с высказыванием персонажа А, а предположение о лживости 
+  В противоречит его же словам.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Чтобы в системе, 
+  использующей правила в качестве основного программного компонента, реализовать 
+  откат (обратное прослеживание), нужно в первую очередь иметь возможность восстановить 
+  тот контекст, который существовал в момент, когда было сформулировано предположение, 
+  приведшее к не удовлетворяющему нас результату. Как было показано в главе 5, 
+  одно из достоинств продукционных систем, подобных CLIPS, состоит в том, что 
+  они способны выполнить такой откат, не сохраняя прежнего состояния процесса 
+  вычислений, что коренным образом отличает их от фундаментально рекурсивных языков 
+  программирования, таких как LISP и PROLOG. При возникновении необходимости выполнить 
+  откат продукционные системы последовательно отменяют в обратном порядке все 
+  операции, связанные с добавлением данных в рабочую память, которые были выполнены, 
+  начиная с точки возврата, в которую нужно вернуться, вплоть до текущего этапа 
+  вычислений. Но таким способом можно реализовать возврат, только предполагая, 
+  что в ходе выполнения операций, следующих за точкой возврата, из рабочей памяти 
+  не было удалено ничего существенного, а все действия, модифицирующие состояние 
+  рабочей памяти, носили исключительно аддитивный характер.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Примеры, подобные 
+  задаче Р6, существенно усложняют жизнь, поскольку для их решения программа должна 
+  выполнять некоторые дополнительные операции, в которых не было необходимости 
+  при решении задач с единственным высказыванием.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) Сохранять 
+  информацию о возможных точках возврата.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) При обнаружении 
+  противоречия принимать решение, выполнять или не выполнять откат, а если выполнять, 
+  то в какую именно точку.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3) Отменить 
+  все изменения, внесенные в состояние рабочей памяти после &quot;прохождения&quot; 
+  выбранной точки возврата.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(4) Возобновить 
+  вычисления начиная с точки возврата. Рассмотрим подробнее каждую из этих операций.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Каждый объект world 
+    имеет уникальный числовой идентификатор, который хранится в поле tag. Эта 
+    информация практически не используется при решении задач с единственным высказыванием, 
+    поскольку мы всегда имеем дело с одним и тем же объектом world, связанным 
+    с этим высказыванием. Но при решении задач, оперирующих с несколькими высказываниями, 
+    нам придется различать утверждения, которые порождены разными высказываниями 
+    в разных &quot;мирах&quot;. По мере того, как мы будем переходить от анализа 
+    одних высказываний к другим, будут формироваться и новые объекты world. Прежние 
+    объекты world нужно оставлять в таком состоянии, чтобы при необходимости к 
+    ним можно было еще раз вернуться. Это означает, что вектор world, с которым 
+    прекращены операции (возможно, временно), содержал всю информацию, которая 
+    потребуется программе для возобновления работы с ним. При этом именно та точка, 
+    в которой процесс вычислений &quot;переключился&quot; на новый объект world, 
+    и будет потенциальной точкой возврата. Информация, сохраняемая в объекте, 
+    включает знание о том, какое предположение о правдивости или лживости персонажа 
+    было сделано в этом &quot;мире&quot; и какие дизъюнкты (операнды составного 
+    дизъюнктивного выражения) в утверждении, содержащемся в высказывании персонажа, 
+    уже проанализированы.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Поскольку каждый объект 
+    world имеет свой уникальный идентификатор и каждое утверждение (объект claim) 
+    индексировано определенным объектом world, можно довольно просто выяснить, 
+    существует ли противоречие между разными &quot;мирами&quot; (т.е. между утверждениями, 
+    связанными с разными объектами world). Остается единственный вопрос — нужно 
+    ли возвращаться в ранее покинутый &quot;мир&quot;, если в текущем &quot;мире&quot; 
+    обнаружено противоречие с ним. Мы будем применять стратегию поиска в глубину, 
+    которая состоит в том, что откат нужно выполнять только в том случае, если 
+    противоречие сохраняется после полного завершения анализа текущего &quot;мира&quot;.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Если объекты world 
+    нумеруются последовательно, по мере их формирования, то потребуется разработать 
+    правило, которое при возвращении в покинутый ранее &quot;мир&quot; уничтожит 
+    как текущий объект world, так и все <i>промежуточные </i>объекты такого типа, 
+    которые при необходимости затем могут быть воссозданы.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Если прежний объект 
+    world содержит полную информацию о том, в каком состоянии был покинут &quot;мир&quot;, 
+    и утверждения в этом &quot;мире&quot; не противоречат этому состоянию, то 
+    ничто не мешает нам продолжить вычисления из точки возврата.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Начнем модификацию 
+  нашей программы с того, что в шаблон объекта world включим слот, в котором будет 
+  храниться идентификатор ранее покинутого &quot;мира&quot; (объекта), с которым 
+  данный объект конфликтует. Это нужно сделать по двум пр'ичинам.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1)Нам потребуется 
+  различать случаи, в которых противоречия возникают в пределах одного и того 
+  же &quot;мира&quot;, от конфликтов между &quot;мирами&quot;. Если текущее высказывание 
+  само по себе противоречиво (т.е. является парадоксом), нет смысла выполнять 
+  откат в прежний мир и искать в нем разрешения противоречия.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Наличие 
+  такого слота позволит разработать правило, которое будет выполнять откат прямо 
+  в этот покинутый ранее &quot;мир&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ниже будет 
+  показано, что для решения проблемы можно обойтись без реализации правила, упомянутого 
+  в п.2, хотя это и не так легко сделать, но соображения, высказанные в п.1, в 
+  любом случае остаются в силе.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Объект world 
+  представляет контекст, сформированный определенными предположениями о правдивости 
+  или лживости высказывания, принадлежащего некоторому персонажу. Объект имеет 
+  уникальный идентификатор в поле tag, а смысл допущения - истинность или лживость 
+  -фиксируется в поле scope. Поле prior может содержать идентификатор объекта 
+  world, обработанного перед тем, как был создан данный объект, и с которым данный 
+  объект может потенциально конфликтовать. В поле context сохраняется текущий 
+  контекст анализируемого операнда дизъюнкции, (deftemplate world<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  tag (type INTEGER) (default 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  scope (type SYMBOL) (default truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  prior (type INTEGER) (default 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  context (type INTEGER) (default 0)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Помимо модификации 
+  структуры объекта, для выполнения отката потребуется разработать правила для 
+  выполнения некоторых ключевых операций. Эти операции перечислены ниже вместе 
+  с ключевыми словами, ассоциированными с каждой из них.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> CHECK. Эта операция 
+    реализует нормальный режим выполнения вычислений при анализе предположений 
+    о правдивости или лживости.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> CONTRA. Анализ обнаруженного 
+    противоречия. Возникло ли оно между двумя высказываниями в одном и том же 
+    &quot;мире&quot;? Возникло ли противоречие между двумя высказываниями в одном 
+    и том же &quot;мире&quot;, но в разных контекстах, например в разных операндах 
+    дизъюнкции? Возникло ли оно между двумя разными &quot;мирами&quot;, производными 
+    от высказываний разных персонажей?<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> CLEAN. После того, 
+    как выявлен характер возникшего противоречия, и перед тем, как выполнить откат 
+    в точку возврата, эта операция удаляет все утверждения, созданные в текущем 
+    &quot;мире&quot;.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> BACK. Если мы имеем 
+    дело с противоречием между текущим &quot;миром&quot; и ранее покинутым, эта 
+    операция выполняет возврат в ранее покинутый &quot;мир&quot;, в котором не 
+    был полностью завершен анализ всех дизъюнктов или не было проанализировано 
+    предположение о лживости.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> QUIT. Нам потребуется 
+    обнаружить ситуацию, которая наступает в случае, когда проанализированы все 
+    возможные интерпретации множества высказываний, т.е. все дизъюнктивные ветви 
+    и все возможные комбинации предположений о правдивости или лживости высказываний. 
+    Если при обнаружении такой ситуации не удалось найти непротиворечивую интерпретацию, 
+    можно со всей ответственностью утверждать, что условия задачи сами по себе 
+    несовместны, т.е. не существует ее решения в терминах отнесения каждого из 
+    персонажей к определенной категории — к лжецам или к правдолюбцам.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Еще раз модифицируем 
+  определение шаблона объекта world — внесем в него поле TASK, в котором будут 
+  представлены перечисленные задачи. Это поле будет использовано правилами, которые 
+  нам еще предстоит разработать. Механизм работы с задачами подобен тому, который 
+  использовался для манипулирования лексемами управления (control tokens), описанными 
+  в главах 5 и 14. Этот механизм активизирует определенные правила. Однако при 
+  этом мы не будем использовать стратегию МЕА или специальные векторы. Лексемы 
+  управления будут просто сохраняться в определенном поле объекта world. Но результат 
+  будет тот же — эта лексема будет использована для активизации определенного 
+  правила.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  world представляет контекст,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;сформированный 
+  определенными предположениями<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;о 
+  правдивости или лживости высказывания,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;принадлежащего 
+  некоторому персонажу.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Объект 
+  имеет уникальный идентификатор<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;в 
+  поле tag, который соответствует<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;тэгу 
+  высказывания.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Смысл 
+  допущения - истинность или лживость -<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;фиксируется 
+  в поле scope.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Поле 
+  TASK содержит одно из перечисленных<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;ниже 
+  значений:</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">CHECK - анализ 
+  предположений о правдивости или лживости высказывания; CONTRA - анализ обнаруженного 
+  противоречия; CLEAN - удаляет все утверждения, созданные в противоречивом мире 
+  </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  BACK - откат в точку возврата</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  QUIT - прекращение процесса. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Поле 
+  prior может содержать идентификатор </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;объекта 
+  world, обработанного перед тем, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;как 
+  был создан данный объект, и с которым данный </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;объект 
+  может потенциально конфликтовать.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;В 
+  поле context сохраняется текущий контекст</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;анализируемого 
+  операнда дизъюнкции, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  world<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  tag (type INTEGER) (default 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  scope (type SYMBOL) (default truth))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  task (type SYMBOL) (default check))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  prior (type INTEGER) (default 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  context (type INTEGER) (default 0)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь разработаем 
+  правила, которые будут выполнять перечисленные выше операции. Кроме того, нужно 
+  внести некоторые изменения и в правила, разработанные для прежней версии программы.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Выявление 
+  противоречий</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В процессе 
+  решения задач о правдолюбцах и лжецах могут быть обнаружены логические противоречия 
+  двух типов:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> между высказываниями 
+    в одном и том же &quot;мире&quot;, но, возможно, в разных контекстах дизъюнктивного 
+    утверждения;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> между высказываниями 
+    в разных &quot;мирах&quot;.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Для анализа 
+  вариантов возникновения противоречий целесообразно разработать четыре правила. 
+  Разобьем первую из указанных ситуаций на два случая:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> обнаруживается противоречие 
+    между предположением и высказыванием, которые существуют в одном и том же 
+    контексте (например, если из предположения <i>Т(А) </i>непосредственно следует 
+    заключение <i>F(A), </i>как в заявлении персонажа A: <i>F(A));</i><br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> обнаруживается противоречие 
+    между предположением и одним из дизъюнктов составного высказывания, как в 
+    заявлении персонажа А: <i>1\В) </i>v <i>F(A).</i><br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ситуацию, 
+  когда противоречие существует между высказываниями в разных &quot;мирах&quot;, 
+  тоже можно разделить на два случая:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> текущий &quot;мир&quot; 
+    рассматривается в предположении, что персонаж говорит правду (в поле scope 
+    объекта world содержится значение truth);<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> текущий &quot;мир&quot; 
+    рассматривается в предположении, что персонаж лжет (в поле scope объекта world 
+    содержится значение falsity).<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если, предположив 
+  правдивость персонажа, программа обнаружит противоречие, она должна проанализировать 
+  и следствие из противоположного предположения — что персонаж лжец. И только 
+  при условии, что оба варианта предположения приводят к противоречию, нужно выполнить 
+  откат.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Анализ каждого 
+  из четырех вариантов ситуации выполняется отдельным правилом, программы которых 
+  представлены ниже. Обратите внимание, что все правила имеют довольно высокий 
+  приоритет (значение параметра salience). Это обеспечивает их первоочередную 
+  активизацию механизмом разрешения конфликтов между правилами. Кроме того, правила, 
+  анализирующие противоречие в пределах одного и того же &quot;мира&quot;, имеют 
+  более высокий приоритет, чем правила, анализирующие противоречие между разными 
+  &quot;мирами&quot;. Тем самым обеспечивается реализация стратегии по возможности 
+  избегать откатов в процессе решения проблемы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">ЕСЛИ обнаруживается 
+  противоречие между предположением и производными от него фактами в пределах 
+  одного и того же &quot;мира&quot; и в одном и том же контексте, ТО зафиксировать 
+  противоречие и удалить противоречивые утверждения (объекты claim) из базы фактов. 
+  (defrule contradiction<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 100))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (task check) (context ?S)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(prior 
+  0)) ?P &lt;- (claim </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  ?F ?X) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S)) ?Q &lt;- (claim </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  ?GS:(not (eq ?G ?F)) ?X)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(reason 
+  ?N) (context ?S)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;CONTRADICTION: 
+  &quot; ?F ?X &quot; versus &quot; ?G ?X &quot;in world &quot; ?K</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  &quot;ПРОТИВОРЕЧИЕ между: &quot; ?F ?X &quot; и &quot;?G ?X &quot;в мире &quot; 
+  ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf) (retract ?P) (retract ?Q) (modify ?W (task contra))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ЕСЛИ обнаруживается противоречие между предположением </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  и производными от него фактами в пределах одного и </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  того же &quot;мира&quot;, но в разных контекстах,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  ТО зафиксировать противоречие. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  transcontext<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 90))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (task check) (context ?T)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(prior 
+  0)) (claim (content ?F ?X) (reason ?N)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S:(&lt; ?S ?T))) (claim </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(content 
+  ?GS:(not (eq ?G ?F)) ?x)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(reason 
+  ?N) (context ?T)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;TRANSCONTEXT 
+  CONTRADICTION: &quot; ?F ?X &quot; versus<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?G 
+  ?X &quot; in world &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;ТРАНСКОНТЕКСТНОЕ 
+  ПРОТИВОРЕЧИЕ между: &quot; ?F ?X</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;&quot; 
+  и &quot;?G ?X &quot;в мире &quot; ?N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf) (modify ?W (task contra))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">; 
+  ; ЕСЛИ обнаруживается противоречие между </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  текущим &quot;миром&quot; в предположении о правдивости</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  и ранее покинутым &quot;миром&quot; , </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ТО зафиксировать противоречие. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  transworld-truth (declare (salience 80))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ?W 
+  &lt;- (world (tag ?N) (scope truth) (task check)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(prior 
+  0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content ?F ?X) (reason ?N)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content ?G&amp;:(not (eq ?G ?F)) ?X) (reason ?M&amp;:(&lt; ?M ?N))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;TRANSWORLD 
+  CONTRADICTION: &quot; ?F ?X &quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> versus 
+  ?G ?X &quot; in worlds &quot; ?N &quot;|&quot; ?M<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;МЕЖМИРОВОЕ ПРОТИВОРЕЧИЕ: &quot; ?F ?X &quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> противоречит 
+  ; ; ?G ?X &quot; в мирах &quot; ?N &quot; | &quot; ?M<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf) (modify ?w (task contra))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ЕСЛИ обнаруживается противоречие между </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  текущим &quot;миром&quot; в предположении о лживости </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  и ранее покинутым &quot;миром&quot;,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  ТО подготовиться к выполнению отката в ранее</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  покинутый &quot;мир&quot; . </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  transworld-falsity</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (declare 
+  (salience 80))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N) (scope falsity) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  check)) (claim (content ?F ?X) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(reason 
+  ?N)) (claim (content ?G&amp;:(not (eq ?G ?F)) ?X)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(reason 
+  ?MS:(&lt; ?M ?N))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;TRANSWORLD 
+  CONTRADICTION: &quot; ?F ?X &quot; versus</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> &quot; 
+  ?G ?X &quot; in worlds &quot; ?N &quot; | &quot; ?M<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;МЕЖМИРОВОЕ ПРОТИВОРЕЧИЕ: &quot; ?F ?X &quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> противоречит 
+  &quot; ;; ?G ?X &quot; в мирах &quot; ?N &quot;|&quot; ?M<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf) (modify ?W (task contra) (prior ?M) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Обращаю ваше 
+  внимание на то, что вместе с фиксацией самого факта противоречия в последнем 
+  правиле фиксируется и идентификатор ранее покинутого &quot;мира&quot;, с которым 
+  конфликтует текущий. Эта информация потребуется для выполнения отката с помощью 
+  правил, которые будут представлены в следующем разделе.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Подготовка 
+  рабочей памяти к выполнению отката</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При подготовке 
+  к откату нужно выполнить одну из двух возможных операций с рабочей памятью:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> если к противоречию 
+    привел выбор определенного дизъюнкта, нужно удалить контекст, созданный в 
+    результате этого выбора;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> если к противоречию 
+    привело предположение о правдивости персонажа, нужно удалить соответствующий 
+    контекст и проанализировать, к чему приведет противное предположение.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В любом случае 
+  из рабочей памяти нужно удалить объекты claim. Поскольку откат никогда не выполняется 
+  в противоречивом контексте, такое удаление не повлияет на полноту представления 
+  информации о задаче. Если потребуется вновь сформировать удаленный контекст 
+  при других предположениях, это можно будет выполнить, повторив вычисления с 
+  &quot;чистого листа&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ЕСЛИ обнаружено противоречие с одним из </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  дизъюнктивных контекстов &quot;мира&quot;, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ТО удалить все утверждения (объекты claim)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  этого контекста.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРИМЕЧАНИЕ: правило будет активизироваться повторно,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  пока не будут удалены все ненужные объекты, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  clean-context<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience SO))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (task contra) (prior 0)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  ?S&amp;~0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (reason ?N) (context ?S)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?F) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ЕСЛИ противоречие обнаружено в текущем &quot;мире&quot; в </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  предположении о правдивости,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ТО повторить анализ, предположив лживость персонажа. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  switch-context<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 40)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Если больше нет правых дизъюнктов,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N)<i> </i>(scope truth) (task contra)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(prior 
+  0) (context ?S&amp;&quot;1)) =&gt; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  изменить предположение и сформировать новый контекст.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (scope falsity) (task check) (context 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Удалить все утверждения (объекты claim),</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  сформированные на основании предположения о </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  правдивости.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРИМЕЧАНИЕ: правило будет активизироваться повторно, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  пока не будут удалены все ненужные объекты, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  sweep-truth<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 100))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope falsity))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (reason ?N) (scope truth))-=&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?F) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Последнее 
+  правило демонстрирует, как с помощью полей reason и scope можно отслеживать 
+  объекты claim. В данной программе используется тот же прием, что и в системах 
+  <i>обработки правдоподобия, </i>которые были рассмотрены в главе 19.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь можно 
+  приступить к разработке правил, выполняющих откат.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Выполнение 
+  отката</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Каждое отдельное 
+  высказывание в задачах рассматриваемого класса формирует свой &quot;мир&quot;. 
+  Поскольку высказывания обрабатываются последовательно, возможна ситуация, когда 
+  &quot;мир&quot;, который программа анализирует в текущий момент, вступает в 
+  конфликт с одним из &quot;миров&quot;, обработанных ранее. Дальнейшие действия 
+  в такой ситуации зависят от того, на каких предположениях основаны конфликтующие 
+  &quot;миры&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если текущий 
+  &quot;мир&quot; был проанализирован только в предположении о правдивости соответствующего 
+  персонажа, то, очевидно, нужно повторить его анализ, но уже в предположении, 
+  что персонаж — лжец. Если и в этом случае конфликтная ситуация сохраняется, 
+  следовательно, мы исчерпали все возможности ее локального разрешения, поэтому 
+  нужно подумать о возврате к анализу ранее покинутого &quot;мира&quot; и повторить 
+  его анализ, но уже на основе других предположений.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Но возврат 
+  имеет смысл выполнять только в том случае, если в ранее покинутом &quot;мире&quot; 
+  не были проанализированы все возможные сочетания предположений и контекстов. 
+  Таким образом, одно из условий, при которых целесообразно выполнять откат, состоит 
+  в том, что покинутый &quot;мир&quot; был проанализирован только в предположении 
+  правдивости соответствующего персонажа и что есть еще возможность проанализировать 
+  следствия из противоположного предположения.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило undirected-falsity 
+  выполняет необходимые для этого подготовительные операции. Смысл слова undirected 
+  (ненаправленный) состоит в том, что это правило реализует откат в &quot;хронологическом&quot; 
+  порядке создания &quot;миров&quot;. В механизме разрешения конфликтов в CLIPS 
+  реализовано &quot;хронологическое предпочтение&quot;, которое обеспечивает откат 
+  к последнему из ранее сформированных &quot;миров&quot;, удовлетворяющих заданным 
+  условиям. Но при этом не предпринимается никакой попытки локализовать в процессе 
+  выбор точки, которая стала причиной конфликта, например выбрать именно тот &quot;мир&quot;, 
+  с которым конфликтует текущий.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Хронологический откат к тому &quot;миру&quot;, который был</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  покинут без выполнения анализа в предположении</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  о лживости (поле scope содержит значение truth,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  а поле task - значение check), </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  undirected-falsity<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope falsity) (task contra))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag, ?M&amp;:(&lt; ?M ?N)) (scope truth) (task check))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">=&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (task back)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Альтернативный 
+  сценарий используется в ситуации, когда в ранее покинутом &quot;мире&quot; не 
+  были проанализированы все дизъюнкты составного утверждения. &quot;Мир&quot; 
+  был покинут, когда обнаружилось, что проанализированный дизъюнкт не противоречит 
+  предположению, поэтому прочие дизъюнкты просто не рассматривались. Теперь, когда 
+  обнаружилось противоречие с другим &quot;миром&quot;, можно вновь вернуться 
+  к ранее незавершенному анализу и попробовать, не разрешится ли конфликт в результате 
+  исследования другого дизъюнкта.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Приведенное 
+  ниже правило undirected-disjunct выполняет подготовку к такому откату в хронологическом 
+  порядке.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Хронологический откат к тому &quot;миру&quot;, который был</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  покинут без завершения анализа дизъюнктов, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  undirected-disjunct<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">world 
+  (tag ?N) (scope falsity) (task contra))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">V 
+  &lt;- (world (tag ?M&amp;:(&lt; ?M ?N))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (task 
+  check) (context 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">claim 
+  (content OR ?P ?X ?Q ?Y) (reason ?M)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  ?S)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Дизъюнкт в ранее покинутом &quot;мире&quot;, анализ которого</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  не был выполнен.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">assert 
+  (claim (content ?Q ?Y) (reason ?M) (scope ?S)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(context 
+  2))) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Зафиксировать необходимость отката в этот &quot;мир&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">modify 
+  ?V (task back)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Хронологический 
+  откат является не единственной операцией такого рода. Ниже представлены &quot;направленные&quot; 
+  (directed) версии соответствующих правил, в которых используется информация 
+  о том, в каком именно &quot;мире&quot; имеется утверждение, ставшее причиной 
+  конфликта с текущим &quot;миром&quot;. Эта информация содержится в слоте prior 
+  текущего объекта world.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если обнаружено 
+  противоречие между объектами world M и N и объект М создан ранее объекта N, 
+  причем анализ М в предположении о лживости соответствующего высказывания не 
+  был выполнен, ТО вернуться к анализу объекта М. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  directed-falsity<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope falsity)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (task 
+  contra) (prior ?M&amp;&quot;0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?M) (scope truth) (task check))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3"><sup>=</sup>&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (task back)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Если обнаружено противоречие между </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  объектами world М и N<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  и объект М создан ранее объекта N, причем</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  не был выполнен анализ всех дизъюнктов в М,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  ТО вернуться к анализу объекта М. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  directed-disjunct<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?N) (scope falsity) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  contra) (prior ?MS~0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?V 
+  &lt;- (world (tag ?M) (task check) (context 1))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(claim 
+  (content OR ?P ?X ?Q ?Y) (reason ?M)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  ?S)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Дизъюнкт в ранее покинутом &quot;мире&quot;, анализ которого </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  не был выполнен.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (claim (content ?Q ?Y) (reason ?M)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(scope 
+  ?S) (context 2))) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Зафиксировать необходимость отката в этот &quot;мир&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?V (task back)) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Если вы думаете, 
+  что эти два правила позволяют справиться со всеми возможными ситуациями, в которых 
+  может возникнуть необходимость выполнить откат, то вы ошибаетесь. &quot;Миры&quot; 
+  W и V могут конфликтовать, хотя в обоих проанализированы все варианты предположений 
+  и все дизъюнкты. А источник конфликта при этом находится в некотором третьем 
+  &quot;мире&quot;, в котором не был завершен анализ предположений или дизъюнктов 
+  (см. пример 4).<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Упражнение 
+  4</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Проанализируйте 
+  следующую головоломку, в которой участвуют персонажи А, В и С.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>А: &quot;В 
+  лжец&quot;.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>В: &quot;С 
+  лжец&quot;.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>С: &quot;В 
+  говорит правду&quot;.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Как выполнить 
+  откат в процессе решения этой задачи. Отыщите &quot;мир&quot;, в который нужно 
+  выполнить откат, и объясните, почему этот &quot;мир&quot; не удастся определить 
+  с помощью приведенных выше правил.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Фактически 
+  второе и третье высказывания в этой задаче несовместимы, а потому в ней не существует 
+  варианта непротиворечивого распределения ролей между персонажами.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правила directed- 
+  и undirected- можно использовать в комбинации, нр с первого взгляда трудно решить, 
+  как именно это сделать. Условные части правил undirected-falsity и directed-falsity 
+  одинаковы, а потому нам остается только манипулировать значением параметра salience. 
+  Обычно &quot;направленные&quot; варианты правил более эффективны, но в результате 
+  их применения может пострадать полнота исследования &quot;миров&quot; в особо 
+  хитроумных задачах. &quot;Ненаправленные&quot; варианты работают медленнее, 
+  но зато обеспечивают исчерпывающий просмотр всех имеющихся в задаче объектов 
+  world. Я предлагаю читателям самостоятельно поэкспериментировать с обоими вариантами 
+  при решении разных задач рассматриваемого класса. Мы же в дальнейшем будем использовать 
+  только &quot;ненаправленные&quot; варианты этих правил.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Восстановление 
+  контекста</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При восстановлении 
+  контекста придется удалить из рабочей памяти все объекты world, созданные после 
+  того объекта, к анализу которого программа возвращается. Удаляются и все утверждения, 
+  сформированные на основании высказываний, связанных с удаляемыми объектами. 
+  Сами же высказывания (объекты statement) должны быть сохранены и при этом помечены 
+  признаком, указывающим, что их нужно в дальнейшем анализировать повторно.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Удаление объектов 
+  world. ЕСЛИ выполняется откат к объекту М, ТО удалить все объекты world, имеющие 
+  идентификатор, больший М. ПРИМЕЧАНИЕ: правило может активизироваться несколько 
+  раз. (defrule undo-world<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 40))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?M) (task back))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?N&amp;:(&gt; ?N ?M)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?S 
+  &lt;- (statement (tag ?N) (done ?X&amp;&quot;0)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?W)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?S (done 0))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Удаление объектов claim.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">; 
+  ; ЕСЛИ выполняется откат к объекту world M,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">; 
+  ; ТО удалить все объекты claim,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">; 
+  ; связанные с удаленными объектами world .<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  unclaim<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 30))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(world 
+  (tag ?M) (task back))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?F 
+  &lt;- (claim (reason ?N&amp;:(&gt; ?N ?M))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?F)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Возобновление 
+  процесса вычислений начиная с точки возврата. ЕСЛИ все объекты world, созданные 
+  после объекта М, удалены, ТО повторно сформировать объект М, предположив лживость 
+  высказывания. (defrule restart<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(declare 
+  (salience 20) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?W 
+  &lt;- (world (tag ?M) (scope truth)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  back) (context ?C&amp;~1)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?W)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(modify 
+  ?W (scope falsity) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  check) (context 0))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Последнее 
+  из приведенных выше правил вновь запускает процесс анализа того объекта world, 
+  к которому выполнен откат. Обратите внимание на то, что это правило имеет самый 
+  низкий приоритет. В результате правила, уничтожающие ненужные объекты, будут 
+  активизированы в первую очередь.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Организация 
+  процесса вычислений на основе этих правил позволяет программе продолжать вычисления 
+  до тех пор, пока имеются не до конца проанализированные &quot;миры&quot;. При 
+  использовании &quot;ненаправленных&quot; правил отката программа всегда сможет 
+  вернуться к последнему объекту world, предлагающему альтернативный вариант предположения, 
+  или к такому объекту, в котором имеются еще не проанализированные дизъюнкты 
+  составного утверждения.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Упражнение 
+  5</b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Проанализируйте 
+  следующую головоломку.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Р7. Встретились 
+  два человека, А и В , которые заявляют следующее. <i>А: </i>&quot;В <i>утверждает, 
+  что он правдолюбец&quot;. В: &quot;А утверждает, что он лжец&quot;.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">К какой категории 
+  следует отнести каждый персонаж? Как следует модифицировать нашу программу, 
+  чтобы она могла решать задачи такого вида? Ниже будут высказаны некоторые соображения, 
+  которые подскажут вам, как модифицировать модель для таких задач.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В существующей 
+  программе мы прежде всего анализировали непротиворечивость каждого из &quot;миров&quot;, 
+  т.е. внутреннюю непротиворечивость каждого отдельного высказывания. После этого 
+  мы анализировали непротиворечивость одного &quot;мира&quot; другому (или другим).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Включение 
+  в постановку задачи высказывания о высказывании (назовем его <i>ме-тавысказыванием) 
+  </i>несколько усложняет положение дел. В такой постановке высказывание образует 
+  &quot;мир&quot;, в котором другое выказывание, а не утверждение, может быть 
+  истинным или ложным. Это второе, внутреннее, высказывание должно также формировать 
+  собственный &quot;мир&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Рассмотрим 
+  высказывание<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>А: &quot;В 
+  утверждает, что он правдолюбец&quot;.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предположив, 
+  что А говорит правду, мы сформируем &quot;мир&quot;, в котором В действительно 
+  утверждает, что он правдолюбец, но внутри этого &quot;мира&quot; существует 
+  и другой, в котором В действительно является правдолюбцем. Отслеживать подобного 
+  рода связи между внешним высказыванием и &quot;внедренным&quot; в него внутренним 
+  высказыванием — одна из новых задач механизма обработки правдоподобия.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">А что можно 
+  сказать о &quot;мире&quot;, в котором А лжет? Мы должны показать, что заявление 
+  В о том, что он лжец, приведет к противоречию.</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index14.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index16.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">5.2.1. 
+  Синтаксис представления правил</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В настоящее 
+  время порождающие правила обычно реализуются в форме правил, манипулирующих 
+  с символическими структурами типа списка векторов, а не строк символов. В этом 
+  сказывается влияние языков программирования вроде LISP и тех структур данных, 
+  которые они поддерживают. (В ранних реализациях использовались языки манипулирования 
+  символами, например SNOBOL.)<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В результате 
+  алфавит канонической символьной системы заменяется словарем символов или атомов 
+  и довольно простой грамматикой формирования символических структур. Словарь, 
+  как правило, состоит из трех подмножеств:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> подмножества <i>N </i>имен 
+    объектов предметной области;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> подмножества <i>Р </i>имен 
+    свойств, которые рассматриваются в качестве атрибутов объектов;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> подмножества <i>V </i>допустимых 
+    значений атрибутов.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На практике 
+  подмножества <i>N и V </i>перекрываются.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Используемая 
+  грамматика, как правило, имеет вид триад <i>объект-атрибут-значение. </i>Триада 
+  (v, л<i>, w</i>) существует, если <i>v принадлежит N и </i>л <i>принадлежит 
+  Р, w принадлежит </i> <i>V. </i>Например, триада<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(ОРГАНИЗМ-1, 
+  морфология, палочка)</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">представляет 
+  определенный микроорганизм, имеющий форму палочки.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Представленная 
+  синтаксическая форма обобщается в том случае, когда нужно для некоторого объекта 
+  v представить &laquo; вариантов пар <i>атрибут-значение </i>(л1,w1) ..., (лn,wn). 
+  В таком случае они объединяются в вектор в форме<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(v, 
+  л1, w1,..., лn, wn).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На языке CLIPS 
+  тот факт, что определенный микроорганизм имеет форму палочки и активно развивается 
+  в воздушной среде, будет представлен вектором<br>
+  </font></p>
+<p align="left"> <font size="3" face="Verdana, Arial, Helvetica, sans-serif">(organism-1 
+  (morphology rod) (aerobicity aerobic)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В дальнейшем 
+  мы будем повсеместно использовать именно такой синтаксис, поскольку CLIPS будет 
+  нашим основным программным инструментом.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Имея в своем 
+  распоряжении словарь символов и грамматику, регламентирующую порождение символических 
+  структур, можно представить в машинном виде исходное состояние интересующих 
+  нас проблем. Эти представления соответствуют аксиомам канонической системы — 
+  они представляют собой некоторую символическую структуру, которую нужно преобразовывать, 
+  применяя имеющиеся правила в определенном порядке.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Теперь перейдем 
+  к самим правилам. В этих правилах антецеденты должны соответствовать допустимым 
+  символическим структурам, а консеквенты — содержать специальные операторы манипулирования 
+  такими структурами. Детали этого процесса станут вам понятны после изучения 
+  следующего раздела, где будет описан вычислительный механизм применения таких 
+  правил.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i>Продукционная 
+  система (production system) </i>состоит из множества правил (иногда этот набор 
+  правил называют <i>продукционной памятью </i>— <i>production memory), интерпретатора 
+  правил, </i>который решает, когда надлежит применить каждое из них, и рабочей 
+  памяти, содержащей данные, описание цели и промежуточные результаты, в совокупности 
+  определяющие текущее состояние проблемы. Именно структуры данных в рабочей памяти 
+  анализируются и преобразуются порождающими правилами. Обращение к правилам синхронизируется 
+  текущими данными, а интерпретатор правил управляет выбором и активизацией определенных 
+  правил в каждом цикле.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Схематически 
+  правила в продукционной системе имеют такую обобщенную форму:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3"><i><font face="Verdana, Arial, Helvetica, sans-serif">P1,..., 
+  Pm,-&gt;Q1,..., Qn<sub> </sub></font></i></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif" size="3">которая читается 
+  следующим образом:<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">если предпосылки 
+  <i>Р1 </i>и ... и <i>Р<sub>т</sub> </i>верны, то выполнить действия <i>Q1 </i>и 
+  ... и <i>Qn.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предпосылки 
+  часто называются <i>условиями, а </i>действия — <i>заключениями, </i>поскольку 
+  один из видов действий — сделать заключение, если встретилось такое сочетание 
+  условий, которое делает истинным или вероятным определенное порождающее правило, 
+  как это было показано в главе 3. Иногда используется и другая терминология, 
+  согласно которой предпосылки называются <i>левой частью </i>правила, а действия 
+  — <i>правой.</i><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Предпосылки 
+  обычно бывают представлены в форме вектора <i>объект-атрибут— значение, </i>как, 
+  например:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism-1 
+  (morphology rod) (aerobicity aerobic)).<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="3"> </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В данном случае 
+  предпосылка состоит в том, что определенный микроорганизм имеет форму палочки 
+  и размножается в воздушной среде.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило, которое 
+  включает такую предпосылку, на языке CLIPS имеет вид, показанный в листинге 
+  5.1.<br>
+  </font></p>
+<blockquote> 
+  <p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+    5.1. Оргправило системы MYCIN, записанное на языке CLIPS</b></font></p>
+</blockquote>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  diagnosis<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(patient 
+  (name Jones)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (organism 
+  organism-1)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism 
+  (name organism-1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (morphology 
+  rod)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (aerobicity 
+  aerobic)) =&gt; (assert<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(name 
+  organism-1)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(identify 
+  enterobacteriaceae)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(confidence 
+  0.8)))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На языке CLIPS 
+  представление правила имеет следующий формат:<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  &lt;наименование правила&gt; &lt;предпосылка1&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;предпосылка 
+  m &gt; =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;действие 
+  1&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;действие 
+  n&gt;</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Перечень предпосылок 
+  в таком правиле представляет собой образец вектора, которому должно соответствовать 
+  состояние рабочей памяти. Действия, такие как (assert ...) в приведенном выше 
+  примере, задают изменения, которые должны быть внесены в состояние рабочей памяти. 
+  Например, специфицированное в приведенном выше правиле действие добавит в рабочую 
+  память новый вектор<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism 
+  (name organism-1)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (identify 
+  enterobacteriaceae)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (confidence 
+  0.8)).</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Таким образом, 
+  правило diagnosis означает следующее: если у определенного пациента обнаружена 
+  связь с определенным микроорганизмом, который имеет перечисленные в правиле 
+  свойства, то мы можем с определенным шансом на успех предполагать, что этот 
+  микроорганизм принадлежит такому-то классу. Это правило не является общим, поскольку 
+  применимо только к конкретному пациенту (Jones) и конкретному микроорганизму 
+  (organism-1). Гораздо чаще нам придется применять правила, которые пригодны 
+  для любого пациента и любого микроорганизма. В такие правила поле имени пациента 
+  вовсе не включается.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Желание сформировать 
+  общие правила требует включения в него переменных, которые играют роль местодержателя. 
+  В правиле, представленном в листинге 5.2, такие переменные отличаются от прочих 
+  членов наличием префикса ? перед именем. Обратите внимание на то, что переменная 
+  ?pat не появляется в заключительной части правила, а значит, использование поля 
+  имени пациента в предпосылках правила действительно является избыточным.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Листинг 
+  5.2. Правило, в котором используются переменные</b><br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  diagnosis<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(patient 
+  (name ?pat) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism 
+  ?org))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (organism 
+  (name ?org) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(morphology 
+  rod) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(aerobicity 
+  aerobic)) =&gt; (assert<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(organism<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(name 
+  ?org)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(identify 
+  enterobacteriaceae) (confidence 0.8)))</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">При использовании 
+  правила интерпретатором вместо всех одноименных переменных подставляется одно 
+  и то же значение.<br>
+  </font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

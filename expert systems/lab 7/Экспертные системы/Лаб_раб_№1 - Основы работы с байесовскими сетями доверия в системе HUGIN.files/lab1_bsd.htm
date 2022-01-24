@@ -1,0 +1,658 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://firm.trade.spb.ru/serp/lab_bbn/lab1/lab1_bsd.htm -->
+<HTML><HEAD><TITLE>Байесовские Сети Доверия</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="Экспертные системы" name=subject>
+<SCRIPT language=JavaScript>
+function is_freme(top_freme) {
+   var f=top.document.location;
+   var z=this.document.location;
+   if (f==z) {this.document.location=top_freme}
+}           
+</SCRIPT>
+
+<META content="MSHTML 5.50.4522.1800" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff onload='is_freme("main.htm")'>
+<P><FONT face=Arial><A name=1st><B>1.Основы построения простейшей байесовской 
+сети доверия</B></A></P><FONT face="Times New Roman">
+<P align=justify>Основной целью данной лабораторной работы является знакомство с 
+основами построения экспертных систем на основе байесовских сетей доверия (БСД), 
+методами их реализации и приемами работы с ними в системе HUGIN.</P>
+<P align=justify>Рассмотрим пример построения простейшей экспертной системы, 
+позволяющей оценивать состояние плодовых деревьев. Опытный садовод, 
+профессионально владеющий знаниями о физиологии растений однажды обнаружил, что 
+его любимое яблочное дерево лишилось листвы и он хочет выяснить, почему это 
+случилось. Будучи профессионалом в своей области (экспертом), он стремиться 
+смоделировать ситуацию, путем построения экспертной системы, которая пригодилось 
+бы и другим менее опытным садоводам. Он знает, что </P>
+<DIR>
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD>ЕСЛИ</TD>
+    <TD>"<I>Дерево засыхает при недостатке влаги</I>"</TD>
+    <TD rowSpan=3><IMG height=153 hspace=12 src="lab1_bsd.files/image1.gif" 
+      width=190 align=left> </TD></TR>
+  <TR>
+    <TD>ИЛИ</TD>
+    <TD>"<I>Дерево болеет</I>"</TD></TR>
+  <TR>
+    <TD>ТО</TD>
+    <TD>"<I>Листва опадает</I>”.</TD></TR></TBODY></TABLE></DIR>
+<P align=justify>Данная ситуация может быть смоделирована байесовской сетью 
+доверия, содержащей три вершины событий: “Болеет”, “Засохло” и “Облетело”. При 
+этом каждое событие может принимать всего лишь одно из двух возможных 
+состояний:<BR>
+<BLOCKQUOTE>
+  <BLOCKQUOTE>
+    <UL>
+      <LI>“Болеет” - состояния ‘болеет’ или ‘нет’; 
+      <LI>“Засохло” - состояния ‘засохло’ или ‘нет’; 
+      <LI>“Облетело”- состояния облетело’ или ‘нет’. 
+</LI></UL></BLOCKQUOTE></BLOCKQUOTE>
+<P align=justify>Байесовская сеть доверия, приведённая на рис.1, моделирует тот 
+факт, что имеется причинно-следственная зависимость от вершины “Болеет” к 
+вершине “Облетело” и от вершины “Засохло” к вершине “Облетело”. Это отображено 
+стрелками на байесовской сети доверия.</P>
+<P align=justify>Когда есть причинно-следственная зависимость от вершины А к 
+другой вершине B, то мы ожидаем, что когда A находится в некотором определённом 
+состоянии, это оказывает влияние на состояние B. Следует быть внимательным, 
+когда моделируется зависимость в БСД. Иногда совсем не очевидно, какое 
+направление должна иметь стрелка. Например, в рассматриваемом примере, мы 
+говорим, что имеется зависимость от “Болеет” к “Облетело”, так как когда дерево 
+болеет, это может вызывать опадание его листвы. Опадание листвы является 
+следствием болезни, а не болезнь – следствием опадания листвы.</P>
+<P align=justify>На рис.1 дано графическое представление БСД. Однако, это только 
+качественное представление. Перед тем, как назвать это полностью байесовской 
+сетью доверия необходимо определить количественное представление, то есть 
+множество таблиц априорных и условных вероятностей.<BR>
+<DIV align=right>Таблица 1.</DIV>
+<CENTER>
+<TABLE cellSpacing=3 cellPadding=2 width=260 border=1>
+  <TBODY>
+  <TR>
+    <TD align=middle colSpan=2><FONT size=2>Р( Болеет )</FONT></TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0><FONT size=2>Болеет=’болеет’</FONT></TD>
+    <TD align=middle bgColor=#c0c0c0><FONT size=2>Болеет=’нет’</FONT></TD></TR>
+  <TR>
+    <TD align=middle><FONT size=2>0.1</FONT></TD>
+    <TD align=middle><FONT size=2>0.9</FONT></TD></TR></TBODY></TABLE></CENTER>
+<DIV align=right>Таблица 2.</DIV>
+<CENTER>
+<TABLE cellSpacing=3 cellPadding=2 width=260 border=1>
+  <TBODY>
+  <TR>
+    <TD align=middle colSpan=2><FONT size=2>Р( Засохло )</FONT></TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0><FONT size=2>Засохло=’засохло’</FONT></TD>
+    <TD align=middle bgColor=#c0c0c0><FONT size=2>Засохло=’нет’</FONT></TD></TR>
+  <TR>
+    <TD align=middle><FONT size=2>0.1</FONT></TD>
+    <TD align=middle><FONT size=2>0.9</FONT></TD></TR></TBODY></TABLE></CENTER>
+<DIV align=right>Таблица 3.</DIV>
+<CENTER>
+<TABLE cellSpacing=3 cellPadding=2 border=1>
+  <TBODY>
+  <TR>
+    <TD vAlign=top colSpan=5>
+      <P align=center><FONT size=2>Р( Облетело | Болеет, 
+  Засохло)</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%">&nbsp;</TD>
+    <TD vAlign=top width="37%" bgColor=#c0c0c0 colSpan=2>
+      <P align=center><FONT size=2>Засохло=’засохло’</P></FONT></TD>
+    <TD vAlign=top width="42%" bgColor=#c0c0c0 colSpan=2>
+      <P align=center><FONT face="Times New Roman Cyr" 
+      size=2>Засохло=’нет’</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%">&nbsp;</TD>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0>
+      <P align=center><FONT size=2>Болеет=’болеет’</P></FONT></TD>
+    <TD vAlign=top width="16%">
+      <P align=center><FONT size=2>Болеет=’нет’</P></FONT></TD>
+    <TD vAlign=top width="23%" bgColor=#c0c0c0>
+      <P align=center><FONT size=2>Болеет=’болеет’</P></FONT></TD>
+    <TD vAlign=top width="19%">
+      <P align=center><FONT size=2>Болеет=’нет’</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0><FONT 
+      size=2>Облетело=’да’</FONT></TD>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0>
+      <P align=center><FONT size=2>0.95</P></FONT></TD>
+    <TD vAlign=top width="16%">
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.85</FONT></P></TD>
+    <TD vAlign=top width="23%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.90</FONT></P></TD>
+    <TD vAlign=top width="19%">
+      <P align=center><FONT face="Times New Roman Cyr" 
+  size=2>0.02</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0><FONT 
+      face="Times New Roman Cyr" size=2>Облетело=’нет’</FONT></TD>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.05</FONT></P></TD>
+    <TD vAlign=top width="16%">
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.15</FONT></P></TD>
+    <TD vAlign=top width="23%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.10</FONT></P></TD>
+    <TD vAlign=top width="19%">
+      <P align=center><FONT face="Times New Roman Cyr" 
+  size=2>0.98</FONT></P></TD></TR></TBODY></TABLE></CENTER>
+<DIV></DIV>
+<P align=justify>Заметим, что все три таблицы показывают вероятность пребывания 
+некоторой вершины в определённом состоянии, обусловленным состоянием её 
+родительских вершин. Но так как вершины “Болеет” и “Засохло” не имеют 
+родительских вершин, то их вероятности являются маргинальными, т.е. не зависят 
+(не обусловлены) ни от чего. На данном примере мы рассмотрели, что и как 
+описывается очень простой байесовской сетью доверия.</P>
+<CENTER><IMG height=85 hspace=22 src="lab1_bsd.files/image2.gif" width=147 
+align=middle vspace=9><BR>рис.2 </CENTER>
+<P align=justify>Современные программные средства (такие как MSBN, HUGIN и др.) 
+обеспечивают инструментарий для построения таких сетей, а также возможность 
+использования БСД для введения новых свидетельств и получения решения (вывода) 
+за счёт пересчёта вероятностей во всех вершинах, соответствующих этим 
+свидетельствам.</P>
+<P align=justify>При реализации, описанной нами, БСД в среде HUGIN следует иметь 
+ввиду, что данная система не во всех режимах поддерживает работу с русскими 
+шрифтами. Поэтому, в дальнейшем, будем пользоваться обозначениями вершин на 
+английском языке. При этом исходная БСД примет вид, приведенный на рис.2</P>
+<P align=center><A name=2st><FONT face=Arial><B>2. Основные приемы работы с 
+HUGIN при построении новой БСД</B> </FONT></A></P><NTER"><FONT 
+face=Arial><B><IMG height=336 hspace=22 src="lab1_bsd.files/image3.gif" 
+width=453 align=middle> </B></FONT>
+<P></P>
+<P align=center>рис.3</P>
+<P><FONT face="Times New Roman">После запуска HUGIN Runtime, откроется окно 
+системы HUGIN, которое содержит панель меню, панель инструментов </FONT><I>(tool 
+bar pane</I><FONT face="Times New Roman">), а также панель редактирования вершин 
+(</FONT><I>node edit pane</I><FONT face="Times New Roman">) и панель 
+графического отображения сети (</FONT><I>network pane</I><FONT 
+face="Times New Roman">). Новая пустая сеть доверия получает имя 
+</FONT><I>"unnamed1" </I><FONT face="Times New Roman">и автоматически 
+открывается в окне сети (</FONT><I>network window</I>).</P>
+<P><FONT face="Times New Roman">После запуска системы </FONT>HUGIN <FONT 
+face="Times New Roman">(рис. 3)</FONT> <FONT face="Times New Roman">она 
+автоматически устанавливается в режим редактирования (</FONT><I>edit 
+mode</I><FONT face="Times New Roman">), что позволяет немедленно приступить к 
+построению новой БСД и определению состояния ее вершин.</FONT></P>
+<P><FONT face="Times New Roman">Другим важным режимом работы системы является 
+режим выполнения </FONT><I>(run mode)</I><FONT face="Times New Roman">, который 
+позволяет использовать БСД для получения требуемых результатов.</FONT></P>
+<P><A name=3st><FONT face=Arial><B><I>2.1 Добавление новых вершин в 
+проектируемую БСД</I></B></FONT></A></P>
+<P><FONT face="Times New Roman">Построение БСД начинается с определения 
+отдельных вершин, входящих в проектируемую БСД. При этом для создания вершин с 
+дискретными состояниями, определения их свойств и задания причинно - 
+следственных связей между вершинами используются, приведенные на рис.4, 
+инструменты интерфейса системы, которые активируются путем нажатия левой кнопки 
+мышки на их пиктограммах.</FONT></P>
+<DIV align=center>
+<CENTER>
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle width=65><IMG height=24 src="lab1_bsd.files/image4.gif" 
+      width=28></TD>
+    <TD>- вершины с дескретными состояниями <EM>[discrete chance 
+  tool]</EM></TD></TR>
+  <TR>
+    <TD align=middle width=65><IMG height=22 src="lab1_bsd.files/tool_n.gif" 
+      width=23></TD>
+    <TD>- свойства вершин <EM>[node properties tool]</EM></TD></TR>
+  <TR>
+    <TD align=middle width=65><IMG height=22 src="lab1_bsd.files/tool_a.gif" 
+      width=23></TD>
+    <TD>- добавление связей <EM>[casual arrow 
+tool]</EM></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align=center>рис.4</P>
+<P><FONT face="Times New Roman">Для построения рассматриваемого примера БСД, 
+первое, что необходимо сделать – это создать вершину </FONT><B><I>Sick</I></B> 
+(“<FONT face="Times New Roman">Болеет</FONT>”<FONT face="Times New Roman">). Для 
+этого необходимо:</FONT></P>
+<UL>
+  <LI><FONT face="Times New Roman">Установить режим добавления вершин с 
+  дискретными состояниями, выбрав соответствующую пиктограмму в панели 
+  инструментов (рис. 4).</FONT> 
+  <LI><FONT face="Times New Roman">Щелкнуть мышкой в любом месте панели 
+  отображения сети (рис. 3), где предполагается размещения добавляемой 
+  вершины.</FONT> </LI></UL>
+<P><FONT face="Times New Roman">После щелчка в панели отображения сети должна 
+отобразиться в виде овала вершина, название которой по умолчанию будет 
+</FONT><B>C1</B><FONT face="Times New Roman">. В соответствии с нашей моделью, 
+необходимо этой вершине присвоить название </FONT><B><I>Sick</I></B><FONT 
+face="Times New Roman">. Для этого</FONT>:</P>
+<UL>
+  <LI><FONT face="Times New Roman">Выделите курсором мыши нужную вершину.</FONT> 
+
+  <LI><FONT face="Times New Roman">Установите режим определения свойств вершины 
+  [</FONT><I>Node Properties</I><FONT face="Times New Roman">], щелкнув на 
+  соответствующей пиктограмме панели инструментов (рис.4).</FONT> 
+  <LI><FONT face="Times New Roman">Измените содержимое полей 
+  </FONT><B>Name</B><FONT face="Times New Roman"> и </FONT><B>Label</B><FONT 
+  face="Times New Roman"> на </FONT><B><I>Sick</I></B>. 
+  <LI><FONT face="Times New Roman">Нажмите "</FONT><I>OK</I>". </LI></UL>
+<P align=center><IMG height=337 hspace=18 src="lab1_bsd.files/image5.gif" 
+width=436 align=middle vspace=9> </P>
+<P align=center>рис.5</P>
+<P><B>Name</B><FONT face="Times New Roman"> - это внутреннее имя вершины, пока 
+</FONT><B>Label</B><FONT face="Times New Roman"> является названием вершины. 
+Если поле </FONT><B>Label</B><FONT face="Times New Roman"> не задано (как это 
+было до того момента, пока мы не изменили поле </FONT><B>Label</B><FONT 
+face="Times New Roman">), то его значение соответствует внутреннему имени. 
+Внутреннее имя может содержать символы 'a'</FONT> - <FONT 
+face="Times New Roman">'z' и 'A'</FONT> - <FONT face="Times New Roman">'Z', 
+цифры '0'</FONT> - <FONT face="Times New Roman">'9', а также знак подчеркивания 
+'_'.</FONT></P>
+<P><FONT face="Times New Roman">Вершины </FONT><B><I>Dry</I></B><FONT 
+face="Times New Roman"> (“Засохло”) и </FONT><B><I>Loses</I></B><FONT 
+face="Times New Roman"> (“Облетело”) добавляются в БСД таким же образом. Можно 
+добавлять вершины не нажимая каждый раз на пиктограмму вершин с дискретными 
+состояниями, а однажды выбрав режим добавления и удерживая клавишу 
+</FONT><I>SHIFT</I><FONT face="Times New Roman"> щелкнуть мышью в окне 
+отображения сети столько раз, сколько вершин с необходимо добавить в 
+БСД.</FONT></P>
+<P><A name=4st><FONT face=Arial><B><I>2.2 Установление причинно-следственных 
+связей между вершинами проектируемой БСД</I></B></FONT></A></P>
+<P><FONT face="Times New Roman">На текущий момент проектируемая БСД имеет вид, 
+похожий на тот, что приведен на рис.5. Следующий этап проектирования БСД состоит 
+в установлении причинно - следственных связей между событиями. Эти связи в 
+модели БСД отображаются в виде стрелок, соединяющих между собой вершины БСД. Для 
+добавления стрелок от вершины </FONT><B><I>Sick</I></B><FONT 
+face="Times New Roman"> к вершины </FONT><B><I>Loses</I></B><FONT 
+face="Times New Roman"> и от </FONT><B><I>Dry</I></B><FONT 
+face="Times New Roman"> к </FONT><B><I>Loses</I></B><FONT 
+face="Times New Roman">, необходимо сделать следующее:</FONT></P>
+<UL>
+  <LI><FONT face="Times New Roman">Нажмите иконку добавления связей (рис. 
+  4).</FONT> 
+  <LI><FONT face="Times New Roman">Протяните мышью стрелку от 
+  </FONT><B><I>Sick</I></B> <FONT face="Times New Roman">к 
+  </FONT><B><I>Loses</I></B><FONT face="Times New Roman">, нажав левую кнопку и 
+  удерживая нажатой клавишу </FONT><I>SHIFT</I>. 
+  <LI><FONT face="Times New Roman">Протяните мышью стрелку от 
+  </FONT><B><I>Dry</I></B><FONT face="Times New Roman"> к 
+  </FONT><B><I>Loses</I></B><FONT face="Times New Roman"> нажав левую 
+  клавишу.</FONT> </LI></UL>
+<P><FONT face="Times New Roman">Теперь Вы имеете полное качественное 
+представление, подобное изображенному на рис.2. Следующий шаг - это задание 
+состояний и таблиц условных вероятностей для каждой вершины.</FONT></P>
+<P><A name=5st><FONT face=Arial><B><I>2.3 Определение всех возможных состояний 
+каждой из вершин БСД</I></B></FONT></A></P>
+<P><FONT face="Times New Roman">Ранее, каждую из вершин мы определили так, что 
+каждая из них может находиться в одном из двух состояний</FONT>: <FONT 
+face="Times New Roman">вершина </FONT><B><I>Sick</I></B><FONT 
+face="Times New Roman"> в состояниях </FONT>‘sick’ (’<FONT 
+face="Times New Roman">болеет</FONT>’<FONT face="Times New Roman">) и 
+</FONT>‘not’ <FONT face="Times New Roman">(нет), вершина </FONT><I>Dry</I><FONT 
+face="Times New Roman"> в состояниях</FONT> ‘dry’ (’<FONT 
+face="Times New Roman">засохло</FONT>’<FONT face="Times New Roman">) и 
+</FONT>‘not’<FONT face="Times New Roman"> (нет), а вершина 
+</FONT><I>Loses</I><FONT face="Times New Roman"> в состояниях </FONT>- 
+‘yes’<FONT face="Times New Roman">(да) и </FONT>‘no’<FONT 
+face="Times New Roman">(нет).</FONT> <FONT face="Times New Roman">Как задаются 
+состояния каждой из вершин БСД в системе </FONT>HUGIN<FONT 
+face="Times New Roman"> рассмотрим на примере определения состояний вершины 
+</FONT><B><I>Sick</I></B><FONT face="Times New Roman">. Для этого 
+необходимо</FONT>:</P>
+<P align=center><IMG height=30 hspace=12 src="lab1_bsd.files/image6.gif" 
+width=62 align=middle> </P>
+<P align=center>рис.6</P>
+<UL>
+  <LI><FONT face="Times New Roman">Сделать активной вершину 
+  </FONT><B><I>Sick</I></B><FONT face="Times New Roman">, выбрав ее в 
+  раскрывающемся списке на панели инструментов или дважды щелкнув на ней 
+  мышью.</FONT> 
+  <LI><FONT face="Times New Roman">Нажать пиктограмму добавления состояний на 
+  панели инструментов (рис.6).</FONT> 
+  <LI><FONT face="Times New Roman">Щелкнув мышью, перевести курсор в ТУВ на 
+  поле, содержащем текст </FONT><B>State 0</B><FONT face="Times New Roman"> и 
+  ввести в него текст </FONT>‘<B>sick’</B><FONT face="Times New Roman">, задавая 
+  одно из состояний вершины. Затем </FONT><B>State 1</B><FONT 
+  face="Times New Roman"> заменить на </FONT>‘<B>not’</B><FONT 
+  face="Times New Roman">, задавая второе состояние вершины.</FONT> </LI></UL>
+<P><FONT face="Times New Roman">Самостоятельно проделайте аналогичные операции 
+для вершины </FONT><I>Dry</I><FONT face="Times New Roman">, определяя ее 
+состояния </FONT>‘dry’<FONT face="Times New Roman"> и </FONT>‘not’<FONT 
+face="Times New Roman">, и вершины </FONT><I>Loses</I><FONT 
+face="Times New Roman">, определяя ее состояния </FONT>‘yes’<FONT 
+face="Times New Roman"> и </FONT>‘no’<FONT face="Times New Roman">. Обратите 
+внимание, что при определении вершины </FONT><I>Loses</I><FONT 
+face="Times New Roman">, таблица ее условных вероятностей будет отличаться от 
+ТУВ вершин </FONT><I>Sick</I><FONT face="Times New Roman"> и 
+</FONT><I>Dry</I><FONT face="Times New Roman">. Это связано с тем, что вершина 
+</FONT><I>Loses</I><FONT face="Times New Roman"> имеет родительские вершины, 
+которых </FONT><I>Sick</I><FONT face="Times New Roman"> и </FONT><I>Dry</I><FONT 
+face="Times New Roman"> не имеют.</FONT></P>
+<P><A name=6st><FONT face=Arial><B><I>2.4 Задание значений таблиц условных 
+вероятностей каждой из вершин БСД</I></B></FONT></A></P>
+<P><FONT face="Times New Roman">Следующий шаг проектирования БСД - это 
+корректное задание значений ТУВ каждой из вершин. По умолчанию система HUGIN для 
+всех вершин устанавливает равномерное распределение. Для нашего примера значения 
+ТУВ были заданы табл. 1, 2, 3 и в новых обозначениях будут иметь вид</FONT>:</P>
+<P align=right><FONT face="Times New Roman">Таблица </FONT>4</P>
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=3 cellPadding=2 width=260 border=1>
+  <TBODY>
+  <TR>
+    <TD align=middle colSpan=2><FONT face="Times New Roman Cyr" size=2><B>P ( 
+      Sick )</B></FONT></TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0><FONT face="Times New Roman Cyr" 
+      size=2>Sick=’sick’</FONT></TD>
+    <TD align=middle bgColor=#c0c0c0><FONT face="Times New Roman Cyr" 
+      size=2>Sick=’not’</FONT></TD></TR>
+  <TR>
+    <TD align=middle><FONT face="Times New Roman Cyr" size=2>0.1</FONT></TD>
+    <TD align=middle><FONT face="Times New Roman Cyr" 
+  size=2>0.9</FONT></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align=right><FONT face="Times New Roman">Таблица </FONT>5.</P>
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=3 cellPadding=2 width=260 border=1>
+  <TBODY>
+  <TR>
+    <TD align=middle colSpan=2><FONT face="Times New Roman Cyr" size=2><B>P ( 
+      Dry )</B></FONT></TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0><FONT face="Times New Roman Cyr" 
+      size=2>Dry=’dry’</FONT></TD>
+    <TD align=middle bgColor=#c0c0c0><FONT face="Times New Roman Cyr" 
+      size=2>Dry=’not’</FONT></TD></TR>
+  <TR>
+    <TD align=middle><FONT face="Times New Roman Cyr" size=2>0.1</FONT></TD>
+    <TD align=middle><FONT face="Times New Roman Cyr" 
+  size=2>0.9</FONT></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align=right><FONT face="Times New Roman">Таблица 6.</FONT></P>
+<P>&nbsp;</P>
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=3 cellPadding=2 border=1>
+  <TBODY>
+  <TR>
+    <TD vAlign=top colSpan=5>
+      <P align=center><FONT face="Times New Roman Cyr" size=2><B>P ( Loses | 
+      Sick, Dry )</B></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%">&nbsp;</TD>
+    <TD vAlign=top width="37%" bgColor=#c0c0c0 colSpan=2>
+      <P align=center><FONT face="Times New Roman Cyr" 
+      size=2>Dry=’dry’</FONT></P></TD>
+    <TD vAlign=top width="42%" bgColor=#c0c0c0 colSpan=2>
+      <P align=center><FONT face="Times New Roman Cyr" 
+      size=2>Dry=’not’</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%">&nbsp;</TD>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" 
+      size=2>Sick=’sick’</FONT></P></TD>
+    <TD vAlign=top width="16%">
+      <P align=center><FONT face="Times New Roman Cyr" 
+      size=2>Sick=’not’</FONT></P></TD>
+    <TD vAlign=top width="23%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" 
+      size=2>Sick=’sick’</FONT></P></TD>
+    <TD vAlign=top width="19%">
+      <P align=center><FONT face="Times New Roman Cyr" 
+      size=2>Sick=’not’</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0><FONT 
+      face="Times New Roman Cyr" size=2>Loses=’yes’</FONT></TD>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.95</FONT></P></TD>
+    <TD vAlign=top width="16%">
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.85</FONT></P></TD>
+    <TD vAlign=top width="23%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.90</FONT></P></TD>
+    <TD vAlign=top width="19%">
+      <P align=center><FONT face="Times New Roman Cyr" 
+  size=2>0.02</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0><FONT 
+      face="Times New Roman Cyr" size=2>Loses=’no’</FONT></TD>
+    <TD vAlign=top width="21%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.05</FONT></P></TD>
+    <TD vAlign=top width="16%">
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.15</FONT></P></TD>
+    <TD vAlign=top width="23%" bgColor=#c0c0c0>
+      <P align=center><FONT face="Times New Roman Cyr" size=2>0.10</FONT></P></TD>
+    <TD vAlign=top width="19%">
+      <P align=center><FONT face="Times New Roman Cyr" 
+  size=2>0.98</FONT></P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P><FONT face="Times New Roman">Процесс заполнения таблиц условных вероятностей 
+рассмотрим на примере заполнения ТУВ для вершины </FONT><B><I>Sick</I></B>:</P>
+<UL>
+  <LI><FONT face="Times New Roman">Выберите вершину </FONT><B><I>Sick</I></B>. 
+  <LI><FONT face="Times New Roman">Щелкните на поле содержащем </FONT><B><I>Sick 
+  </I></B>= ’<B>sick’</B>. 
+  <LI><FONT face="Times New Roman">Введите значение 0.1, соответствующее 
+  табл.4.</FONT> 
+  <LI><FONT face="Times New Roman">Щелкните на поле содержащем </FONT><B><I>Sick 
+  </I></B>= ’<B>not’</B>. 
+  <LI><FONT face="Times New Roman">Введите значение 0.9, соответствующее 
+  табл.4.</FONT> </LI></UL>
+<P><FONT face="Times New Roman">Таким же образом задайте значения для 
+</FONT><B><I>Dry</I></B><FONT face="Times New Roman"> и 
+</FONT><B><I>Loses</I></B><FONT face="Times New Roman">. Когда будите вводить 
+значения для </FONT><B><I>Loses</I></B><FONT face="Times New Roman">, будьте 
+внимательны, чтобы значения соответствовали тем, что даны в табл.6.</FONT></P>
+<P align=center><FONT face="Times New Roman"><IMG height=349 hspace=18 
+src="lab1_bsd.files/image7.gif" width=435 align=middle vspace=6> </FONT></P>
+<P align=center>рис.7</P>
+<P><FONT face="Times New Roman">После задания таблиц условных вероятностей для 
+всех вершин байесовской сети доверия, окно отображения сети будет выглядеть так, 
+как показано на рис.7.</FONT></P>
+<P><FONT face="Times New Roman">На этом конструирование проектируемой БСД 
+заканчивается.</FONT></P>
+<P><FONT face="Times New Roman">Теперь необходимо сохранить результаты работы. 
+Это можно сделать следующим образом:</FONT></P>
+<UL>
+  <LI><FONT face="Times New Roman">Выберите "</FONT><I>Save As</I><FONT 
+  face="Times New Roman">" в меню "</FONT><I>File</I>". 
+  <LI><FONT face="Times New Roman">Введите имя файла (например 
+  </FONT><I>apple.hkb </I><FONT face="Times New Roman">или 
+  </FONT><I>lab1.hkb</I>). 
+  <LI><FONT face="Times New Roman">Нажмите "</FONT><I>Save</I>". </LI></UL>
+<P>&nbsp;</P>
+<P><A name=7st><FONT face=Arial><B>3. Компилирование спроектированной БСД и 
+работа с ней</B></FONT></A></P>
+<P align=center><FONT face=Arial><B><IMG height=22 hspace=12 
+src="lab1_bsd.files/image8.gif" width=23 align=middle></B></FONT></P>
+<P align=center>рис.8</P>
+<P><FONT face="Times New Roman">После того как БСД спроектирована и определена в 
+системе </FONT>HUGIN<FONT face="Times New Roman">, ее необходимо скомпилировать 
+и посмотреть как она работает. Для этого необходимо перевести систему в режим 
+вычислений. С этой целью щелкните мышкой по пиктограмме режима вычислений 
+[</FONT><I>run mode tool button</I><FONT face="Times New Roman">] в панели 
+инструментов (рис.</FONT><FONT face="Times New Roman Cyr" size=3>8</FONT><FONT 
+face="Times New Roman">). Если Вычетко следовали описанию лабораторной работы, 
+то ошибок компиляции не будет. Компиляция такой малой БСД, как наша, закончится 
+быстро и система перейдет в режим вычислений [</FONT><I>"run" mode</I>].</P>
+<P align=center><IMG height=238 hspace=12 src="lab1_bsd.files/image9.gif" 
+width=436 align=middle vspace=5><A name=7st> </A></P>
+<P align=center>&nbsp;рис.9</P>
+<P><FONT face="Times New Roman">В этом режиме окно сети поделено на две 
+вертикальные секции (рис.9). Левая секция представляет собой панель списка 
+вершин [</FONT><I>node list pane</I><FONT face="Times New Roman">], а правая - 
+панель отображения сети [</FONT><I>network pane</I>].</P>
+<P><FONT face="Times New Roman">В левой части окна отображаются вершины БСД, все 
+возможные состояния каждой из вершин, а также вероятности пребывания вершины в 
+каждом из состояний. в секции списка вершин [</FONT><I>node list pane</I><FONT 
+face="Times New Roman">]. Посмотреть эти вероятности можно дважды щелкнув на 
+имени вершины в списке вершин. Теперь раскроем вершины 
+</FONT><B><I>Loses</I></B><FONT face="Times New Roman"> и 
+</FONT><B><I>Sick</I></B><FONT face="Times New Roman">. Для этого дважды 
+щелкните на имени вершины </FONT><B><I>Loses</I></B><FONT 
+face="Times New Roman">, а затем дважды щелкните на 
+</FONT><B><I>Sick</I></B><FONT face="Times New Roman">. Вы также можете 
+просмотреть вероятности пребывания всех вершин во всех возможных состояниях, 
+нажав пиктограмму раскрытия списка вершин [</FONT><I>expand node list 
+tool</I><FONT face="Times New Roman">], вторую слева на панели 
+инструментов.</FONT></P>
+<P><A name=8st><FONT face=Arial><B>4. Распространение вероятностей в БСД при 
+поступлении новых свидетельств</B></FONT></A></P>
+<P><FONT face="Times New Roman">Теперь, представим себе, что Вы хотите 
+использовать БСД для нахождения вероятности болезни яблочного дерева, имея 
+информацию о потери им листьев. Другими словами в базу знаний нашей экспертной 
+системы добавляется новый факт о потере деревом листьев и нас интересует 
+результат вывода ЭС о болезни яблочного дерева. Реализации такого типа запроса к 
+экспертной системе на основе БСД выполняется следующим образом:</FONT></P>
+<P align=center><FONT face="Times New Roman"><IMG height=22 
+src="lab1_bsd.files/image10.gif" width=23 align=middle></FONT></P>
+<P align=center>рис.10<FONT face="Times New Roman"> </FONT></P>
+<UL>
+  <LI><FONT face="Times New Roman">Раскройте список всех вершин, нажав 
+  [</FONT><I>expand node list tool</I>]. 
+  <LI><FONT face="Times New Roman">Введите факт потери листьев дважды щелкнув на 
+  состоянии </FONT>‘<B>yes’</B><FONT face="Times New Roman"> для вершины 
+  </FONT><B><I>Loses</I></B>. 
+  <LI><FONT face="Times New Roman">Нажмите пиктограмму распространения 
+  (рис.</FONT>10<FONT face="Times New Roman">) на панели инструментов для 
+  распространения данного факта на всю БСД.</FONT> 
+  <LI><FONT face="Times New Roman">Посмотрите вероятность пребывания события 
+  </FONT><B><I>Sick</I></B> (“<FONT face="Times New Roman">Болеет</FONT>”) <FONT 
+  face="Times New Roman">в состоянии </FONT>‘<B>sick’ </B>(‘<FONT 
+  face="Times New Roman">болеет</FONT>’)<FONT face="Times New Roman">. 
+  Результаты распространения вероятностей по байесовской сети доверия приведены 
+  на рис.11.</FONT> </LI></UL>
+<P align=center><FONT face="Times New Roman"><IMG height=238 hspace=22 
+src="lab1_bsd.files/image11.gif" width=436 align=middle vspace=5> </FONT></P>
+<P align=center>рис.11</P>
+<P><FONT face="Times New Roman">Вероятность того, что дерево болеет при учете 
+причинно - следственных связей, отмеченных в БСД и наличии факта об опадании 
+листвы составит 0.49.</FONT></P>
+<P><FONT face="Times New Roman">Если Ваше значение не совпадает с представленным 
+выше, возможно Вы что-то неправильно ввели когда заполняли таблицы условных 
+вероятностей. Проверьте таблицы для всех вершин.</FONT></P>
+<P><A name=9st><FONT face=Arial><B>5. Окна контроля</B></FONT></A></P>
+<P><FONT face="Times New Roman">В последнем параграфе панель списка вершин 
+использовалась для ввода фактов и нахождения вероятностей. Тоже самое Вы можете 
+сделать используя окно контроля [</FONT><I>monitor windows</I><FONT 
+face="Times New Roman">]. Окна контроля показывают ту же информацию что и панель 
+списка вершин, но появляется возможность располагать эти окна рядом с 
+соответствующими узлами БСД в панели отображения сети. Вы можете открыть такое 
+окно для любой вершины, но лучший вариант - это открывать лишь те окна, которые 
+представляют особый интерес. Иначе, эти окна будут занимать слишком много места 
+на экране дисплея.</FONT></P>
+<P><FONT face="Times New Roman">Теперь откроем такие окна для вершин 
+</FONT><B><I>Sick</I></B><FONT face="Times New Roman"> и 
+</FONT><B><I>Loses</I></B><FONT face="Times New Roman"> и повторим расчет. 
+Сперва инициализируем БСД, т.е. приведем ее к исходному состоянию. Для 
+этого:</FONT></P>
+<UL>
+  <LI><FONT face="Times New Roman">Нажмите пиктограмму начальной инициализации в 
+  виде кольца со стрелкой [</FONT><I>initialize tool button</I><FONT 
+  face="Times New Roman">], расположенную слева от пиктограммы 
+  распространения.</FONT> </LI></UL>
+<P align=center><FONT face="Times New Roman"><IMG height=238 hspace=12 
+src="lab1_bsd.files/image12.gif" width=436 align=middle> </FONT></P>
+<P align=center>рис.12</P>
+<P><FONT face="Times New Roman">После того, как сеть инициализирована, Вы можете 
+открыть окна контроля для вершин </FONT><B><I>Sick</I></B><FONT 
+face="Times New Roman"> и </FONT><B><I>Loses</I></B><FONT 
+face="Times New Roman">. С этой целью</FONT>:</P>
+<UL>
+  <LI><FONT face="Times New Roman">Выберите </FONT><B><I>Sick</I></B><FONT 
+  face="Times New Roman"> и </FONT><B><I>Loses</I></B><FONT 
+  face="Times New Roman"> (удерживайте нажатой клавишу </FONT><I>SHIFT</I><FONT 
+  face="Times New Roman"> для выбора более чем одной вершины).</FONT> 
+  <LI><FONT face="Times New Roman">Выберите "</FONT><I>Show Monitor Windows</I>" 
+  (<FONT face="Times New Roman">Показывать окна контроля</FONT>)<FONT 
+  face="Times New Roman"> из пункта меню "</FONT><I>View</I><FONT 
+  face="Times New Roman">" (Вид).</FONT> </LI></UL>
+<P><A name=10st><FONT face=Arial><B>6. Наиболее вероятные комбинации 
+состояний</B></FONT></A></P>
+<P><FONT face="Times New Roman">На основе анализа поступившего факта об опадании 
+листвы, можно с вероятностью 0.47 сделать предположения, что дерево засыхает и с 
+вероятностью 0.49, что дерево болеет. При этом как для события 
+</FONT><I>Sick</I><FONT face="Times New Roman">, так и для события 
+</FONT><I>Dry</I><FONT face="Times New Roman"> более вероятными являются 
+состояние </FONT>‘not’<FONT face="Times New Roman">. Это может породить 
+уверенность, что наилучшая комбинация состояний, когда </FONT><I>Sick</I><FONT 
+face="Times New Roman"> и </FONT><I>Dry</I><FONT face="Times New Roman"> 
+находятся в состоянии </FONT>‘not’<FONT face="Times New Roman">. Однако это 
+неверный вывод.</FONT></P>
+<P><FONT face="Times New Roman">Для того, чтобы найти наиболее вероятную 
+комбинацию состояний всех вершин, необходимо вместо распространения сумм 
+использовать распространение максимумов. Пиктограмма распространения максимумов 
+[</FONT><I>Max propagation tool</I><FONT face="Times New Roman">] находится на 
+панели инструментов справа от пиктограммы распространения сумм.</FONT></P>
+<P><FONT face="Times New Roman">Нажмите на эту пиктограмму и Вы получите новое 
+распространение в окнах отображения сети и вершин. При этом, каждое из состояний 
+вершин, имеющее значение 100.00, будет принадлежит к наиболее вероятной 
+комбинации состояний. Для рассматриваемого примера будет получена одна 
+уникальную комбинацию, при которой наиболее вероятным является, что событие 
+<I>Sick(Болеет)</I> находится в состоянии </FONT>‘sick’<FONT 
+face="Times New Roman">, а событие <I>Dry(Засохло)</I> - в состоянии 
+</FONT>‘not’.</P>
+<P><FONT face="Times New Roman">Из полученного результата следует, что несмотря 
+на то, что состояние </FONT><I>Sick</I>=’sick’<FONT face="Times New Roman"> 
+менее вероятно чем состояние </FONT><I>Sick</I>=’<FONT 
+face="Times New Roman">not’, вместе с тем именно это состояние 
+</FONT><I>Sick</I><FONT face="Times New Roman">=’sick’ входит в наиболее 
+вероятную комбинацию состояний вершин БСД при поступлении факта об опадании 
+листвы., в то время как состояние </FONT><I>Sick</I>=’not’ <FONT 
+face="Times New Roman">в нее не входит. Это говорит о том, что необходимо быть 
+очень осторожными в своих выводах о результатах распространения 
+вероятностей.</FONT></P>
+<P><FONT face="Times New Roman">После получения вывода о наиболее вероятной 
+комбинации состояний вершин БСД, может появится желание узнать вероятность 
+наступления этой (или любой другой) комбинаций состояний при условии наступления 
+введенных в БСД свидетельств.</FONT></P>
+<P><A name=11st><FONT face=Arial><B>7. Расчет вероятности комбинаций 
+состояний</B></FONT></A></P>
+<P><FONT face="Times New Roman">Здесь мы расскажем о технике расчета вероятности 
+наиболее вероятной комбинации состояний, полученных при наличии факта, что 
+яблочное дерево теряет свои листья. Эта вероятность записывается в 
+виде:</FONT></P>
+<P align=center><B>P ( </B><B><I>Sick</I></B><B>=’sick’, 
+</B><B><I>Dry</I></B><B>=’not’ | </B><B><I>Loses</I></B><B>=’yes’ )</B></P>
+<P><FONT face="Times New Roman">и для ее определения можно воспользоваться 
+известной формулой из теории вероятности:</FONT></P>
+<P align=center>P(A, B) = P(A | B) P(B),</P>
+<P><FONT face="Times New Roman">переписав ее в виде</FONT>:</P>
+<P align=center>P(A | B) = P(A, B) / P(B),</P>
+<P><FONT face="Times New Roman">Каждый раз при выполнении расчета 
+распространения сумм для БСД, в нижнем левом углу HUGIN будет отображаться 
+вероятность (</FONT> <FONT face="Times New Roman">значение P(All)</FONT> <FONT 
+face="Times New Roman">) одновременного наступления нескольких событий, которую 
+можно записать следующим образом:</FONT></P>
+<P align=center>P(A<SUB>1</SUB>, A<SUB>2</SUB>,..., A<SUB>n</SUB>)</P>
+<P><FONT face="Times New Roman">Если теперь мы заменим A на 
+</FONT><I>Sick</I>=’yes’, <I>Dry</I>=’not’<FONT face="Times New Roman"> и B на 
+</FONT><I>Loses</I>=’yes’<FONT face="Times New Roman">, то вышеприведенная 
+формула для определения условной вероятности может быть переписана в 
+виде</FONT>:</P>
+<P align=center>P(<I>Sick</I>=’yes’, <I>Dry</I>=’not’ | <I>Loses</I>=’yes’) = 
+P(<I>Sick</I>=’sick’,<I> Dry</I>=’not’, <I>Loses</I>=’yes’) / 
+P(<I>Loses</I>=’yes’)</P>
+<P><FONT face="Times New Roman">Если выбрать состояние </FONT>‘yes’<FONT 
+face="Times New Roman"> для вершины </FONT><I>Loses</I><FONT 
+face="Times New Roman"> и сделать расчет распространения сумм, то можно увидеть 
+вероятность пребывания вершины </FONT><I>Loses</I><FONT face="Times New Roman"> 
+в состоянии </FONT>‘yes’<FONT face="Times New Roman">. Ее значение будет 0.1832. 
+( т.е. P(Loses=</FONT>’yes’)=0.1832 ). <FONT face="Times New Roman">Определив 
+чему равно Р(</FONT><I>Loses</I>=’yes’)<FONT face="Times New Roman">, нам 
+осталось определить чему равно P(</FONT><I>Sick</I>=’sick’, <I>Dry</I>=’not’, 
+<I>Loses</I>=’yes’<FONT face="Times New Roman">). Это делается следующим 
+образом:</FONT></P>
+<UL>
+  <LI><FONT face="Times New Roman">Введите </FONT><I>Sick</I>=’sick’, 
+  <I>Dry</I>=’not’<FONT face="Times New Roman">, и 
+  </FONT><I>Loses</I>=’yes’<FONT face="Times New Roman"> в БСД.</FONT> 
+  <LI><FONT face="Times New Roman">Выполните расчет распространение сумм 
+  (нажмите </FONT><I>sum propagation tool</I>). 
+  <LI><FONT face="Times New Roman">Посмотрите P(</FONT><I>Sick</I>=’sick’, 
+  <I>Dry</I>=’not’, <I>Loses</I>=’yes’<FONT face="Times New Roman">) как 
+  значение P(All) в нижнем левом углу.</FONT> </LI></UL>
+<P><FONT face="Times New Roman">Это значение должно быть равно 0.081. Теперь мы 
+готовы посчитать требуемую нам вероятность, которая будет равна</FONT>:</P>
+<P align=center>P(<I>Sick</I>=’yes’, <I>Dry</I>=’not’ | <I>Loses</I>=’yes’) = 
+0.081 / 0.1832 = 0.442</P>
+<P><FONT face="Times New Roman">Таким образом, на основе поступившего факта об 
+опадании листвы экспертная система делает вывод о том, что наиболее 
+вероятной</FONT> <FONT face="Times New Roman">является ситуация, связанная с 
+тем, что дерево заболело и</FONT> <FONT face="Times New Roman">не</FONT> <FONT 
+face="Times New Roman">засохло</FONT>. <FONT face="Times New Roman">При этом 
+вероятность такой ситуации равна</FONT> 0.442.</P></FONT></FONT></BODY></HTML>

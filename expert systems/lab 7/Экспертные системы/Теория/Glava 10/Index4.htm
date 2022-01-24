@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><font size="4">10.1.2. 
+  Уровни анализа знаний</font><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Приведенное 
+  выше разделение на этапы встречается также и в работе Уилинги, который разработал 
+  моделирующий подход к инженерии знаний в рамках созданной им среды KADS <i>[Wielinga 
+  et al, 1992]. </i>В основе этого подхода лежит идея о том, что экспертная система 
+  является не контейнером, наполненным представленными экспертом знаниями, а &quot;операционной 
+  моделью&quot;, которая демонстрирует некоторое нужное нам поведение в столкновении 
+  с явлениями реального мира. Приобретение знаний, таким образом, включает в себя 
+  не только извлечение специфических знаний о предметной области, но и интерпретацию 
+  извлеченных данных применительно к некоторой концептуальной оболочке и формализацию 
+  их таким способом, чтобы программа могла действительно использовать их в процессе 
+  работы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В основу оболочки 
+  KADS положено пять базовых принципов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(1) Использование 
+  множества моделей, позволяющее преодолеть сложность процессов инженерии знаний.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(2) Четырехуровневая 
+  структура для моделирования требуемой <i>экспертности </i>— набора качеств, 
+  лежащих в основе высокого уровня работы специалистов.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(3) Повторное 
+  использование родовых компонентов модели в качестве шаблонов, поддерживающих 
+  нисходящую стратегию приобретения знаний.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(4) Процесс 
+  дифференциации простых моделей в сложные.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">(5) Важность 
+  преобразования моделей экспертности с сохранением структуры в процессе разработки 
+  и внедрения.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Ниже мы рассмотрим 
+  подробно два первых принципа.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Главным мотивом 
+  создания оболочки KADS было преодоление сложности знаний. На сегодняшний день 
+  у инженеров по знаниям имеется возможность использовать при построении экспертных 
+  систем множество самых разнообразных методов и технологий. Однако при этом остаются 
+  три основных вопроса:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>определение проблемы, 
+    </i>которую необходимо решить с помощью экспертной системы;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>определений функций, 
+    </i>которые возлагаются на экспертную систему применительно к этой проблеме;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>определение задач, 
+    </i>которые необходимо решить для выполнения возложенной функции.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Первый из 
+  принципов, положенных в основу KADS, состоит в том, что оболочка должна содержать 
+  множество частных моделей, помогающих найти ответ на эти вопросы. Примерами 
+  таких моделей могут служить:<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>организационная 
+    модель </i>&quot;социально-экономической среды&quot;, в которой должна функционировать 
+    система, например финансовые услуги, здравоохранение и т.п.;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>прикладная модель 
+    </i>решаемой проблемы и выполняемой функции, например диагностика, планирование 
+    расписания работ и т.д.;<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>модель задач, </i>демонстрирующая, 
+    как должна выполняться специфицированная функция, для чего производится ее 
+    разбиение на отдельные задачи, например сбор данных о доходах, формирование 
+    гипотез о заболеваниях.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Между этой 
+  терминологией и той, которой пользовался Бучанан, нет прямого соответствия, 
+  но можно сказать, что организационная и прикладная модели аналогичны стадии 
+  идентификации в предложенной Бучананом структуре.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В подходе, 
+  который реализован при создании KADS, стадия &quot;концептуализации&quot; разбивается 
+  на две части: <i>модель кооперации, </i>или <i>коммуникации, </i>и <i>модель 
+  экспертности. </i>Первая отвечает за декомпозицию процесса решения проблемы, 
+  формирование набора простейших задач и распределение их между исполнителями, 
+  в качестве которых могут выступать и люди, и машины. Вторая модель представляет 
+  процесс, который обычно называется извлечением знаний, т.е. анализ разных видов 
+  знаний, которые эксперт использует в ходе решения проблемы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Кроме указанных, 
+  в состав оболочки KADS входит еще и <i>модель проектирования, </i>включающая 
+  технологии вычислений и механизмы представления знаний, которые могут быть использованы 
+  для реализации спецификаций, сформулированных предыдущими моделями.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">На первый 
+  взгляд кажется, что представленный выше анализ в какой-то степени смазывает 
+  отличие между стадиями концептуализации и формализации. Можно, конечно, возразить, 
+  что стадия формализации представляет собой просто более детальную проработку 
+  концепций и отношений, выявленных на ранних стадиях. Модель проектирования частично 
+  включает то, что в прежней схеме было отнесено к стадии реализации, но она не 
+  предполагает создание выполняемой программы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В своей ранней 
+  работе Уилинга немного по-другому проводил разграничение между уровнями анализа 
+  <i>[Wielinga and Breuker, 1986]. </i>Он рассматривал четыре уровня анализа.<br>
+  </font></p>
+<ul>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> <i>Концептуализация 
+    знаний. </i>На этом уровне предполагалось формальное описание знаний в терминах 
+    принципиальных концепций и отношений между концепциями.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Уровень <i>эпистемологического 
+    анализа. </i>Целью такого анализа было выявление структурных свойств концептуальных 
+    знаний, в частности таксономических отношений.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Уровень логического 
+    <i>анализа. </i>Основное внимание уделялось тому, как строить логический вывод 
+    в данной предметной области на основе имеющихся знаний.<br>
+    </font></li>
+  <li> <font face="Arial, Helvetica, sans-serif" size="3"> Уровень <i>анализа 
+    внедрения. </i>Исследовались механизмы программной реализации системы.<br>
+    </font></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">В более поздней 
+  разработке три первых уровня включены в состав модели экспертно-сти, а уровень 
+  анализа внедрения — в модель проектирования. Четырехуровневая структура KADS 
+  согласуется с предложенной Кленси схемой разделения знаний различного вида в 
+  соответствии с их ролью в процессе решения проблем <i>[Clancey, 1985]. </i>Подробно 
+  схема Кленси будет рассмотрена в главе 11. В частности, знания, касающиеся конкретной 
+  предметной области, теперь разделены на знания более высокого уровня (знания, 
+  относящиеся к построению логического вывода в этой предметной области), знания 
+  выбора решаемых задач и знания стратегии решения задач.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эти уровни 
+  знаний представлены в табл. 10.1. Стратегический уровень управляет процессом 
+  выполнения задач, использующих при решении проблем методы логического вывода, 
+  подходящие для конкретной предметной области, и знания из этой области. Анализ 
+  такой схемы дифференциации знаний будет проведен в следующей главе.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Сейчас же 
+  только отметим, что описанная схема дифференциации знаний приводит нас к довольно 
+  простой архитектуре экспертной системы. В частности, оказывается, что даже в 
+  рамках традиционной архитектуры, предполагающей наличие базы знаний и машины 
+  логического вывода, можно неявным образом включить задачи и стратегии и в структуру 
+  знаний о предметной области, и в механизм построения логических заключений. 
+  Мы еще увидим в дальнейшем, что явное выделение этих задач и стратегий является 
+  главным моментом как в процессе приобретения знаний, так и в процессе проектирования 
+  структуры экспертной системы.<br>
+  </font></p>
+<p align="center"> <font face="Arial, Helvetica, sans-serif" size="3"><b>Таблица 
+  10.1. Четырехуровневая схема дифференциации знании в системе KADS</b><br>
+  </font></p>
+<div align="left"> 
+  <table frame="BOX" rules="ALL" border="1" cellspacing="0" cellpadding="0" width="550" height="274">
+    <tr> 
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="175" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="166" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="297" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="30"> </td>
+      <td align="LEFT" valign="TOP" width="175" height="30"> 
+        <div width="175" height="30"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Категория 
+            знаний</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="166" height="30"> 
+        <div width="166" height="30"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Организация</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="297" height="30"> 
+        <div width="297" height="30"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3"><b>Виды знаний</b><br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="30"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+      <td align="LEFT" valign="TOP" width="175" height="26"> 
+        <div width="175" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Стратегическая<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="166" height="26"> 
+        <div width="166" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Стратегии<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="297" height="26"> 
+        <div width="297" height="26"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Планы, метаправила<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="26"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="73"> </td>
+      <td align="LEFT" valign="TOP" width="175" height="73"> 
+        <div width="175" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Задача<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="166" height="73"> 
+        <div width="166" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Задачи<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="297" height="73"> 
+        <div width="297" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Цели, управляющие 
+            термы, структуры задач<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="73"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="73"> </td>
+      <td align="LEFT" valign="TOP" width="175" height="73"> 
+        <div width="175" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Логический вывод<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="166" height="73"> 
+        <div width="166" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Структура логического 
+            вывода<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="297" height="73"> 
+        <div width="297" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Источники знаний, 
+            метаклассы, схема предметной области<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="73"> </td>
+    </tr>
+    <tr align="LEFT" valign="TOP"> 
+      <td align="LEFT" valign="TOP" width="0" height="73"> </td>
+      <td align="LEFT" valign="TOP" width="175" height="73"> 
+        <div width="175" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Предметная область<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="166" height="73"> 
+        <div width="166" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Теория предметной 
+            области<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="297" height="73"> 
+        <div width="297" height="73"> 
+          <p> <font face="Arial, Helvetica, sans-serif" size="3">Концепции, свойства, 
+            отношения<br>
+            </font></p>
+        </div>
+      </td>
+      <td align="LEFT" valign="TOP" width="0" height="73"> </td>
+    </tr>
+    <tr> 
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="175" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="166" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="297" height="0"> </td>
+      <td align="LEFT" valign="TOP" width="0" height="0"> </td>
+    </tr>
+  </table>
+</div>
+<p align="left">&nbsp; </p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#666666">10.1. 
+  Оболочки CommonKADS и KASTUS</font></b><font color="#666666"><br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3" color="#666666">Описанные 
+  принципы построения оболочки системы приобретения знаний получили дальнейшее 
+  развитие в системе CommonKADS [Breaker and van de Velde, 1994]. Эта система 
+  поддержки инженерии знаний содержит редакторы каждого из перечисленных типов 
+  моделей и множество инструментальных средств и компонентов, облегчающих проектирование 
+  экспертной системы. Существенную помощь менеджеру проекта при планировании работ 
+  должна оказать модель жизненного цикла экспертной системы. В дополнение к тем 
+  моделям, которые входили в состав ранних версий оболочки KADS, в новую версию 
+  включено несколько новых, в частности модель агента, которая представляет саму 
+  экспертную систему, ее пользователей и подключенные вычислительные системы.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">В 
+  рамках проекта KASTUS онтология и методология оболочки KADS была использована 
+  и при построении больших повторно используемых баз знаний [Wielinga and Schreiber, 
+  1994]. Наименование проекта KASTUS — сокращение от Knowledge about Complex Technical 
+  Systems for Multiple Use (знания многоразового применения о сложных технических 
+  системах). Цель проекта — создание системы знаний, которую можно было бы использовать 
+  в множестве разнообразных приложений.<br>
+  </font></font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" color="#666666"><font size="3">Уилинга 
+  и его коллеги сформулировали ряд принципов, которые составили основу 'методологии 
+  построения баз данных совместного использования. Один из них предполагает четкое 
+  разделение знаний, относящихся к предметной области и методам управления процессом 
+  применения знаний, другой — дальнейшее углубление онтологии предметной области, 
+  т.е. модели сущностей этой области и отношений между сущностями. Углублению 
+  и развитию этих двух концепций посвящено целое направление в современной литературе 
+  по экспертным системам, в которой такой подход противопоставляется методологии, 
+  основанной на приоритете технологий программирования, таких как формализм порождающих 
+  правил.</font><font size="3"></font></font><font face="Arial, Helvetica, sans-serif"><font size="3"><br>
+  </font></font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index3.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    <td ALIGN=RIGHT><font face="Arial, Helvetica, sans-serif"><a href="Index5.htm"><img SRC="For.gif" BORDER=0 ></a></font></td>
+  </tr>
+</table>
+</body>
+</html>

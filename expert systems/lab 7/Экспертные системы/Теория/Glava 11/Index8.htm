@@ -1,0 +1,720 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+</head>
+<body TEXT="#000000" BGCOLOR="#E7E3E7" LINK="#004080" VLINK="#004080" olink="#008080" Background="">
+<table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p align="center"><font face="Arial, Helvetica, sans-serif" size="3"><b><font size="4">Упражнения</font></b><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">1. Проанализируйте 
+  классификацию задач, решаемых экспертными системами, которую предложил Хейес-Рот.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Как вы 
+  считаете, существуют ли задачи, которые не представлены в этой классификации?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) В какую 
+  категорию систем этой классификации входит, по вашему мнению, система, которая 
+  консультирует пользователей относительно их юридических прав и выдает рекомендации 
+  о действиях в ходе судебного процесса.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">2. Проанализируйте 
+  схему задач экспертных систем, предложенную Кленси (рис. 11.1 и 11.2).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Где в этой 
+  схеме, по-вашему, место для компьютерной системы обработки данных?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Можете 
+  ли вы предложить способ расширения или уточнения такого анализа? Например, можете 
+  ли вы предложить способ дальнейшей дифференциации задачи &quot;Управление&quot;?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">3. Являются 
+  ли перечисленные ниже задачи по своему характеру задачами классификации, задачами 
+  конструирования или задачами, обладающими признаками обоих этих типов?<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Принятие 
+  решения о том, какой курс дисциплин следует прослушать в колледже.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Принятие 
+  решения о том, как провести отпуск.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">III) Изменение 
+  ранее составленного плана проведения отпуска вследствие непредвиденных обстоятельств.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">IV) Подготовка 
+  налоговой декларации.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">4. Ниже представлен 
+  список правил на языке CLIPS, который соответствует приведенному во врезке 11.1 
+  определению термина &quot;оружие нападения&quot; (assault-weapon). Некоторые 
+  правила в этом наборе вам следует попытаться сформулировать самостоятельно.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Объявления (deftemplate gun<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  name (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  class (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  action (type SYMBOL))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  caliber (type FLOAT)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  capacity (type INTEGER)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  feature (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  assault-weapon<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  name (type SYMBOL)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Факты<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Данный набор исходных правил квалифицируют<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  только модели Heckler &amp; Kock 91 и Benelli<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  как &quot;оружие нападения&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  guns<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (name Browning22)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (class 
+  rifle) (action semi)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (caliber 
+  .22) (capacity 11))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (name CobrayMll) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(class 
+  pistol)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (action 
+  semi) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(caliber 
+  9.0) (capacity 30))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (name HK91) (class rifle) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(action 
+  semi) (caliber .308) (capacity 20))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (name GlocklT) (class pistol)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (action 
+  semi) (caliber 9.0) (capacity 17))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (name Mossberg) (class shotgun) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(action 
+  slide) (caliber .410)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (capacity 
+  5) (feature pistol-grip))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (gun 
+  (name BenelliSuper90)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (class 
+  shotgun) (action semi) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(caliber 
+  12.0) (capacity 5) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(feature 
+  barrel-shroud)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРАВИЛА<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Общий случай<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Любая полуавтоматическая<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  винтовка (semi-automatic rifle)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  или охотничье ружье (shotgun) с емкостью<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  магазина более 5 патронов.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  Parti<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (name ?N) (class ?Csrifle|shotgun) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(action 
+  semi) (capacity ?X&amp;:(&gt; ?X 5))) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (assault-weapon (name ?N)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Любая полуавтоматическая<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  винтовка (semi-automatic rifle)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  или охотничье ружье (shotgun) с<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  перечисленными дополнительными признаками.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  Part2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(gun 
+  (name ?N) (class ?C&amp;rifle|shotgun)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(action 
+  semi)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(feature 
+  ?Fsflash-suppressor|barrel-shroud|night-scope)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (assault-weapon (name ?N)))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Любое охотничье ружье (shotgun) с пистолетной </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  рукояткой.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Сюда вставьте разработанное вами</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  самостоятельно правило pistol-grip.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Особые случаи<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Модель Cobray Mil относится к категории </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;оружие нападения&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Сюда вставьте разработанное вами </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  самостоятельно правило cobray.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Исключения<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Модели, указанные пользователем, не относятся</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  к категории &quot;оружие нападения&quot;, (defrule rimfire<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?except 
+  &lt;- (gun (name ?N) (class rifle)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(caliber 
+  .22)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?mistake 
+  &lt;- (assault-weapon) (name ?N)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?mistake) (retract ?except) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  К категории &quot;оружие нападения&quot; не относятся<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  охотничьи ружья со скользящим затвором<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;(slide-action 
+  shotgun).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Сюда вставьте разработанное вами<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  самостоятельно правило slide.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило cobray 
+  учитывает особый случай с моделью Cobray Mil. Включение в набор правила pistol-grip 
+  приведет к тому, что к категории &quot;оружие нападения&quot; будет отнесена 
+  и модель Mossberg, но затем уточняющее правило slide исключит эту модель.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">5. Ниже приведен 
+  фрагмент программы Wine Advisor (Советчик для любителей вин) на языке CLIPS 
+  (программа разработана Рандом Вальцманом для системы Teknowledge OPS5). В программу 
+  вводится название блюда, а она предлагает список вин, рекомендуемых к этому 
+  блюду. Программа работает по принципу эвристической классификации, поскольку 
+  построена на предположении о наличии прямого соответствия между основными характеристиками 
+  блюда (например, из мяса или рыбы, типа приправ и т.п.) и классом рекомендуемых 
+  вин (в характеристики класса входит цвет, крепость, сахаристость и т.п.).<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">I) Ваша задача 
+  состоит в том, чтобы проанализировать представленный набор правил и принять 
+  решение о том, как организовать базу знаний о блюдах и винах, как поступать 
+  с неопределенностью, как переходить от одной стадии процесса логического вывода 
+  к другой. Комментарии в тексте программы помогут вам понять ее суть и укажут 
+  способ расширения ее возможностей. В случае необходимости пользуйтесь описанием 
+  языка CLIPS, приведенном в Приложении.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Шаблоны<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(def 
+  template wine<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  property (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  is (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  cert (type FLOAT))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(def 
+  template meal<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  property (type SYMBOL))</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (field 
+  is (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deftemplate 
+  decision<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(field 
+  re (type SYMBOL)) (field is (type SYMBOL))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Факты<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(deffacts 
+  the-facts<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  dish) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Порождающие правила в формате<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  (defrule &lt;наименование_правила&gt; &lt;прав часть&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &lt;лев_часть&gt; ).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРАВИЛА, КАСАЮЩИЕСЯ БЛЮД.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эти правила 
+  соответствуют этапу абстрагирования данных.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило dish-type 
+  вызывается первым, поскольку оно устанавливает модель среды в соответствии с 
+  имеющимися фактами при перезапуске исполнительной системы CLIPS,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (defrule 
+  dish-type (initial-fact) (task dish) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Is 
+  the main dish of the meal MEAT, FISH or POULTRY?&quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Блюдо приготовлено из МЯСА, РЫБЫ или ПТИЦЫ?<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf) (assert (meal (property dish-type)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is 
+  read)))) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  Правило meat собирает дополнительные сведения</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  о блюде, если известно, что оно приготовлено </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  из мяса, (defrule meat (task dish)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(meal 
+  (property dish-type) (is meat)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;What 
+  kind of meat? For example STEAK, VEAL, LAMB.&quot;</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;; 
+  Из какого мяса? Например, ГОВЯДИНА, ТЕЛЯТИНА, БАРАНИНА.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf) (assert (meal (property meat-type)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is 
+  read)))) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Аналогичное 
+  правило fish для блюда из рыбы напишите самостоятельно. Это правило должно уточнять 
+  тип морского продукта, из которого приготовлено блюдо: свежая рыба, моллюски 
+  и т.п.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Разработайте 
+  и правило poultry для блюд из птицы.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРАВИЛА, КОТОРЫЕ ИМЕЮТ ДЕЛО С </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ХАРАКТЕРИСТИКАМИ ВИН.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Эти правила 
+  соответствуют этапу эвристического сопоставления.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило steak 
+  является примером сопоставления вида мясного блюда с классом вин.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  steak<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">?task 
+  &lt;- (task dish) (meal </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(property 
+  meat-type) (is steak)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (wine (property color) (is red)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  1.0))) (assert (wine (property body) (is full)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  1.0))) (assert (wine (property flavor) (is dry)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  0.7))) (assert (wine (property flavor) (is sweet)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  0.2))) (retract ?task)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (task attributes)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Такие 
+  же правила можно написать и для других<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;видов 
+  мясных блюд: из телятины (veal),<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;баранины 
+  (lamb) и т.д.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Задача 
+  dish удалена, поскольку известно,<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;какого 
+  типа блюдо.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Затем 
+  устанавливается задача принятия решения<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;о 
+  характеристиках вина.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Для 
+  блюд из мяса, рыбы и птицы нужно </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;определить 
+  правила по умолчанию </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;(default 
+  rules), которые будут относиться к </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;любому 
+  типу соответствующего исходного </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;продукта 
+  (например, подходят и для блюда из </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;аллигатора, 
+  если последний отнесен </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;к 
+  мясным продуктам).<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;ПРАВИЛА 
+  РАБОТЫ С КОЭФФИЦИЕНТАМИ УВЕРЕННОСТИ<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Если 
+  в модели среды существуют две структуры с </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;одними 
+  и теми же значениями для одних и тех же </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;атрибутов, 
+  но отличаются коэффициентами </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;уверенности, 
+  то правило </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;attribute-update 
+  создает из них третью </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;структуру 
+  с новым значением и удаляет две </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;исходные.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Новое 
+  значение коэффициента уверенности CF </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;вычисляется 
+  по формуле: </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;cf 
+  = cfl + с&pound;2(1 - cfl)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  attribute-update (task attributes) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">?winel 
+  &lt;- (property ?attribute) (is ?value)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  ?certl)) ?wine2 &lt;- (property ?attribute) (is ?value)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  ?cert2)) (&lt;&gt; ?crtl ?cert2) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(bind 
+  ?newcert (+ ?certl ( ?cert2<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(- 
+  1 ?certl)))) (assert (wine (property ?attribute)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is 
+  ?value) (cert ?newcert))) (retract ?winel) (retract ?wine2) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Разработайте 
+  правило preference, к которому</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;следует 
+  обращаться только в том случае, если в </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;рабочей 
+  памяти существует больше одного<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;возможного 
+  значения для некоторого атрибута.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;Это 
+  правило должно запросить у пользователя,</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;какое 
+  значение атрибута из существующих для </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;него 
+  предпочтительнее, соответственно </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;изменить 
+  коэффициент уверенности в выбранном </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;сочетании 
+  атрибут-значение, а другое значение </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;удалить 
+  из памяти.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;Разработайте 
+  правило choose-value, которое </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;будет 
+  активизироваться в том случае, если в </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;рабочей 
+  памяти существуют две структуры, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;характеризуемые 
+  разными значениями одного и </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;того 
+  же атрибута. Правило должно </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;выбирать 
+  структуру, у которой коэффициент </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;уверенности 
+  больше, а другую удалять.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;Разработайте 
+  правило unique, которое будет </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;активизироваться 
+  в том случае, если существует </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;только 
+  одна структура с определенным значением</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;атрибута. 
+  Это правило объявляет, что атрибут</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;окончательно 
+  определен.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;Разработайте 
+  правило unity, которое будет </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;активизироваться 
+  в том случае, если существует </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;структура, 
+  обладающая коэффициентом </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;уверенности, 
+  равным 1. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Это 
+  правило объявляет, что атрибут</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;окончательно 
+  определен.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Если 
+  все атрибуты вина определены, вывести отчет, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  all-attributes-done ?task .</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;- 
+  (task attributes) ?col </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;- 
+  (color done) ?bod</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> &lt;- 
+  (body done) ?fla </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">&lt;- 
+  (flavor done) (wine (property color)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (is 
+  ?color)) (wine (property body) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is 
+  ?body)) (wine (property flavor) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(is 
+  ?flavor)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout 
+  t crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Try 
+  a &quot; ?flavor &quot; &quot; ?color &quot; wine with a &quot; ?body &quot; 
+  body&quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Попробуйте &quot; ?f lavor &quot; &quot; ?color &quot; вино с </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot; ?body &quot; консистенцией.&quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(retract 
+  ?col) (retract ?bod) (retract ?fla)</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> (retract 
+  ?task) (assert (task brand)) )<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;ПРАВИЛА, 
+  ИМЕЮЩИЕ ОТНОШЕНИЕ К ВИНУ.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Выбор 
+  вина по заданному описанию значений ;атрибутов.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Правила 
+  этой группы соответствуют этапу </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;&quot;конкретизация 
+  решения&quot;. </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Прежде 
+  чем предложить пользователю выбрать </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;желаемый 
+  продукт, нужно сформировать список </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;кандидатов.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Разработайте 
+  правило go-choose, которое </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;выбирает 
+  вино с наивысшим рейтингом, если не</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"> ;;активизируются 
+  никакие другие правила, </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;дополняющие 
+  список вин.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Правило 
+  soave является примером правила </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;дополнения 
+  списка новым названием вина </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;(в 
+  данном случае &quot;soave&quot;). </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;;Разработайте 
+  другие аналогичные правила.<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(defrule 
+  soave (task brand)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(wine 
+  (property color) (is white)) </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">(wine 
+  (property flavor) (is dry)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  ?certl)) (wine (property body) (is fine)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  ?cert2)) =&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(assert 
+  (wine (property brand) (is soave)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(cert 
+  (min ?certl ?cert2))))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  ПРАВИЛА, ОРГАНИЗУЮЩИЕ ВЫБОР ПОЛЬЗОВАТЕЛЕМ ИЗ </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  СПИСКА.</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Пользователь 
+  отвечает на выводимый запрос вводом &quot;yes&quot; или &quot;по&quot;.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Разработайте 
+  правило selection, которое выбирает вино с наивысшим рейтингом и предлагает 
+  его пользователю.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Разработайте 
+  правило rejection, которое активизируется после ввода пользователем отрицательного 
+  ответа на текущее предложение.<br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">Правило acceptance 
+  завершает текущий сеанс работы с программой, (defrule acceptance<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(task 
+  choice)<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(decision 
+  (re ?candidate) (is yes))<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">=&gt;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">(printout<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">&quot;Sir/Madam 
+  has impeccable taste &quot; </font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="3">;; 
+  &quot;Сэр/Мадам! У вас исключительно тонкий вкус! &quot;<br>
+  </font></p>
+<p align="left"> <font face="Verdana, Arial, Helvetica, sans-serif" size="3">t 
+  crlf) (halt) )</font><font face="Arial, Helvetica, sans-serif" size="3"><br>
+  </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif" size="3">II) Как можно 
+  изменить стратегию поиска, например не формировать сначала весь список, а предлагать 
+  пользователю вина сразу же после формирования очередного кандидата, причем создавать 
+  их в порядке &quot;качества&quot; вина?</font></p>
+<p>&nbsp;</p><table BORDER=0   COLS=3 WIDTH="16%" >
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif"><a href="Index7.htm"><img SRC="Back.gif"  BORDER=0 ></a></font></td>
+    <td WIDTH="10%"><font face="Arial, Helvetica, sans-serif"><a href="../index.html"><img SRC="Menu.gif" BORDER=0 ></a></font></td>
+    
+  </tr>
+</table>
+</body>
+</html>
